@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/Profesor/templateProfesor.xhtml">
+        
+        <ui:define name="body">
+            <h:form>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">NOTAS</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
+                        <h:outputText class="ob des_label" value="Administra las notas de los estudiantes" />
+                        <h:commandButton class="ob btn_form" action="/Profesor/notas/List.xhtml" value="VER MAS" />
+                    </div>
+                </div>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">REPORTE</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
+                        <h:outputText class="ob des_label" value="Descarga el reporte de notas de los estudiantes" />
+                        <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias.xhtml" value="VER MAS" />
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>

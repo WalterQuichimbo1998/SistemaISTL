@@ -1,0 +1,582 @@
+*{
+    margin: 0;
+}
+body{
+    background-color: #E8F0F2;
+}
+
+.boxBtnCrud{
+    text-align: center;
+    margin: 5px 0px;
+}
+.btnFormCrud{
+    margin: 0px 10px;
+}
+
+
+
+
+.cabecera-barra{
+    width: 100%;
+    background-color: #F9F9F9;
+    box-shadow: 2px 2px 7px 1px #cccccc;
+}
+.menuBarra{
+    background-color: #E8E8E8;
+    border-style: none;
+    padding-left: 100px;
+}
+.campoBuscar{
+    width: 400px;
+    height: 25px;
+    text-align: center;
+    border-radius: 50px;
+}
+.panelVista{
+    margin: 3px;
+    text-align: left;
+}
+.dialogTitulos{
+    color: #000;
+    font-weight: bold;
+}
+.footerPanel{
+    width: 100%;
+    height: auto;
+    background-color: #068B96;
+    border-style: none;
+    padding-top: 20px;
+    text-align: center;
+}
+.panelBody{
+    border: #ffffff;
+    box-shadow: 2px 2px 7px 2px #cccccc;
+    margin: 45px auto;
+    max-width: 90%;
+    min-height: 320px;
+}
+.textFooter{
+    color: #E3E3E3;
+    text-decoration: none;
+    font-size: 3px;
+}
+.caracter{
+    color: #E3E3E3;
+}
+.tabla-datos{
+    background-color: #ffffff;
+    box-shadow: 2px 2px 7px 1px #cccccc;
+    border-style: none;
+    padding: 40px;
+    min-height: 460px;
+}
+.tablaInicioAdministrador{
+    width: 100%;
+    height: auto;
+}
+.titulosDeTablas{
+    padding-bottom: 10px;
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+}
+.boxAccesos{
+    background-color: #f2f2f2;
+    border-color: #d8d8d8;
+    width: auto;
+    height: auto;
+    max-width: 320px;
+    max-height: 230px;
+    border-width: 3px;
+    border-style: none;
+    box-shadow: 0px 1px 5px 1px #B1B1B1;
+    padding: 10px 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 10px;
+}
+.icono{
+    width: 55px;
+    height: 55px;
+}
+.botonAccesos{
+    background-color: #068B96;
+    color: #ffffff;
+    height: 35px;
+    width: 150px;
+    border-style: none;
+    cursor: pointer;
+    border-radius: 50px;
+    outline: none;
+}
+.botonAccesos:hover{
+    background: #0099a5;
+    transition: all .2s;
+}
+.descripcionModelo{
+    font-family: sans-serif;
+    font-size: 12px;
+}
+.titulosAccesos{
+    color: #7f7f7f;
+}
+.copyright{
+    background: #007882;
+    padding-top: 7px;
+    padding-left: 7px;
+    height: 25px;
+}
+
+
+/*tabla de datos en index*/
+
+.titulosTabla{
+    font-size: 14px;
+}
+.listaDatos{
+    font-size: 13px;
+    
+}
+.cabeceraTabla{
+    background-color: #E3E3E3;
+    height: 60px;
+    border-style: none;
+    box-shadow: 0px 0px 3px #545454;
+}
+.cabeceraTabla p{
+    text-align: center;
+    padding: 5px 15px;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #4F4F4F;
+    font-weight: bold;
+}
+.cabeceraTabla p:hover{
+    color: #068B96;
+    cursor: pointer;
+}
+
+
+
+/*   Login   */
+.boxLogin{
+    background-color: #fff;
+    width: 330px;
+    height: 370px;
+    border-style: none;
+    box-shadow: 0px 2px 5px 0px #B1B1B1;
+    margin: 65px auto;
+    padding: 50px 40px;
+    text-align: center;
+    border-radius: 10px;
+}
+.boxLogin p b{
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #6F6F71;
+}
+.label{
+    font-family: sans-serif;
+    font-size: 12px;
+    color: #068B96;
+}
+.text{
+    color: #6F6F71;
+    padding-top: 15px;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.ac{
+    color: #068B96;
+    padding-top: 25px;
+    font-family: arial;
+    font-size: 20px;
+}
+.camposTxt{
+    width: 70%;
+    height: 25px;
+    border: none;
+    border-bottom: solid #068B96 1px;
+    outline: none; 
+    font-size: 15px;
+    text-align: center;
+    color: #333333;
+}
+/*
+
+Efecto de linea en el login
+
+.boxLogin input:focus{
+    border-bottom: solid #068B96 1px;
+    transition: all .6s;
+}
+*/
+.boton{
+    border: none;
+    outline: none;
+    height: 35px;
+    width: 40%;
+    background: #068B96;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 50px;
+    font: sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+}
+.boton:hover{
+    background: #0099a5;
+    transition: all .2s;
+}
+.mensaje{
+    color: darkred;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+.regresar{
+    color: #068B96;
+    font-family: sans-serif;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+/*   Informacion   */
+.boxInfo{
+    background-color: #fff;
+    width: 425px;
+    min-height: 370px;
+    border-style: none;
+    box-shadow: 0px 0px 1px 0px #BABABA;
+    border: 1px solid #e1e1e1;
+    margin: 20px auto;
+    padding: 40px 20px;
+    text-align: center;
+}
+.boxInfo p b{
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #6F6F71;
+}
+.textInfo{
+    color: #1976D3;
+    padding-top: 25px;
+    font-weight: bold;
+    font-family: arial;
+    font-size: 16px;
+}
+.fotosInfo{
+    width: 95px;
+    border-radius: 100px;
+}
+.descripcionFotos{
+    color: #6F6F71;
+    padding-top: 5px;
+    font-family: sans-serif;
+    font-size: 14px;
+}
+.TitulosDescripcionFotos{
+    color: #6F6F71;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.datos{
+    padding-top: 10px;
+    padding-left: 40px;
+    padding-bottom: 25px;
+    text-align: left;
+}
+.DivRegresar{
+    padding-left: 15px;
+    padding-top: 20px;
+}
+.logo_istl{
+    width: 140px;
+    display: inline-block;
+}
+.box_logo{
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+
+/* Slider desplazable */
+
+.slider{
+	width: 87%;
+	margin: auto;
+	overflow: hidden;
+        margin-top: 30px;
+        box-shadow: 1px 3px 7px 1px #B1B1B1;
+}
+.slider ul{
+	display: flex;
+	padding: 0;
+	width: 600%;
+	animation: cambio 30s infinite alternate;
+	animation-timing-function: ease-in;
+}
+.slider li{
+	list-style: none;
+	width: 100%;
+}
+.img{
+	width: 100%;
+	max-height: 472px;
+}
+@keyframes cambio{
+	0%{margin-left: 0;}
+	15%{margin-left: 0;}
+
+	18%{margin-left: -100%;}
+	33%{margin-left: -100%;}
+
+	36%{margin-left: -200%;}
+	44%{margin-left: -200%;}
+        
+        48%{margin-left: -300%;}
+	64%{margin-left: -300%;}
+        
+        68%{margin-left: -400%;}
+	84%{margin-left: -400%;}
+        
+        87%{margin-left: -500%;}
+	100%{margin-left: -500%;}
+}
+
+
+/* Acceso denegado */
+.boxDenegado{
+    width: 500px;
+    margin: 65px auto;
+    background: #fff;
+    box-shadow: 0px 2px 5px 0px #B1B1B1;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.iconoAvd{
+    width: 90px;
+    padding-top: 10px;
+    margin: 10px;
+}
+.mensajeRojo{
+    color: #cc0000;
+    font-family: sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.mensajeZona{
+    color: #6F6F71;
+    font-family: sans-serif;
+    font-size: 14px;
+    margin: 0px 10px;
+    padding-top: 25px;
+    line-height: 20px;
+}
+.botonIniciar{
+    display: inline-block;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1976D3;
+    color: #fff;
+    font-size: 14px;
+    border-radius:7px;
+    font: sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 0px #0099a5;
+    border-bottom: 7px solid #186bbe;
+    padding: 0px 35px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    transition: all 0.2s;
+}
+.botonIniciar:hover{
+    box-shadow: 0px 0px 7px 0px #0099a5;
+    transition: all 0.2s;
+}
+.botonSalir{
+    border: none;
+    outline: none;
+    height: 35px;
+    width: 40%;
+    background: #fff;
+    color: #cc0000;
+    font-size: 14px;
+    border-radius: 0px;
+    font: sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.botonSalir:hover{
+    background: #cc0000;
+    color: #fff;
+    transition: all .3s;
+}
+
+.container{
+    width: 60%;
+    
+}
+
+.buscar{
+    
+    display: flex;
+}
+
+.form{
+    display: flex;
+    padding-left: 400px;       
+    
+}
+.scroll{
+    width: 600px;
+    height: 550px;
+    display: block;
+    overflow: scroll;
+    
+}
+
+.BuscarFor{
+  padding:10px;
+   cursor:pointer;
+   display:block;
+   width:350px;
+   margin: 0 auto;
+   text-align:left;
+
+}
+.BuscarFor1{
+  
+  padding:10px;
+   cursor:pointer;
+   display:block;
+   width:140px;
+   text-align:left;
+
+}
+.BuscarFor2{
+  float: right; 
+   cursor:pointer;
+   display:block;
+   width:140px;   
+   text-align:left;
+
+}
+
+.contenedor{
+   padding: 10px;
+  overflow: auto;
+    width: 100%;
+    height: 800px;   
+    padding-left: 10px;
+    padding-right: 80px;
+    display: inline;
+   
+   
+ 
+}
+
+.formuFicha2{  
+    float: left;
+    padding: 10px;
+    overflow: auto;
+    width: 90%;
+    height: 350px; 
+  
+   max-width: 280px;
+   max-height: 280px;
+   padding-left: 110px;
+     
+}
+.formuFicha{
+    float: left;
+    padding: 10px;
+    overflow: auto;
+    width: 90%;
+    height: 350px; 
+    
+   max-width: 280px;
+   max-height: 280px;
+   padding-left: 100px; 
+  
+   
+}
+.notas{
+    float: right;
+    padding: 10px;
+    overflow: auto;
+    width: 90%;
+    height: 350px; 
+  
+   max-width: 280px;
+   max-height: 280px;
+   padding-right: 200px;
+    
+    
+}
+
+.materiasDocente{   
+   padding: 10px;
+  overflow: auto;
+    width: 90%;
+    height: 350px;   
+    padding-left: 140px;
+    padding-right: 80px;
+ 
+}
+.formu{
+     padding: 5px;
+    width: 200px;
+    height: 100px;
+    margin: auto;
+    background-color:lightskyblue;
+    border-radius: 8px;
+    border-style: solid ;
+    border-color: cadetblue;
+}
+.certificadoMatricula{
+   padding: 10px;
+  overflow: auto;
+    width: 10%;
+    height: 250px;   
+    padding-left: 320px;
+    padding-right: 800px;
+    height: 290px;
+    
+}
+.panelCentro {
+margin-left:  20% ;
+}
+.panelCentro1 {
+float: left;
+margin: 0 auto;
+padding-left: 50px;
+}
+.panelCentro2 {
+    float: left;
+margin-left:  30% ;
+padding-top: 0px;
+}
+.panelCertificado{
+     float: left;
+     padding-right: 200px;
+    margin-left:  30% ;
+}
+.certi{
+    width: 500px;
+    height: 550px;
+    
+}
+.panelCentro4 {
+float: left;
+margin: -260px;
+padding-left: 700px;
+}

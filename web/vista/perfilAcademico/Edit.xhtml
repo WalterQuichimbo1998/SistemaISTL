@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerfilAcademicoEditDlg" widgetVar="PerfilAcademicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPerfilAcademicoTitle}">
+            <h:form id="PerfilAcademicoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{perfilAcademicoController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditPerfilAcademicoLabel_tituloContrato}" for="tituloContrato" />
+                        <p:inputText id="tituloContrato" value="#{perfilAcademicoController.selected.tituloContrato}" title="#{bundle.EditPerfilAcademicoTitle_tituloContrato}" />
+                        <p:outputLabel value="#{bundle.EditPerfilAcademicoLabel_otrosTitulos}" for="otrosTitulos" />
+                        <p:inputText id="otrosTitulos" value="#{perfilAcademicoController.selected.otrosTitulos}" title="#{bundle.EditPerfilAcademicoTitle_otrosTitulos}" />
+                        <p:outputLabel value="#{bundle.EditPerfilAcademicoLabel_gradoOcupacional}" for="gradoOcupacional" />
+                        <p:inputText id="gradoOcupacional" value="#{perfilAcademicoController.selected.gradoOcupacional}" title="#{bundle.EditPerfilAcademicoTitle_gradoOcupacional}" />
+                        
+                        <p:outputLabel value="#{bundle.EditPerfilAcademicoLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{perfilAcademicoController.selected.idDatosPersonales}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{perfilAcademicoController.update}" value="#{bundle.Save}" update="display,:PerfilAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PerfilAcademicoEditDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PerfilAcademicoEditDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

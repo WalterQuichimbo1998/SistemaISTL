@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaCarreraEditDlg" widgetVar="MateriaCarreraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditMateriaCarreraTitle}">
+            <h:form id="MateriaCarreraEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaCarreraController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditMateriaCarreraLabel_idMateriaCarrera}" for="idMateriaCarrera" />
+                        <p:inputText id="idMateriaCarrera" value="#{materiaCarreraController.selected.idMateriaCarrera}" title="#{bundle.EditMateriaCarreraTitle_idMateriaCarrera}" required="true" requiredMessage="#{bundle.EditMateriaCarreraRequiredMessage_idMateriaCarrera}"/>
+                       
+                        <p:outputLabel value="#{bundle.EditMateriaCarreraLabel_idMateria}" for="idMateria" />
+                        <p:selectOneMenu id="idMateria" value="#{materiaCarreraController.selected.idMateria}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
+                                           var="idMateriaItem"
+                                           itemValue="#{idMateriaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditMateriaCarreraLabel_idTituloCarrera}" for="idTituloCarrera" />
+                        <p:selectOneMenu id="idTituloCarrera" value="#{materiaCarreraController.selected.idTituloCarrera}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                           var="idTituloCarreraItem"
+                                           itemValue="#{idTituloCarreraItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{materiaCarreraController.update}" value="#{bundle.Save}" update="display,:MateriaCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MateriaCarreraEditDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="MateriaCarreraEditDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

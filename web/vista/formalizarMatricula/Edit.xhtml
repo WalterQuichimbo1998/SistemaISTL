@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition>
+        <p:dialog id="FormalizarMatriculaEditDlg" widgetVar="FormalizarMatriculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditFormalizarMatriculaTitle}">
+            <h:form id="FormalizarMatriculaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{formalizarMatriculaController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_codigoMatricula}" for="codigoMatricula" />
+                        <p:inputText id="codigoMatricula" value="#{formalizarMatriculaController.selected.codigoMatricula}" title="#{bundle.EditFormalizarMatriculaTitle_codigoMatricula}" />
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idMatricula}" for="idMatricula" />
+                        <p:selectOneMenu id="idMatricula" value="#{formalizarMatriculaController.selected.idMatricula}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{matriculaController.itemsAvailableSelectOne}"
+                                           var="idMatriculaItem"
+                                           itemValue="#{idMatriculaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idNivelAcademico}" for="idNivelAcademico" />
+                        <p:selectOneMenu id="idNivelAcademico" value="#{formalizarMatriculaController.selected.idNivelAcademico}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
+                                           var="idNivelAcademicoItem"
+                                           itemValue="#{idNivelAcademicoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idParalelo}" for="idParalelo" />
+                        <p:selectOneMenu id="idParalelo" value="#{formalizarMatriculaController.selected.idParalelo}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
+                                           var="idParaleloItem"
+                                           itemValue="#{idParaleloItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idPeriodoAcademico}" for="idPeriodoAcademico" />
+                        <p:selectOneMenu id="idPeriodoAcademico" value="#{formalizarMatriculaController.selected.idPeriodoAcademico}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                           var="idPeriodoAcademicoItem"
+                                           itemValue="#{idPeriodoAcademicoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idPersona}" for="idPersona" />
+                        <p:selectOneMenu id="idPersona" value="#{formalizarMatriculaController.selected.idPersona}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
+                                           var="idPersonaItem"
+                                           itemValue="#{idPersonaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditFormalizarMatriculaLabel_idTipoMatricula}" for="idTipoMatricula" />
+                        <p:selectOneMenu id="idTipoMatricula" value="#{formalizarMatriculaController.selected.idTipoMatricula}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoMatriculaController.itemsAvailableSelectOne}"
+                                           var="idTipoMatriculaItem"
+                                           itemValue="#{idTipoMatriculaItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{formalizarMatriculaController.update}" value="#{bundle.Save}" update="display,:FormalizarMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FormalizarMatriculaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FormalizarMatriculaEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNotasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="NotasListForm">
+                <p class="title_modulos">#{bundle.ListNotasTitle}</p>
+                    <p:dataTable id="datalist" value="#{notasController.items}" var="item"
+                                 selectionMode="single" selection="#{notasController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idNotas}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                         <p:column filterBy="#{item.numIdentificacion}">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_idPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersona.idDatosPersonales.nombres}"/>
+                        </p:column>
+                        
+                          <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_idMateria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateria.materia}"/>
+                        </p:column>
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_parcialUno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parcialUno}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_parcialDos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parcialDos}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_notaSupletorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaSupletorio}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_notaRemedial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaRemedial}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_notaFinal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaFinal}"/>
+                        </p:column>
+                       
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_idMateria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateria.materia}"/>
+                        </p:column>
+                       
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{notasController.destroy}" update=":growl,datalist" disabled="#{empty notasController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

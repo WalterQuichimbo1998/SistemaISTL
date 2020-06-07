@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PracticaspreprofesionalesVinculacionCreateDlg" widgetVar="PracticaspreprofesionalesVinculacionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePracticaspreprofesionalesVinculacionTitle}">
+            <h:form id="PracticaspreprofesionalesVinculacionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{practicaspreprofesionalesVinculacionController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreatePracticaspreprofesionalesVinculacionLabel_nrohoraspracticasPreprosionales}" for="nrohoraspracticasPreprosionales" />
+                        <p:inputText id="nrohoraspracticasPreprosionales" value="#{practicaspreprofesionalesVinculacionController.selected.nrohoraspracticasPreprosionales}" title="#{bundle.CreatePracticaspreprofesionalesVinculacionTitle_nrohoraspracticasPreprosionales}" />
+                        
+                        <p:outputLabel value="Alcance Vinculacion" for="idAlcanceVinculacion" />
+                        <p:selectOneMenu id="idAlcanceVinculacion" value="#{practicaspreprofesionalesVinculacionController.selected.idAlcanceVinculacion}" >
+                            <f:selectItems value="#{alcanceVinculacionController.itemsAvailableSelectOne}"
+                                           var="idAlcanceVinculacionItem"
+                                           itemValue="#{idAlcanceVinculacionItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePracticaspreprofesionalesVinculacionLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{practicaspreprofesionalesVinculacionController.selected.idDatosPersonales}" >
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePracticaspreprofesionalesVinculacionLabel_idsectorpracticasPreprofesionales}" for="idsectorpracticasPreprofesionales" />
+                        <p:selectOneMenu id="idsectorpracticasPreprofesionales" value="#{practicaspreprofesionalesVinculacionController.selected.idsectorpracticasPreprofesionales}" >
+                            <f:selectItems value="#{sectorEconomicoController.itemsAvailableSelectOne}"
+                                           var="idsectorpracticasPreprofesionalesItem"
+                                           itemValue="#{idsectorpracticasPreprofesionalesItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Institucion Practicas" for="idtipoinstitucionpracticasPreprofesionales" />
+                        <p:selectOneMenu id="idtipoinstitucionpracticasPreprofesionales" value="#{practicaspreprofesionalesVinculacionController.selected.idtipoinstitucionpracticasPreprofesionales}" >
+                            <f:selectItems value="#{tipoInstitucionPracticasController.itemsAvailableSelectOne}"
+                                           var="idtipoinstitucionpracticasPreprofesionalesItem"
+                                           itemValue="#{idtipoinstitucionpracticasPreprofesionalesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{practicaspreprofesionalesVinculacionController.create}" value="#{bundle.Save}" update="display,:PracticaspreprofesionalesVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'PracticaspreprofesionalesVinculacionCreateDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PracticaspreprofesionalesVinculacionCreateDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

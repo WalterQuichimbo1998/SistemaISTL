@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TablaInvestigacionEditDlg" widgetVar="TablaInvestigacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTablaInvestigacionTitle}">
+            <h:form id="TablaInvestigacionEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tablaInvestigacionController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditTablaInvestigacionLabel_idTablaInvestigacion}" for="idTablaInvestigacion" />
+                        <p:inputText id="idTablaInvestigacion" value="#{tablaInvestigacionController.selected.idTablaInvestigacion}" title="#{bundle.EditTablaInvestigacionTitle_idTablaInvestigacion}" required="true" requiredMessage="#{bundle.EditTablaInvestigacionRequiredMessage_idTablaInvestigacion}"/>
+                        <p:outputLabel value="#{bundle.EditTablaInvestigacionLabel_horaSemanaInvestigacion}" for="horaSemanaInvestigacion" />
+                        <p:inputText id="horaSemanaInvestigacion" value="#{tablaInvestigacionController.selected.horaSemanaInvestigacion}" title="#{bundle.EditTablaInvestigacionTitle_horaSemanaInvestigacion}" />
+                        <p:outputLabel value="#{bundle.EditTablaInvestigacionLabel_nombreProyectoInvestigacion}" for="nombreProyectoInvestigacion" />
+                        <p:inputText id="nombreProyectoInvestigacion" value="#{tablaInvestigacionController.selected.nombreProyectoInvestigacion}" title="#{bundle.EditTablaInvestigacionTitle_nombreProyectoInvestigacion}" />
+                        
+                        <p:outputLabel value="#{bundle.EditTablaInvestigacionLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{tablaInvestigacionController.selected.idDatosPersonales}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{tablaInvestigacionController.update}" value="#{bundle.Save}" update="display,:TablaInvestigacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TablaInvestigacionEditDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TablaInvestigacionEditDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

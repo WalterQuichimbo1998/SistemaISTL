@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+        <ui:define name="body">
+
+            <div>
+                <h:form id="MateriaEditForm">
+                    <h:panelGroup id="display" >
+                        <div class="data_campos_filto">
+                            <div style="text-align: center"><p class="title_reporte">REPORTES</p></div>
+                            <p:outputLabel class="labelLateral" value="Carrera" />
+                            <h:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tiCarreraSelected.idTituloCarrera}">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{exportarNotasMaterias.itemsTituloCarrera}"
+                                               var="idTituloCarreraItem"
+                                               itemValue="#{idTituloCarreraItem.idTituloCarrera}"
+                                               />
+                                <p:ajax process="@this" update="idMateria" />
+                            </h:selectOneMenu> 
+
+                            <p:outputLabel class="labelLateral" value="Ciclo" for="idNivelAcademico" />
+                            <h:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected.idNivelAcademico}" >
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{exportarNotasMaterias.itemsNivelAcademico}"
+                                               var="idNivelAcademicoItem"
+                                               itemValue="#{idNivelAcademicoItem.idNivelAcademico}"/>
+                             <p:ajax process="@this" update="idMateria" />
+                            </h:selectOneMenu>
+                            
+                            <p:outputLabel class="labelLateral" value="Materia" />
+                            <h:selectOneMenu  id="idMateria" value="#{exportarNotasMaterias.materiaSelected.idMateria}" >
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{exportarNotasMaterias.itemsMateria}"
+                                               var="idMateriaItem"
+                                               itemValue="#{idMateriaItem.idMateria}"/>
+                            </h:selectOneMenu>
+                            <br/>
+                            <div style="text-align: center">
+                                <p:commandButton ajax="false" class="btn_impReporte" action="#{exportarNotasMaterias.imprimirMateriasdoc()}" value="DESCARGAR" >
+                                </p:commandButton></div>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NacionalidadViewDlg" widgetVar="NacionalidadViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNacionalidadTitle}">
+            <h:form id="NacionalidadViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{nacionalidadController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idNacionalidad}"/>
+                        <h:outputText value="#{nacionalidadController.selected.idNacionalidad}" title="#{bundle.ViewNacionalidadTitle_idNacionalidad}"/>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_tipoNacionalidad}"/>
+                        <h:outputText value="#{nacionalidadController.selected.tipoNacionalidad}" title="#{bundle.ViewNacionalidadTitle_tipoNacionalidad}"/>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_categoriaMigratoria}"/>
+                        <h:outputText value="#{nacionalidadController.selected.categoriaMigratoria}" title="#{bundle.ViewNacionalidadTitle_categoriaMigratoria}"/>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_estado}"/>
+                        <h:outputText value="#{nacionalidadController.selected.estado}" title="#{bundle.ViewNacionalidadTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_fechaDeRegistro}"/>
+                        <h:outputText value="#{nacionalidadController.selected.fechaDeRegistro}" title="#{bundle.ViewNacionalidadTitle_fechaDeRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idCanton}"/>
+                        <h:outputText value="#{nacionalidadController.selected.idCanton}" title="#{bundle.ViewNacionalidadTitle_idCanton}"/>
+                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idProvincia}"/>
+                        <h:outputText value="#{nacionalidadController.selected.idProvincia}" title="#{bundle.ViewNacionalidadTitle_idProvincia}"/>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton value="#{bundle.Close}" onclick="NacionalidadViewDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

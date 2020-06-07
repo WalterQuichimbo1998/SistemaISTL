@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaViewDlg" widgetVar="MateriaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMateriaTitle}">
+            <h:form id="MateriaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMateriaLabel_idMateria}"/>
+                        <h:outputText value="#{materiaController.selected.idMateria}" title="#{bundle.ViewMateriaTitle_idMateria}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_codMateria}"/>
+                        <h:outputText value="#{materiaController.selected.codMateria}" title="#{bundle.ViewMateriaTitle_codMateria}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_descripcion}"/>
+                        <h:outputText value="#{materiaController.selected.descripcion}" title="#{bundle.ViewMateriaTitle_descripcion}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_materia}"/>
+                        <h:outputText value="#{materiaController.selected.materia}" title="#{bundle.ViewMateriaTitle_materia}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_creditos}"/>
+                        <h:outputText value="#{materiaController.selected.creditos}" title="#{bundle.ViewMateriaTitle_creditos}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_numHoras}"/>
+                        <h:outputText value="#{materiaController.selected.numHoras}" title="#{bundle.ViewMateriaTitle_numHoras}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_numHorasSemanales}"/>
+                        <h:outputText value="#{materiaController.selected.numHorasSemanales}" title="#{bundle.ViewMateriaTitle_numHorasSemanales}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_estado}"/>
+                        <h:outputText value="#{materiaController.selected.estado}" title="#{bundle.ViewMateriaTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewMateriaLabel_fechaDeRegistro}"/>
+                        <h:outputText value="#{materiaController.selected.fechaDeRegistro}" title="#{bundle.ViewMateriaTitle_fechaDeRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="Ciclo"/>
+                        <h:outputText value="#{materiaController.selected.idNivelAcademico.nivelAcademico}" title="#{bundle.ViewMateriaTitle_idNivelAcademico}"/>
+                        <h:outputText value="Título Carrera"/>
+                        <h:outputText value="#{materiaController.selected.idTituloCarrera.nombreTitulo}" title="#{bundle.ViewMateriaTitle_idTituloCarrera}"/>
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton value="#{bundle.Close}" onclick="MateriaViewDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

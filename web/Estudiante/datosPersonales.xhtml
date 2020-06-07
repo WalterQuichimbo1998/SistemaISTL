@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/Estudiante/templateEstudiante.xhtml">
+        
+        <ui:define name="body">
+            <h:form id="MateriaEditForm" enctype="multipart/form-data">
+                <p:growl id="messages" showDetail="true" />    
+                <h:panelGroup id="display" >
+                    <div class="boxContainerData">
+                        <p class="title_datosPersonales">DATOS PERSONALES</p>
+                        <div>
+                            <img style="width: 185px; height: 190px;border-radius: 100px;object-fit:cover;object-position:center center;box-shadow: 0px 0px 2px 2px #454545; " 
+                                 src="#{request.contextPath}/resources/#{datosPersonalesController.selected.foto}"></img>
+                        </div>
+                        <div class="continerPersonales">
+                            <p:outputLabel class="labelDatosPersonales" value="Cédula" for="numIdentificacion" />
+                            <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.EditDatosPersonalesTitle_numIdentificacion}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Nombres" for="nombres" />
+                            <p:inputText styleClass="camposDeDatos" id="nombres" value="#{datosPersonalesController.selected.nombres}" title="#{bundle.EditDatosPersonalesTitle_nombres}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Apellidos" for="apellidos" />
+                            <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.EditDatosPersonalesTitle_apellidos}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Correo Electrónico" for="correoElectronico" />
+                            <p:inputText styleClass="camposDeDatos" id="correoElectronico" value="#{datosPersonalesController.selected.correoElectronico}" title="#{bundle.EditDatosPersonalesTitle_correoElectronico}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Dirección" for="direccion" />
+                            <p:inputText styleClass="camposDeDatos" id="direccion" value="#{datosPersonalesController.selected.direccion}" title="#{bundle.EditDatosPersonalesTitle_direccion}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Fecha de Nacimiento" for="fechaNacimiento" />
+                            <p:calendar styleClass="calendarClass" id="fechaNacimiento" pattern="dd/MM/yyyy" locale="es" navigator="true" value="#{datosPersonalesController.selected.fechaNacimiento}" mask="true" />
+                        </div>
+                        <div class="continerPersonales">
+                            <p:outputLabel class="labelDatosPersonales" value="Sexo" for="sexo" />
+                            <p:inputText styleClass="camposDeDatos" id="sexo" value="#{datosPersonalesController.selected.sexo}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Género" for="genero" />
+                            <h:selectOneMenu class="txtC" id="genero" value="#{datosPersonalesController.selected.genero}" >
+                                <f:selectItem itemLabel="-Seleccione-"/>
+                                <f:selectItem itemLabel="Masculino" itemValue="0"/>
+                                <f:selectItem itemLabel="Femenino" itemValue="1"/>
+                            </h:selectOneMenu>
+                            <p:outputLabel class="labelDatosPersonales" value="Celular" for="celular" />
+                            <p:inputText styleClass="camposDeDatos" id="celular" value="#{datosPersonalesController.selected.celular}" title="#{bundle.EditDatosPersonalesTitle_celular}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Teléfono" for="convencional" />
+                            <p:inputText styleClass="camposDeDatos" id="convencional" value="#{datosPersonalesController.selected.convencional}" title="#{bundle.EditDatosPersonalesTitle_convencional}" />
+                            <p:outputLabel class="labelDatosPersonales" value="Código Postal" for="codPostal" />
+                            <p:inputText styleClass="camposDeDatos" id="codPostal" value="#{datosPersonalesController.selected.codPostal}" title="#{bundle.EditDatosPersonalesTitle_codPostal}" />
+                        </div>
+                        <div>
+                             <p:outputLabel class="labelDatosPersonales" value="Subir Foto Perfil"/>
+                             <p:fileUpload 
+                            fileUploadListener="#{datosPersonalesController.handleFileUpload}" 
+                            mode="advanced"  
+                            dragDropSupport="false"                             
+                            sizeLimit="1000000"
+                             update="messages" 
+                            cancelLabel="Cancelar"
+                            uploadLabel="Subir Imagen"
+                            fileLimitMessage="No Mayor a 1 MB"
+                            invalidSizeMessage="Máximo 1 MB"
+                            invalidFileMessage="Archivo Fallído"
+                            label="Elegir"
+                            fileLimit="1" 
+                            allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+                        </div>
+                        <div style="text-align: center;margin-top: 20px;">
+                            <p:commandButton ajax="false" class="btn_actualizarEstudiante" update="MateriaEditForm" actionListener="#{datosPersonalesController.update}" value="ACTUALIZAR"/><br/>
+                            <h:outputText class="mesageEs" value="#{datosPersonalesController.msj}" id="message"></h:outputText> 
+                        </div>
+                        
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+        
+    </ui:composition>
+</html>

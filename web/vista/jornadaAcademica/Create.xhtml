@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="JornadaAcademicaCreateDlg" widgetVar="JornadaAcademicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateJornadaAcademicaTitle}">
+            <h:form id="JornadaAcademicaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{jornadaAcademicaController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateJornadaAcademicaLabel_tipoJornada}" for="tipoJornada" />
+                        <p:inputText id="tipoJornada" value="#{jornadaAcademicaController.selected.tipoJornada}" title="#{bundle.CreateJornadaAcademicaTitle_tipoJornada}" />
+                        
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{jornadaAcademicaController.create}" value="#{bundle.Save}" update="display,:JornadaAcademicaListForm:datalist,:growl" oncomplete="handleSubmit(args,'JornadaAcademicaCreateDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="JornadaAcademicaCreateDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

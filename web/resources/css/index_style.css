@@ -1,0 +1,156 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 23-dic-2019, 16:36:29
+    Author     : Dario
+*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #E8F0F2;
+}
+
+
+
+
+.container_login{
+	background: #fff;
+	padding: 0px 35px;
+	box-shadow: 0px 0px 1px 0px #BABABA;
+        border: 1px solid #e1e1e1;
+	padding-top: 40px;
+        display: inline-block;
+        margin-top: 60px;
+        padding-bottom: 15px;
+}
+.title_sistema{
+    font-family: sans-serif;
+    color: #1976d3;
+    font-weight: bold;
+    font-size: 18px;
+}
+.iconLogin{
+    width: 100px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+.title_log{
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    font-family: sans-serif;
+    color: #A4A4A4;
+}
+.container_login .txt_titles{
+    display: block;
+    font-family: sans-serif;
+    font-size: 15px;
+    color: #A4A4A4;
+}
+.cont_cajas{
+    text-align: left;
+    display: inline-block;
+}
+.container_login .caja{
+    background: transparent;
+    margin-bottom: 20px;
+    margin-top: 7px;
+    border: 1px solid #E2E2E2;
+    border-radius: 4px;
+}
+.container_login .caja .icon{
+    margin-left: 10px;
+    color: #A4A4A4
+}
+.container_login .txt{
+    width: 270px;
+    display: inline-block;
+    padding: 10px 5px;
+    margin-left: 5px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #515151;
+    font-family: sans-serif;
+}
+.mesage{
+    color: #cc0000;
+    font-family: sans-serif;
+    font-size: 12px;
+    margin-top: 10px;
+    display: inline-block
+}
+.container_login .btn_login{
+    border: none;
+    outline: none;
+    width: 120px;
+    height: 40px;
+    margin-left: 20px;
+    background: #1976D3;
+    color: #fff;
+    font-size: 14px;
+    border-radius:7px;
+    font: sans-serif;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 0px #0099a5;
+    border-bottom: 7px solid #186bbe;
+    padding: 0px 7px;
+    display: inline-block;
+    transition: all 0.2s;
+}
+.container_login .btn_login:hover{
+    box-shadow: 0px 0px 7px 0px #0099a5;
+    transition: all 0.2s;
+}
+.olv{
+    color: #1976D3;
+    font-size: 12px;
+    font-weight: bold;
+    display: inline-block;
+    font-family: sans-serif;
+}
+
+@media(max-width:720px){
+    
+    body{
+        background: #fff;
+    }
+    .container_login{
+        width: 100%;
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        padding-top: 25px;
+        border: none;
+        box-shadow: none;
+    }
+    .title_sistema{
+        font-size: 25px;
+        margin: 20px;
+    }
+    .container_login .btn_login{
+        width: 310px;
+        font-size: 16px;
+        height: 50px;
+        margin: 0px;
+    }
+    .olv{
+        margin-top: 5px;
+        margin-bottom: 10px;
+        display: block;
+        font-size: 15px;
+    }
+    .mesage{
+        font-size: 14px;
+        margin-top: 15px;
+    }
+}

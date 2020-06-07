@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFormalizarMatriculaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form id="FormalizarMatriculaListForm">
+                <p:panel header="#{bundle.ListFormalizarMatriculaTitle}">
+                    <p:dataTable id="datalist" value="#{formalizarMatriculaController.items}" var="item"
+                                 selectionMode="single" selection="#{formalizarMatriculaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idFormalizarMatricula}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_codigoMatricula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMatricula}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_idPeriodoAcademico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodoAcademico.nombre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_idNivelAcademico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_idParalelo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idParalelo.nombreParalelo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_idPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersona.idDatosPersonales.nombres}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_idTipoMatricula}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoMatricula.tipo}"/>
+                        </p:column>
+                         <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormalizarMatriculaTitle_fechaHoraRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaHoraRegistro}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{formalizarMatriculaController.prepareCreate}" update=":FormalizarMatriculaCreateForm" oncomplete="PF('FormalizarMatriculaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FormalizarMatriculaViewForm" oncomplete="PF('FormalizarMatriculaViewDialog').show()" disabled="#{empty formalizarMatriculaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FormalizarMatriculaEditForm" oncomplete="PF('FormalizarMatriculaEditDialog').show()" disabled="#{empty formalizarMatriculaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{formalizarMatriculaController.destroy}" update=":growl,datalist" disabled="#{empty formalizarMatriculaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

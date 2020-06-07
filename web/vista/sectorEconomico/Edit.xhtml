@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SectorEconomicoEditDlg" widgetVar="SectorEconomicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditSectorEconomicoTitle}">
+            <h:form id="SectorEconomicoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sectorEconomicoController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditSectorEconomicoLabel_sectorEconomico}" for="sectorEconomico" />
+                        <p:inputText id="sectorEconomico" value="#{sectorEconomicoController.selected.sectorEconomico}" title="#{bundle.EditSectorEconomicoTitle_sectorEconomico}" />
+                        
+                    </p:panelGrid>
+                    <div class="boxBtnCrud">
+                        <p:commandButton class="btnFormCrud" actionListener="#{sectorEconomicoController.update}" value="#{bundle.Save}" update="display,:SectorEconomicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SectorEconomicoEditDialog');"/>
+                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="SectorEconomicoEditDialog.hide()"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

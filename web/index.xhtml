@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Iniciar Sesión</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/index_style.css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href="resources/images/favicon.ico"></link>
+        <script src="resources/js/all.js"></script>
+    </h:head>
+    <h:body>
+        <div style="text-align: center">
+            <div class="container_login">
+                <h:form>
+                    <label class="title_sistema">SISTEMA DE GESTIÓN ACADÉMICA</label><br/>
+                    <p:graphicImage class="iconLogin" alt="icono" library="img" name="intimidad.png" />
+                    <label class="title_log">Iniciar Sesión</label>
+
+                    <div class="cont_cajas">
+                        <label class="txt_titles">Usuario</label>
+                        <div class="caja">
+                            <i class="icon fas fa-user"></i>
+                            <h:inputText  class="txt" required="true" autocomplete="off" value="#{accesoBean.selected.usuario}" />
+                        </div>
+                        <label class="txt_titles">Contraseña</label>
+                        <div class="caja">
+                            <i class="icon fas fa-unlock-alt"></i>
+                            <h:inputSecret class="txt" required="true" autocomplete="off" value="#{accesoBean.selected.clave}"/>
+                        </div>
+                        <label class="olv">¿Se te olvidó tu contraseña?</label>
+                        <h:commandButton class="txt btn_login" actionListener="#{accesoBean.doLogin}" value="INGRESAR" >
+                            <f:ajax execute="@form" render="message"></f:ajax>
+                        </h:commandButton><br/>
+                    </div><br/>
+                    <h:outputText class="mesage" value="#{accesoBean.message}" id="message"></h:outputText> 
+                </h:form>
+            </div>
+        </div>
+        <br />
+    </h:body>
+
+</html>

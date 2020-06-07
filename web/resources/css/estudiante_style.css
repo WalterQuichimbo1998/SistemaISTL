@@ -1,0 +1,154 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 25-dic-2019, 15:12:10
+    Author     : Dario
+*/
+
+
+.boxContainerData{
+    background: #fff;
+    box-shadow: 0px 0px 1px 0px #BABABA;
+    border: 2px solid #ccc;
+    padding: 35px 20px;
+    display: inline-block;
+    width: 600px;
+}
+.title_datosPersonales{
+    font-family: sans-serif;
+    color: #1976D3;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-shadow:1px 1px #454545;
+
+
+
+}
+.continerPersonales{
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    padding: 0px 20px;
+
+}
+.labelDatosPersonales{
+    display: block;
+    color: #587399;
+    font-weight: bold;
+    font-size: 20px !important;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 0px 5px;
+}
+.camposDeDatos.ui-inputfield{
+    width: 96%;
+    margin: auto; 
+    padding-left: 5px;
+    text-align: left;
+    margin-bottom: 5px;
+    font-size: 20px !important;
+    box-shadow: none;
+    border-radius: 5px;
+    transition: all .3s ease;
+
+}
+.camposDeDatos:hover{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+
+}
+.camposDeDatos:focus{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+}
+.txtC{
+    width: 100%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 18px;  
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: all .3s ease;
+
+}
+
+.txtC:hover{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #838383;
+    -webkit-box-shadow: 0px 0px 1px 1px #838383;
+
+}
+.txtC:focus{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #838383;
+    -webkit-box-shadow: 0px 0px 1px 1px #838383;
+}
+.calendarClass .ui-inputfield{
+    width:96.5%;
+    height: 21px;
+    border-radius: 5px;
+    box-shadow: none;
+    font-size: 18px;
+    transition: all .3s ease;
+
+}
+.calendarClass .ui-inputfield:hover{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #838383;
+    -webkit-box-shadow: 0px 0px 1px 1px #838383;
+
+}
+.calendarClass .ui-inputfield:focus{
+    background: #ecf4fd;
+    box-shadow: 0px 0px 1px 1px #838383;
+    -webkit-box-shadow: 0px 0px 1px 1px #838383;
+}
+.btn_actualizarEstudiante{
+    display: inline-block;
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #1976D3;
+    color: #eee;
+    font-size: 14px;
+    border-radius:7px;
+    font-weight: bold;
+    box-shadow: 0px 0px 2px 0px #0099a5;
+    border-bottom: 7px solid #186bbe;
+    transition: all .3s ease;
+}
+.btn_actualizarEstudiante:hover{
+    width: 160px;
+    color: #fff;
+    box-shadow: 0px 0px 7px 0px #0099a5;
+
+}
+
+
+
+.mesageEs{
+    color: #1976D3;
+    font-family: sans-serif;
+    font-size: 13px;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+@media(max-width:720px){
+    .title_datosPersonales{
+        margin: 0px;
+        margin-bottom: 10px;
+    }
+    .btn_actualizarEstudiante{
+        font-size: 27px;
+        width: 180px;
+    }
+}

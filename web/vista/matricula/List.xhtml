@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMatriculaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MatriculaListForm">
+                <p class="title_modulos">#{bundle.ListMatriculaTitle}</p>
+                <p:dataTable id="datalist" 
+                             value="#{matriculaController.items}" 
+                             var="item" 
+                             scrollable="true" 
+                             scrollWidth="1215" 
+                             selectionMode="single" 
+                             selection="#{matriculaController.selected}"
+                             paginator="true"
+                             rowKey="#{item.idMatricula}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             >
+
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                    <p:column style="width:120px" filterBy="#{item.idPersona.idDatosPersonales.numIdentificacion}">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idPersona}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idPersona.idDatosPersonales.nombres}"/>
+                    </p:column>
+                    <p:column width="70">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_anioGraduacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.anioGraduacion}"/>
+                    </p:column>
+                    <p:column width="70">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_modalidad}"/>
+                        </f:facet>
+                        <h:outputText value="Presencial" rendered="#{item.modalidad eq 1}"/>
+                        <h:outputText value="Semipresencial" rendered="#{item.modalidad eq 2}"/>
+                        <h:outputText value="Dual" rendered="#{item.modalidad eq 3}"/>
+                    </p:column>
+                    <p:column style="width:60px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_fechaInicioCarrera}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaInicioCarrera}"/>
+                    </p:column>
+                    <p:column style="width:65px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_tituloEducacionSuperior}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tituloEducacionSuperior}"/>
+                    </p:column>
+                    <p:column style="width:65px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_especifiqueTitulo}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.especifiqueTitulo}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_tituloOtorgado}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tituloOtorgado}"/>
+                    </p:column>
+                    <p:column style="width:60px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_ocupacionEstudiante}"/>
+                        </f:facet>
+                        <h:outputText value="Solamente estudia" rendered="#{item.ocupacionEstudiante eq 1}"/> 
+                        <h:outputText value="Estudia y trabaja" rendered="#{item.ocupacionEstudiante eq 2}"/> 
+                    </p:column>
+                    <p:column style="width:60px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_nombreEmpresa}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nombreEmpresa}"/>
+                    </p:column>
+                    <p:column style="width:70px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_empleoIngresosEconomicos}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.empleoIngresosEconomicos}"/>
+                    </p:column>
+                    <p:column style="width:65px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_bonoDesarrolloHumano}"/>
+                        </f:facet>
+                        <h:outputText value="SI" rendered="#{item.bonoDesarrolloHumano eq 1}"/>
+                        <h:outputText value="NO" rendered="#{item.bonoDesarrolloHumano eq 2}"/>
+                    </p:column>
+                    <p:column style="width:50px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_ingresoHogar}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ingresoHogar}"/>
+                    </p:column>
+                    <p:column style="width:80px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_nroMiembrosHogar}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nroMiembrosHogar}"/>
+                    </p:column>
+                    <p:column style="width:50px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_materiaRepetida}"/>
+                        </f:facet>
+                        <h:outputText value="SI" rendered="#{item.materiaRepetida eq 1}"/>
+                        <h:outputText value="NO" rendered="#{item.materiaRepetida eq 2}"/>
+                    </p:column>
+                    
+                    <p:column style="width:60px">
+                        <f:facet name="header">
+                            <h:outputText value="Ha perdido la Gratuidad"/>
+                        </f:facet>
+                        <h:outputText value="SI" rendered="#{item.materiaPerdida eq 1}"/>
+                        <h:outputText value="NO" rendered="#{item.materiaPerdida eq 2}"/>
+                    </p:column>
+                    <p:column style="width:80px">
+                        <f:facet name="header">
+                            <h:outputText value="Alcance Vinculación"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idAlcanceVinculacion.alcance}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idFormacionMadre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idFormacionMadre.nivel}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idFormacionPadre}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idFormacionPadre.nivel}"/>
+                    </p:column>
+                    <p:column style="width:70px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idTipoCarrera}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoCarrera.nombre}"/>
+                    </p:column>
+                    <p:column style="width:70px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idJornadaAcademica}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idJornadaAcademica.tipoJornada}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idTipoColegio}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoColegio.tipo}"/>
+                    </p:column>
+                    <p:column style="width:200px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idpracticaspreProfesionalesvinculacion}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idpracticaspreProfesionalesvinculacion.idDatosPersonales.nombres}"/>
+                    </p:column>
+                    <p:column style="width:200px">
+                        <f:facet name="header">
+                            <h:outputText value="Sector Economico Empresa"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idSectorEconomicoEmpresa.nombre}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="Tipo Institución"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoInstitucion.nombreTipo}"/>
+                    </p:column>
+                    <p:column style="width:90px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idTipoBachillerato}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTipoBachillerato.tipo}"/>
+                    </p:column>
+                    <p:column style="width:200px">
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListMatriculaTitle_idTituloCarrera}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
+                    </p:column>
+                    <p:column width="90" sortBy="#{item.fechaMatricula}" >
+                        <f:facet name="header">
+                            <h:outputText value="Fecha de Registro"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaMatricula}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:column >
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{matriculaController.prepareCreate}" update=":MatriculaCreateForm" oncomplete="PF('MatriculaCreateDialog').show()"/>
+                        <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MatriculaViewForm" oncomplete="PF('MatriculaViewDialog').show()" disabled="#{empty matriculaController.selected}"/>
+                        <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MatriculaEditForm" oncomplete="PF('MatriculaEditDialog').show()" disabled="#{empty matriculaController.selected}"/>
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{matriculaController.destroy}" update=":growl,datalist" disabled="#{empty matriculaController.selected}"/>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

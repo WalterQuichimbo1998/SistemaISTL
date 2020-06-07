@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>ITSL</title>
+        <link rel="shortcut icon" href="../resources/images/favicon.ico"></link>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet name="css/estilos.css"/>
+        <h:outputStylesheet name="css/admin_style.css"/>
+        <h:outputStylesheet name="css/estudiante_style.css"/>
+        <h:outputStylesheet name="css/profesor_style.css"/>
+        <h:outputStylesheet name="css/footer_style.css"/>
+        <script src="../resources/js/all.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>    
+    <h:body>
+        
+        <div class="cabecera-barra">
+            <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
+            <h:form>
+                <p:stack class="btn_flotante" icon="/resources/images/stack.png" expanded="false" >
+                    <p:menuitem value="Yo" icon="/resources/img/nota.png" url="/Estudiante/datosPersonales.xhtml"/>
+                    <p:menuitem value="Reporte" icon="/resources/img/reporte.png" url="/Estudiante/inicioEstudiante.xhtml"/>
+                    <p:menuitem value="Información" icon="/resources/img/info.png" url="/Estudiante/infoEstu.xhtml"/>
+                </p:stack>
+                
+                <p:menubar class="menuBarra">
+                    <p:menuitem value="#{bundle.Home}" outcome="/Estudiante/inicioEstudiante.xhtml" icon="ui-icon-home"/>
+                    <p:menuitem value="DatosPersonales" outcome="/Estudiante/datosPersonales.xhtml" icon="ui-icon-script"/>
+                    <p:menuitem value="Información" outcome="/Estudiante/infoEstu.xhtml" icon="ui-icon-info"/>
+                    <p:menuitem value="Salir" action="#{accesoBean.logout()}" icon="ui-icon-power"/>
+                </p:menubar>
+               </h:form>
+        </div>
+        
+        <div class="panel_continer">
+            <div class="centro_panel"><ui:insert name="body"></ui:insert></div>
+        </div>
+        
+        <div id="bottom">
+            <ui:insert name="footer">
+                <ui:include src="/template/footer.xhtml"/>
+            </ui:insert>
+        </div>
+        
+    </h:body>    
+    
+        
+</html>

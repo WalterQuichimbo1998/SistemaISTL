@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListEtniaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="EtniaListForm">
+                <p class="title_modulos">#{bundle.ListEtniaTitle}</p>
+                    <p:dataTable id="datalist" value="#{etniaController.items}" var="item"
+                                 selectionMode="single" selection="#{etniaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idEtnia}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 500px;display: inline-block"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEtniaTitle_tipoEtnia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoEtnia}"/>
+                        </p:column>
+                        
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{etniaController.prepareCreate}" update=":EtniaCreateForm" oncomplete="PF('EtniaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EtniaViewForm" oncomplete="PF('EtniaViewDialog').show()" disabled="#{empty etniaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EtniaEditForm" oncomplete="PF('EtniaEditDialog').show()" disabled="#{empty etniaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{etniaController.destroy}" update=":growl,datalist" disabled="#{empty etniaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>
