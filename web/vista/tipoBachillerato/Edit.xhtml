@@ -17,10 +17,8 @@
                         <p:inputText id="tipo" value="#{tipoBachilleratoController.selected.tipo}" title="#{bundle.EditTipoBachilleratoTitle_tipo}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoBachilleratoController.update}" value="#{bundle.Save}" update="display,:TipoBachilleratoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoBachilleratoEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoBachilleratoEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoBachilleratoController.update}" value="#{bundle.Save}" update="display,:TipoBachilleratoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoBachilleratoEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoBachilleratoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

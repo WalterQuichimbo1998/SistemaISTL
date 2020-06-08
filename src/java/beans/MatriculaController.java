@@ -32,11 +32,16 @@ public class MatriculaController implements Serializable {
     }
 
     public Matricula getSelected() {
+        if(AccesoBean.obtenerIdPersona().getIdTipoOperador().getOperador().equals("Estudiante")){
+            this.selected=ejbFacade.obtenerMatricula(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales());
+        }
         return selected;
     }
 
     public void setSelected(Matricula selected) {
+       
         this.selected = selected;
+        
     }
 
     protected void setEmbeddableKeys() {

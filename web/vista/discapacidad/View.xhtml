@@ -23,9 +23,7 @@
                         <h:outputText value="#{bundle.ViewDiscapacidadLabel_idTipoDiscapacidad}"/>
                         <h:outputText value="#{discapacidadController.selected.idTipoDiscapacidad}" title="#{bundle.ViewDiscapacidadTitle_idTipoDiscapacidad}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="DiscapacidadViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="DiscapacidadViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

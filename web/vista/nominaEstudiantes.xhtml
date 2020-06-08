@@ -13,12 +13,12 @@
 
         <h:outputStylesheet name="css/estilos.css"/>
    
-    <p:growl id="growl" life="3000" />
+    <p:growl id="growl" showDetail="false" life="3000" />
     <div id="top">
       
         <div id="menuBar">
         <h:form >
-                    <p:growl id="messages"/>
+                    <p:growl id="messages" showDetail="false"/>
               <p:menubar>
                     <p:menuitem value="#{bundle.Home}" outcome="/vista/administrador.xhtml" icon="ui-icon-home"/>
                     <p:submenu label="Datos Matrícula" icon="ui-icon-person">

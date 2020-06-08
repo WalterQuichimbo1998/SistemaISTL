@@ -23,10 +23,8 @@
                         <p:inputText id="parentesco" value="#{contactoEmergenciaController.selected.parentesco}" title="#{bundle.EditContactoEmergenciaTitle_parentesco}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{contactoEmergenciaController.update}" value="#{bundle.Save}" update="display,:ContactoEmergenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContactoEmergenciaEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="ContactoEmergenciaEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{contactoEmergenciaController.update}" value="#{bundle.Save}" update="display,:ContactoEmergenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContactoEmergenciaEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="ContactoEmergenciaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

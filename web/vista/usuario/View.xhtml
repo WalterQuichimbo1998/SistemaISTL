@@ -29,9 +29,7 @@
                         <h:outputText value="#{bundle.ViewUsuarioLabel_idTipoOperador}"/>
                         <h:outputText value="#{usuarioController.selected.idTipoOperador}" title="#{bundle.ViewUsuarioTitle_idTipoOperador}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="UsuarioViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="UsuarioViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

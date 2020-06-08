@@ -31,9 +31,7 @@
                         <h:outputText value="Institucion Practicas"/>
                         <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idtipoinstitucionpracticasPreprofesionales}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idtipoinstitucionpracticasPreprofesionales}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="PracticaspreprofesionalesVinculacionViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PracticaspreprofesionalesVinculacionViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

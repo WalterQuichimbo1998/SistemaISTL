@@ -28,10 +28,8 @@
                                            itemValue="#{idTituloCarreraItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{materiaCarreraController.create}" value="#{bundle.Save}" update="display,:MateriaCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'MateriaCarreraCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="MateriaCarreraCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{materiaCarreraController.create}" value="#{bundle.Save}" update="display,:MateriaCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'MateriaCarreraCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="MateriaCarreraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -17,10 +17,8 @@
                         <p:inputText id="tipo" value="#{tipoSangreController.selected.tipo}" title="#{bundle.EditTipoSangreTitle_tipo}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoSangreController.update}" value="#{bundle.Save}" update="display,:TipoSangreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoSangreEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoSangreEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoSangreController.update}" value="#{bundle.Save}" update="display,:TipoSangreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoSangreEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoSangreEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

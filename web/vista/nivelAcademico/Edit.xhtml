@@ -17,10 +17,8 @@
                         <p:inputText id="nivelAcademico" value="#{nivelAcademicoController.selected.nivelAcademico}" title="#{bundle.EditNivelAcademicoTitle_nivelAcademico}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{nivelAcademicoController.update}" value="#{bundle.Save}" update="display,:NivelAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NivelAcademicoEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="NivelAcademicoEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{nivelAcademicoController.update}" value="#{bundle.Save}" update="display,:NivelAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NivelAcademicoEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NivelAcademicoEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

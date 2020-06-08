@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -17,10 +16,8 @@
                         <p:inputText id="sectorEconomico" value="#{sectorEconomicoController.selected.sectorEconomico}" title="#{bundle.CreateSectorEconomicoTitle_sectorEconomico}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{sectorEconomicoController.create}" value="#{bundle.Save}" update="display,:SectorEconomicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SectorEconomicoCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="SectorEconomicoCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{sectorEconomicoController.create}" value="#{bundle.Save}" update="display,:SectorEconomicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SectorEconomicoCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="SectorEconomicoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

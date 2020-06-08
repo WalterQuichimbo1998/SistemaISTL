@@ -19,10 +19,8 @@
                         <p:inputText id="descripcion" value="#{tituloCarreraController.selected.descripcion}" title="#{bundle.CreateTituloCarreraTitle_descripcion}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tituloCarreraController.create}" value="#{bundle.Save}" update="display,:TituloCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TituloCarreraCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TituloCarreraCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tituloCarreraController.create}" value="#{bundle.Save}" update="display,:TituloCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TituloCarreraCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TituloCarreraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -27,9 +27,7 @@
                         <h:outputText value="#{bundle.ViewTablaInvestigacionLabel_idDatosPersonales}"/>
                         <h:outputText value="#{tablaInvestigacionController.selected.idDatosPersonales}" title="#{bundle.ViewTablaInvestigacionTitle_idDatosPersonales}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="TablaInvestigacionViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="TablaInvestigacionViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

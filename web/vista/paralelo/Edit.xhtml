@@ -17,8 +17,8 @@
                         <p:inputText id="nombreParalelo" value="#{paraleloController.selected.nombreParalelo}" title="#{bundle.EditParaleloTitle_nombreParalelo}" />
                         
                     </p:panelGrid>
-                    <p:commandButton class="btnFormCrud" actionListener="#{paraleloController.update}" value="#{bundle.Save}" update="display,:ParaleloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ParaleloEditDialog');"/>
-                    <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="ParaleloEditDialog.hide()"/>
+                    <p:commandButton styleClass="btn_g" actionListener="#{paraleloController.update}" value="#{bundle.Save}" update="display,:ParaleloListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ParaleloEditDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="ParaleloEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

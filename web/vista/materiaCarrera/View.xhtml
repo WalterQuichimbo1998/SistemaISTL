@@ -25,9 +25,7 @@
                         <h:outputText value="#{bundle.ViewMateriaCarreraLabel_idTituloCarrera}"/>
                         <h:outputText value="#{materiaCarreraController.selected.idTituloCarrera}" title="#{bundle.ViewMateriaCarreraTitle_idTituloCarrera}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="MateriaCarreraViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="MateriaCarreraViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

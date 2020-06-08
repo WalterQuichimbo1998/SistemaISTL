@@ -15,14 +15,15 @@
         <ui:define name="body">
             <h:form id="TipoBachilleratoListForm">
                 <p class="title_modulos">#{bundle.ListTipoBachilleratoTitle}</p>
-                    <p:dataTable id="datalist" value="#{tipoBachilleratoController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{tipoBachilleratoController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{tipoBachilleratoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idTipoBachillerato}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 500px;display: inline-block"
-                                 >
+                                  paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados.">
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
@@ -36,10 +37,10 @@
                         </p:column>
                         
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoBachilleratoController.prepareCreate}" update=":TipoBachilleratoCreateForm" oncomplete="PF('TipoBachilleratoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":TipoBachilleratoViewForm" oncomplete="PF('TipoBachilleratoViewDialog').show()" disabled="#{empty tipoBachilleratoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoBachilleratoEditForm" oncomplete="PF('TipoBachilleratoEditDialog').show()" disabled="#{empty tipoBachilleratoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoBachilleratoController.destroy}" update=":growl,datalist" disabled="#{empty tipoBachilleratoController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear"  icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoBachilleratoController.prepareCreate}" update=":TipoBachilleratoCreateForm" oncomplete="PF('TipoBachilleratoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":TipoBachilleratoViewForm" oncomplete="PF('TipoBachilleratoViewDialog').show()" disabled="#{empty tipoBachilleratoController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoBachilleratoEditForm" oncomplete="PF('TipoBachilleratoEditDialog').show()" disabled="#{empty tipoBachilleratoController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar"  icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoBachilleratoController.destroy}" update=":growl,datalist" disabled="#{empty tipoBachilleratoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

@@ -14,17 +14,20 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:panel>
             <h:form id="DistributivoListForm">
                 <p class="title_modulos">#{bundle.ListDistributivoTitle}</p>
-                    <p:dataTable id="datalist" value="#{distributivoController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{distributivoController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{distributivoController.selected}"
                                  paginator="true"
                                  scrollable="true" 
-                                 scrollWidth="1215"
                                  rowKey="#{item.idDistributivo}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 >
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                             sortBy="#{item.idDistributivo}"
+                             sortOrder="descending">
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
@@ -131,14 +134,20 @@
                             <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{distributivoController.prepareCreate}" update=":DistributivoCreateForm" oncomplete="PF('DistributivoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":DistributivoViewForm" oncomplete="PF('DistributivoViewDialog').show()" disabled="#{empty distributivoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DistributivoEditForm" oncomplete="PF('DistributivoEditDialog').show()" disabled="#{empty distributivoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{distributivoController.destroy}" update=":growl,datalist" disabled="#{empty distributivoController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{distributivoController.prepareCreate}" update=":DistributivoCreateForm" oncomplete="PF('DistributivoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":DistributivoViewForm" oncomplete="PF('DistributivoViewDialog').show()" disabled="#{empty distributivoController.selected}"/>
+                            <p:commandButton id="editButton" styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":DistributivoEditForm" oncomplete="PF('DistributivoEditDialog').show()" disabled="#{empty distributivoController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{distributivoController.destroy}" update=":growl,datalist" disabled="#{empty distributivoController.selected}">
+                                <p:confirm message="Eliminar Registro" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
+                                </p:commandButton>                      
+                                <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
+                                </p:confirmDialog>
                         </f:facet>
                     </p:dataTable>
             </h:form>
-
+                </p:panel>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

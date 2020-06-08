@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -17,10 +16,8 @@
                         <p:inputText id="tipoEtnia" value="#{etniaController.selected.tipoEtnia}" title="#{bundle.EditEtniaTitle_tipoEtnia}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{etniaController.update}" value="#{bundle.Save}" update="display,:EtniaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtniaEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="EtniaEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{etniaController.update}" value="#{bundle.Save}" update="display,:EtniaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtniaEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="EtniaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -19,10 +19,8 @@
                         <p:inputText id="observacion" value="#{tipoColegioController.selected.observacion}" title="#{bundle.EditTipoColegioTitle_observacion}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoColegioController.update}" value="#{bundle.Save}" update="display,:TipoColegioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoColegioEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoColegioEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoColegioController.update}" value="#{bundle.Save}" update="display,:TipoColegioListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoColegioEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoColegioEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

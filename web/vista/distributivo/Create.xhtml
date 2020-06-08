@@ -9,12 +9,13 @@
     <ui:composition>
 
         <p:dialog id="DistributivoCreateDlg" widgetVar="DistributivoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDistributivoTitle}">
+            <div class="scroll">
             <h:form id="DistributivoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{distributivoController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_fechaVinculacion}" for="fechaVinculacion" />
-                        <p:calendar id="fechaVinculacion" pattern="MM/dd/yyyy" value="#{distributivoController.selected.fechaVinculacion}" title="#{bundle.EditDistributivoTitle_fechaVinculacion}"  showOn="button"/>
+                        <p:calendar id="fechaVinculacion" pattern="MM/dd/yyyy" value="#{distributivoController.selected.fechaVinculacion}" title="#{bundle.EditDistributivoTitle_fechaVinculacion}"  mask="true" navigator="true"/>
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_nroHorasActividasdesDocencia}" for="nroHorasActividasdesDocencia" />
                         <p:inputText id="nroHorasActividasdesDocencia" value="#{distributivoController.selected.nroHorasActividasdesDocencia}" title="#{bundle.CreateDistributivoTitle_nroHorasActividasdesDocencia}" />
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_nroHorasSemanalGestionAcademica}" for="nroHorasSemanalGestionAcademica" />
@@ -27,7 +28,8 @@
                         <p:inputText id="numeroDeSemanas" value="#{distributivoController.selected.numeroDeSemanas}" title="#{bundle.CreateDistributivoTitle_numeroDeSemanas}" />
                         
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_idDatosPersonales}" for="idDatosPersonales" />
-                        <p:selectOneMenu id="idDatosPersonales" value="#{distributivoController.selected.idDatosPersonales}" >
+                        <p:selectOneMenu id="idDatosPersonales" value="#{distributivoController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
@@ -39,7 +41,8 @@
                                            itemValue="#{idJornadaAcademicaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_idMateria}" for="idMateria" />
-                        <p:selectOneMenu id="idMateria" value="#{distributivoController.selected.idMateria}" >
+                        <p:selectOneMenu id="idMateria" value="#{distributivoController.selected.idMateria}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"/>
@@ -87,12 +90,11 @@
                                            itemValue="#{idTituloCarreraItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{distributivoController.create}" value="#{bundle.Save}" update="display,:DistributivoListForm:datalist,:growl" oncomplete="handleSubmit(args,'DistributivoCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="DistributivoCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{distributivoController.create}" value="#{bundle.Save}" update="display,:DistributivoListForm:datalist,:growl" oncomplete="handleSubmit(args,'DistributivoCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="DistributivoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
+                </div>
         </p:dialog>
 
     </ui:composition>

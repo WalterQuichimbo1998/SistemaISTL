@@ -19,10 +19,8 @@
                         <p:inputText id="observacion" value="#{tipoDiscapacidadController.selected.observacion}" title="#{bundle.CreateTipoDiscapacidadTitle_observacion}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoDiscapacidadController.create}" value="#{bundle.Save}" update="display,:TipoDiscapacidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoDiscapacidadCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoDiscapacidadCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoDiscapacidadController.create}" value="#{bundle.Save}" update="display,:TipoDiscapacidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoDiscapacidadCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoDiscapacidadCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

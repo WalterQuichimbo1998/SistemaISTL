@@ -17,10 +17,8 @@
                         <p:inputText id="tipoEtnia" value="#{etniaController.selected.tipoEtnia}" title="#{bundle.CreateEtniaTitle_tipoEtnia}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{etniaController.create}" value="#{bundle.Save}" update="display,:EtniaListForm:datalist,:growl" oncomplete="handleSubmit(args,'EtniaCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="EtniaCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{etniaController.create}" value="#{bundle.Save}" update="display,:EtniaListForm:datalist,:growl" oncomplete="handleSubmit(args,'EtniaCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="EtniaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -19,16 +19,15 @@
                         <p:inputText id="nombreProyectoInvestigacion" value="#{tablaInvestigacionController.selected.nombreProyectoInvestigacion}" title="#{bundle.CreateTablaInvestigacionTitle_nombreProyectoInvestigacion}" />
                         
                         <p:outputLabel value="#{bundle.CreateTablaInvestigacionLabel_idDatosPersonales}" for="idDatosPersonales" />
-                        <p:selectOneMenu id="idDatosPersonales" value="#{tablaInvestigacionController.selected.idDatosPersonales}" >
+                        <p:selectOneMenu id="idDatosPersonales" value="#{tablaInvestigacionController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tablaInvestigacionController.create}" value="#{bundle.Save}" update="display,:TablaInvestigacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TablaInvestigacionCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TablaInvestigacionCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tablaInvestigacionController.create}" value="#{bundle.Save}" update="display,:TablaInvestigacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TablaInvestigacionCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TablaInvestigacionCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

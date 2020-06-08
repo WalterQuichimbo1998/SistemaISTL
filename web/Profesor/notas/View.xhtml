@@ -35,9 +35,7 @@
                         <h:outputText value="#{bundle.ViewNotasLabel_idPersona}"/>
                         <h:outputText value="#{notasController.selected.idPersona}" title="#{bundle.ViewNotasTitle_idPersona}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="NotasViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NotasViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

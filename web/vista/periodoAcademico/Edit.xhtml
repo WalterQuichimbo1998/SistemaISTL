@@ -27,11 +27,9 @@
                         <p:outputLabel value="Año Periodo Académico" for="añoPeriodoAcademico" />
                         <p:inputText id="añoPeriodoAcademico" value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.EditPeriodoAcademicoTitle_añoPeriodoAcademico}" />
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{periodoAcademicoController.update}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeriodoAcademicoEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PeriodoAcademicoEditDialog.hide()"/>
-                    </div>
-                </h:panelGroup>
+                  <p:commandButton styleClass="btn_g" actionListener="#{periodoAcademicoController.update}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PeriodoAcademicoEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PeriodoAcademicoEditDialog.hide()"/>
+            </h:panelGroup>
             </h:form>
         </p:dialog>
 

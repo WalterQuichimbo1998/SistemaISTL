@@ -19,24 +19,29 @@ body{
 
 
 .container_login{
-	background: #fff;
-	padding: 0px 35px;
-	box-shadow: 0px 0px 1px 0px #BABABA;
-        border: 1px solid #e1e1e1;
-	padding-top: 40px;
-        display: inline-block;
-        margin-top: 60px;
-        padding-bottom: 15px;
+    width: 280px;
+    margin: auto;
+    background: #fff;
+    padding: 0px 35px;
+    /*box-shadow: 0px 0px 1px 0px #BABABA;*/
+    border: 1px solid #e1e1e1;
+    padding-top: 30px;
+    display: inline-block;
+    margin-top: 60px;
+    padding-bottom: 15px;
+    border-radius: 4px;
 }
 .title_sistema{
-    font-family: sans-serif;
+    font-family: Arial;
     color: #1976d3;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
+    text-align: center;
+
 }
 .iconLogin{
     width: 100px;
-    margin-top: 30px;
+    margin-top: 20px;
     margin-bottom: 10px;
 }
 .title_log{
@@ -51,7 +56,7 @@ body{
     display: block;
     font-family: sans-serif;
     font-size: 15px;
-    color: #A4A4A4;
+    color: #ccc;
 }
 .cont_cajas{
     text-align: left;
@@ -61,45 +66,68 @@ body{
     background: transparent;
     margin-bottom: 20px;
     margin-top: 7px;
-    border: 1px solid #E2E2E2;
+    border:none;
     border-radius: 4px;
+    display: flex;
+    transition: all .3s ease; 
 }
 .container_login .caja .icon{
-    margin-left: 10px;
-    color: #A4A4A4
+    color: #ccc;
+    display: inline-block;
+    font-size: 24px;
+    padding: 3px 0px;
+    margin-left: 5px;
+    position: absolute;
+    transition: all .3s ease;
+
 }
 .container_login .txt{
-    width: 270px;
+    width: 100%;
     display: inline-block;
-    padding: 10px 5px;
-    margin-left: 5px;
-    font-size: 15px;
+    padding: 3px 0px;
+    font-size: 20px;
     letter-spacing: 1px;
-    background: transparent;
+    background: none;
     border: none;
     outline: none;
-    color: #515151;
+    color: #454545;
     font-family: sans-serif;
+    text-align: center;
+    border-bottom: 2px solid #A4A4A4;
+    transition: all .3s ease;
 }
+.txt:hover{
+    border-bottom: 2px solid #007bff;
+}
+.txt:focus{
+    border-bottom: 2px solid #007bff;
+}
+
+
+/*.container_login .caja:hover{
+     border: 1px solid #57a3f4;
+}*/
+.container_login .caja:hover .icon{
+    color:#007bff;
+}
+
+
 .mesage{
     color: #cc0000;
     font-family: sans-serif;
     font-size: 12px;
     margin-top: 10px;
-    display: inline-block
 }
-.container_login .btn_login{
+/*.container_login .btn_login{
     border: none;
     outline: none;
     width: 120px;
     height: 40px;
-    margin-left: 20px;
     background: #1976D3;
     color: #fff;
     font-size: 14px;
     border-radius:7px;
-    font: sans-serif;
-    cursor: pointer;
+    font-family: Arial;
     font-weight: bold;
     box-shadow: 0px 0px 2px 0px #0099a5;
     border-bottom: 7px solid #186bbe;
@@ -110,6 +138,27 @@ body{
 .container_login .btn_login:hover{
     box-shadow: 0px 0px 7px 0px #0099a5;
     transition: all 0.2s;
+    cursor: pointer;
+}*/
+.container_login .btn_login{
+    width:140px;
+    height: 40px;
+    background: #57a3f4; 
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    border:none;
+    box-shadow: none;
+    text-shadow:none;
+    outline: none;
+    margin-top: 4px; 
+    transition: all .3s ease; 
+}
+.container_login .btn_login:hover{
+    color: #000;
+    box-shadow: 0px 0px 1px 1px #454545;
+    -webkit-box-shadow: 0px 0px 1px 1px #454545;
+    cursor: pointer;
 }
 .olv{
     color: #1976D3;
@@ -120,7 +169,7 @@ body{
 }
 
 @media(max-width:720px){
-    
+
     body{
         background: #fff;
     }

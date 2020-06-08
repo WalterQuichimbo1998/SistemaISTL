@@ -25,24 +25,24 @@
                         <p:inputText id="notaFinal" value="#{notasController.selected.notaFinal}" title="#{bundle.EditNotasTitle_notaFinal}" />
                         
                         <p:outputLabel value="#{bundle.EditNotasLabel_idMateria}" for="idMateria" />
-                        <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" >
+                        <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditNotasLabel_idPersona}" for="idPersona" />
-                        <p:selectOneMenu id="idPersona" value="#{notasController.selected.idPersona}" >
+                        <p:selectOneMenu id="idPersona" value="#{notasController.selected.idPersona}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="140">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
                                            var="idPersonaItem"
                                            itemValue="#{idPersonaItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{notasController.update}" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="NotasEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{notasController.update}" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NotasEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

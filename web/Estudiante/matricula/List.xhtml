@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/Estudiante/templateEstudiante.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMatriculaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="MatriculaEditForm">
+                <p:growl id="mensaje" life="3000" />    
+                <h:panelGrid columns="1" style="margin: auto; ">
+                    <h:panelGroup style="display: inline-block; text-align: center; "> 
+                        <div class="boxContainerData">
+                            <p class="title_datosPersonales">DATOS MATRÍCULA</p>
+                            <div class="botones2">
+                                <p:outputLabel value="ESTUDIANTE" class="labelDatosPersonales"/>
+                                <p:inputText styleClass="camposDeDatos2" value="#{matriculaController.selected.idPersona.idDatosPersonales.nombres}" readonly="true"/>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="Fecha Matricula" for="fechaMatricula" />
+                                <p:calendar id="fechaMatricula" styleClass="calendarClass2" pattern="MM/dd/yyyy" value="#{matriculaController.selected.fechaMatricula}" title="#{bundle.EditMatriculaTitle_fechaMatricula}" mask="true" navigator="true"/>
+                            </div>
+                           
+                            <div class="botones2">
+                                <p:outputLabel value="Modalidad" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.modalidad}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Presencial" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "Semipresencial" /> 
+                                    <f:selectItem itemValue = "3" itemLabel = "Dual" />                                                  
+
+                                </p:selectOneMenu> 
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_fechaInicioCarrera}" for="fechaInicioCarrera" />
+                                <p:inputText id="fechaInicioCarrera" styleClass="camposDeDatos2"  value="#{matriculaController.selected.fechaInicioCarrera}" title="#{bundle.CreateMatriculaTitle_fechaInicioCarrera}" />
+
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_tituloOtorgado}" for="tituloOtorgado" />
+                                <p:inputText id="tituloOtorgado" styleClass="camposDeDatos2"  value="#{matriculaController.selected.tituloOtorgado}" title="#{bundle.CreateMatriculaTitle_tituloOtorgado}" />
+                            </div>
+                            <div class="botones2">
+
+                                <p:outputLabel value="Ha repetido al menos una Materia" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.materiaRepetida}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Si" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "No" />                                                 
+
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Ha Perdido la Gratuidad" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.materiaPerdida}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Si" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "No" />                                                 
+
+                                </p:selectOneMenu> 
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idPeriodoAcademico}" for="idPeriodoAcademico" />
+                                <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" >
+                                    <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idPeriodoAcademicoItem"
+                                                   itemValue="#{idPeriodoAcademicoItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idTipoCarrera}" for="idTipoCarrera" />
+                                <p:selectOneMenu id="idTipoCarrera" value="#{matriculaController.selected.idTipoCarrera}" >
+                                    <f:selectItems value="#{tipoCarreraController.itemsAvailableSelectOne}"
+                                                   var="idTipoCarreraItem"
+                                                   itemValue="#{idTipoCarreraItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idJornadaAcademica}" for="idJornadaAcademica" />
+                                <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" >
+                                    <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
+                                                   var="idJornadaAcademicaItem"
+                                                   itemValue="#{idJornadaAcademicaItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idNivelAcademico}" for="idNivelAcademico" />
+                                <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" >
+                                    <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idNivelAcademicoItem"
+                                                   itemValue="#{idNivelAcademicoItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Paralelo" for="idParalelo" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" >
+                                    <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
+                                                   var="idParaleloItem"
+                                                   itemValue="#{idParaleloItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idTipoMatricula}" for="idTipoMatricula" />
+                                <p:selectOneMenu id="idTipoMatricula" value="#{matriculaController.selected.idTipoMatricula}" >
+                                    <f:selectItems value="#{tipoMatriculaController.itemsAvailableSelectOne}"
+                                                   var="idTipoMatriculaItem"
+                                                   itemValue="#{idTipoMatriculaItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_idTituloCarrera}" for="idTituloCarrera" />
+                                <p:selectOneMenu id="idTituloCarrera" value="#{matriculaController.selected.idTituloCarrera}" >
+                                    <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                                   var="idTituloCarreraItem"
+                                                   itemValue="#{idTituloCarreraItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Posee título de Educación superior" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.tituloEducacionSuperior}"> 
+                                    <f:selectItem itemValue = "Si" itemLabel = "Si" /> 
+                                    <f:selectItem itemValue = "No" itemLabel = "No" />                                                 
+
+                                </p:selectOneMenu> 
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateMatriculaLabel_especifiqueTitulo}" for="especifiqueTitulo" />
+                                <p:inputText id="especifiqueTitulo" styleClass="camposDeDatos2"  value="#{matriculaController.selected.especifiqueTitulo}" title="#{bundle.CreateMatriculaTitle_especifiqueTitulo}" />
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Ocupacion Estudiante" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.ocupacionEstudiante}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Solamente al estudio" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "Trabaja y estudia" />   
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Nombre empresa trabajo" for="nombreEmpresa" class="labelDatosPersonales"/>
+                                <p:inputText id="nombreEmpresa" styleClass="camposDeDatos2"  value="#{matriculaController.selected.nombreEmpresa}" title="#{bundle.CreateMatriculaTitle_nombreEmpresa}" />
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Sector Económico Empresa" for="idSectorEconomicoEmpresa" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idSectorEconomicoEmpresa" value="#{matriculaController.selected.idSectorEconomicoEmpresa}" >
+                                    <f:selectItems value="#{sectorEconomicoEmpresaController.itemsAvailableSelectOne}"
+                                                   var="idSectorEconomicoEmpresaItem"
+                                                   itemValue="#{idSectorEconomicoEmpresaItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+
+                                <p:outputLabel value="Empleo de Ingresos Económicos" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.empleoIngresosEconomicos}"> 
+                                    <f:selectItem itemValue = "Sostener sus estudios" itemLabel = "Sostener sus estudios" /> 
+                                    <f:selectItem itemValue = "Para mantener a su Familia" itemLabel = "Para mantener a su Familia" />   
+                                    <f:selectItem itemValue = "Gastos personales" itemLabel = "Gastos personales" />   
+                                    <f:selectItem itemValue = "N/A" itemLabel = "N/A" />   
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Bono de Desarrollo humano" class="labelDatosPersonales"/>
+                                <p:selectOneMenu value = "#{matriculaController.selected.bonoDesarrolloHumano}"> 
+                                    <f:selectItem itemValue = "1" itemLabel = "Si" /> 
+                                    <f:selectItem itemValue = "2" itemLabel = "No" />                                                 
+
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_ingresoHogar}" for="ingresoHogar" class="labelDatosPersonales"/>
+                                <p:inputText id="ingresoHogar" styleClass="camposDeDatos2"  value="#{matriculaController.selected.ingresoHogar}" title="#{bundle.CreateMatriculaTitle_ingresoHogar}" />
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_nroMiembrosHogar}" for="nroMiembrosHogar" class="labelDatosPersonales"/>
+                                <p:inputText id="nroMiembrosHogar" styleClass="camposDeDatos2"  value="#{matriculaController.selected.nroMiembrosHogar}" title="#{bundle.CreateMatriculaTitle_nroMiembrosHogar}" />
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_idFormacionMadre}" for="idFormacionMadre" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idFormacionMadre" value="#{matriculaController.selected.idFormacionMadre}" >
+                                    <f:selectItems value="#{formacionAcademicaMadreController.itemsAvailableSelectOne}"
+                                                   var="idFormacionMadreItem"
+                                                   itemValue="#{idFormacionMadreItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_idFormacionPadre}" for="idFormacionPadre" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idFormacionPadre" value="#{matriculaController.selected.idFormacionPadre}" >
+                                    <f:selectItems value="#{formacionAcademicaController.itemsAvailableSelectOne}"
+                                                   var="idFormacionPadreItem"
+                                                   itemValue="#{idFormacionPadreItem}"/>
+                                </p:selectOneMenu>
+
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_anioGraduacion}" for="anioGraduacion" class="labelDatosPersonales"/>
+                                <p:inputText id="anioGraduacion" styleClass="camposDeDatos2" value="#{matriculaController.selected.anioGraduacion}" title="#{bundle.CreateMatriculaTitle_anioGraduacion}" />
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Tipo Colegio Graduación" for="idTipoColegio" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idTipoColegio" value="#{matriculaController.selected.idTipoColegio}" >
+                                    <f:selectItems value="#{tipoColegioController.itemsAvailableSelectOne}"
+                                                   var="idTipoColegioItem"
+                                                   itemValue="#{idTipoColegioItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="#{bundle.CreateMatriculaLabel_idTipoBachillerato}" for="idTipoBachillerato" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idTipoBachillerato" value="#{matriculaController.selected.idTipoBachillerato}" >
+                                    <f:selectItems value="#{tipoBachilleratoController.itemsAvailableSelectOne}"
+                                                   var="idTipoBachilleratoItem"
+                                                   itemValue="#{idTipoBachilleratoItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <div class="botones2">
+                                <p:outputLabel value="Tipo Institución Prácticas" for="idTipoInstitucion" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idTipoInstitucion" value="#{matriculaController.selected.idTipoInstitucion}" >
+                                    <f:selectItems value="#{tipoInstitucionPracticasController.itemsAvailableSelectOne}"
+                                                   var="idTipoInstitucionItem"
+                                                   itemValue="#{idTipoInstitucionItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="botones2">
+                                <p:outputLabel value="Alcance Vinculación" for="idAlcanceVinculacion" class="labelDatosPersonales"/>
+                                <p:selectOneMenu id="idAlcanceVinculacion" value="#{matriculaController.selected.idAlcanceVinculacion}" >
+                                    <f:selectItems value="#{alcanceVinculacionController.itemsAvailableSelectOne}"
+                                                   var="idAlcanceVinculacionItem"
+                                                   itemValue="#{idAlcanceVinculacionItem}"/>
+                                </p:selectOneMenu>
+                            </div>
+                             <div class="botones2">
+                            <p:commandButton styleClass="crear" ajax="false"  actionListener="#{matriculaController.update()}" value="Actualizar Datos Matrícula"
+                                             update="mensaje"/>
+                              </div>
+                    </div>
+                    </h:panelGroup>
+                </h:panelGrid>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -19,14 +19,16 @@
                         <p:inputText id="categoriaMigratoria" value="#{nacionalidadController.selected.categoriaMigratoria}" title="#{bundle.EditNacionalidadTitle_categoriaMigratoria}" />
                         
                         <p:outputLabel value="#{bundle.EditNacionalidadLabel_idCanton}" for="idCanton" />
-                        <p:selectOneMenu id="idCanton" value="#{nacionalidadController.selected.idCanton}" >
+                        <p:selectOneMenu id="idCanton" value="#{nacionalidadController.selected.idCanton}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{cantonController.itemsAvailableSelectOne}"
                                            var="idCantonItem"
                                            itemValue="#{idCantonItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditNacionalidadLabel_idProvincia}" for="idProvincia" />
-                        <p:selectOneMenu id="idProvincia" value="#{nacionalidadController.selected.idProvincia}" >
+                        <p:selectOneMenu id="idProvincia" value="#{nacionalidadController.selected.idProvincia}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{provinciaController.itemsAvailableSelectOne}"
                                            var="idProvinciaItem"
@@ -34,8 +36,8 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{nacionalidadController.update}" value="#{bundle.Save}" update="display,:NacionalidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NacionalidadEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="NacionalidadEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_g" actionListener="#{nacionalidadController.update}" value="#{bundle.Save}" update="display,:NacionalidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NacionalidadEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NacionalidadEditDialog.hide()"/>
                     </div>
                 </h:panelGroup>
             </h:form>

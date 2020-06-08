@@ -19,10 +19,8 @@
                         <p:inputText id="descripcion" value="#{tipoIdentificacionController.selected.descripcion}" title="#{bundle.EditTipoIdentificacionTitle_descripcion}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoIdentificacionController.update}" value="#{bundle.Save}" update="display,:TipoIdentificacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoIdentificacionEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoIdentificacionEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoIdentificacionController.update}" value="#{bundle.Save}" update="display,:TipoIdentificacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoIdentificacionEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoIdentificacionEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

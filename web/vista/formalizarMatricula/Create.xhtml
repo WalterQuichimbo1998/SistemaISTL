@@ -46,8 +46,8 @@
                                            itemValue="#{idTipoMatriculaItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{formalizarMatriculaController.create}" value="#{bundle.Save}" update="display,:FormalizarMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormalizarMatriculaCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="FormalizarMatriculaCreateDialog.hide()"/>
+                    <p:commandButton styleClass="btn_g" actionListener="#{formalizarMatriculaController.create}" value="#{bundle.Save}" update="display,:FormalizarMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormalizarMatriculaCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="FormalizarMatriculaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

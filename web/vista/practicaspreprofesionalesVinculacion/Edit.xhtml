@@ -45,10 +45,8 @@
                                            itemValue="#{idtipoinstitucionpracticasPreprofesionalesItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{practicaspreprofesionalesVinculacionController.update}" value="#{bundle.Save}" update="display,:PracticaspreprofesionalesVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PracticaspreprofesionalesVinculacionEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PracticaspreprofesionalesVinculacionEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{practicaspreprofesionalesVinculacionController.update}" value="#{bundle.Save}" update="display,:PracticaspreprofesionalesVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PracticaspreprofesionalesVinculacionEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PracticaspreprofesionalesVinculacionEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

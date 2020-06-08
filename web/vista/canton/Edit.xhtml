@@ -17,10 +17,8 @@
                         <p:inputText id="nombre" value="#{cantonController.selected.nombre}" title="#{bundle.EditCantonTitle_nombre}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{cantonController.update}" value="#{bundle.Save}" update="display,:CantonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CantonEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="CantonEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{cantonController.update}" value="#{bundle.Save}" update="display,:CantonListForm:datalist,:growl" oncomplete="handleSubmit(args, 'CantonEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="CantonEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

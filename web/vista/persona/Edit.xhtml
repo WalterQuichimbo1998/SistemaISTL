@@ -23,11 +23,11 @@
                         </p:selectOneMenu>
                         
                        <p:outputLabel value="Idioma Ancestral" />
-                         <h:selectOneMenu value = "#{personaController.selected.idiomaAncestral}"> 
+                         <p:selectOneMenu value = "#{personaController.selected.idiomaAncestral}"> 
                                 <f:selectItem itemValue = "SI" itemLabel = "SI" /> 
                                 <f:selectItem itemValue = "NO" itemLabel = "NO" />                                                 
 
-                            </h:selectOneMenu>
+                            </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditPersonaLabel_descripcionIdiomaAncestral}" for="descripcionIdiomaAncestral" />
                         <p:inputText id="descripcionIdiomaAncestral" value="#{personaController.selected.descripcionIdiomaAncestral}" title="#{bundle.EditPersonaTitle_descripcionIdiomaAncestral}" />
                         <p:outputLabel value="#{bundle.EditPersonaLabel_paisNacionalidad}" for="paisNacionalidad" />
@@ -35,24 +35,24 @@
                         <p:outputLabel value="#{bundle.EditPersonaLabel_paisResidencia}" for="paisResidencia" />
                         <p:inputText id="paisResidencia" value="#{personaController.selected.paisResidencia}" title="#{bundle.EditPersonaTitle_paisResidencia}" />
                         <p:outputLabel value="Tiene Discapacidad" />
-                         <h:selectOneMenu value = "#{personaController.selected.poseeDiscapacidad}"> 
+                         <p:selectOneMenu value = "#{personaController.selected.poseeDiscapacidad}"> 
                                 <f:selectItem itemValue = "SI" itemLabel = "SI" /> 
                                 <f:selectItem itemValue = "NO" itemLabel = "NO" />                                                 
 
-                            </h:selectOneMenu>
+                            </p:selectOneMenu>
                         
                          <p:outputLabel value="Ha Realizado Prácticas" />
-                         <h:selectOneMenu value = "#{personaController.selected.participacionPracticas}"> 
+                         <p:selectOneMenu value = "#{personaController.selected.participacionPracticas}"> 
                                 <f:selectItem itemValue = "SI" itemLabel = "SI" /> 
                                 <f:selectItem itemValue = "NO" itemLabel = "NO" />                                                 
 
-                            </h:selectOneMenu>
+                            </p:selectOneMenu>
                          <p:outputLabel value="Ha Realizado Vinculación" />
-                         <h:selectOneMenu value = "#{personaController.selected.participacionVinculacion}"> 
+                         <p:selectOneMenu value = "#{personaController.selected.participacionVinculacion}"> 
                                 <f:selectItem itemValue = "SI" itemLabel = "SI" /> 
                                 <f:selectItem itemValue = "NO" itemLabel = "NO" />                                                 
 
-                            </h:selectOneMenu>
+                            </p:selectOneMenu>
                         
                           <p:outputLabel value="#{bundle.EditPersonaLabel_idProvinciaNacimiento}" for="idProvinciaNacimiento" />
                         <p:selectOneMenu id="idProvinciaNacimiento" value="#{personaController.selected.idProvinciaNacimiento}" >
@@ -148,14 +148,10 @@
                                            var="idResidenciaItem"
                                            itemValue="#{idResidenciaItem}"/>
                         </p:selectOneMenu>
-                                
-                      
-                
+ 
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{personaController.update}" value="#{bundle.Save}" update="display,:PersonaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PersonaEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PersonaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
                 </div>

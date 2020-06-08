@@ -16,13 +16,15 @@
         <ui:define name="body">
             <h:form id="CantonListForm">
                 <p class="title_modulos">#{bundle.ListCantonTitle}</p>
-                    <p:dataTable id="datalist" value="#{cantonController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{cantonController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{cantonController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idCanton}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 500px;display: inline-block"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -37,10 +39,10 @@
                         </p:column>
                        
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cantonController.prepareCreate}" update=":CantonCreateForm" oncomplete="PF('CantonCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":CantonViewForm" oncomplete="PF('CantonViewDialog').show()" disabled="#{empty cantonController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CantonEditForm" oncomplete="PF('CantonEditDialog').show()" disabled="#{empty cantonController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cantonController.destroy}" update=":growl,datalist" disabled="#{empty cantonController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{cantonController.prepareCreate}" update=":CantonCreateForm" oncomplete="PF('CantonCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":CantonViewForm" oncomplete="PF('CantonViewDialog').show()" disabled="#{empty cantonController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CantonEditForm" oncomplete="PF('CantonEditDialog').show()" disabled="#{empty cantonController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{cantonController.destroy}" update=":growl,datalist" disabled="#{empty cantonController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

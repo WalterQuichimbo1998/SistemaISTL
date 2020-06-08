@@ -15,7 +15,7 @@
         <ui:define name="body">
             <h:form id="NacionalidadListForm">
                 <p class="title_modulos">#{bundle.ListNacionalidadTitle}</p>
-                    <p:dataTable id="datalist" value="#{nacionalidadController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{nacionalidadController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{nacionalidadController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idNacionalidad}"
@@ -53,10 +53,10 @@
                             <h:outputText value="#{item.idProvincia.nombre}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{nacionalidadController.prepareCreate}" update=":NacionalidadCreateForm" oncomplete="PF('NacionalidadCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":NacionalidadViewForm" oncomplete="PF('NacionalidadViewDialog').show()" disabled="#{empty nacionalidadController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NacionalidadEditForm" oncomplete="PF('NacionalidadEditDialog').show()" disabled="#{empty nacionalidadController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{nacionalidadController.destroy}" update=":growl,datalist" disabled="#{empty nacionalidadController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{nacionalidadController.prepareCreate}" update=":NacionalidadCreateForm" oncomplete="PF('NacionalidadCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":NacionalidadViewForm" oncomplete="PF('NacionalidadViewDialog').show()" disabled="#{empty nacionalidadController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NacionalidadEditForm" oncomplete="PF('NacionalidadEditDialog').show()" disabled="#{empty nacionalidadController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{nacionalidadController.destroy}" update=":growl,datalist" disabled="#{empty nacionalidadController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

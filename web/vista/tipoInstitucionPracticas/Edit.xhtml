@@ -17,10 +17,8 @@
                         <p:inputText id="nombreTipo" value="#{tipoInstitucionPracticasController.selected.nombreTipo}" title="#{bundle.EditTipoInstitucionPracticasTitle_nombreTipo}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoInstitucionPracticasController.update}" value="#{bundle.Save}" update="display,:TipoInstitucionPracticasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoInstitucionPracticasEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoInstitucionPracticasEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoInstitucionPracticasController.update}" value="#{bundle.Save}" update="display,:TipoInstitucionPracticasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoInstitucionPracticasEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoInstitucionPracticasEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

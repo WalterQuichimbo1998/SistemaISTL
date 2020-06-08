@@ -17,10 +17,8 @@
                         <p:inputText id="nombre" value="#{cantonController.selected.nombre}" title="#{bundle.CreateCantonTitle_nombre}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{cantonController.create}" value="#{bundle.Save}" update="display,:CantonListForm:datalist,:growl" oncomplete="handleSubmit(args,'CantonCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="CantonCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{cantonController.create}" value="#{bundle.Save}" update="display,:CantonListForm:datalist,:growl" oncomplete="handleSubmit(args,'CantonCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="CantonCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

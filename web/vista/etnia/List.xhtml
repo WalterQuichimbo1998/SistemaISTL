@@ -16,34 +16,37 @@
         <ui:define name="body">
             <h:form id="EtniaListForm">
                 <p class="title_modulos">#{bundle.ListEtniaTitle}</p>
-                    <p:dataTable id="datalist" value="#{etniaController.items}" var="item"
-                                 selectionMode="single" selection="#{etniaController.selected}"
-                                 paginator="true"
-                                 rowKey="#{item.idEtnia}"
-                                 rows="10"
-                                 rowsPerPageTemplate="10,20,30,40,50"
-                                 style="width: 500px;display: inline-block"
-                                 >
+                <p:dataTable id="datalist" value="#{etniaController.items}" var="item" styleClass="tabla"
+                             selectionMode="single" selection="#{etniaController.selected}"
+                             paginator="true"
+                             rowKey="#{item.idEtnia}"
+                             rows="10"
+                             rowsPerPageTemplate="10,20,30,40,50"
+                             paginatorPosition="bottom"
+                             emptyMessage="No se encontraron resultados."
+                             sortBy="#{item.idEtnia}"
+                             sortOrder="descending"
+                             style="width: 500px;display: inline-block">
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                    <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEtniaTitle_tipoEtnia}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tipoEtnia}"/>
-                        </p:column>
-                        
-                        
-                        <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{etniaController.prepareCreate}" update=":EtniaCreateForm" oncomplete="PF('EtniaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EtniaViewForm" oncomplete="PF('EtniaViewDialog').show()" disabled="#{empty etniaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EtniaEditForm" oncomplete="PF('EtniaEditDialog').show()" disabled="#{empty etniaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{etniaController.destroy}" update=":growl,datalist" disabled="#{empty etniaController.selected}"/>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListEtniaTitle_tipoEtnia}"/>
                         </f:facet>
-                    </p:dataTable>
+                        <h:outputText value="#{item.tipoEtnia}"/>
+                    </p:column>
+
+
+                    <f:facet name="footer">
+                        <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{etniaController.prepareCreate}" update=":EtniaCreateForm" oncomplete="PF('EtniaCreateDialog').show()"/>
+                        <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":EtniaViewForm" oncomplete="PF('EtniaViewDialog').show()" disabled="#{empty etniaController.selected}"/>
+                        <p:commandButton id="editButton" styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EtniaEditForm" oncomplete="PF('EtniaEditDialog').show()" disabled="#{empty etniaController.selected}"/>
+                        <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{etniaController.destroy}" update=":growl,datalist" disabled="#{empty etniaController.selected}"/>
+                    </f:facet>
+                </p:dataTable>
             </h:form>
 
             <ui:include src="Create.xhtml"/>

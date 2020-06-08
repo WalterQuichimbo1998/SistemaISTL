@@ -15,14 +15,15 @@
         <ui:define name="body">
             <h:form id="SectorEconomicoListForm">
                 <p class="title_modulos">#{bundle.ListSectorEconomicoTitle}</p>
-                    <p:dataTable id="datalist" value="#{sectorEconomicoController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{sectorEconomicoController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{sectorEconomicoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idSectorEconomico}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 600px;display: inline-block"
-                                 >
+                                  paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados.">
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
@@ -36,10 +37,10 @@
                         </p:column>
                         
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sectorEconomicoController.prepareCreate}" update=":SectorEconomicoCreateForm" oncomplete="PF('SectorEconomicoCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SectorEconomicoViewForm" oncomplete="PF('SectorEconomicoViewDialog').show()" disabled="#{empty sectorEconomicoController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SectorEconomicoEditForm" oncomplete="PF('SectorEconomicoEditDialog').show()" disabled="#{empty sectorEconomicoController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sectorEconomicoController.destroy}" update=":growl,datalist" disabled="#{empty sectorEconomicoController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{sectorEconomicoController.prepareCreate}" update=":SectorEconomicoCreateForm" oncomplete="PF('SectorEconomicoCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":SectorEconomicoViewForm" oncomplete="PF('SectorEconomicoViewDialog').show()" disabled="#{empty sectorEconomicoController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":SectorEconomicoEditForm" oncomplete="PF('SectorEconomicoEditDialog').show()" disabled="#{empty sectorEconomicoController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{sectorEconomicoController.destroy}" update=":growl,datalist" disabled="#{empty sectorEconomicoController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

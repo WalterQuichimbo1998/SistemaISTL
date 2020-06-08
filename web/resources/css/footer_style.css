@@ -4,46 +4,53 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 24-dic-2019, 23:44:23
-    Author     : Dario
+    Autor: Walter Quichimbo
 */
 .box_footer{
-    /*padding: 10px 20px;*/
     background: #1976D3;
-    /*border-top: 10px solid #186BBE;*/
     color: #fff;
-    font-family: sans-serif;
-    text-align: center;
-    
-   position:fixed;
-   left:0px;
-   bottom:0px;
-   height:30px;
+    /*height:30px;*/
    width:100%;
+   width: auto;
+    font-family: Arial;
+    text-align: center;
+      /*position:fixed;*/
+     margin-top: 65px;
+     padding-top:10px;
+     padding-bottom: 5px;
+  
+/*   left:0px;*/
+   
+  
 }
 .box_iconos,.icono_footer,.box_txt,.txt_copy,.uno{
     display: inline-block;
     vertical-align: top;
+
 }
 .icono_footer{
     font-size: 22px;
     color: #fff;
     margin-right: 10px;
 }
+box_iconos{
+}
 .box_txt{
     margin-left: 10px;
-    margin-top: 4px;
+    margin-top: 2px;
     font-size: 14px;
 }
 .uno{
     margin-right: 20px;
     cursor: pointer;
+    vertical-align: middle;
+     /*text-align: left;*/
 }
 .txt_copy{
     font-size: 14px;
     cursor: pointer;
-    margin-left: 480px;
-    margin-top: 4px;
+    /*float:right;*/
+    margin-top: 2px;
 }
 
 @media(max-width:720px){

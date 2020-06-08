@@ -16,13 +16,15 @@
         <ui:define name="body">
             <h:form id="EstadoCivilListForm">
                 <p class="title_modulos">#{bundle.ListEstadoCivilTitle}</p>
-                    <p:dataTable id="datalist" value="#{estadoCivilController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{estadoCivilController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{estadoCivilController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idEstadoCivil}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 500px;display: inline-block"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -38,10 +40,10 @@
                        
                       
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{estadoCivilController.prepareCreate}" update=":EstadoCivilCreateForm" oncomplete="PF('EstadoCivilCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EstadoCivilViewForm" oncomplete="PF('EstadoCivilViewDialog').show()" disabled="#{empty estadoCivilController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EstadoCivilEditForm" oncomplete="PF('EstadoCivilEditDialog').show()" disabled="#{empty estadoCivilController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{estadoCivilController.destroy}" update=":growl,datalist" disabled="#{empty estadoCivilController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{estadoCivilController.prepareCreate}" update=":EstadoCivilCreateForm" oncomplete="PF('EstadoCivilCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":EstadoCivilViewForm" oncomplete="PF('EstadoCivilViewDialog').show()" disabled="#{empty estadoCivilController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EstadoCivilEditForm" oncomplete="PF('EstadoCivilEditDialog').show()" disabled="#{empty estadoCivilController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{estadoCivilController.destroy}" update=":growl,datalist" disabled="#{empty estadoCivilController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

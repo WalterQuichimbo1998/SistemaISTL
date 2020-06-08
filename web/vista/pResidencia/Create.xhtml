@@ -18,8 +18,8 @@
                         
                     </p:panelGrid>
                     <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{pResidenciaController.create}" value="#{bundle.Save}" update="display,:PResidenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PResidenciaCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PResidenciaCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_g" actionListener="#{pResidenciaController.create}" value="#{bundle.Save}" update="display,:PResidenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PResidenciaCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PResidenciaCreateDialog.hide()"/>
                     </div>
                 </h:panelGroup>
             </h:form>

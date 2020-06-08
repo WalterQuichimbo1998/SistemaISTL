@@ -13,80 +13,100 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="NotasListForm">
-                <p class="title_modulos">#{bundle.ListNotasTitle}</p>
-                    <p:dataTable id="datalist" value="#{notasController.items}" var="item"
+            <p:panel>
+                <h:form id="NotasListForm">
+                    <p class="title_modulos">#{bundle.ListNotasTitle}</p>
+                    <p:dataTable id="datalist" value="#{notasController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{notasController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idNotas}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 sortBy="#{item.idNotas}"
+                                 sortOrder="descending"
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                         <p:column filterBy="#{item.numIdentificacion}">
+                        <p:column filterBy="#{item.idPersona.idDatosPersonales.nombres}" sortBy="#{item.idPersona.idDatosPersonales.nombres}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_idPersona}"/>
                             </f:facet>
                             <h:outputText value="#{item.idPersona.idDatosPersonales.nombres}"/>
                         </p:column>
-                        
-                          <p:column>
+
+                        <p:column filterBy="#{item.idMateria.materia}" sortBy="#{item.idMateria.materia}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_idMateria}"/>
                             </f:facet>
                             <h:outputText value="#{item.idMateria.materia}"/>
                         </p:column>
-                        
-                        <p:column>
+
+                        <p:column filterBy="#{item.parcialUno}" sortBy="#{item.parcialUno}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_parcialUno}"/>
                             </f:facet>
                             <h:outputText value="#{item.parcialUno}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.parcialDos}" sortBy="#{item.parcialDos}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_parcialDos}"/>
                             </f:facet>
                             <h:outputText value="#{item.parcialDos}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.notaSupletorio}" sortBy="#{item.notaSupletorio}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_notaSupletorio}"/>
                             </f:facet>
                             <h:outputText value="#{item.notaSupletorio}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.notaRemedial}" sortBy="#{item.notaRemedial}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_notaRemedial}"/>
                             </f:facet>
                             <h:outputText value="#{item.notaRemedial}"/>
                         </p:column>
-                        <p:column>
+                        <p:column filterBy="#{item.notaFinal}" sortBy="#{item.notaFinal}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_notaFinal}"/>
                             </f:facet>
                             <h:outputText value="#{item.notaFinal}"/>
                         </p:column>
-                       
-                        
-                        <p:column>
+
+
+                        <p:column filterBy="#{item.idMateria.materia}" sortBy="#{item.idMateria.materia}" filterMatchMode="contains"
+                                  filterStyle="box-shadow:none;text-align:center;border:none;border-radius:6px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNotasTitle_idMateria}"/>
                             </f:facet>
                             <h:outputText value="#{item.idMateria.materia}"/>
                         </p:column>
-                       
+
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{notasController.destroy}" update=":growl,datalist" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{notasController.destroy}" update=":growl,datalist" disabled="#{empty notasController.selected}">
+                                <p:confirm message="Eliminar Registro" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
+                                </p:commandButton>                      
+                                <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
+                                </p:confirmDialog>
                         </f:facet>
                     </p:dataTable>
-            </h:form>
+                </h:form>
+            </p:panel>
 
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>

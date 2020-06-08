@@ -29,9 +29,7 @@
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_añoPeriodoAcademico}"/>
                         <h:outputText value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.ViewPeriodoAcademicoTitle_añoPeriodoAcademico}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="PeriodoAcademicoViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PeriodoAcademicoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

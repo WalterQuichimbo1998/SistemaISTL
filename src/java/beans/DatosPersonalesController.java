@@ -36,6 +36,7 @@ public class DatosPersonalesController implements Serializable {
     private dao.DatosPersonalesFacade ejbFacade;
     private List<DatosPersonales> items = null;
     private DatosPersonales selected;
+    private List<DatosPersonales> listaDatos = null;
 
     public DatosPersonalesController() {
     }
@@ -53,7 +54,16 @@ public class DatosPersonalesController implements Serializable {
     public void setSelected(DatosPersonales selected) {
         this.selected = selected;
     }
+     /*--------Metodos accesores para la busqueda*/
 
+    public List<DatosPersonales> getListaDatos() {
+        return listaDatos;
+    }
+
+    public void setListaDatos(List<DatosPersonales> listaDatos) {
+        this.listaDatos = listaDatos;
+    }
+   
     protected void setEmbeddableKeys() {
     }
 

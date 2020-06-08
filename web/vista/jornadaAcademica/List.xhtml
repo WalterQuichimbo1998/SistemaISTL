@@ -14,14 +14,17 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:panel>
             <h:form id="JornadaAcademicaListForm">
-                <p class="title_modulos">#{bundle.ListJornadaAcademicaTitle}</p>
-                    <p:dataTable id="datalist" value="#{jornadaAcademicaController.items}" var="item"
+                <p class="title_modulos">JORNADA ACADÉMICA</p>
+                    <p:dataTable id="datalist" value="#{jornadaAcademicaController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{jornadaAcademicaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idJornadaAcademica}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -29,7 +32,7 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListJornadaAcademicaTitle_idJornadaAcademica}"/>
+                                <h:outputText value="ID"/>
                             </f:facet>
                             <h:outputText value="#{item.idJornadaAcademica}"/>
                         </p:column>
@@ -54,14 +57,14 @@
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{jornadaAcademicaController.prepareCreate}" update=":JornadaAcademicaCreateForm" oncomplete="PF('JornadaAcademicaCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":JornadaAcademicaViewForm" oncomplete="PF('JornadaAcademicaViewDialog').show()" disabled="#{empty jornadaAcademicaController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":JornadaAcademicaEditForm" oncomplete="PF('JornadaAcademicaEditDialog').show()" disabled="#{empty jornadaAcademicaController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{jornadaAcademicaController.destroy}" update=":growl,datalist" disabled="#{empty jornadaAcademicaController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{jornadaAcademicaController.prepareCreate}" update=":JornadaAcademicaCreateForm" oncomplete="PF('JornadaAcademicaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":JornadaAcademicaViewForm" oncomplete="PF('JornadaAcademicaViewDialog').show()" disabled="#{empty jornadaAcademicaController.selected}"/>
+                            <p:commandButton id="editButton" styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":JornadaAcademicaEditForm" oncomplete="PF('JornadaAcademicaEditDialog').show()" disabled="#{empty jornadaAcademicaController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{jornadaAcademicaController.destroy}" update=":growl,datalist" disabled="#{empty jornadaAcademicaController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>
-
+                </p:panel>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

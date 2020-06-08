@@ -49,9 +49,7 @@
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idTituloCarrera}"/>
                         <h:outputText value="#{distributivoController.selected.idTituloCarrera}" title="#{bundle.ViewDistributivoTitle_idTituloCarrera}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="DistributivoViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="DistributivoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

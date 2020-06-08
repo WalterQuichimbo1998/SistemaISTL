@@ -29,9 +29,7 @@
                         <h:outputText value="#{bundle.ViewPerfilAcademicoLabel_idDatosPersonales}"/>
                         <h:outputText value="#{perfilAcademicoController.selected.idDatosPersonales}" title="#{bundle.ViewPerfilAcademicoTitle_idDatosPersonales}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="PerfilAcademicoViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PerfilAcademicoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

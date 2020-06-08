@@ -23,9 +23,7 @@
                         <h:outputText value="#{contactoEmergenciaController.selected.parentesco}" title="#{bundle.ViewContactoEmergenciaTitle_parentesco}"/>
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="ContactoEmergenciaViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="ContactoEmergenciaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

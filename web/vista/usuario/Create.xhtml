@@ -19,7 +19,8 @@
                         <p:inputText id="clave" value="#{usuarioController.selected.clave}" title="#{bundle.CreateUsuarioTitle_clave}" />
                         
                         <p:outputLabel value="Datos Personales" for="idDatosPersonales" />
-                        <p:selectOneMenu id="idDatosPersonales" value="#{usuarioController.selected.idDatosPersonales}" >
+                        <p:selectOneMenu id="idDatosPersonales" value="#{usuarioController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
@@ -31,10 +32,8 @@
                                            itemValue="#{idTipoOperadorItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{usuarioController.create}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{usuarioController.create}" value="#{bundle.Save}" update="display,:UsuarioListForm:datalist,:growl" oncomplete="handleSubmit(args,'UsuarioCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="UsuarioCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

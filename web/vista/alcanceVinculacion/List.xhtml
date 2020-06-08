@@ -16,13 +16,15 @@
         <ui:define name="body">
             <h:form id="AlcanceVinculacionListForm">
                 <p class="title_modulos">#{bundle.ListAlcanceVinculacionTitle}</p>
-                    <p:dataTable id="datalist" value="#{alcanceVinculacionController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{alcanceVinculacionController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{alcanceVinculacionController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idAlcanceVinculacion}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 500px;display: inline-block"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -37,10 +39,10 @@
                         </p:column>
                         
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{alcanceVinculacionController.prepareCreate}" update=":AlcanceVinculacionCreateForm" oncomplete="PF('AlcanceVinculacionCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":AlcanceVinculacionViewForm" oncomplete="PF('AlcanceVinculacionViewDialog').show()" disabled="#{empty alcanceVinculacionController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AlcanceVinculacionEditForm" oncomplete="PF('AlcanceVinculacionEditDialog').show()" disabled="#{empty alcanceVinculacionController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{alcanceVinculacionController.destroy}" update=":growl,datalist" disabled="#{empty alcanceVinculacionController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{alcanceVinculacionController.prepareCreate}" update=":AlcanceVinculacionCreateForm" oncomplete="PF('AlcanceVinculacionCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":AlcanceVinculacionViewForm" oncomplete="PF('AlcanceVinculacionViewDialog').show()" disabled="#{empty alcanceVinculacionController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":AlcanceVinculacionEditForm" oncomplete="PF('AlcanceVinculacionEditDialog').show()" disabled="#{empty alcanceVinculacionController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{alcanceVinculacionController.destroy}" update=":growl,datalist" disabled="#{empty alcanceVinculacionController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>

@@ -27,10 +27,8 @@
                                            itemValue="#{idDatosPersonalesItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{perfilAcademicoController.create}" value="#{bundle.Save}" update="display,:PerfilAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PerfilAcademicoCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PerfilAcademicoCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{perfilAcademicoController.create}" value="#{bundle.Save}" update="display,:PerfilAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PerfilAcademicoCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PerfilAcademicoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

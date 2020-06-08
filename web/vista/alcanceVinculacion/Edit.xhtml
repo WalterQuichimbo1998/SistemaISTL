@@ -17,10 +17,8 @@
                         <p:inputText id="alcance" value="#{alcanceVinculacionController.selected.alcance}" title="#{bundle.EditAlcanceVinculacionTitle_alcance}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{alcanceVinculacionController.update}" value="#{bundle.Save}" update="display,:AlcanceVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlcanceVinculacionEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="AlcanceVinculacionEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{alcanceVinculacionController.update}" value="#{bundle.Save}" update="display,:AlcanceVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlcanceVinculacionEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="AlcanceVinculacionEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

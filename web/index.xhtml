@@ -6,10 +6,10 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Iniciar Sesión</title>
-        <h:outputStylesheet name="css/jsfcrud.css"/>
-        <h:outputStylesheet name="css/index_style.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="shortcut icon" href="resources/images/favicon.ico"></link>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/index_style.css"/>
         <script src="resources/js/all.js"></script>
     </h:head>
     <h:body>
@@ -24,19 +24,23 @@
                         <label class="txt_titles">Usuario</label>
                         <div class="caja">
                             <i class="icon fas fa-user"></i>
-                            <h:inputText  class="txt" required="true" autocomplete="off" value="#{accesoBean.selected.usuario}" />
+                            <h:inputText  class="txt" required="true" maxlength="60" autocomplete="off" value="#{accesoBean.selected.usuario}" />
                         </div>
                         <label class="txt_titles">Contraseña</label>
                         <div class="caja">
                             <i class="icon fas fa-unlock-alt"></i>
-                            <h:inputSecret class="txt" required="true" autocomplete="off" value="#{accesoBean.selected.clave}"/>
+                            <h:inputSecret class="txt" required="true" maxlength="60" autocomplete="off" value="#{accesoBean.selected.clave}"/>
                         </div>
-                        <label class="olv">¿Se te olvidó tu contraseña?</label>
-                        <h:commandButton class="txt btn_login" actionListener="#{accesoBean.doLogin}" value="INGRESAR" >
-                            <f:ajax execute="@form" render="message"></f:ajax>
-                        </h:commandButton><br/>
-                    </div><br/>
-                    <h:outputText class="mesage" value="#{accesoBean.message}" id="message"></h:outputText> 
+                        <center>
+                            <h:commandButton class="txt btn_login" actionListener="#{accesoBean.doLogin}" value="INGRESAR" >
+                                <f:ajax execute="@form" render="message"></f:ajax>
+                            </h:commandButton>
+                            <br/>
+                            <br/>
+                            <h:outputText class="mesage" value="#{accesoBean.message}" id="message"></h:outputText> 
+                        </center>
+                    </div>
+
                 </h:form>
             </div>
         </div>

@@ -12,25 +12,23 @@
             <h:form id="PeriodoAcademicoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoAcademicoController.selected != null}">
-                        
+
                         <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_nombre}" for="nombre" />
                         <p:inputText id="nombre" value="#{periodoAcademicoController.selected.nombre}" title="#{bundle.CreatePeriodoAcademicoTitle_nombre}" />
                         <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{periodoAcademicoController.selected.descripcion}" title="#{bundle.CreatePeriodoAcademicoTitle_descripcion}" />
-                                       <p:outputLabel value="Modalidad" />
-                                       <h:selectOneMenu value = "#{periodoAcademicoController.selected.modalidad}"> 
-                                <f:selectItem itemValue = "1" itemLabel = "Presencial" /> 
-                                <f:selectItem itemValue = "2" itemLabel = "Semipresencial" /> 
-                                <f:selectItem itemValue = "3" itemLabel = "Dual" />                                                  
+                        <p:outputLabel value="Modalidad" />
+                        <p:selectOneMenu value = "#{periodoAcademicoController.selected.modalidad}"> 
+                            <f:selectItem itemValue = "1" itemLabel = "Presencial" /> 
+                            <f:selectItem itemValue = "2" itemLabel = "Semipresencial" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "Dual" />                                                  
 
-                            </h:selectOneMenu> 
+                        </p:selectOneMenu> 
                         <p:outputLabel value="Año Periodo Académico" for="añoPeriodoAcademico" />
                         <p:inputText id="añoPeriodoAcademico" value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.CreatePeriodoAcademicoTitle_añoPeriodoAcademico}" />
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{periodoAcademicoController.create}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeriodoAcademicoCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="PeriodoAcademicoCreateDialog.hide()"/>
-                    </div>
+                    <p:commandButton styleClass="btn_g" actionListener="#{periodoAcademicoController.create}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeriodoAcademicoCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PeriodoAcademicoCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

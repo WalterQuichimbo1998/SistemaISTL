@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -17,10 +16,8 @@
                         <p:inputText id="tipo" value="#{tipoSangreController.selected.tipo}" title="#{bundle.CreateTipoSangreTitle_tipo}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoSangreController.create}" value="#{bundle.Save}" update="display,:TipoSangreListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoSangreCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoSangreCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoSangreController.create}" value="#{bundle.Save}" update="display,:TipoSangreListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoSangreCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoSangreCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -14,14 +14,17 @@
         </ui:define>
 
         <ui:define name="body">
+            <p:panel>
             <h:form id="MateriaCarreraListForm">
                 <p class="title_modulos">#{bundle.ListMateriaCarreraTitle}</p>
-                    <p:dataTable id="datalist" value="#{materiaCarreraController.items}" var="item"
+                    <p:dataTable id="datalist" value="#{materiaCarreraController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{materiaCarreraController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idMateriaCarrera}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
                                  >
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
@@ -48,14 +51,14 @@
                             <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{materiaCarreraController.prepareCreate}" update=":MateriaCarreraCreateForm" oncomplete="PF('MateriaCarreraCreateDialog').show()"/>
-                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":MateriaCarreraViewForm" oncomplete="PF('MateriaCarreraViewDialog').show()" disabled="#{empty materiaCarreraController.selected}"/>
-                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MateriaCarreraEditForm" oncomplete="PF('MateriaCarreraEditDialog').show()" disabled="#{empty materiaCarreraController.selected}"/>
-                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{materiaCarreraController.destroy}" update=":growl,datalist" disabled="#{empty materiaCarreraController.selected}"/>
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{materiaCarreraController.prepareCreate}" update=":MateriaCarreraCreateForm" oncomplete="PF('MateriaCarreraCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":MateriaCarreraViewForm" oncomplete="PF('MateriaCarreraViewDialog').show()" disabled="#{empty materiaCarreraController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":MateriaCarreraEditForm" oncomplete="PF('MateriaCarreraEditDialog').show()" disabled="#{empty materiaCarreraController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar"  icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{materiaCarreraController.destroy}" update=":growl,datalist" disabled="#{empty materiaCarreraController.selected}"/>
                         </f:facet>
                     </p:dataTable>
             </h:form>
-
+            </p:panel>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

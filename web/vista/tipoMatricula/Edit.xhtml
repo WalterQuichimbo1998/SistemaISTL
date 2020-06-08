@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -23,10 +22,8 @@
                         <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_fechaDeRegistro}" for="fechaDeRegistro" />
                         <p:calendar id="fechaDeRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipoMatriculaController.selected.fechaDeRegistro}" title="#{bundle.EditTipoMatriculaTitle_fechaDeRegistro}"  showOn="button"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoMatriculaController.update}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoMatriculaEditDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoMatriculaEditDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoMatriculaController.update}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoMatriculaEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoMatriculaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

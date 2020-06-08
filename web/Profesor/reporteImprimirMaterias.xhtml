@@ -17,7 +17,7 @@
                         <div class="data_campos_filto">
                             <div style="text-align: center"><p class="title_reporte">REPORTES</p></div>
                             <p:outputLabel class="labelLateral" value="Carrera" />
-                            <h:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tiCarreraSelected.idTituloCarrera}">
+                            <h:selectOneMenu id="idTituloCarrera" class="combo" value="#{exportarNotasMaterias.tiCarreraSelected.idTituloCarrera}">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{exportarNotasMaterias.itemsTituloCarrera}"
                                                var="idTituloCarreraItem"
@@ -27,7 +27,7 @@
                             </h:selectOneMenu> 
 
                             <p:outputLabel class="labelLateral" value="Ciclo" for="idNivelAcademico" />
-                            <h:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected.idNivelAcademico}" >
+                            <h:selectOneMenu id="idNivelAcademico" class="combo" value="#{exportarNotasMaterias.nivelAcademicoSelected.idNivelAcademico}" >
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{exportarNotasMaterias.itemsNivelAcademico}"
                                                var="idNivelAcademicoItem"
@@ -36,12 +36,13 @@
                             </h:selectOneMenu>
                             
                             <p:outputLabel class="labelLateral" value="Materia" />
-                            <h:selectOneMenu  id="idMateria" value="#{exportarNotasMaterias.materiaSelected.idMateria}" >
+                            <h:selectOneMenu  id="idMateria" class="combo" value="#{exportarNotasMaterias.materiaSelected.idMateria}" >
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{exportarNotasMaterias.itemsMateria}"
                                                var="idMateriaItem"
                                                itemValue="#{idMateriaItem.idMateria}"/>
                             </h:selectOneMenu>
+                            <br/>
                             <br/>
                             <div style="text-align: center">
                                 <p:commandButton ajax="false" class="btn_impReporte" action="#{exportarNotasMaterias.imprimirMateriasdoc()}" value="DESCARGAR" >

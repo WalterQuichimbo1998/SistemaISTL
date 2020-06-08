@@ -17,9 +17,7 @@
                         <h:outputText value="#{cantonController.selected.nombre}" title="#{bundle.ViewCantonTitle_nombre}"/>
                        
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="CantonViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="CantonViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

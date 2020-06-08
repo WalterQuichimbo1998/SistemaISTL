@@ -17,9 +17,7 @@
                         <h:outputText value="#{bundle.ViewResidenciaLabel_nombre}"/>
                         <h:outputText value="#{residenciaController.selected.nombre}" title="#{bundle.ViewResidenciaTitle_nombre}"/>
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton value="#{bundle.Close}" onclick="ResidenciaViewDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="ResidenciaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

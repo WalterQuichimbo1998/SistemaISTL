@@ -3,7 +3,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
@@ -19,10 +18,8 @@
                         <p:inputText id="descripcion" value="#{tipoMatriculaController.selected.descripcion}" title="#{bundle.CreateTipoMatriculaTitle_descripcion}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoMatriculaController.create}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoMatriculaCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoMatriculaCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoMatriculaController.create}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoMatriculaCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoMatriculaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

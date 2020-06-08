@@ -17,10 +17,8 @@
                         <p:inputText id="nombre" value="#{tipoCarreraController.selected.nombre}" title="#{bundle.CreateTipoCarreraTitle_nombre}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{tipoCarreraController.create}" value="#{bundle.Save}" update="display,:TipoCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoCarreraCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="TipoCarreraCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoCarreraController.create}" value="#{bundle.Save}" update="display,:TipoCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoCarreraCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoCarreraCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -17,10 +17,8 @@
                         <p:inputText id="nivel" value="#{formacionAcademicaController.selected.nivel}" title="#{bundle.CreateFormacionAcademicaTitle_nivel}" />
                         
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
-                        <p:commandButton class="btnFormCrud" actionListener="#{formacionAcademicaController.create}" value="#{bundle.Save}" update="display,:FormacionAcademicaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormacionAcademicaCreateDialog');"/>
-                        <p:commandButton class="btnFormCrud" value="#{bundle.Cancel}" onclick="FormacionAcademicaCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_g" actionListener="#{formacionAcademicaController.create}" value="#{bundle.Save}" update="display,:FormacionAcademicaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FormacionAcademicaCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="FormacionAcademicaCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
