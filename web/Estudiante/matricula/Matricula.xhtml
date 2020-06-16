@@ -36,57 +36,57 @@
                             </div>
                          <div class="botones21">
                                 <p:outputLabel class="labelDatos" value="Apellidos y Nombres del estudiante" for="nombre" />
-                                <p:inputText id="nombre" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.nombres} #{matriculaController.selected.idDatosPersonales.apellidos}" readonly="true"/>
+                                <p:inputText id="nombre" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.nombres} #{datosPersonalesController.selected.apellidos}" readonly="true"/>
                             </div>
 
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Fecha nacimiento" for="fec" />
-                                <p:inputText id="fec" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.fechaNacimiento}" readonly="true">
+                                <p:inputText id="fec" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.fechaNacimiento}" readonly="true">
                            <f:convertDateTime pattern="dd/MM/yyyy" />
                            </p:inputText>
                             </div>
                             
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Edad" for="ed" />
-                                <p:inputText id="ed" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.edad}" readonly="true"/>
+                                <p:inputText id="ed" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.edad}" readonly="true"/>
                             </div>
                             
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Sexo" for="sexo" />
-                                <p:inputText id="sexo" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.sexo}" readonly="true"/>
+                                <p:inputText id="sexo" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.sexo}" readonly="true"/>
                             </div>
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Género" for="genero" />
                                 <p:inputText id="genero" styleClass="camposDeDatos2" 
-                                             value="#{matriculaController.selected.idDatosPersonales.genero==null ? '': matriculaController.selected.idDatosPersonales.genero==0 ? 'Masculino':'Femenino'}" readonly="true"/>
+                                             value="#{datosPersonalesController.selected.genero==null ? '': datosPersonalesController.selected.genero==0 ? 'Masculino':'Femenino'}" readonly="true"/>
                             </div>
                            
                             <div class="botones21">
                                 <p:outputLabel class="labelDatos" value="Correo" for="cor" />
-                                <p:inputText id="cor" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.correoElectronico}" readonly="true"/>
+                                <p:inputText id="cor" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.correoElectronico}" readonly="true"/>
                             </div>
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="N. Celular" for="cel" />
-                                <p:inputText id="cel" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.celular}" readonly="true"/>
+                                <p:inputText id="cel" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.celular}" readonly="true"/>
                             </div>
                             <div class="botones21">
                                 <p:outputLabel class="labelDatos" value="Dirección" for="dir" />
-                                <p:inputText id="dir" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.direccion}" readonly="true"/>
+                                <p:inputText id="dir" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.direccion}" readonly="true"/>
                             </div>
 
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="N. Convencional" for="con" />
-                                <p:inputText id="con" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.convencional}" readonly="true"/>
+                                <p:inputText id="con" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.convencional}" readonly="true"/>
                             </div>
                              
                        
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Código postal" for="cod" />
-                                <p:inputText id="cod" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.codPostal}" readonly="true"/>
+                                <p:inputText id="cod" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.codPostal}" readonly="true"/>
                             </div>
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="N. Identificación" for="numIdentificacion" />
-                                <p:inputText id="numIdentificacion" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.numIdentificacion}" readonly="true"/>
+                                <p:inputText id="numIdentificacion" styleClass="camposDeDatos2" value="#{datosPersonalesController.selected.numIdentificacion}" readonly="true"/>
                             </div>
                             <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
                            <div style="width: 100%;">

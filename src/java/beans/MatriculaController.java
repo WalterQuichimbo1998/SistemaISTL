@@ -53,7 +53,7 @@ public class MatriculaController implements Serializable {
 
     public void setSelected(Matricula selected) {
         this.selected = selected;
-    }
+    }    
 
     protected void setEmbeddableKeys() {
     }
