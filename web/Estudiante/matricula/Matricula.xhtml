@@ -148,7 +148,9 @@
                             </div>
 
                             <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
-                           
+                           <div style="width: 100%;">
+                            <p:outputLabel class="labelDatos" value="Datos de nacionalidad" style="color:#454545;font-weight: bold;" />
+                        </div>
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="Etnia" for="idEtnia" />
                                 <p:selectOneMenu id="idEtnia" value="#{matriculaController.selected.idEtnia}" >
@@ -159,11 +161,11 @@
                                 </p:selectOneMenu>
                             </div>
                           
-                             <div class="botones21">
-                                 <p:outputLabel class="labelDatos" value="En caso de escoger etnia Indigena u Otro especifique su nacionalidad" for="nacionalidad" />
-                                <p:inputText id="nacionalidad" styleClass="camposDeDatos2" value="#{matriculaController.selected.nacionalidad}"  maxlength="20"
-                                             onkeyup="javascript:this.value = this.value.toUpperCase();" />
-                            </div>
+                            <div class="botones21">
+                            <p class="labelDatos">En caso de escoger etnia <strong>Indigena</strong> u Otro especifique su nacionalidad</p>
+                            <p:inputText id="nacionalidad" styleClass="camposDeDatos2" value="#{matriculaController.selected.nacionalidad}"  maxlength="20"
+                                         onkeyup="javascript:this.value = this.value.toUpperCase();" />
+                        </div>
                             <div class="botones22">
                                 <p:outputLabel class="labelDatos" value="¿Habla algún Idioma ancestral?" for="idiomaAncestral" />
                                 <p:selectOneMenu id="idiomaAncestral" value="#{matriculaController.selected.idiomaAncestral}" >

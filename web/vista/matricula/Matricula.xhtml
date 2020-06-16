@@ -78,9 +78,13 @@
                             <p:outputLabel class="labelDatos" value="N. Identificación" for="numIdentificacion" />
                             <p:inputText id="numIdentificacion" styleClass="camposDeDatos2" value="#{matriculaController.selected.idDatosPersonales.numIdentificacion}" readonly="true"/>
                         </div>
-                        <div class="botones22">
+                        <div class="botones24">
                             <p:outputLabel class="labelDatos" value="N. Formulario" for="numF" />
                             <p:inputText id="numF" styleClass="camposDeDatos2" value="#{matriculaController.selected.numeroFormulario}" style="text-align: center;background-color: #eee;"/>
+                        </div>
+                        <div class="botones24">
+                            <p:outputLabel class="labelDatos" value="Cod. Matrícula" for="codM" />
+                            <p:inputText id="codM" styleClass="camposDeDatos2" value="#{matriculaController.selected.codigoMatricula}" style="text-align: center;background-color: #eee;"/>
                         </div>
                         <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
                         <div style="width: 100%;">
@@ -142,7 +146,9 @@
                         </div>
 
                         <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
-
+                        <div style="width: 100%;">
+                            <p:outputLabel class="labelDatos" value="Datos de nacionalidad" style="color:#454545;font-weight: bold;" />
+                        </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Etnia" for="idEtnia" />
                             <p:selectOneMenu id="idEtnia" value="#{matriculaController.selected.idEtnia}" >
@@ -154,7 +160,7 @@
                         </div>
 
                         <div class="botones21">
-                            <p:outputLabel class="labelDatos" value="En caso de escoger etnia Indigena u Otro especifique su nacionalidad" for="nacionalidad" />
+                            <p class="labelDatos">En caso de escoger etnia <strong>Indigena</strong> u Otro especifique su nacionalidad</p>
                             <p:inputText id="nacionalidad" styleClass="camposDeDatos2" value="#{matriculaController.selected.nacionalidad}"  maxlength="20"
                                          onkeyup="javascript:this.value = this.value.toUpperCase();" />
                         </div>

@@ -308,7 +308,19 @@ vertical-align: top;
 margin: 4px;
 
 }
+.botones24{
+    width: 15%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
 
+}
 .cancelar.ui-button{
     height: 50px; 
     background: #A0A069; 
@@ -894,6 +906,10 @@ margin: 4px;
         margin: auto;
     }
     .botones23{
+        width:90%;
+        margin: auto;
+    }
+    .botones24{
         width:90%;
         margin: auto;
     }

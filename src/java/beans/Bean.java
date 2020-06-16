@@ -264,6 +264,26 @@ public class Bean implements Serializable {
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
         }
     }
+    public void imprimirNotas2(String cedula) throws Exception {
+        reportPdf = null;
+
+        File fichero = new File(getClass().getResource("/reportes/notas.jasper").toURI());
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+        if (jasperReport != null) {
+            Map parametros = new HashMap();
+            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+            parametros.put("num_identificacion", cedula);
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+            reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response.addHeader("Content-disposition", "attachment; filename=notas.pdf");
+            ServletOutputStream stream = response.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+            stream.close();
+            FacesContext.getCurrentInstance().responseComplete();
+        }
+    }
 
     public void doImprimirFicha() throws Exception {
         reportPdf = null;
@@ -300,6 +320,29 @@ public class Bean implements Serializable {
 
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
         }
+        }
+    }
+    public void doImprimirFicha2(String cedula) throws Exception {
+        reportPdf = null;
+      
+        File fichero = new File(getClass().getResource("/reportes/FormularioMatricula.jasper").toURI());
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+        if (jasperReport != null) {
+            Map parametros = new HashMap();
+            parametros.put("num_identificacion", cedula);
+            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+            parametros.put("logo1", this.getClass().getResourceAsStream(logotipo1));
+            parametros.put("logoA", this.getClass().getResourceAsStream(logotipo));
+            parametros.put("logoB", this.getClass().getResourceAsStream(logotipo1));
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+            reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response.addHeader("Content-disposition", "attachment; filename=formularioMatricula.pdf");
+            ServletOutputStream stream = response.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+            stream.close();
+            FacesContext.getCurrentInstance().responseComplete();
         }
     }
 

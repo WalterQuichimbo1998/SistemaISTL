@@ -49,7 +49,7 @@ and open the template in the editor.
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Cédula" for="numIdentificacion" />
                                 <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.EditDatosPersonalesTitle_numIdentificacion}" 
-                                             maxlength="45"/>
+                                             maxlength="45" required="true" requiredMessage="Ingrese su cédula"/>
                             </div>
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Sexo" for="sexo" />
