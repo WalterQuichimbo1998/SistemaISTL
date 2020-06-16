@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_institucion_practicas", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoInstitucionPracticas.findAll", query = "SELECT t FROM TipoInstitucionPracticas t")
     , @NamedQuery(name = "TipoInstitucionPracticas.findByIdTipoInstitucionPracticaspreprofesionales", query = "SELECT t FROM TipoInstitucionPracticas t WHERE t.idTipoInstitucionPracticaspreprofesionales = :idTipoInstitucionPracticaspreprofesionales")
@@ -50,7 +53,7 @@ public class TipoInstitucionPracticas implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(mappedBy = "idTipoInstitucion")
+    @OneToMany(mappedBy = "idtipoinstitucionpracticasPreprofesionales")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idtipoinstitucionpracticasPreprofesionales")
     private List<PracticaspreprofesionalesVinculacion> practicaspreprofesionalesVinculacionList;
@@ -94,6 +97,7 @@ public class TipoInstitucionPracticas implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -102,6 +106,7 @@ public class TipoInstitucionPracticas implements Serializable {
         this.matriculaList = matriculaList;
     }
 
+    @XmlTransient
     public List<PracticaspreprofesionalesVinculacion> getPracticaspreprofesionalesVinculacionList() {
         return practicaspreprofesionalesVinculacionList;
     }
@@ -132,7 +137,7 @@ public class TipoInstitucionPracticas implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombreTipo;
+        return nombreTipo;
     }
     
 }

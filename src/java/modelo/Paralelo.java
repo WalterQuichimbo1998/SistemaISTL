@@ -21,14 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "paralelo", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Paralelo.findAll", query = "SELECT p FROM Paralelo p")
     , @NamedQuery(name = "Paralelo.findByIdParalelo", query = "SELECT p FROM Paralelo p WHERE p.idParalelo = :idParalelo")
@@ -36,9 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Paralelo.findByEstado", query = "SELECT p FROM Paralelo p WHERE p.estado = :estado")
     , @NamedQuery(name = "Paralelo.findByFechaDeRegistro", query = "SELECT p FROM Paralelo p WHERE p.fechaDeRegistro = :fechaDeRegistro")})
 public class Paralelo implements Serializable {
-
-    @OneToMany(mappedBy = "idParalelo")
-    private List<FormalizarMatricula> formalizarMatriculaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -98,6 +97,7 @@ public class Paralelo implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -106,6 +106,7 @@ public class Paralelo implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -136,16 +137,7 @@ public class Paralelo implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombreParalelo;
-    }
-
-    @XmlTransient
-    public List<FormalizarMatricula> getFormalizarMatriculaList() {
-        return formalizarMatriculaList;
-    }
-
-    public void setFormalizarMatriculaList(List<FormalizarMatricula> formalizarMatriculaList) {
-        this.formalizarMatriculaList = formalizarMatriculaList;
+        return nombreParalelo;
     }
     
 }

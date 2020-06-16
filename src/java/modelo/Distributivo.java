@@ -22,13 +22,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "distributivo", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Distributivo.findAll", query = "SELECT d FROM Distributivo d")
     , @NamedQuery(name = "Distributivo.findByIdDistributivo", query = "SELECT d FROM Distributivo d WHERE d.idDistributivo = :idDistributivo")
@@ -287,6 +289,7 @@ public class Distributivo implements Serializable {
     @Override
     public String toString() {
         return this.detalleHorasGestionAcademica;
+
     }
     
 }

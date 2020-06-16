@@ -12,7 +12,7 @@ import modelo.PeriodoAcademico;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class PeriodoAcademicoFacade extends AbstractFacade<PeriodoAcademico> {

@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="JornadaAcademicaCreateDlg" widgetVar="JornadaAcademicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateJornadaAcademicaTitle}">
+        <p:dialog id="JornadaAcademicaCreateDlg" widgetVar="JornadaAcademicaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateJornadaAcademicaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="JornadaAcademicaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{jornadaAcademicaController.selected != null}">
@@ -18,7 +19,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{jornadaAcademicaController.create}" value="#{bundle.Save}" update="display,:JornadaAcademicaListForm:datalist,:growl" oncomplete="handleSubmit(args,'JornadaAcademicaCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="JornadaAcademicaCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('JornadaAcademicaCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "etnia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Etnia.findAll", query = "SELECT e FROM Etnia e")
     , @NamedQuery(name = "Etnia.findByIdEtnia", query = "SELECT e FROM Etnia e WHERE e.idEtnia = :idEtnia")
@@ -51,8 +53,10 @@ public class Etnia implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEtnia")
+    @OneToMany(mappedBy = "idEtnia")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idEtnia")
+    private List<Matricula> matriculaList;
 
     public Etnia() {
     }
@@ -93,12 +97,22 @@ public class Etnia implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override
@@ -123,7 +137,7 @@ public class Etnia implements Serializable {
 
     @Override
     public String toString() {
-        return this.tipoEtnia;
+        return tipoEtnia;
     }
     
 }

@@ -12,7 +12,7 @@ import modelo.TipoInstitucionPracticas;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoInstitucionPracticasFacade extends AbstractFacade<TipoInstitucionPracticas> {

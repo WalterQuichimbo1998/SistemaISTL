@@ -8,34 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="NacionalidadCreateDlg" widgetVar="NacionalidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNacionalidadTitle}">
+        <p:dialog id="NacionalidadCreateDlg" widgetVar="NacionalidadCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Crear País de nacionalidad"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NacionalidadCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{nacionalidadController.selected != null}">
                         
-                        <p:outputLabel value="#{bundle.CreateNacionalidadLabel_tipoNacionalidad}" for="tipoNacionalidad" />
-                        <p:inputText id="tipoNacionalidad" value="#{nacionalidadController.selected.tipoNacionalidad}" title="#{bundle.CreateNacionalidadTitle_tipoNacionalidad}" />
-                        <p:outputLabel value="#{bundle.CreateNacionalidadLabel_categoriaMigratoria}" for="categoriaMigratoria" />
-                        <p:inputText id="categoriaMigratoria" value="#{nacionalidadController.selected.categoriaMigratoria}" title="#{bundle.CreateNacionalidadTitle_categoriaMigratoria}" />
-                        
-                        <p:outputLabel value="#{bundle.CreateNacionalidadLabel_idCanton}" for="idCanton" />
-                        <p:selectOneMenu id="idCanton" value="#{nacionalidadController.selected.idCanton}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItems value="#{cantonController.itemsAvailableSelectOne}"
-                                           var="idCantonItem"
-                                           itemValue="#{idCantonItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateNacionalidadLabel_idProvincia}" for="idProvincia" />
-                        <p:selectOneMenu id="idProvincia" value="#{nacionalidadController.selected.idProvincia}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItems value="#{provinciaController.itemsAvailableSelectOne}"
-                                           var="idProvinciaItem"
-                                           itemValue="#{idProvinciaItem}"/>
-                        </p:selectOneMenu>
+                        <p:outputLabel value="País de nacionalidad" for="pais" />
+                        <p:inputText id="pais" value="#{nacionalidadController.selected.paisNacionalidad}" onkeyup="javascript:this.value = this.value.toUpperCase();" />
+                       
+                      
                     </p:panelGrid>
                     <div class="boxBtnCrud">
                         <p:commandButton styleClass="btn_g" actionListener="#{nacionalidadController.create}" value="#{bundle.Save}" update="display,:NacionalidadListForm:datalist,:growl" oncomplete="handleSubmit(args,'NacionalidadCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NacionalidadCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('NacionalidadCreateDialog').hide();"/>
                     </div>
                 </h:panelGroup>
             </h:form>

@@ -8,19 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="TituloCarreraCreateDlg" widgetVar="TituloCarreraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTituloCarreraTitle}">
+        <p:dialog id="TituloCarreraCreateDlg" widgetVar="TituloCarreraCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTituloCarreraTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TituloCarreraCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tituloCarreraController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateTituloCarreraLabel_nombreTitulo}" for="nombreTitulo" />
-                        <p:inputText id="nombreTitulo" value="#{tituloCarreraController.selected.nombreTitulo}" title="#{bundle.CreateTituloCarreraTitle_nombreTitulo}" />
+                        <p:inputText id="nombreTitulo" value="#{tituloCarreraController.selected.nombreTitulo}" title="#{bundle.CreateTituloCarreraTitle_nombreTitulo}" required="true" requiredMessage="Complete"/>
                         <p:outputLabel value="#{bundle.CreateTituloCarreraLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tituloCarreraController.selected.descripcion}" title="#{bundle.CreateTituloCarreraTitle_descripcion}" />
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tituloCarreraController.create}" value="#{bundle.Save}" update="display,:TituloCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args,'TituloCarreraCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TituloCarreraCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TituloCarreraCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

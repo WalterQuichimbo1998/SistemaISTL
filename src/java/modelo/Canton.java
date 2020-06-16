@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,13 +23,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "canton", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Canton.findAll", query = "SELECT c FROM Canton c")
     , @NamedQuery(name = "Canton.findByIdCanton", query = "SELECT c FROM Canton c WHERE c.idCanton = :idCanton")
@@ -50,11 +55,15 @@ public class Canton implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(mappedBy = "idCanton")
-    private List<Nacionalidad> nacionalidadList;
     @OneToMany(mappedBy = "idCantonNacimiento")
     private List<Persona> personaList;
-
+    @OneToMany(mappedBy = "idCantonNacimiento")
+    private List<Matricula> matriculaList;
+     @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
+    @ManyToOne
+    private Provincia idProvincia;
+     
+   
     public Canton() {
     }
 
@@ -94,14 +103,8 @@ public class Canton implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public List<Nacionalidad> getNacionalidadList() {
-        return nacionalidadList;
-    }
 
-    public void setNacionalidadList(List<Nacionalidad> nacionalidadList) {
-        this.nacionalidadList = nacionalidadList;
-    }
-
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -110,12 +113,33 @@ public class Canton implements Serializable {
         this.personaList = personaList;
     }
 
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
+    }
+
+    public Provincia getIdProvincia() {
+        return idProvincia;
+    }
+
+    public void setIdProvincia(Provincia idProvincia) {
+        this.idProvincia = idProvincia;
+    }
+   
+   
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (idCanton != null ? idCanton.hashCode() : 0);
         return hash;
     }
+
+  
 
     @Override
     public boolean equals(Object object) {
@@ -132,7 +156,7 @@ public class Canton implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
+        return nombre;
     }
     
 }

@@ -12,7 +12,7 @@ import modelo.SectorEconomico;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class SectorEconomicoFacade extends AbstractFacade<SectorEconomico> {

@@ -8,17 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="NivelAcademicoEditDlg" widgetVar="NivelAcademicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNivelAcademicoTitle}">
+        <p:dialog id="NivelAcademicoEditDlg" widgetVar="NivelAcademicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNivelAcademicoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NivelAcademicoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{nivelAcademicoController.selected != null}">
-                        
                         <p:outputLabel value="#{bundle.EditNivelAcademicoLabel_nivelAcademico}" for="nivelAcademico" />
                         <p:inputText id="nivelAcademico" value="#{nivelAcademicoController.selected.nivelAcademico}" title="#{bundle.EditNivelAcademicoTitle_nivelAcademico}" />
-                        
-                    </p:panelGrid>
-                        <p:commandButton styleClass="btn_g" actionListener="#{nivelAcademicoController.update}" value="#{bundle.Save}" update="display,:NivelAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NivelAcademicoEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NivelAcademicoEditDialog.hide()"/>
+                        <p:outputLabel value="#{bundle.EditNivelAcademicoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{nivelAcademicoController.selected.estado}" title="#{bundle.EditNivelAcademicoTitle_estado}" />
+                       </p:panelGrid>
+                    <p:commandButton styleClass="btn_g" actionListener="#{nivelAcademicoController.update}" value="#{bundle.Save}" update="display,:NivelAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NivelAcademicoEditDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('NivelAcademicoEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

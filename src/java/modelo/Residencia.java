@@ -18,13 +18,16 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "residencia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Residencia.findAll", query = "SELECT r FROM Residencia r")
     , @NamedQuery(name = "Residencia.findByIdResidencia", query = "SELECT r FROM Residencia r WHERE r.idResidencia = :idResidencia")
@@ -42,6 +45,8 @@ public class Residencia implements Serializable {
     private String nombre;
     @OneToMany(mappedBy = "idResidencia")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idResidencia")
+    private List<Matricula> matriculaList;
 
     public Residencia() {
     }
@@ -66,12 +71,22 @@ public class Residencia implements Serializable {
         this.nombre = nombre;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override
@@ -96,7 +111,7 @@ public class Residencia implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
+        return nombre;
     }
     
 }

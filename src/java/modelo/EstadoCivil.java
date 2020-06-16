@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "estado_civil", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "EstadoCivil.findAll", query = "SELECT e FROM EstadoCivil e")
     , @NamedQuery(name = "EstadoCivil.findByIdEstadoCivil", query = "SELECT e FROM EstadoCivil e WHERE e.idEstadoCivil = :idEstadoCivil")
@@ -51,8 +53,10 @@ public class EstadoCivil implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idEstadoCivil")
+    @OneToMany(mappedBy = "idEstadoCivil")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idEstadoCivil")
+    private List<Matricula> matriculaList;
 
     public EstadoCivil() {
     }
@@ -93,12 +97,22 @@ public class EstadoCivil implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override

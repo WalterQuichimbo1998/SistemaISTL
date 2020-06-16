@@ -57,6 +57,7 @@ public class ExportarNotasMaterias implements Serializable {
     private MateriaFacade ejbFacade;
     private List<Materia> itemsMateria = null;
     private Materia materiaSelected;
+    
 
     @PostConstruct
     public void init() {

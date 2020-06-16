@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="DistributivoCreateDlg" widgetVar="DistributivoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDistributivoTitle}">
+        <p:dialog id="DistributivoCreateDlg" widgetVar="DistributivoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDistributivoTitle}"
+                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <div class="scroll">
             <h:form id="DistributivoCreateForm">
                 <h:panelGroup id="display">
@@ -91,7 +92,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{distributivoController.create}" value="#{bundle.Save}" update="display,:DistributivoListForm:datalist,:growl" oncomplete="handleSubmit(args,'DistributivoCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="DistributivoCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('DistributivoCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
                 </div>

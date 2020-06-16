@@ -9,7 +9,9 @@ import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.naming.Context;
@@ -60,7 +62,8 @@ public class Bean implements Serializable {
     private String param3Nomina;
     private final String logotipo = "/reportes/logo.jpg";
     private final String logotipo1 = "/reportes/logo1.png";
-    
+    @EJB
+    private dao.MatriculaFacade ejbFacadeMa;
    
 
     public Bean() {
@@ -204,7 +207,11 @@ public class Bean implements Serializable {
 
     public void imprimirCertificado() throws Exception {
         reportPdf = null;
-        File fichero = new File(getClass().getResource("/reportes/CertificadoMatricula.jasper").toURI());
+        if(ejbFacadeMa.obtenerMatricula2(paramCertificado)==null){
+       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
+
+       }else{
+        File fichero = new File(getClass().getResource("/reportes/CertificadoMatricula2.jasper").toURI());
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
         if (jasperReport != null) {
             Map parametros = new HashMap();
@@ -225,6 +232,7 @@ public class Bean implements Serializable {
             stream.close();
             FacesContext.getCurrentInstance().responseComplete();
         }
+    }
     }
 
     public void imprimirNotas() throws Exception {
@@ -259,9 +267,12 @@ public class Bean implements Serializable {
 
     public void doImprimirFicha() throws Exception {
         reportPdf = null;
+        if(ejbFacadeMa.obtenerMatricula2(parametroFicha)==null){
+       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
 
+       }else{
+         
         File fichero = new File(getClass().getResource("/reportes/FormularioMatricula.jasper").toURI());
-
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
 
         if (jasperReport != null) {
@@ -279,7 +290,7 @@ public class Bean implements Serializable {
             reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
             HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
-            response.addHeader("Content-disposition", "attachment; filename=ficha.pdf");
+            response.addHeader("Content-disposition", "attachment; filename=formularioMatricula.pdf");
 
             ServletOutputStream stream = response.getOutputStream();
             JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
@@ -289,12 +300,13 @@ public class Bean implements Serializable {
 
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
         }
+        }
     }
 
     public void imprimirfichaFoto() throws Exception {
         reportPdf = null;
 
-        File fichero = new File(getClass().getResource("/reportes/Fichafoto.jasper").toURI());
+        File fichero = new File(getClass().getResource("/reportes/Fichafoto2.jasper").toURI());
         JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
 
         if (jasperReport != null) {

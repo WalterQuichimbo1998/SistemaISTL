@@ -21,14 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "periodo_academico", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PeriodoAcademico.findAll", query = "SELECT p FROM PeriodoAcademico p")
     , @NamedQuery(name = "PeriodoAcademico.findByIdPeriodoAcademico", query = "SELECT p FROM PeriodoAcademico p WHERE p.idPeriodoAcademico = :idPeriodoAcademico")
@@ -39,9 +41,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "PeriodoAcademico.findByFechaDeRegistro", query = "SELECT p FROM PeriodoAcademico p WHERE p.fechaDeRegistro = :fechaDeRegistro")
     , @NamedQuery(name = "PeriodoAcademico.findByA\u00f1oPeriodoAcademico", query = "SELECT p FROM PeriodoAcademico p WHERE p.a\u00f1oPeriodoAcademico = :a\u00f1oPeriodoAcademico")})
 public class PeriodoAcademico implements Serializable {
-
-    @OneToMany(mappedBy = "idPeriodoAcademico")
-    private List<FormalizarMatricula> formalizarMatriculaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -133,6 +132,7 @@ public class PeriodoAcademico implements Serializable {
         this.añoPeriodoAcademico = añoPeriodoAcademico;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -141,6 +141,7 @@ public class PeriodoAcademico implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -171,16 +172,7 @@ public class PeriodoAcademico implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
-    }
-
-    @XmlTransient
-    public List<FormalizarMatricula> getFormalizarMatriculaList() {
-        return formalizarMatriculaList;
-    }
-
-    public void setFormalizarMatriculaList(List<FormalizarMatricula> formalizarMatriculaList) {
-        this.formalizarMatriculaList = formalizarMatriculaList;
+        return nombre;
     }
     
 }

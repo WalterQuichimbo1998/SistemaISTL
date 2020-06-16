@@ -23,13 +23,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tabla_investigacion", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TablaInvestigacion.findAll", query = "SELECT t FROM TablaInvestigacion t")
     , @NamedQuery(name = "TablaInvestigacion.findByIdTablaInvestigacion", query = "SELECT t FROM TablaInvestigacion t WHERE t.idTablaInvestigacion = :idTablaInvestigacion")
@@ -117,6 +120,7 @@ public class TablaInvestigacion implements Serializable {
         this.idDatosPersonales = idDatosPersonales;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -147,7 +151,7 @@ public class TablaInvestigacion implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombreProyectoInvestigacion;
+        return nombreProyectoInvestigacion;
     }
     
 }

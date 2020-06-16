@@ -22,22 +22,24 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "usuario", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
     , @NamedQuery(name = "Usuario.findByIdUsuario", query = "SELECT u FROM Usuario u WHERE u.idUsuario = :idUsuario")
-    , @NamedQuery(name = "Usuario.findByUserPassword", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.clave = :clave")
-   
-        , @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")
+    , @NamedQuery(name = "Usuario.findByUsuario", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario")
     , @NamedQuery(name = "Usuario.findByClave", query = "SELECT u FROM Usuario u WHERE u.clave = :clave")
     , @NamedQuery(name = "Usuario.findByEstado", query = "SELECT u FROM Usuario u WHERE u.estado = :estado")
-    , @NamedQuery(name = "Usuario.findByFechaDeRegistro", query = "SELECT u FROM Usuario u WHERE u.fechaDeRegistro = :fechaDeRegistro")})
+    , @NamedQuery(name = "Usuario.findByFechaDeRegistro", query = "SELECT u FROM Usuario u WHERE u.fechaDeRegistro = :fechaDeRegistro")
+        
+    ,@NamedQuery(name = "Usuario.findByUserPassword", query = "SELECT u FROM Usuario u WHERE u.usuario = :usuario AND u.clave = :clave")})
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -68,11 +70,13 @@ public class Usuario implements Serializable {
 
     public Usuario() {
     }
+    
 
     public Usuario(String usuario, String clave) {
         this.usuario = usuario;
         this.clave = clave;
     }
+
 
     public Usuario(Integer idUsuario) {
         this.idUsuario = idUsuario;

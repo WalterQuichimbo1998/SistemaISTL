@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="CantonViewDlg" widgetVar="CantonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCantonTitle}">
+        <p:dialog id="CantonViewDlg" widgetVar="CantonViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewCantonTitle}"
+                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="CantonViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cantonController.selected != null}">
@@ -17,7 +18,7 @@
                         <h:outputText value="#{cantonController.selected.nombre}" title="#{bundle.ViewCantonTitle_nombre}"/>
                        
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="CantonViewDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" oncomplete="PF('CantonViewDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

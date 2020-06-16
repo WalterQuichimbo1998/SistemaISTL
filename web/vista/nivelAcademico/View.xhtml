@@ -12,18 +12,14 @@
             <h:form id="NivelAcademicoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{nivelAcademicoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewNivelAcademicoLabel_idNivelAcademico}"/>
-                        <h:outputText value="#{nivelAcademicoController.selected.idNivelAcademico}" title="#{bundle.ViewNivelAcademicoTitle_idNivelAcademico}"/>
-                        <h:outputText value="#{bundle.ViewNivelAcademicoLabel_nivelAcademico}"/>
+                         <h:outputText value="#{bundle.ViewNivelAcademicoLabel_nivelAcademico}"/>
                         <h:outputText value="#{nivelAcademicoController.selected.nivelAcademico}" title="#{bundle.ViewNivelAcademicoTitle_nivelAcademico}"/>
-                        <h:outputText value="#{bundle.ViewNivelAcademicoLabel_estado}"/>
-                        <h:outputText value="#{nivelAcademicoController.selected.estado}" title="#{bundle.ViewNivelAcademicoTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewNivelAcademicoLabel_fechaDeRegistro}"/>
+                         <h:outputText value="#{bundle.ViewNivelAcademicoLabel_fechaDeRegistro}"/>
                         <h:outputText value="#{nivelAcademicoController.selected.fechaDeRegistro}" title="#{bundle.ViewNivelAcademicoTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NivelAcademicoViewDialog.hide()"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NivelAcademicoViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

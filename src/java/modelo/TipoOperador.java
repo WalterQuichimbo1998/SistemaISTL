@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_operador", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoOperador.findAll", query = "SELECT t FROM TipoOperador t")
     , @NamedQuery(name = "TipoOperador.findByIdTipoOperador", query = "SELECT t FROM TipoOperador t WHERE t.idTipoOperador = :idTipoOperador")
@@ -51,8 +53,10 @@ public class TipoOperador implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoOperador")
+    @OneToMany(mappedBy = "idTipoOperador")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idTipoOperador")
+    private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idTipoOperador")
     private List<Usuario> usuarioList;
 
@@ -95,6 +99,7 @@ public class TipoOperador implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -103,6 +108,16 @@ public class TipoOperador implements Serializable {
         this.personaList = personaList;
     }
 
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
+    }
+
+    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -133,7 +148,7 @@ public class TipoOperador implements Serializable {
 
     @Override
     public String toString() {
-        return this.operador;
+        return operador;
     }
     
 }

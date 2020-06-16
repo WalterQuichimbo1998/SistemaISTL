@@ -12,7 +12,7 @@ import modelo.TipoBachillerato;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoBachilleratoFacade extends AbstractFacade<TipoBachillerato> {

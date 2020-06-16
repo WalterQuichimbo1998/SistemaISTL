@@ -12,17 +12,13 @@
             <h:form id="TipoDiscapacidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoDiscapacidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_idTipoDiscapacidad}"/>
-                        <h:outputText value="#{tipoDiscapacidadController.selected.idTipoDiscapacidad}" title="#{bundle.ViewTipoDiscapacidadTitle_idTipoDiscapacidad}"/>
                         <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_discapacidad}"/>
                         <h:outputText value="#{tipoDiscapacidadController.selected.discapacidad}" title="#{bundle.ViewTipoDiscapacidadTitle_discapacidad}"/>
                         <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_observacion}"/>
                         <h:outputText value="#{tipoDiscapacidadController.selected.observacion}" title="#{bundle.ViewTipoDiscapacidadTitle_observacion}"/>
-                        <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_estado}"/>
-                        <h:outputText value="#{tipoDiscapacidadController.selected.estado}" title="#{bundle.ViewTipoDiscapacidadTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_fechaDeRegistro}"/>
+                         <h:outputText value="#{bundle.ViewTipoDiscapacidadLabel_fechaDeRegistro}"/>
                         <h:outputText value="#{tipoDiscapacidadController.selected.fechaDeRegistro}" title="#{bundle.ViewTipoDiscapacidadTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="TipoDiscapacidadViewDialog.hide()"/>

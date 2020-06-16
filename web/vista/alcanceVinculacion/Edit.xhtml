@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="AlcanceVinculacionEditDlg" widgetVar="AlcanceVinculacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAlcanceVinculacionTitle}">
+        <p:dialog id="AlcanceVinculacionEditDlg" widgetVar="AlcanceVinculacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAlcanceVinculacionTitle}"
+                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="AlcanceVinculacionEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{alcanceVinculacionController.selected != null}">
@@ -18,7 +19,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{alcanceVinculacionController.update}" value="#{bundle.Save}" update="display,:AlcanceVinculacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AlcanceVinculacionEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="AlcanceVinculacionEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('AlcanceVinculacionEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

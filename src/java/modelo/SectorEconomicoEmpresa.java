@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "sector_economico_empresa", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SectorEconomicoEmpresa.findAll", query = "SELECT s FROM SectorEconomicoEmpresa s")
     , @NamedQuery(name = "SectorEconomicoEmpresa.findByIdSectorEconomicoEmpresa", query = "SELECT s FROM SectorEconomicoEmpresa s WHERE s.idSectorEconomicoEmpresa = :idSectorEconomicoEmpresa")
@@ -52,6 +55,9 @@ public class SectorEconomicoEmpresa implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idSectorEconomicoEmpresa")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idsectorpracticasPreprofesionales")
+    private List<Matricula> matriculaList1;
+
 
     public SectorEconomicoEmpresa() {
     }
@@ -92,6 +98,7 @@ public class SectorEconomicoEmpresa implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -99,6 +106,15 @@ public class SectorEconomicoEmpresa implements Serializable {
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }
+    @XmlTransient
+    public List<Matricula> getMatriculaList1() {
+        return matriculaList1;
+    }
+
+    public void setMatriculaList1(List<Matricula> matriculaList1) {
+        this.matriculaList1 = matriculaList1;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -122,7 +138,7 @@ public class SectorEconomicoEmpresa implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
+        return nombre;
     }
     
 }

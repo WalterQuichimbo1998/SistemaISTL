@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-     <ui:composition template="/vista/template.xhtml">
+     <ui:composition template="/vista/template.xhtml"> 
 
 
         <ui:define name="title">
@@ -14,15 +14,15 @@
         </ui:define>
 
         <ui:define name="body">
-            <h:form id="CantonListForm">
+            <h:form id="CantonListForm" style="width: 500px;display: inline-block">
                 <p class="title_modulos">#{bundle.ListCantonTitle}</p>
-                    <p:dataTable id="datalist" value="#{cantonController.items}" var="item" styleClass="tabla" 
+                <p style="width: 100%;margin:auto;text-align: center;background: #eee;font-family: Arial;color: #4F4F4F;"><strong>Provincia: </strong>#{cantonController.selectedP.nombre}</p>
+                    <p:dataTable id="datalist" value="#{cantonController.lista}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{cantonController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idCanton}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 style="width: 500px;display: inline-block"
                                  paginatorPosition="bottom"
                                  emptyMessage="No se encontraron resultados."
                                  >

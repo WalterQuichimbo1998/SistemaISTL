@@ -8,11 +8,12 @@ package dao;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Usuario;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class UsuarioFacade extends AbstractFacade<Usuario> {
@@ -21,12 +22,20 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     private EntityManager em;
 
     @Override
-    public EntityManager getEntityManager() {
+    protected EntityManager getEntityManager() {
         return em;
     }
 
     public UsuarioFacade() {
         super(Usuario.class);
     }
-    
+    public Usuario virifcarUsuario(Integer id) {
+        Usuario us = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_usuario,id_datos_personales FROM usuario WHERE id_datos_personales='" + id + "';", Usuario.class);
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return us;
+    }
 }

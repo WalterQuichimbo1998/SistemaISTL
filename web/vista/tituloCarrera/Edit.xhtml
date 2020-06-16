@@ -8,19 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="TituloCarreraEditDlg" widgetVar="TituloCarreraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTituloCarreraTitle}">
+        <p:dialog id="TituloCarreraEditDlg" widgetVar="TituloCarreraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTituloCarreraTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TituloCarreraEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tituloCarreraController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.EditTituloCarreraLabel_nombreTitulo}" for="nombreTitulo" />
-                        <p:inputText id="nombreTitulo" value="#{tituloCarreraController.selected.nombreTitulo}" title="#{bundle.EditTituloCarreraTitle_nombreTitulo}" />
+                        <p:inputText id="nombreTitulo" value="#{tituloCarreraController.selected.nombreTitulo}" title="#{bundle.EditTituloCarreraTitle_nombreTitulo}" required="true" requiredMessage="Complete"/>
                         <p:outputLabel value="#{bundle.EditTituloCarreraLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tituloCarreraController.selected.descripcion}" title="#{bundle.EditTituloCarreraTitle_descripcion}" />
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tituloCarreraController.update}" value="#{bundle.Save}" update="display,:TituloCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TituloCarreraEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TituloCarreraEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('TituloCarreraEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

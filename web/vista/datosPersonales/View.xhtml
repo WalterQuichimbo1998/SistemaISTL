@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="DatosPersonalesViewDlg" widgetVar="DatosPersonalesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDatosPersonalesTitle}">
+        <p:dialog id="DatosPersonalesViewDlg" widgetVar="DatosPersonalesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDatosPersonalesTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="DatosPersonalesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{datosPersonalesController.selected != null}">
@@ -30,7 +31,7 @@
                         <h:outputText value="#{bundle.ViewDatosPersonalesLabel_sexo}"/>
                         <h:outputText value="#{datosPersonalesController.selected.sexo}" title="#{bundle.ViewDatosPersonalesTitle_sexo}"/>
                         <h:outputText value="#{bundle.ViewDatosPersonalesLabel_genero}"/>
-                        <h:outputText value="#{datosPersonalesController.selected.genero}" title="#{bundle.ViewDatosPersonalesTitle_genero}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.genero==null ? '' : datosPersonalesController.selected.genero==0 ? 'Masculino':'Femenino'}" title="#{bundle.ViewDatosPersonalesTitle_genero}"/>
                         <h:outputText value="#{bundle.ViewDatosPersonalesLabel_celular}"/>
                         <h:outputText value="#{datosPersonalesController.selected.celular}" title="#{bundle.ViewDatosPersonalesTitle_celular}"/>
                         <h:outputText value="#{bundle.ViewDatosPersonalesLabel_convencional}"/>
@@ -42,7 +43,7 @@
                         
                         
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="DatosPersonalesViewDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" oncomplete="PF('DatosPersonalesViewDialog').hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

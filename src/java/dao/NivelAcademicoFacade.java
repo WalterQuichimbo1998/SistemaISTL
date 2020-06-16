@@ -12,7 +12,7 @@ import modelo.NivelAcademico;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class NivelAcademicoFacade extends AbstractFacade<NivelAcademico> {

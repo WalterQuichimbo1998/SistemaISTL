@@ -12,7 +12,7 @@ import modelo.PracticaspreprofesionalesVinculacion;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class PracticaspreprofesionalesVinculacionFacade extends AbstractFacade<PracticaspreprofesionalesVinculacion> {

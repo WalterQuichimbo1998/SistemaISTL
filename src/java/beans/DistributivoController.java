@@ -6,6 +6,7 @@ import beans.util.JsfUtil.PersistAction;
 import dao.DistributivoFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -56,6 +57,7 @@ public class DistributivoController implements Serializable {
     }
 
     public void create() {
+        this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DistributivoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

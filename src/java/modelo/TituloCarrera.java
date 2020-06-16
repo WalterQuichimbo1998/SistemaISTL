@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "titulo_carrera", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TituloCarrera.findAll", query = "SELECT t FROM TituloCarrera t")
     , @NamedQuery(name = "TituloCarrera.findByIdTituloCarrera", query = "SELECT t FROM TituloCarrera t WHERE t.idTituloCarrera = :idTituloCarrera")
@@ -110,6 +113,7 @@ public class TituloCarrera implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -118,6 +122,7 @@ public class TituloCarrera implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<MateriaCarrera> getMateriaCarreraList() {
         return materiaCarreraList;
     }
@@ -126,6 +131,7 @@ public class TituloCarrera implements Serializable {
         this.materiaCarreraList = materiaCarreraList;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -134,6 +140,7 @@ public class TituloCarrera implements Serializable {
         this.matriculaList = matriculaList;
     }
 
+    @XmlTransient
     public List<Materia> getMateriaList() {
         return materiaList;
     }
@@ -164,7 +171,7 @@ public class TituloCarrera implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombreTitulo;
+        return nombreTitulo;
     }
     
 }

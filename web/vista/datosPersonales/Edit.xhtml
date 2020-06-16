@@ -7,8 +7,8 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="DatosPersonalesEditDlg" widgetVar="DatosPersonalesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDatosPersonalesTitle}"  closeOnEscape="true" hideEffect="clip" showEffect="fade">
-            <h:form id="DatosPersonalesEditForm" enctype="multipart/form-data">
+        <p:dialog id="DatosPersonalesEditDlg" widgetVar="DatosPersonalesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDatosPersonalesTitle}"  closeOnEscape="true" hideEffect="clip" showEffect="clip">
+            <h:form id="DatosPersonalesEditForm">
                 <p:panel style="margin: 0;margin: auto;padding: 0;">
                     <h:panelGrid id="display" columns="4" rendered="#{datosPersonalesController.selected != null}" >
                     <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_nombres}" for="nombres" />
@@ -25,13 +25,15 @@
                         <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.CreateDatosPersonalesTitle_numIdentificacion}" />  
                         <p:outputLabel class="labelDatosPersonales" value="Sexo" />
                         <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.sexo}"> 
-                            <f:selectItem class="labelDatosPersonales"  itemValue = "Hombre" itemLabel = "Hombre" /> 
-                            <f:selectItem class="labelDatosPersonales" itemValue = "Mujer" itemLabel = "Mujer" />
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem  itemValue = "Hombre" itemLabel = "Hombre" /> 
+                            <f:selectItem itemValue = "Mujer" itemLabel = "Mujer" />
                         </p:selectOneMenu>
                         <p:outputLabel class="labelDatosPersonales" value="Género" />
                         <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.genero}"> 
-                            <f:selectItem class="labelDatosPersonales" itemValue = "0" itemLabel = "Masculino" /> 
-                            <f:selectItem class="labelDatosPersonales" itemValue = "1" itemLabel = "Femenino" />
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem  itemValue = "0" itemLabel = "Masculino" /> 
+                            <f:selectItem  itemValue = "1" itemLabel = "Femenino" />
                         </p:selectOneMenu> 
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_celular}" for="celular" />
                         <p:inputText styleClass="camposDeDatos"  id="celular" value="#{datosPersonalesController.selected.celular}" title="#{bundle.CreateDatosPersonalesTitle_celular}" />
@@ -42,25 +44,12 @@
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_edad}" for="edad" />
                         <p:inputText styleClass="camposDeDatos" id="edad" value="#{datosPersonalesController.selected.edad}" title="#{bundle.CreateDatosPersonalesTitle_edad}" /> 
                     </h:panelGrid>
-                       <p:fileUpload 
-                        class="labelDatosPersonales"
-                        previewWidth="80"
-                        fileUploadListener="#{datosPersonalesController.handleFileUpload}" 
-                        mode="advanced" 
-                        dragDropSupport="false"
-                        sizeLimit="1000000"
-                        cancelLabel="Cancelar"
-                        uploadLabel="Subir Imagen"
-                        fileLimitMessage="No Mayor a 1 MB"
-                        invalidSizeMessage="Máximo 1 MB"
-                        invalidFileMessage="Archivo Fallído"
-                        label="Elegir"
-                        fileLimit="1" 
-                        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
-                          <p:commandButton ajax="false" styleClass="btn_g" actionListener="#{datosPersonalesController.update}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DatosPersonalesEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" oncomplete="PF('DatosPersonalesEditDialog').hide()" onclick="DatosPersonalesEditDialog.hide()"/>
+                   
+                          <p:commandButton styleClass="btn_g" actionListener="#{datosPersonalesController.update}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DatosPersonalesEditDialog');"/>
+                          <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('DatosPersonalesEditDialog').hide()" />
                 </p:panel>
             </h:form>
+             
         </p:dialog>
 
     </ui:composition>

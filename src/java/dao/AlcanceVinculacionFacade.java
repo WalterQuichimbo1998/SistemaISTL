@@ -12,7 +12,7 @@ import modelo.AlcanceVinculacion;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class AlcanceVinculacionFacade extends AbstractFacade<AlcanceVinculacion> {

@@ -16,15 +16,15 @@
         <ui:define name="body">
             <h:form id="PResidenciaListForm">
                 <p class="title_modulos">#{bundle.ListPResidenciaTitle}</p>
-                    <p:dataTable id="datalist" value="#{pResidenciaController.items}" var="item" styleClass="tabla" 
-                                 selectionMode="single" selection="#{pResidenciaController.selected}"
+                <p:dataTable id="datalist" value="#{pResidenciaController.items}" var="item" styleClass="tabla" 
+                                 selectionMode="single" selection="#{pResidenciaController.selected}" 
                                  paginator="true"
                                  rowKey="#{item.idPResidencia}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  style="width: 500px;display: inline-block"
                                  paginatorPosition="bottom"
-                                 emptyMessage="No se encontraron resultados.">
+                                 emptyMessage="No se encontraron resultados."> 
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
@@ -32,7 +32,7 @@
                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPResidenciaTitle_nombre}"/>
+                                <h:outputText value="Provincia"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>

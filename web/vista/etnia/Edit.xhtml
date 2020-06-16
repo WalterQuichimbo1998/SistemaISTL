@@ -7,7 +7,8 @@
 
     <ui:composition>
 
-        <p:dialog id="EtniaEditDlg" widgetVar="EtniaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtniaTitle}">
+        <p:dialog id="EtniaEditDlg" widgetVar="EtniaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtniaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="EtniaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{etniaController.selected != null}">
@@ -17,7 +18,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{etniaController.update}" value="#{bundle.Save}" update="display,:EtniaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtniaEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="EtniaEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('EtniaEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

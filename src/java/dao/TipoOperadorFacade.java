@@ -12,7 +12,7 @@ import modelo.TipoOperador;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoOperadorFacade extends AbstractFacade<TipoOperador> {

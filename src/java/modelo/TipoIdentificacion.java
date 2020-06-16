@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_identificacion", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoIdentificacion.findAll", query = "SELECT t FROM TipoIdentificacion t")
     , @NamedQuery(name = "TipoIdentificacion.findByIdTipoIdentificacion", query = "SELECT t FROM TipoIdentificacion t WHERE t.idTipoIdentificacion = :idTipoIdentificacion")
@@ -55,8 +57,10 @@ public class TipoIdentificacion implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoIdentificacion")
+    @OneToMany(mappedBy = "idTipoIdentificacion")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idTipoIdentificacion")
+    private List<Matricula> matriculaList;
 
     public TipoIdentificacion() {
     }
@@ -105,12 +109,22 @@ public class TipoIdentificacion implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override
@@ -135,7 +149,7 @@ public class TipoIdentificacion implements Serializable {
 
     @Override
     public String toString() {
-        return this.tipo;
+        return tipo;
     }
     
 }

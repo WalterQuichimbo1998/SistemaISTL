@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "datos_personales", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "DatosPersonales.findAll", query = "SELECT d FROM DatosPersonales d")
     , @NamedQuery(name = "DatosPersonales.findByIdDatosPersonales", query = "SELECT d FROM DatosPersonales d WHERE d.idDatosPersonales = :idDatosPersonales")
@@ -44,7 +47,8 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "DatosPersonales.findByCodPostal", query = "SELECT d FROM DatosPersonales d WHERE d.codPostal = :codPostal")
     , @NamedQuery(name = "DatosPersonales.findByEdad", query = "SELECT d FROM DatosPersonales d WHERE d.edad = :edad")
     , @NamedQuery(name = "DatosPersonales.findByEstado", query = "SELECT d FROM DatosPersonales d WHERE d.estado = :estado")
-    , @NamedQuery(name = "DatosPersonales.findByFechaDeRegistro", query = "SELECT d FROM DatosPersonales d WHERE d.fechaDeRegistro = :fechaDeRegistro")})
+    , @NamedQuery(name = "DatosPersonales.findByFechaDeRegistro", query = "SELECT d FROM DatosPersonales d WHERE d.fechaDeRegistro = :fechaDeRegistro")
+    , @NamedQuery(name = "DatosPersonales.findByFoto", query = "SELECT d FROM DatosPersonales d WHERE d.foto = :foto")})
 public class DatosPersonales implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -85,9 +89,6 @@ public class DatosPersonales implements Serializable {
     @Size(max = 45)
     @Column(name = "cod_postal")
     private String codPostal;
-    @Size(max = 45)
-    @Column(name = "foto")
-    private String foto="foto/0000000000.png";
     @Column(name = "edad")
     private Integer edad;
     @Column(name = "estado")
@@ -95,8 +96,11 @@ public class DatosPersonales implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
+    @Size(max = 45)
+    @Column(name = "foto")
+    private String foto;
     @OneToMany(mappedBy = "idDatosPersonales")
-    private List<PerfilAcademico> perfilAcademicoList;
+    private List<Notas> notasList;
     @OneToMany(mappedBy = "idDatosPersonales")
     private List<TablaInvestigacion> tablaInvestigacionList;
     @OneToMany(mappedBy = "idDatosPersonales")
@@ -104,9 +108,13 @@ public class DatosPersonales implements Serializable {
     @OneToMany(mappedBy = "idDatosPersonales")
     private List<Persona> personaList;
     @OneToMany(mappedBy = "idDatosPersonales")
+    private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idDatosPersonales")
     private List<PracticaspreprofesionalesVinculacion> practicaspreprofesionalesVinculacionList;
     @OneToMany(mappedBy = "idDatosPersonales")
     private List<Usuario> usuarioList;
+     @OneToMany(mappedBy = "idDatosPersonales")
+    private List<PerfilAcademico> perfilAcademicoList;
 
     public DatosPersonales() {
     }
@@ -186,9 +194,7 @@ public class DatosPersonales implements Serializable {
     public void setGenero(Integer genero) {
         this.genero = genero;
     }
-    
 
-   
     public String getCelular() {
         return celular;
     }
@@ -212,19 +218,6 @@ public class DatosPersonales implements Serializable {
     public void setCodPostal(String codPostal) {
         this.codPostal = codPostal;
     }
-
-    public String getFoto() {
-        if(foto== null ||foto.equals("") ){
-         return foto="foto/0000000000.png";
-        }else{
-        return foto;
-        }
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-    
 
     public Integer getEdad() {
         return edad;
@@ -250,14 +243,24 @@ public class DatosPersonales implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public List<PerfilAcademico> getPerfilAcademicoList() {
-        return perfilAcademicoList;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setPerfilAcademicoList(List<PerfilAcademico> perfilAcademicoList) {
-        this.perfilAcademicoList = perfilAcademicoList;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 
+    @XmlTransient
+    public List<Notas> getNotasList() {
+        return notasList;
+    }
+
+    public void setNotasList(List<Notas> notasList) {
+        this.notasList = notasList;
+    }
+
+    @XmlTransient
     public List<TablaInvestigacion> getTablaInvestigacionList() {
         return tablaInvestigacionList;
     }
@@ -266,6 +269,7 @@ public class DatosPersonales implements Serializable {
         this.tablaInvestigacionList = tablaInvestigacionList;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -274,6 +278,7 @@ public class DatosPersonales implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -282,6 +287,16 @@ public class DatosPersonales implements Serializable {
         this.personaList = personaList;
     }
 
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
+    }
+
+    @XmlTransient
     public List<PracticaspreprofesionalesVinculacion> getPracticaspreprofesionalesVinculacionList() {
         return practicaspreprofesionalesVinculacionList;
     }
@@ -290,6 +305,7 @@ public class DatosPersonales implements Serializable {
         this.practicaspreprofesionalesVinculacionList = practicaspreprofesionalesVinculacionList;
     }
 
+    @XmlTransient
     public List<Usuario> getUsuarioList() {
         return usuarioList;
     }
@@ -297,6 +313,15 @@ public class DatosPersonales implements Serializable {
     public void setUsuarioList(List<Usuario> usuarioList) {
         this.usuarioList = usuarioList;
     }
+    @XmlTransient
+    public List<PerfilAcademico> getPerfilAcademicoList() {
+        return perfilAcademicoList;
+    }
+
+    public void setPerfilAcademicoList(List<PerfilAcademico> perfilAcademicoList) {
+        this.perfilAcademicoList = perfilAcademicoList;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -320,7 +345,7 @@ public class DatosPersonales implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombres+" "+this.apellidos;
+        return nombres+" "+apellidos;
     }
     
 }

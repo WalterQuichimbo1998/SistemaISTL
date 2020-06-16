@@ -7,7 +7,8 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoBachilleratoCreateDlg" widgetVar="TipoBachilleratoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoBachilleratoTitle}">
+        <p:dialog id="TipoBachilleratoCreateDlg" widgetVar="TipoBachilleratoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoBachilleratoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoBachilleratoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoBachilleratoController.selected != null}">
@@ -17,7 +18,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoBachilleratoController.create}" value="#{bundle.Save}" update="display,:TipoBachilleratoListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoBachilleratoCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoBachilleratoCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoBachilleratoCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -5,14 +5,16 @@
  */
 package dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Canton;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class CantonFacade extends AbstractFacade<Canton> {
@@ -29,4 +31,10 @@ public class CantonFacade extends AbstractFacade<Canton> {
         super(Canton.class);
     }
     
+      public List<Canton> listaCanton(Integer id){ 
+        Query q=em.createNativeQuery("SELECT * FROM canton WHERE id_provincia ="+id+";", Canton.class);  
+        List<Canton> lista=q.getResultList();
+        return lista;
+    }
+
 }

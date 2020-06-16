@@ -12,7 +12,7 @@ import modelo.TipoSangre;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoSangreFacade extends AbstractFacade<TipoSangre> {

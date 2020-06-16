@@ -12,7 +12,7 @@ import modelo.Distributivo;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class DistributivoFacade extends AbstractFacade<Distributivo> {

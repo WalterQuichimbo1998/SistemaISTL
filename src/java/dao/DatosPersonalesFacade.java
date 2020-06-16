@@ -12,7 +12,7 @@ import modelo.DatosPersonales;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class DatosPersonalesFacade extends AbstractFacade<DatosPersonales> {

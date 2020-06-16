@@ -12,18 +12,24 @@
             <h:form id="DiscapacidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{discapacidadController.selected != null}">
-                        
+                        <h:outputText value="#{bundle.ViewDiscapacidadLabel_idDiscapacidad}"/>
+                        <h:outputText value="#{discapacidadController.selected.idDiscapacidad}" title="#{bundle.ViewDiscapacidadTitle_idDiscapacidad}"/>
                         <h:outputText value="#{bundle.ViewDiscapacidadLabel_numCarnetConadis}"/>
                         <h:outputText value="#{discapacidadController.selected.numCarnetConadis}" title="#{bundle.ViewDiscapacidadTitle_numCarnetConadis}"/>
                         <h:outputText value="#{bundle.ViewDiscapacidadLabel_porcentajeDiscapacidad}"/>
                         <h:outputText value="#{discapacidadController.selected.porcentajeDiscapacidad}" title="#{bundle.ViewDiscapacidadTitle_porcentajeDiscapacidad}"/>
                         <h:outputText value="#{bundle.ViewDiscapacidadLabel_descripcion}"/>
                         <h:outputText value="#{discapacidadController.selected.descripcion}" title="#{bundle.ViewDiscapacidadTitle_descripcion}"/>
-                        
+                        <h:outputText value="#{bundle.ViewDiscapacidadLabel_estado}"/>
+                        <h:outputText value="#{discapacidadController.selected.estado}" title="#{bundle.ViewDiscapacidadTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewDiscapacidadLabel_fechaDeRegistro}"/>
+                        <h:outputText value="#{discapacidadController.selected.fechaDeRegistro}" title="#{bundle.ViewDiscapacidadTitle_fechaDeRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
                         <h:outputText value="#{bundle.ViewDiscapacidadLabel_idTipoDiscapacidad}"/>
                         <h:outputText value="#{discapacidadController.selected.idTipoDiscapacidad}" title="#{bundle.ViewDiscapacidadTitle_idTipoDiscapacidad}"/>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="DiscapacidadViewDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Close}" onclick="DiscapacidadViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

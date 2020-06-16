@@ -20,13 +20,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "materia_carrera", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "MateriaCarrera.findAll", query = "SELECT m FROM MateriaCarrera m")
     , @NamedQuery(name = "MateriaCarrera.findByIdMateriaCarrera", query = "SELECT m FROM MateriaCarrera m WHERE m.idMateriaCarrera = :idMateriaCarrera")

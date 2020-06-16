@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.Nacionalidad;
 
 @Named("provinciaController")
 @SessionScoped
@@ -38,6 +39,9 @@ public class ProvinciaController implements Serializable {
     public void setSelected(Provincia selected) {
         this.selected = selected;
     }
+
+
+    
 
     protected void setEmbeddableKeys() {
     }

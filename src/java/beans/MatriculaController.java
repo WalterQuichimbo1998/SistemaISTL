@@ -4,6 +4,8 @@ import modelo.Matricula;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
 import dao.MatriculaFacade;
+import dao.ProvinciaFacade;
+import dao.CantonFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,10 +16,13 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.Canton;
+import modelo.Provincia;
 
 @Named("matriculaController")
 @SessionScoped
@@ -25,23 +30,29 @@ public class MatriculaController implements Serializable {
 
     @EJB
     private dao.MatriculaFacade ejbFacade;
+    @EJB
+    private dao.ProvinciaFacade ejbFacadeP;  
+    @EJB
+    private dao.CantonFacade ejbFacadeC; 
+
     private List<Matricula> items = null;
+    private List<Matricula> listaMatricula = null;
     private Matricula selected;
+    private List<Provincia> listaProvincias = null;
+    private List<Canton> listaCanton = null;
 
     public MatriculaController() {
     }
 
     public Matricula getSelected() {
-        if(AccesoBean.obtenerIdPersona().getIdTipoOperador().getOperador().equals("Estudiante")){
-            this.selected=ejbFacade.obtenerMatricula(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales());
+        if ("Estudiante".equals(AccesoBean.obtenerIdPersona().getIdTipoOperador().getOperador())) {
+            this.selected=AccesoBean.obtenerMatricula();
         }
         return selected;
     }
 
     public void setSelected(Matricula selected) {
-       
         this.selected = selected;
-        
     }
 
     protected void setEmbeddableKeys() {
@@ -50,6 +61,46 @@ public class MatriculaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
+    public List<Provincia> getListaProvincias() {
+       if (selected.getIdNacionalidad()!= null) {
+            return listaProvincias= ejbFacadeP.listaProvincia(selected.getIdNacionalidad().getIdNacionalidad());
+        } else {
+            return null;
+        }
+
+    }
+
+    public void setListaProvincias(List<Provincia> listaProvincias) {
+        this.listaProvincias = listaProvincias;
+    }
+
+    public List<Canton> getListaCanton() {
+        
+        if (selected.getIdNacionalidad() != null) {
+            if (getListaProvincias().contains(selected.getIdProvinciaNacimiento()) == true) {
+                return listaCanton = ejbFacadeC.listaCanton(selected.getIdProvinciaNacimiento().getIdProvincia());
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+
+    }
+
+    public void setListaCanton(List<Canton> listaCanton) {
+        this.listaCanton = listaCanton;
+    }
+
+    public List<Matricula> getListaMatricula() {
+        return listaMatricula;
+    }
+
+    public void setListaMatricula(List<Matricula> listaMatricula) {
+        this.listaMatricula = listaMatricula;
+    }
+    
+    
     private MatriculaFacade getFacade() {
         return ejbFacade;
     }
@@ -61,13 +112,23 @@ public class MatriculaController implements Serializable {
     }
 
     public void create() {
+   
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+        items = null;
     }
 
     public void update() {
+         if(selected.getIdNacionalidad()==null){
+            this.selected.setIdProvinciaNacimiento(null);
+            this.selected.setIdCantonNacimiento(null);
+        }
+        if(selected.getIdProvinciaNacimiento()==null){
+            this.selected.setIdCantonNacimiento(null);
+        }
+
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
     }
 
@@ -166,5 +227,14 @@ public class MatriculaController implements Serializable {
         }
 
     }
+    public void verificarCrear(){
+        Matricula ma=ejbFacade.virifcarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales());
+        if(ma==null){
+            create();
+        }else{
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante ya está matriculado.", ""));
 
+        }
+    }
+   
 }

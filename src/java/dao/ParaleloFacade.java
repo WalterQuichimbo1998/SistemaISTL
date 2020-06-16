@@ -12,7 +12,7 @@ import modelo.Paralelo;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class ParaleloFacade extends AbstractFacade<Paralelo> {

@@ -23,25 +23,28 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "materia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Materia.findAll", query = "SELECT m FROM Materia m")
     , @NamedQuery(name = "Materia.findByIdMateria", query = "SELECT m FROM Materia m WHERE m.idMateria = :idMateria")
     , @NamedQuery(name = "Materia.findByCodMateria", query = "SELECT m FROM Materia m WHERE m.codMateria = :codMateria")
     , @NamedQuery(name = "Materia.findByDescripcion", query = "SELECT m FROM Materia m WHERE m.descripcion = :descripcion")
     , @NamedQuery(name = "Materia.findByMateria", query = "SELECT m FROM Materia m WHERE m.materia = :materia")
-    , @NamedQuery(name = "Materia.findAllMateriaByCarrera", query = "SELECT m FROM Materia m WHERE m.idTituloCarrera = :idTituloCarrera AND m.idNivelAcademico = :idNivelAcademico")
     , @NamedQuery(name = "Materia.findByCreditos", query = "SELECT m FROM Materia m WHERE m.creditos = :creditos")
     , @NamedQuery(name = "Materia.findByNumHoras", query = "SELECT m FROM Materia m WHERE m.numHoras = :numHoras")
     , @NamedQuery(name = "Materia.findByNumHorasSemanales", query = "SELECT m FROM Materia m WHERE m.numHorasSemanales = :numHorasSemanales")
     , @NamedQuery(name = "Materia.findByEstado", query = "SELECT m FROM Materia m WHERE m.estado = :estado")
-    , @NamedQuery(name = "Materia.findByFechaDeRegistro", query = "SELECT m FROM Materia m WHERE m.fechaDeRegistro = :fechaDeRegistro")})
+    , @NamedQuery(name = "Materia.findByFechaDeRegistro", query = "SELECT m FROM Materia m WHERE m.fechaDeRegistro = :fechaDeRegistro")
+, @NamedQuery(name = "Materia.findAllMateriaByCarrera", query = "SELECT m FROM Materia m WHERE m.idTituloCarrera = :idTituloCarrera AND m.idNivelAcademico = :idNivelAcademico")})
 public class Materia implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +80,8 @@ public class Materia implements Serializable {
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idMateria")
     private List<MateriaCarrera> materiaCarreraList;
+    @OneToMany(mappedBy = "idMateria")
+    private List<Matricula> matriculaList;
     @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
     @ManyToOne
     private NivelAcademico idNivelAcademico;
@@ -163,6 +168,7 @@ public class Materia implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Notas> getNotasList() {
         return notasList;
     }
@@ -171,6 +177,7 @@ public class Materia implements Serializable {
         this.notasList = notasList;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -179,12 +186,22 @@ public class Materia implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<MateriaCarrera> getMateriaCarreraList() {
         return materiaCarreraList;
     }
 
     public void setMateriaCarreraList(List<MateriaCarrera> materiaCarreraList) {
         this.materiaCarreraList = materiaCarreraList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     public NivelAcademico getIdNivelAcademico() {
@@ -225,7 +242,7 @@ public class Materia implements Serializable {
 
     @Override
     public String toString() {
-        return this.descripcion;
+        return descripcion;
     }
     
 }

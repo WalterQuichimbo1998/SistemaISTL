@@ -6,6 +6,7 @@ import beans.util.JsfUtil.PersistAction;
 import dao.NotasFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class NotasController implements Serializable {
     @EJB
     private dao.NotasFacade ejbFacade;
     private List<Notas> items = null;
+    private List<Notas> lista = null;
     private Notas selected;
 
     public NotasController() {
@@ -38,6 +40,15 @@ public class NotasController implements Serializable {
     public void setSelected(Notas selected) {
         this.selected = selected;
     }
+
+    public List<Notas> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Notas> lista) {
+        this.lista = lista;
+    }
+    
 
     protected void setEmbeddableKeys() {
     }
@@ -56,6 +67,7 @@ public class NotasController implements Serializable {
     }
 
     public void create() {
+        this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NotasCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

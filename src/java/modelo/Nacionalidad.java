@@ -9,14 +9,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -24,18 +21,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "nacionalidad", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Nacionalidad.findAll", query = "SELECT n FROM Nacionalidad n")
     , @NamedQuery(name = "Nacionalidad.findByIdNacionalidad", query = "SELECT n FROM Nacionalidad n WHERE n.idNacionalidad = :idNacionalidad")
-    , @NamedQuery(name = "Nacionalidad.findByTipoNacionalidad", query = "SELECT n FROM Nacionalidad n WHERE n.tipoNacionalidad = :tipoNacionalidad")
-    , @NamedQuery(name = "Nacionalidad.findByCategoriaMigratoria", query = "SELECT n FROM Nacionalidad n WHERE n.categoriaMigratoria = :categoriaMigratoria")
+    , @NamedQuery(name = "Nacionalidad.findByPaisNacionalidad", query = "SELECT n FROM Nacionalidad n WHERE n.paisNacionalidad = :paisNacionalidad")
     , @NamedQuery(name = "Nacionalidad.findByEstado", query = "SELECT n FROM Nacionalidad n WHERE n.estado = :estado")
     , @NamedQuery(name = "Nacionalidad.findByFechaDeRegistro", query = "SELECT n FROM Nacionalidad n WHERE n.fechaDeRegistro = :fechaDeRegistro")})
 public class Nacionalidad implements Serializable {
@@ -47,24 +46,21 @@ public class Nacionalidad implements Serializable {
     @Column(name = "id_nacionalidad")
     private Integer idNacionalidad;
     @Size(max = 45)
-    @Column(name = "tipo_nacionalidad")
-    private String tipoNacionalidad;
-    @Size(max = 45)
-    @Column(name = "categoria_migratoria")
-    private String categoriaMigratoria;
+    @Column(name = "pais_nacionalidad")
+    private String paisNacionalidad;
+   
     @Column(name = "estado")
     private Integer estado;
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @JoinColumn(name = "id_canton", referencedColumnName = "id_canton")
-    @ManyToOne
-    private Canton idCanton;
-    @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
-    @ManyToOne
-    private Provincia idProvincia;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNacionalidad")
+   
+    @OneToMany(mappedBy = "idNacionalidad")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idNacionalidad")
+    private List<Matricula> matriculaList;
+      @OneToMany(mappedBy = "idNacionalidad")
+    private List<Provincia> provinciaList;
 
     public Nacionalidad() {
     }
@@ -81,21 +77,15 @@ public class Nacionalidad implements Serializable {
         this.idNacionalidad = idNacionalidad;
     }
 
-    public String getTipoNacionalidad() {
-        return tipoNacionalidad;
+    public String getPaisNacionalidad() {
+        return paisNacionalidad;
     }
 
-    public void setTipoNacionalidad(String tipoNacionalidad) {
-        this.tipoNacionalidad = tipoNacionalidad;
+    public void setPaisNacionalidad(String paisNacionalidad) {
+        this.paisNacionalidad = paisNacionalidad;
     }
 
-    public String getCategoriaMigratoria() {
-        return categoriaMigratoria;
-    }
-
-    public void setCategoriaMigratoria(String categoriaMigratoria) {
-        this.categoriaMigratoria = categoriaMigratoria;
-    }
+    
 
     public Integer getEstado() {
         return estado;
@@ -113,22 +103,8 @@ public class Nacionalidad implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public Canton getIdCanton() {
-        return idCanton;
-    }
 
-    public void setIdCanton(Canton idCanton) {
-        this.idCanton = idCanton;
-    }
-
-    public Provincia getIdProvincia() {
-        return idProvincia;
-    }
-
-    public void setIdProvincia(Provincia idProvincia) {
-        this.idProvincia = idProvincia;
-    }
-
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -136,6 +112,24 @@ public class Nacionalidad implements Serializable {
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
     }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
+    }
+    @XmlTransient
+    public List<Provincia> getProvinciaList() {
+        return provinciaList;
+    }
+
+    public void setProvinciaList(List<Provincia> provinciaList) {
+        this.provinciaList = provinciaList;
+    }
+    
 
     @Override
     public int hashCode() {
@@ -159,7 +153,7 @@ public class Nacionalidad implements Serializable {
 
     @Override
     public String toString() {
-        return this.tipoNacionalidad;
+        return paisNacionalidad;
     }
     
 }

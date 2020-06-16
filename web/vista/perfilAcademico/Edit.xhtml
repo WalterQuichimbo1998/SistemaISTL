@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="PerfilAcademicoEditDlg" widgetVar="PerfilAcademicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPerfilAcademicoTitle}">
+        <p:dialog id="PerfilAcademicoEditDlg" widgetVar="PerfilAcademicoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPerfilAcademicoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="PerfilAcademicoEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{perfilAcademicoController.selected != null}">
@@ -21,7 +22,8 @@
                         <p:inputText id="gradoOcupacional" value="#{perfilAcademicoController.selected.gradoOcupacional}" title="#{bundle.EditPerfilAcademicoTitle_gradoOcupacional}" />
                         
                         <p:outputLabel value="#{bundle.EditPerfilAcademicoLabel_idDatosPersonales}" for="idDatosPersonales" />
-                        <p:selectOneMenu id="idDatosPersonales" value="#{perfilAcademicoController.selected.idDatosPersonales}" >
+                        <p:selectOneMenu id="idDatosPersonales" value="#{perfilAcademicoController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"
@@ -29,7 +31,7 @@
                         </p:selectOneMenu>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{perfilAcademicoController.update}" value="#{bundle.Save}" update="display,:PerfilAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PerfilAcademicoEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PerfilAcademicoEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('PerfilAcademicoEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

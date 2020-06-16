@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="ResidenciaEditDlg" widgetVar="ResidenciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditResidenciaTitle}">
+        <p:dialog id="ResidenciaEditDlg" widgetVar="ResidenciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditResidenciaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="ResidenciaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{residenciaController.selected != null}">
@@ -17,7 +18,7 @@
                         <p:inputText id="nombre" value="#{residenciaController.selected.nombre}" title="#{bundle.EditResidenciaTitle_nombre}" />
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{residenciaController.update}" value="#{bundle.Save}" update="display,:ResidenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ResidenciaEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="ResidenciaEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('ResidenciaEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

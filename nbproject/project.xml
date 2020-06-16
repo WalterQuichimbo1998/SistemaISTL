@@ -7,14 +7,6 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${libs.primefaces.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
-                    <file>${libs.MySQLDriver.classpath}</file>
-                    <path-in-war>WEB-INF/lib</path-in-war>
-                </library>
-                <library dirs="200">
                     <file>${file.reference.commons-beanutils-1.8.2.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
@@ -102,13 +94,17 @@
                     <file>${file.reference.primefaces-5.0.jar}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
+                <library dirs="200">
+                    <file>${file.reference.all-themes-1.0.10.jar}</file>
+                    <path-in-war>WEB-INF/lib</path-in-war>
+                </library>
             </web-module-libraries>
             <web-module-additional-libraries/>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.dir" name="Source Packages"/>
             </source-roots>
             <test-roots>
-                <root id="test.src.dir"/>
+                <root id="test.src.dir" name="Test Packages"/>
             </test-roots>
         </data>
     </configuration>

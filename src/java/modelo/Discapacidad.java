@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,13 +23,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "discapacidad", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Discapacidad.findAll", query = "SELECT d FROM Discapacidad d")
     , @NamedQuery(name = "Discapacidad.findByIdDiscapacidad", query = "SELECT d FROM Discapacidad d WHERE d.idDiscapacidad = :idDiscapacidad")
@@ -61,11 +63,12 @@ public class Discapacidad implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idDiscapacidad")
+    @OneToMany(mappedBy = "idDiscapacidad")
     private List<Persona> personaList;
     @JoinColumn(name = "id_tipo_discapacidad", referencedColumnName = "id_tipo_discapacidad")
     @ManyToOne
     private TipoDiscapacidad idTipoDiscapacidad;
+   
 
     public Discapacidad() {
     }
@@ -122,6 +125,7 @@ public class Discapacidad implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -137,6 +141,7 @@ public class Discapacidad implements Serializable {
     public void setIdTipoDiscapacidad(TipoDiscapacidad idTipoDiscapacidad) {
         this.idTipoDiscapacidad = idTipoDiscapacidad;
     }
+
 
     @Override
     public int hashCode() {
@@ -160,7 +165,7 @@ public class Discapacidad implements Serializable {
 
     @Override
     public String toString() {
-        return this.numCarnetConadis;
+        return numCarnetConadis;
     }
     
 }

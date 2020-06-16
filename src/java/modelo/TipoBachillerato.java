@@ -22,13 +22,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_bachillerato", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoBachillerato.findAll", query = "SELECT t FROM TipoBachillerato t")
     , @NamedQuery(name = "TipoBachillerato.findByIdTipoBachillerato", query = "SELECT t FROM TipoBachillerato t WHERE t.idTipoBachillerato = :idTipoBachillerato")
@@ -52,7 +55,7 @@ public class TipoBachillerato implements Serializable {
     private int estado;
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaDeRegistro;
+    private Date fechaDeRegistro;   
     @OneToMany(mappedBy = "idTipoBachillerato")
     private List<Matricula> matriculaList;
 
@@ -100,6 +103,8 @@ public class TipoBachillerato implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
+
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -107,6 +112,7 @@ public class TipoBachillerato implements Serializable {
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }
+   
 
     @Override
     public int hashCode() {

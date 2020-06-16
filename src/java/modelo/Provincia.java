@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -21,13 +23,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "provincia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Provincia.findAll", query = "SELECT p FROM Provincia p")
     , @NamedQuery(name = "Provincia.findByIdProvincia", query = "SELECT p FROM Provincia p WHERE p.idProvincia = :idProvincia")
@@ -36,6 +41,7 @@ import javax.validation.constraints.Size;
     , @NamedQuery(name = "Provincia.findByFechaDeRegistro", query = "SELECT p FROM Provincia p WHERE p.fechaDeRegistro = :fechaDeRegistro")})
 public class Provincia implements Serializable {
 
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,11 +56,18 @@ public class Provincia implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(mappedBy = "idProvincia")
-    private List<Nacionalidad> nacionalidadList;
     @OneToMany(mappedBy = "idProvinciaNacimiento")
     private List<Persona> personaList;
-
+    @OneToMany(mappedBy = "idProvinciaNacimiento")
+    private List<Matricula> matriculaList;
+     @OneToMany(mappedBy = "idProvincia")
+    private List<Canton> cantonList;
+     
+     @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
+    @ManyToOne
+    private Nacionalidad idNacionalidad;
+     
+     
     public Provincia() {
     }
 
@@ -94,14 +107,9 @@ public class Provincia implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public List<Nacionalidad> getNacionalidadList() {
-        return nacionalidadList;
-    }
+ 
 
-    public void setNacionalidadList(List<Nacionalidad> nacionalidadList) {
-        this.nacionalidadList = nacionalidadList;
-    }
-
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -110,6 +118,33 @@ public class Provincia implements Serializable {
         this.personaList = personaList;
     }
 
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
+    }
+
+    public Nacionalidad getIdNacionalidad() {
+        return idNacionalidad;
+    }
+
+    public void setIdNacionalidad(Nacionalidad idNacionalidad) {
+        this.idNacionalidad = idNacionalidad;
+    }
+ @XmlTransient
+    public List<Canton> getCantonList() {
+        return cantonList;
+    }
+
+    public void setCantonList(List<Canton> cantonList) {
+        this.cantonList = cantonList;
+    }
+    
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -132,7 +167,7 @@ public class Provincia implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombre;
+        return nombre;
     }
     
 }

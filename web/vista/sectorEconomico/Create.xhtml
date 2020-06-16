@@ -7,7 +7,8 @@
 
     <ui:composition>
 
-        <p:dialog id="SectorEconomicoCreateDlg" widgetVar="SectorEconomicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSectorEconomicoTitle}">
+        <p:dialog id="SectorEconomicoCreateDlg" widgetVar="SectorEconomicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSectorEconomicoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="SectorEconomicoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{sectorEconomicoController.selected != null}">
@@ -17,7 +18,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{sectorEconomicoController.create}" value="#{bundle.Save}" update="display,:SectorEconomicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'SectorEconomicoCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="SectorEconomicoCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('SectorEconomicoCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

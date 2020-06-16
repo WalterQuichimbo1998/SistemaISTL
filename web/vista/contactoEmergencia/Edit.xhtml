@@ -12,7 +12,8 @@
             <h:form id="ContactoEmergenciaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{contactoEmergenciaController.selected != null}">
-                        
+                        <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_idContacto}" for="idContacto" />
+                        <p:inputText id="idContacto" value="#{contactoEmergenciaController.selected.idContacto}" title="#{bundle.EditContactoEmergenciaTitle_idContacto}" required="true" requiredMessage="#{bundle.EditContactoEmergenciaRequiredMessage_idContacto}"/>
                         <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_nombres}" for="nombres" />
                         <p:inputText id="nombres" value="#{contactoEmergenciaController.selected.nombres}" title="#{bundle.EditContactoEmergenciaTitle_nombres}" />
                         <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_apellidos}" for="apellidos" />
@@ -21,10 +22,13 @@
                         <p:inputText id="celular" value="#{contactoEmergenciaController.selected.celular}" title="#{bundle.EditContactoEmergenciaTitle_celular}" />
                         <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_parentesco}" for="parentesco" />
                         <p:inputText id="parentesco" value="#{contactoEmergenciaController.selected.parentesco}" title="#{bundle.EditContactoEmergenciaTitle_parentesco}" />
-                        
+                        <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{contactoEmergenciaController.selected.estado}" title="#{bundle.EditContactoEmergenciaTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditContactoEmergenciaLabel_fechaDeRegistro}" for="fechaDeRegistro" />
+                        <p:calendar id="fechaDeRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{contactoEmergenciaController.selected.fechaDeRegistro}" title="#{bundle.EditContactoEmergenciaTitle_fechaDeRegistro}"  showOn="button"/>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_g" actionListener="#{contactoEmergenciaController.update}" value="#{bundle.Save}" update="display,:ContactoEmergenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContactoEmergenciaEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="ContactoEmergenciaEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{contactoEmergenciaController.update}" value="#{bundle.Save}" update="display,:ContactoEmergenciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ContactoEmergenciaEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ContactoEmergenciaEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

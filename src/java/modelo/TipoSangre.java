@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +22,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_sangre", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoSangre.findAll", query = "SELECT t FROM TipoSangre t")
     , @NamedQuery(name = "TipoSangre.findByIdTipoSangre", query = "SELECT t FROM TipoSangre t WHERE t.idTipoSangre = :idTipoSangre")
@@ -54,8 +56,10 @@ public class TipoSangre implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTipoSangre")
+    @OneToMany(mappedBy = "idTipoSangre")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idTipoSangre")
+    private List<Matricula> matriculaList;
 
     public TipoSangre() {
     }
@@ -101,12 +105,22 @@ public class TipoSangre implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override
@@ -131,7 +145,7 @@ public class TipoSangre implements Serializable {
 
     @Override
     public String toString() {
-        return this.tipo;
+        return tipo;
     }
     
 }

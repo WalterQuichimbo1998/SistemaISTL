@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "alcance_vinculacion", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "AlcanceVinculacion.findAll", query = "SELECT a FROM AlcanceVinculacion a")
     , @NamedQuery(name = "AlcanceVinculacion.findByIdAlcanceVinculacion", query = "SELECT a FROM AlcanceVinculacion a WHERE a.idAlcanceVinculacion = :idAlcanceVinculacion")
@@ -94,6 +97,7 @@ public class AlcanceVinculacion implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -102,6 +106,7 @@ public class AlcanceVinculacion implements Serializable {
         this.matriculaList = matriculaList;
     }
 
+    @XmlTransient
     public List<PracticaspreprofesionalesVinculacion> getPracticaspreprofesionalesVinculacionList() {
         return practicaspreprofesionalesVinculacionList;
     }
@@ -132,7 +137,7 @@ public class AlcanceVinculacion implements Serializable {
 
     @Override
     public String toString() {
-        return this.alcance;
+        return alcance;
     }
     
 }

@@ -8,27 +8,13 @@
 
     <ui:composition>
 
-        <p:dialog id="NacionalidadViewDlg" widgetVar="NacionalidadViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNacionalidadTitle}">
+        <p:dialog id="NacionalidadViewDlg" widgetVar="NacionalidadViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Ver">
             <h:form id="NacionalidadViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{nacionalidadController.selected != null}">
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idNacionalidad}"/>
-                        <h:outputText value="#{nacionalidadController.selected.idNacionalidad}" title="#{bundle.ViewNacionalidadTitle_idNacionalidad}"/>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_tipoNacionalidad}"/>
-                        <h:outputText value="#{nacionalidadController.selected.tipoNacionalidad}" title="#{bundle.ViewNacionalidadTitle_tipoNacionalidad}"/>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_categoriaMigratoria}"/>
-                        <h:outputText value="#{nacionalidadController.selected.categoriaMigratoria}" title="#{bundle.ViewNacionalidadTitle_categoriaMigratoria}"/>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_estado}"/>
-                        <h:outputText value="#{nacionalidadController.selected.estado}" title="#{bundle.ViewNacionalidadTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_fechaDeRegistro}"/>
-                        <h:outputText value="#{nacionalidadController.selected.fechaDeRegistro}" title="#{bundle.ViewNacionalidadTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idCanton}"/>
-                        <h:outputText value="#{nacionalidadController.selected.idCanton}" title="#{bundle.ViewNacionalidadTitle_idCanton}"/>
-                        <h:outputText value="#{bundle.ViewNacionalidadLabel_idProvincia}"/>
-                        <h:outputText value="#{nacionalidadController.selected.idProvincia}" title="#{bundle.ViewNacionalidadTitle_idProvincia}"/>
-                    </p:panelGrid>
+                        <h:outputText value="País nacionalidad"/>
+                        <h:outputText value="#{nacionalidadController.selected.paisNacionalidad}"/>
+                            </p:panelGrid>
                     <div class="boxBtnCrud">
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NacionalidadViewDialog.hide()"/>
                     </div>

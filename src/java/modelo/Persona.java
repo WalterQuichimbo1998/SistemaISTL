@@ -7,7 +7,6 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,19 +17,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "persona", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")
     , @NamedQuery(name = "Persona.findByIdPersona", query = "SELECT p FROM Persona p WHERE p.idPersona = :idPersona")
@@ -44,11 +43,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Persona.findByParticipacionPracticas", query = "SELECT p FROM Persona p WHERE p.participacionPracticas = :participacionPracticas")
     , @NamedQuery(name = "Persona.findByParticipacionVinculacion", query = "SELECT p FROM Persona p WHERE p.participacionVinculacion = :participacionVinculacion")})
 public class Persona implements Serializable {
-
-    @Column(name = "estado")
-    private Integer estado;
-    @OneToMany(mappedBy = "idPersona")
-    private List<FormalizarMatricula> formalizarMatriculaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -71,6 +65,8 @@ public class Persona implements Serializable {
     @Size(max = 45)
     @Column(name = "posee_discapacidad")
     private String poseeDiscapacidad;
+    @Column(name = "estado")
+    private Integer estado;
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
@@ -80,63 +76,54 @@ public class Persona implements Serializable {
     @Size(max = 45)
     @Column(name = "participacion_vinculacion")
     private String participacionVinculacion;
-    @OneToMany(mappedBy = "idPersona")
-    private List<Notas> notasList;
+    @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
+    @ManyToOne
+    private EstadoCivil idEstadoCivil;
     @JoinColumn(name = "id_canton_nacimiento", referencedColumnName = "id_canton")
     @ManyToOne
     private Canton idCantonNacimiento;
     @JoinColumn(name = "id_contacto_emergencia", referencedColumnName = "id_contacto")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private ContactoEmergencia idContactoEmergencia;
     @JoinColumn(name = "id_datos_personales", referencedColumnName = "id_datos_personales")
     @ManyToOne
     private DatosPersonales idDatosPersonales;
-    @JoinColumn(name = "id_tipo_identificacion", referencedColumnName = "id_tipo_identificacion")
-    @ManyToOne(optional = false)
-    private TipoIdentificacion idTipoIdentificacion;
-    @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
-    @ManyToOne(optional = false)
-    private TipoSangre idTipoSangre;
-    @JoinColumn(name = "id_tipo_operador", referencedColumnName = "id_tipo_operador")
-    @ManyToOne(optional = false)
-    private TipoOperador idTipoOperador;
     @JoinColumn(name = "id_discapacidad", referencedColumnName = "id_discapacidad")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Discapacidad idDiscapacidad;
-    @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
-    @ManyToOne(optional = false)
-    private EstadoCivil idEstadoCivil;
     @JoinColumn(name = "id_etnia", referencedColumnName = "id_etnia")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Etnia idEtnia;
     @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Nacionalidad idNacionalidad;
+    @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
+    @ManyToOne
+    private TipoSangre idTipoSangre;
     @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
     @ManyToOne
     private NivelAcademico idNivelAcademico;
     @JoinColumn(name = "id_provincia_residencia", referencedColumnName = "id_p_residencia")
     @ManyToOne
     private PResidencia idProvinciaResidencia;
+    @JoinColumn(name = "id_tipo_identificacion", referencedColumnName = "id_tipo_identificacion")
+    @ManyToOne
+    private TipoIdentificacion idTipoIdentificacion;
     @JoinColumn(name = "id_provincia_nacimiento", referencedColumnName = "id_provincia")
     @ManyToOne
     private Provincia idProvinciaNacimiento;
     @JoinColumn(name = "id_residencia", referencedColumnName = "id_residencia")
     @ManyToOne
     private Residencia idResidencia;
-    @OneToMany(mappedBy = "idPersona")
-    private List<Matricula> matriculaList;
+    @JoinColumn(name = "id_tipo_operador", referencedColumnName = "id_tipo_operador")
+    @ManyToOne
+    private TipoOperador idTipoOperador;
 
     public Persona() {
     }
 
     public Persona(Integer idPersona) {
         this.idPersona = idPersona;
-    }
-
-    public Persona(Integer idPersona, int estado) {
-        this.idPersona = idPersona;
-        this.estado = estado;
     }
 
     public Integer getIdPersona() {
@@ -187,6 +174,13 @@ public class Persona implements Serializable {
         this.poseeDiscapacidad = poseeDiscapacidad;
     }
 
+    public Integer getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Integer estado) {
+        this.estado = estado;
+    }
 
     public Date getFechaDeRegistro() {
         return fechaDeRegistro;
@@ -212,12 +206,12 @@ public class Persona implements Serializable {
         this.participacionVinculacion = participacionVinculacion;
     }
 
-    public List<Notas> getNotasList() {
-        return notasList;
+    public EstadoCivil getIdEstadoCivil() {
+        return idEstadoCivil;
     }
 
-    public void setNotasList(List<Notas> notasList) {
-        this.notasList = notasList;
+    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
+        this.idEstadoCivil = idEstadoCivil;
     }
 
     public Canton getIdCantonNacimiento() {
@@ -244,44 +238,12 @@ public class Persona implements Serializable {
         this.idDatosPersonales = idDatosPersonales;
     }
 
-    public TipoIdentificacion getIdTipoIdentificacion() {
-        return idTipoIdentificacion;
-    }
-
-    public void setIdTipoIdentificacion(TipoIdentificacion idTipoIdentificacion) {
-        this.idTipoIdentificacion = idTipoIdentificacion;
-    }
-
-    public TipoSangre getIdTipoSangre() {
-        return idTipoSangre;
-    }
-
-    public void setIdTipoSangre(TipoSangre idTipoSangre) {
-        this.idTipoSangre = idTipoSangre;
-    }
-
-    public TipoOperador getIdTipoOperador() {
-        return idTipoOperador;
-    }
-
-    public void setIdTipoOperador(TipoOperador idTipoOperador) {
-        this.idTipoOperador = idTipoOperador;
-    }
-
     public Discapacidad getIdDiscapacidad() {
         return idDiscapacidad;
     }
 
     public void setIdDiscapacidad(Discapacidad idDiscapacidad) {
         this.idDiscapacidad = idDiscapacidad;
-    }
-
-    public EstadoCivil getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
     }
 
     public Etnia getIdEtnia() {
@@ -300,6 +262,14 @@ public class Persona implements Serializable {
         this.idNacionalidad = idNacionalidad;
     }
 
+    public TipoSangre getIdTipoSangre() {
+        return idTipoSangre;
+    }
+
+    public void setIdTipoSangre(TipoSangre idTipoSangre) {
+        this.idTipoSangre = idTipoSangre;
+    }
+
     public NivelAcademico getIdNivelAcademico() {
         return idNivelAcademico;
     }
@@ -314,6 +284,14 @@ public class Persona implements Serializable {
 
     public void setIdProvinciaResidencia(PResidencia idProvinciaResidencia) {
         this.idProvinciaResidencia = idProvinciaResidencia;
+    }
+
+    public TipoIdentificacion getIdTipoIdentificacion() {
+        return idTipoIdentificacion;
+    }
+
+    public void setIdTipoIdentificacion(TipoIdentificacion idTipoIdentificacion) {
+        this.idTipoIdentificacion = idTipoIdentificacion;
     }
 
     public Provincia getIdProvinciaNacimiento() {
@@ -332,12 +310,12 @@ public class Persona implements Serializable {
         this.idResidencia = idResidencia;
     }
 
-    public List<Matricula> getMatriculaList() {
-        return matriculaList;
+    public TipoOperador getIdTipoOperador() {
+        return idTipoOperador;
     }
 
-    public void setMatriculaList(List<Matricula> matriculaList) {
-        this.matriculaList = matriculaList;
+    public void setIdTipoOperador(TipoOperador idTipoOperador) {
+        this.idTipoOperador = idTipoOperador;
     }
 
     @Override
@@ -362,24 +340,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return this.idDatosPersonales.getApellidos()+" "+this.idDatosPersonales.getNombres();
-    }
-
-    public Integer getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Integer estado) {
-        this.estado = estado;
-    }
-
-    @XmlTransient
-    public List<FormalizarMatricula> getFormalizarMatriculaList() {
-        return formalizarMatriculaList;
-    }
-
-    public void setFormalizarMatriculaList(List<FormalizarMatricula> formalizarMatriculaList) {
-        this.formalizarMatriculaList = formalizarMatriculaList;
+        return "modelo.Persona[ idPersona=" + idPersona + " ]";
     }
     
 }

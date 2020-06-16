@@ -19,39 +19,46 @@
                 <p class="title_modulos">#{bundle.ListUsuarioTitle}</p>
                     <p:dataTable id="datalist" value="#{usuarioController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{usuarioController.selected}"
-                                 paginator="true"
+                                 paginator="true" widgetVar="usuario"
                                  rowKey="#{item.idUsuario}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  paginatorPosition="bottom"
                              emptyMessage="No se encontraron resultados."
                              sortBy="#{item.idUsuario}"
-                             sortOrder="descending">
+                             sortOrder="descending"
+                              filteredValue="#{usuarioController.lista}">
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
+                        <f:facet name="header">
+                            <p:inputText id="globalFilter"
+                                         placeholder="Buscar" 
+                                         onkeyup="PF('usuario').filter()" 
+                                         style="font-size: 18px !important;margin: 10px; text-align: center;border-radius: 20px;
+                                         padding: 7px 0px;width: 500px; "  /> 
+                        </f:facet> 
                        
-                        <p:column>
+                        <p:column sortBy="#{item.usuario}" filterBy="#{item.usuario}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsuarioTitle_usuario}"/>
                             </f:facet>
                             <h:outputText value="#{item.usuario}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.clave}" filterBy="#{item.clave}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsuarioTitle_clave}"/>
                             </f:facet>
                             <h:outputText value="#{item.clave}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column sortBy="#{item.idDatosPersonales.nombres}" filterBy="#{item.idDatosPersonales.nombres}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Datos Personales"/>
                             </f:facet>
                             <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.idDatosPersonales.apellidos}" filterBy="#{item.idDatosPersonales.apellidos}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListUsuarioTitle_idTipoOperador}"/>
                             </f:facet>

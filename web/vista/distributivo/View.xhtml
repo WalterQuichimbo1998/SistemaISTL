@@ -8,8 +8,9 @@
 
     <ui:composition>
 
-        <p:dialog id="DistributivoViewDlg" widgetVar="DistributivoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDistributivoTitle}">
-            <h:form id="DistributivoViewForm">
+        <p:dialog id="DistributivoViewDlg" widgetVar="DistributivoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDistributivoTitle}"
+                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="DistributivoViewForm" style="width: 500px;">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{distributivoController.selected != null}">
                         
@@ -29,27 +30,27 @@
                         <h:outputText value="#{distributivoController.selected.numeroDeSemanas}" title="#{bundle.ViewDistributivoTitle_numeroDeSemanas}"/>
                         
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idDatosPersonales}"/>
-                        <h:outputText value="#{distributivoController.selected.idDatosPersonales}" title="#{bundle.ViewDistributivoTitle_idDatosPersonales}"/>
+                        <h:outputText value="#{distributivoController.selected.idDatosPersonales.nombres}" title="#{bundle.ViewDistributivoTitle_idDatosPersonales}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idJornadaAcademica}"/>
-                        <h:outputText value="#{distributivoController.selected.idJornadaAcademica}" title="#{bundle.ViewDistributivoTitle_idJornadaAcademica}"/>
+                        <h:outputText value="#{distributivoController.selected.idJornadaAcademica.tipoJornada}" title="#{bundle.ViewDistributivoTitle_idJornadaAcademica}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idMateria}"/>
-                        <h:outputText value="#{distributivoController.selected.idMateria}" title="#{bundle.ViewDistributivoTitle_idMateria}"/>
+                        <h:outputText value="#{distributivoController.selected.idMateria.materia}" title="#{bundle.ViewDistributivoTitle_idMateria}"/>
                         <h:outputText value="Nivel Académico"/>
-                        <h:outputText value="#{distributivoController.selected.idNivelAcademico}" title="#{bundle.ViewDistributivoTitle_idNivelAcademico}"/>
+                        <h:outputText value="#{distributivoController.selected.idNivelAcademico.nivelAcademico}" title="#{bundle.ViewDistributivoTitle_idNivelAcademico}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idParalelo}"/>
-                        <h:outputText value="#{distributivoController.selected.idParalelo}" title="#{bundle.ViewDistributivoTitle_idParalelo}"/>
+                        <h:outputText value="#{distributivoController.selected.idParalelo.nombreParalelo}" title="#{bundle.ViewDistributivoTitle_idParalelo}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idPerfilAcademico}"/>
-                        <h:outputText value="#{distributivoController.selected.idPerfilAcademico}" title="#{bundle.ViewDistributivoTitle_idPerfilAcademico}"/>
+                        <h:outputText value="#{distributivoController.selected.idPerfilAcademico.tituloContrato}" title="#{bundle.ViewDistributivoTitle_idPerfilAcademico}"/>
                         <h:outputText value="Periodo Académico Semestre"/>
-                        <h:outputText value="#{distributivoController.selected.idPeriodoAcademicoSemestre}" title="#{bundle.ViewDistributivoTitle_idPeriodoAcademicoSemestre}"/>
+                        <h:outputText value="#{distributivoController.selected.idPeriodoAcademicoSemestre.nombre}" title="#{bundle.ViewDistributivoTitle_idPeriodoAcademicoSemestre}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idTablaInvestigacion}"/>
-                        <h:outputText value="#{distributivoController.selected.idTablaInvestigacion}" title="#{bundle.ViewDistributivoTitle_idTablaInvestigacion}"/>
+                        <h:outputText value="#{distributivoController.selected.idTablaInvestigacion.nombreProyectoInvestigacion}" title="#{bundle.ViewDistributivoTitle_idTablaInvestigacion}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idTipoTiempo}"/>
-                        <h:outputText value="#{distributivoController.selected.idTipoTiempo}" title="#{bundle.ViewDistributivoTitle_idTipoTiempo}"/>
+                        <h:outputText value="#{distributivoController.selected.idTipoTiempo.tipo}" title="#{bundle.ViewDistributivoTitle_idTipoTiempo}"/>
                         <h:outputText value="#{bundle.ViewDistributivoLabel_idTituloCarrera}"/>
-                        <h:outputText value="#{distributivoController.selected.idTituloCarrera}" title="#{bundle.ViewDistributivoTitle_idTituloCarrera}"/>
+                        <h:outputText value="#{distributivoController.selected.idTituloCarrera.nombreTitulo}" title="#{bundle.ViewDistributivoTitle_idTituloCarrera}"/>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="DistributivoViewDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" oncomplete="PF('DistributivoViewDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

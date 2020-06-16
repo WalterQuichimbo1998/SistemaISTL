@@ -12,13 +12,11 @@
             <h:form id="PResidenciaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pResidenciaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPResidenciaLabel_idPResidencia}"/>
-                        <h:outputText value="#{pResidenciaController.selected.idPResidencia}" title="#{bundle.ViewPResidenciaTitle_idPResidencia}"/>
-                        <h:outputText value="#{bundle.ViewPResidenciaLabel_nombre}"/>
-                        <h:outputText value="#{pResidenciaController.selected.nombre}" title="#{bundle.ViewPResidenciaTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewPResidenciaLabel_estado}"/>
+                          <h:outputText value="Provincia"/>
+                          <h:outputText value="#{pResidenciaController.selected.nombre}" title="#{bundle.ViewPResidenciaTitle_nombre}"/>
+                        <h:outputText value="Fecha registro"/>
                         <h:outputText value="#{pResidenciaController.selected.estado}" title="#{bundle.ViewPResidenciaTitle_estado}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
                         </h:outputText>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PResidenciaViewDialog.hide()"/>

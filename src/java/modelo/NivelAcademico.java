@@ -21,14 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "nivel_academico", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "NivelAcademico.findAll", query = "SELECT n FROM NivelAcademico n")
     , @NamedQuery(name = "NivelAcademico.findByIdNivelAcademico", query = "SELECT n FROM NivelAcademico n WHERE n.idNivelAcademico = :idNivelAcademico")
@@ -36,9 +38,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "NivelAcademico.findByEstado", query = "SELECT n FROM NivelAcademico n WHERE n.estado = :estado")
     , @NamedQuery(name = "NivelAcademico.findByFechaDeRegistro", query = "SELECT n FROM NivelAcademico n WHERE n.fechaDeRegistro = :fechaDeRegistro")})
 public class NivelAcademico implements Serializable {
-
-    @OneToMany(mappedBy = "idNivelAcademico")
-    private List<FormalizarMatricula> formalizarMatriculaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -102,6 +101,7 @@ public class NivelAcademico implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }
@@ -110,6 +110,7 @@ public class NivelAcademico implements Serializable {
         this.distributivoList = distributivoList;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -118,6 +119,7 @@ public class NivelAcademico implements Serializable {
         this.personaList = personaList;
     }
 
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -126,6 +128,7 @@ public class NivelAcademico implements Serializable {
         this.matriculaList = matriculaList;
     }
 
+    @XmlTransient
     public List<Materia> getMateriaList() {
         return materiaList;
     }
@@ -156,16 +159,7 @@ public class NivelAcademico implements Serializable {
 
     @Override
     public String toString() {
-        return this.nivelAcademico;
-    }
-
-    @XmlTransient
-    public List<FormalizarMatricula> getFormalizarMatriculaList() {
-        return formalizarMatriculaList;
-    }
-
-    public void setFormalizarMatriculaList(List<FormalizarMatricula> formalizarMatriculaList) {
-        this.formalizarMatriculaList = formalizarMatriculaList;
+        return nivelAcademico;
     }
     
 }

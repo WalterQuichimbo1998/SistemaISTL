@@ -17,8 +17,7 @@ import modelo.Usuario;
 
 /**
  *
- * @author JANETH
- * @param <T>
+ * @author TOSHIBA
  */
 public abstract class AbstractFacade<T> {
 
@@ -68,8 +67,9 @@ public abstract class AbstractFacade<T> {
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
     }
+    
 
-    public DatosPersonales filtrarper(String num_identificacion) {
+        public DatosPersonales filtrarper(String num_identificacion) {
         EntityManager em = getEntityManager();
         DatosPersonales per = null;
         try {
@@ -129,4 +129,6 @@ public abstract class AbstractFacade<T> {
         }
         return list;
     }
+
+    
 }

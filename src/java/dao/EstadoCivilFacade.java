@@ -12,7 +12,7 @@ import modelo.EstadoCivil;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class EstadoCivilFacade extends AbstractFacade<EstadoCivil> {

@@ -28,12 +28,7 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="ID"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTipoMatricula}"/>
-                        </p:column>
+                    
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoMatriculaTitle_tipo}"/>
@@ -46,25 +41,26 @@
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTipoMatriculaTitle_estado}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.estado}"/>
-                        </p:column>
+                       
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoMatriculaTitle_fechaDeRegistro}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaDeRegistro}">
-                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoMatriculaController.prepareCreate}" update=":TipoMatriculaCreateForm" oncomplete="PF('TipoMatriculaCreateDialog').show()"/>
                             <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":TipoMatriculaViewForm" oncomplete="PF('TipoMatriculaViewDialog').show()" disabled="#{empty tipoMatriculaController.selected}"/>
                             <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoMatriculaEditForm" oncomplete="PF('TipoMatriculaEditDialog').show()" disabled="#{empty tipoMatriculaController.selected}"/>
-                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoMatriculaController.destroy}" update=":growl,datalist" disabled="#{empty tipoMatriculaController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoMatriculaController.destroy}" update=":growl,datalist" disabled="#{empty tipoMatriculaController.selected}">
+                                <p:confirm message="Eliminar Registro" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
+                                </p:commandButton>                      
+                                <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
+                                </p:confirmDialog>
                         </f:facet>
                     </p:dataTable>
             </h:form>

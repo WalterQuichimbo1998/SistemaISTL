@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuarioTitle}">
+        <p:dialog id="UsuarioViewDlg" widgetVar="UsuarioViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuarioTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="UsuarioViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuarioController.selected != null}">
@@ -29,7 +30,7 @@
                         <h:outputText value="#{bundle.ViewUsuarioLabel_idTipoOperador}"/>
                         <h:outputText value="#{usuarioController.selected.idTipoOperador}" title="#{bundle.ViewUsuarioTitle_idTipoOperador}"/>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="UsuarioViewDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" oncomplete="PF('UsuarioViewDialog').hide();" />
                 </h:panelGroup>
             </h:form>
         </p:dialog>

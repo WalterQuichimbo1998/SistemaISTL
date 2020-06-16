@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.Provincia;
 
 @Named("cantonController")
 @SessionScoped
@@ -26,7 +27,9 @@ public class CantonController implements Serializable {
     @EJB
     private dao.CantonFacade ejbFacade;
     private List<Canton> items = null;
+    private List<Canton> lista = null;
     private Canton selected;
+    private Provincia selectedP;
 
     public CantonController() {
     }
@@ -38,7 +41,27 @@ public class CantonController implements Serializable {
     public void setSelected(Canton selected) {
         this.selected = selected;
     }
+     public Provincia getSelectedP() {
+        return selectedP;
+    }
 
+    public void setSelectedP(Provincia selectedP) {
+        this.selectedP = selectedP;
+        lista=null;
+    }
+    public List<Canton> getLista() {
+        if(lista==null){
+            lista=ejbFacade.listaCanton(selectedP.getIdProvincia());
+        }
+        return lista;
+    }
+
+    public void setLista(List<Canton> lista) {
+        this.lista = lista;
+    }
+
+   
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -56,6 +79,7 @@ public class CantonController implements Serializable {
     }
 
     public void create() {
+        this.selected.setIdProvincia(selectedP);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("CantonCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

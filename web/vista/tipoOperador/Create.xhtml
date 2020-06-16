@@ -8,17 +8,18 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoOperadorCreateDlg" widgetVar="TipoOperadorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoOperadorTitle}">
+        <p:dialog id="TipoOperadorCreateDlg" widgetVar="TipoOperadorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoOperadorTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoOperadorCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoOperadorController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateTipoOperadorLabel_operador}" for="operador" />
-                        <p:inputText id="operador" value="#{tipoOperadorController.selected.operador}" title="#{bundle.CreateTipoOperadorTitle_operador}" />
+                        <p:inputText id="operador" value="#{tipoOperadorController.selected.operador}" title="#{bundle.CreateTipoOperadorTitle_operador}" required="true" requiredMessage="Complete"/>
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoOperadorController.create}" value="#{bundle.Save}" update="display,:TipoOperadorListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoOperadorCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoOperadorCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoOperadorCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

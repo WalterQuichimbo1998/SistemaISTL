@@ -12,7 +12,7 @@ import modelo.Etnia;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class EtniaFacade extends AbstractFacade<Etnia> {

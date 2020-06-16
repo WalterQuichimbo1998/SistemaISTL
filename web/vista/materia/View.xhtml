@@ -12,9 +12,7 @@
             <h:form id="MateriaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{materiaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewMateriaLabel_idMateria}"/>
-                        <h:outputText value="#{materiaController.selected.idMateria}" title="#{bundle.ViewMateriaTitle_idMateria}"/>
-                        <h:outputText value="#{bundle.ViewMateriaLabel_codMateria}"/>
+                         <h:outputText value="#{bundle.ViewMateriaLabel_codMateria}"/>
                         <h:outputText value="#{materiaController.selected.codMateria}" title="#{bundle.ViewMateriaTitle_codMateria}"/>
                         <h:outputText value="#{bundle.ViewMateriaLabel_descripcion}"/>
                         <h:outputText value="#{materiaController.selected.descripcion}" title="#{bundle.ViewMateriaTitle_descripcion}"/>
@@ -30,14 +28,14 @@
                         <h:outputText value="#{materiaController.selected.estado}" title="#{bundle.ViewMateriaTitle_estado}"/>
                         <h:outputText value="#{bundle.ViewMateriaLabel_fechaDeRegistro}"/>
                         <h:outputText value="#{materiaController.selected.fechaDeRegistro}" title="#{bundle.ViewMateriaTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            <f:convertDateTime pattern="dd/MM/yyyy" />
                         </h:outputText>
-                        <h:outputText value="Ciclo"/>
-                        <h:outputText value="#{materiaController.selected.idNivelAcademico.nivelAcademico}" title="#{bundle.ViewMateriaTitle_idNivelAcademico}"/>
-                        <h:outputText value="Título Carrera"/>
-                        <h:outputText value="#{materiaController.selected.idTituloCarrera.nombreTitulo}" title="#{bundle.ViewMateriaTitle_idTituloCarrera}"/>
+                        <h:outputText value="Nivel académico:"/>
+                        <h:outputText value="#{materiaController.selected.idNivelAcademico}" title="#{bundle.ViewMateriaTitle_idNivelAcademico}"/>
+                        <h:outputText value="Carrera:"/>
+                        <h:outputText value="#{materiaController.selected.idTituloCarrera}" title="#{bundle.ViewMateriaTitle_idTituloCarrera}"/>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="MateriaViewDialog.hide()"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="MateriaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

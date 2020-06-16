@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoInstitucionPracticasCreateDlg" widgetVar="TipoInstitucionPracticasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoInstitucionPracticasTitle}">
+        <p:dialog id="TipoInstitucionPracticasCreateDlg" widgetVar="TipoInstitucionPracticasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoInstitucionPracticasTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoInstitucionPracticasCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoInstitucionPracticasController.selected != null}">
@@ -18,7 +19,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoInstitucionPracticasController.create}" value="#{bundle.Save}" update="display,:TipoInstitucionPracticasListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoInstitucionPracticasCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoInstitucionPracticasCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoInstitucionPracticasCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

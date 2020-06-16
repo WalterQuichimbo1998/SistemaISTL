@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog  id="DatosPersonalesCreateDlg" widgetVar="DatosPersonalesCreateDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.CreateDatosPersonalesTitle}" closeOnEscape="true" hideEffect="clip" showEffect="fade" >
+        <p:dialog  id="DatosPersonalesCreateDlg" widgetVar="DatosPersonalesCreateDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.CreateDatosPersonalesTitle}" closeOnEscape="true" hideEffect="clip" showEffect="clip" >
             <h:form id="DatosPersonalesCreateForm"  enctype="multipart/form-data" >
                 <p:growl id="messages" showDetail="false" life="3000" />
                 <p:panel style="margin: 0;margin: auto;padding: 0;">
@@ -21,16 +21,18 @@
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_direccion}" for="direccion" />
                         <p:inputText styleClass="camposDeDatos" id="direccion" value="#{datosPersonalesController.selected.direccion}" title="#{bundle.CreateDatosPersonalesTitle_direccion}" />
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_fechaNacimiento}" for="fechaNacimiento" />
-                        <p:calendar  styleClass="camposDeDatos" id="fechaNacimiento" pattern="MM/dd/yyyy" value="#{datosPersonalesController.selected.fechaNacimiento}" title="#{bundle.EditDatosPersonalesTitle_fechaNacimiento}"  mask="true" navigator="true"/>
+                        <p:calendar  styleClass="camposDeDatos" id="fechaNacimiento" pattern="dd/MM/yyyy" value="#{datosPersonalesController.selected.fechaNacimiento}" title="#{bundle.EditDatosPersonalesTitle_fechaNacimiento}"  mask="true" navigator="true"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_numIdentificacion}" for="numIdentificacion" />
                         <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.CreateDatosPersonalesTitle_numIdentificacion}" />  
                         <p:outputLabel class="labelDatosPersonales" value="Sexo" />
-                        <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.sexo}"> 
-                            <f:selectItem class="labelDatosPersonales"  itemValue = "Hombre" itemLabel = "Hombre" /> 
-                            <f:selectItem class="labelDatosPersonales" itemValue = "Mujer" itemLabel = "Mujer" />
+                        <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.sexo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem  itemValue = "Hombre" itemLabel = "Hombre" /> 
+                            <f:selectItem itemValue = "Mujer" itemLabel = "Mujer" />
                         </p:selectOneMenu>
                         <p:outputLabel class="labelDatosPersonales" value="Género" />
                         <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.genero}"> 
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItem class="labelDatosPersonales" itemValue = "0" itemLabel = "Masculino" /> 
                             <f:selectItem class="labelDatosPersonales" itemValue = "1" itemLabel = "Femenino" />
                         </p:selectOneMenu> 
@@ -43,24 +45,8 @@
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_edad}" for="edad" />
                         <p:inputText styleClass="camposDeDatos" id="edad" value="#{datosPersonalesController.selected.edad}" title="#{bundle.CreateDatosPersonalesTitle_edad}" /> 
                     </h:panelGrid>
-                    <p:fileUpload 
-                        class="labelDatosPersonales"
-                        previewWidth="80"
-                        fileUploadListener="#{datosPersonalesController.handleFileUpload}" 
-                        mode="advanced" 
-                        dragDropSupport="false"
-                        update="messages" 
-                        sizeLimit="1000000"
-                        cancelLabel="Cancelar"
-                        uploadLabel="Subir Imagen"
-                        fileLimitMessage="No Mayor a 1 MB"
-                        invalidSizeMessage="Máximo 1 MB"
-                        invalidFileMessage="Archivo Fallído"
-                        label="Elegir"
-                        fileLimit="1" 
-                        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" /> 
-                            <p:commandButton ajax="false" icon="ui-icon-plus" styleClass="btn_g"  actionListener="#{datosPersonalesController.create}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args,'DatosPersonalesCreateDialog');"/>
-                            <p:commandButton ajax="false" styleClass="btn_s"  icon="ui-icon-close" value="#{bundle.Cancel}" oncomplete="PF('DatosPersonalesCreateDialog').hide()"/>
+                        <p:commandButton ajax="false" icon="ui-icon-plus" styleClass="btn_g"  actionListener="#{datosPersonalesController.create}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args,'DatosPersonalesCreateDialog');"/>
+                            <p:commandButton  styleClass="btn_s"  icon="ui-icon-close" value="#{bundle.Cancel}" oncomplete="PF('DatosPersonalesCreateDialog').hide()"/>
                 </p:panel>
             </h:form>
 

@@ -12,7 +12,8 @@
             <h:form id="ContactoEmergenciaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{contactoEmergenciaController.selected != null}">
-                        
+                        <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_idContacto}"/>
+                        <h:outputText value="#{contactoEmergenciaController.selected.idContacto}" title="#{bundle.ViewContactoEmergenciaTitle_idContacto}"/>
                         <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_nombres}"/>
                         <h:outputText value="#{contactoEmergenciaController.selected.nombres}" title="#{bundle.ViewContactoEmergenciaTitle_nombres}"/>
                         <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_apellidos}"/>
@@ -21,9 +22,14 @@
                         <h:outputText value="#{contactoEmergenciaController.selected.celular}" title="#{bundle.ViewContactoEmergenciaTitle_celular}"/>
                         <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_parentesco}"/>
                         <h:outputText value="#{contactoEmergenciaController.selected.parentesco}" title="#{bundle.ViewContactoEmergenciaTitle_parentesco}"/>
-                        
+                        <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_estado}"/>
+                        <h:outputText value="#{contactoEmergenciaController.selected.estado}" title="#{bundle.ViewContactoEmergenciaTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewContactoEmergenciaLabel_fechaDeRegistro}"/>
+                        <h:outputText value="#{contactoEmergenciaController.selected.fechaDeRegistro}" title="#{bundle.ViewContactoEmergenciaTitle_fechaDeRegistro}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="ContactoEmergenciaViewDialog.hide()"/>
+                    <p:commandButton value="#{bundle.Close}" onclick="ContactoEmergenciaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

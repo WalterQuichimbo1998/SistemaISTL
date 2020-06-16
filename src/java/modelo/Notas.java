@@ -20,13 +20,15 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "notas", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Notas.findAll", query = "SELECT n FROM Notas n")
     , @NamedQuery(name = "Notas.findByIdNotas", query = "SELECT n FROM Notas n WHERE n.idNotas = :idNotas")
@@ -61,12 +63,12 @@ public class Notas implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
+    @JoinColumn(name = "id_datos_personales", referencedColumnName = "id_datos_personales")
+    @ManyToOne
+    private DatosPersonales idDatosPersonales;
     @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
     @ManyToOne
     private Materia idMateria;
-    @JoinColumn(name = "id_persona", referencedColumnName = "id_persona")
-    @ManyToOne
-    private Persona idPersona;
 
     public Notas() {
     }
@@ -139,20 +141,20 @@ public class Notas implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    public DatosPersonales getIdDatosPersonales() {
+        return idDatosPersonales;
+    }
+
+    public void setIdDatosPersonales(DatosPersonales idDatosPersonales) {
+        this.idDatosPersonales = idDatosPersonales;
+    }
+
     public Materia getIdMateria() {
         return idMateria;
     }
 
     public void setIdMateria(Materia idMateria) {
         this.idMateria = idMateria;
-    }
-
-    public Persona getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
     }
 
     @Override

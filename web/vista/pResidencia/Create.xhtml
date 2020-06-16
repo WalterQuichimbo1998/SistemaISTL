@@ -8,19 +8,16 @@
 
     <ui:composition>
 
-        <p:dialog id="PResidenciaCreateDlg" widgetVar="PResidenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePResidenciaTitle}">
+        <p:dialog id="PResidenciaCreateDlg" widgetVar="PResidenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePResidenciaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="PResidenciaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{pResidenciaController.selected != null}">
-                        
-                        <p:outputLabel value="#{bundle.CreatePResidenciaLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{pResidenciaController.selected.nombre}" title="#{bundle.CreatePResidenciaTitle_nombre}" />
-                        
+                        <p:outputLabel value="Provincia" for="nombre1" />
+                        <p:inputText id="nombre1" value="#{pResidenciaController.selected.nombre}" title="Nombre" />
                     </p:panelGrid>
-                    <div class="boxBtnCrud">
                         <p:commandButton styleClass="btn_g" actionListener="#{pResidenciaController.create}" value="#{bundle.Save}" update="display,:PResidenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PResidenciaCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="PResidenciaCreateDialog.hide()"/>
-                    </div>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('PResidenciaCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

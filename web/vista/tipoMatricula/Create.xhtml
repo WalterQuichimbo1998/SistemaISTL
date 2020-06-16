@@ -7,19 +7,20 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoMatriculaCreateDlg" widgetVar="TipoMatriculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoMatriculaTitle}">
+        <p:dialog id="TipoMatriculaCreateDlg" widgetVar="TipoMatriculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateTipoMatriculaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoMatriculaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoMatriculaController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.CreateTipoMatriculaLabel_tipo}" for="tipo" />
-                        <p:inputText id="tipo" value="#{tipoMatriculaController.selected.tipo}" title="#{bundle.CreateTipoMatriculaTitle_tipo}" />
+                        <p:inputText id="tipo" value="#{tipoMatriculaController.selected.tipo}" title="#{bundle.CreateTipoMatriculaTitle_tipo}" required="true" requiredMessage="Complete"/>
                         <p:outputLabel value="#{bundle.CreateTipoMatriculaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tipoMatriculaController.selected.descripcion}" title="#{bundle.CreateTipoMatriculaTitle_descripcion}" />
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoMatriculaController.create}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'TipoMatriculaCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoMatriculaCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoMatriculaCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -43,7 +43,16 @@
                             <f:facet name="header">
                                 <h:outputText value="Foto"/>
                             </f:facet>
-                            <p:graphicImage  id="grbf" alt="image" style="width: 60px;  align-content: center;object-fit:cover;object-position:center center;"  name="#{item.foto}"/>
+                            <div class="imagen">
+                            <p:graphicImage  alt="image" name="#{item.foto}" style=" width: 60px;height: 66px; align-content: center;object-fit:cover;object-position:center center;position:relative;">
+                                <p:commandLink styleClass="foto" title="Cambiar Foto"
+                                                 actionListener="#{datosPersonalesController.setSelected(item)}"
+                                                 oncomplete="PF('form_imagen').show()"
+                                                 update=":datos,:datos2">
+                                    <img src="#{request.contextPath}/resources/images/camara.png" style="width: 24px;height: 24px;"/>
+                                </p:commandLink>
+                            </p:graphicImage>
+                            </div>
                         </p:column>
                         <p:column sortBy="#{item.numIdentificacion}" filterBy="#{item.numIdentificacion}"  filterMatchMode="contains">
                             <f:facet name="header">
@@ -118,6 +127,39 @@
                     </p:dataTable>
                 </h:form>
              </p:panel>
+              <p:dialog id="form_imagen" widgetVar="form_imagen" modal="false" resizable="false" appendTo="@(body)"
+                        closeOnEscape="true" showEffect="clip" hideEffect="clip" showHeader="false"> 
+                  <h1 style="width: 100%;margin: auto;color:#fff;background: #186bbe;font-family: Arial;text-align: center;padding: 3px 0px;border-radius: 3px;">
+                      Cambiar Foto</h1>
+                  <br/>
+                   <h:form id="datos" style="width: 500px;margin: auto;">
+                       <center>
+                           <p:outputLabel value=" #{datosPersonalesController.selected.nombres} #{datosPersonalesController.selected.apellidos}"
+                                          style="width: 100%;margin:auto;font-family: Arial;color:#454545;font-size: 20px !important;"/>
+                       </center>
+                   </h:form>
+                   <h:form enctype="multipart/form-data" id="datos2" >
+                       <p:fileUpload style="width: 500px;margin: auto;"
+                        class="labelDatosPersonales"
+                        previewWidth="80"
+                        fileUploadListener="#{datosPersonalesController.handleFileUpload}" 
+                        mode="advanced" 
+                        dragDropSupport="false"
+                        sizeLimit="1000000"
+                        cancelLabel="Cancelar"
+                        uploadLabel="Subir Foto"
+                        fileLimitMessage="No Mayor a 1 MB"
+                        invalidSizeMessage="Máximo 1 MB"
+                        invalidFileMessage="Archivo Fallído"
+                        label="Seleccionar Foto"
+                        fileLimit="1" 
+                        allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />  </h:form>
+                   <h:form>
+                       <center>
+                    <p:commandButton styleClass="eliminar" style="font-size: 16px" value="Cerrar" immediate="true" onclick="form_imagen.hide()"/>
+                </center>
+                   </h:form>
+        </p:dialog>
             <ui:include src="Create.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>

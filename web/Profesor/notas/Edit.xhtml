@@ -8,11 +8,28 @@
 
     <ui:composition>
 
-        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNotasTitle}">
+        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNotasTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NotasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
                         
+                        <p:outputLabel value="#{bundle.EditNotasLabel_idPersona}" for="idDato" />
+                        <p:selectOneMenu id="idDato" value="#{notasController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione un estudiante">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                         <p:outputLabel value="#{bundle.EditNotasLabel_idMateria}" for="idMateria" />
+                        <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione una materia">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
+                                           var="idMateriaItem"
+                                           itemValue="#{idMateriaItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
                         <p:inputText id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" />
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}" for="parcialDos" />
@@ -24,26 +41,11 @@
                         <p:outputLabel value="#{bundle.EditNotasLabel_notaFinal}" for="notaFinal" />
                         <p:inputText id="notaFinal" value="#{notasController.selected.notaFinal}" title="#{bundle.EditNotasTitle_notaFinal}" />
                         
-                        <p:outputLabel value="#{bundle.EditNotasLabel_idMateria}" for="idMateria" />
-                        <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
-                                           var="idMateriaItem"
-                                           itemValue="#{idMateriaItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditNotasLabel_idPersona}" for="idPersona" />
-                        <p:selectOneMenu id="idPersona" value="#{notasController.selected.idPersona}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{personaController.itemsAvailableSelectOne}"
-                                           var="idPersonaItem"
-                                           itemValue="#{idPersonaItem}"/>
-                        </p:selectOneMenu>
+                       
                     </p:panelGrid>
                     <div class="boxBtnCrud">
                         <p:commandButton styleClass="btn_g" actionListener="#{notasController.update}" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="NotasEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('NotasEditDialog').hide();"/>
                     </div>
                 </h:panelGroup>
             </h:form>

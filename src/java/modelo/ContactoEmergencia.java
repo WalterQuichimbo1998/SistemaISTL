@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "contacto_emergencia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ContactoEmergencia.findAll", query = "SELECT c FROM ContactoEmergencia c")
     , @NamedQuery(name = "ContactoEmergencia.findByIdContacto", query = "SELECT c FROM ContactoEmergencia c WHERE c.idContacto = :idContacto")
@@ -63,7 +65,7 @@ public class ContactoEmergencia implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idContactoEmergencia")
+    @OneToMany(mappedBy = "idContactoEmergencia")
     private List<Persona> personaList;
 
     public ContactoEmergencia() {
@@ -129,6 +131,7 @@ public class ContactoEmergencia implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
@@ -159,7 +162,7 @@ public class ContactoEmergencia implements Serializable {
 
     @Override
     public String toString() {
-        return this.nombres+" "+this.apellidos;
+        return nombres;
     }
     
 }

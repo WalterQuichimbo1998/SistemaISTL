@@ -6,6 +6,7 @@ import beans.util.JsfUtil.PersistAction;
 import dao.UsuarioFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -14,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -26,6 +28,7 @@ public class UsuarioController implements Serializable {
     @EJB
     private dao.UsuarioFacade ejbFacade;
     private List<Usuario> items = null;
+    private List<Usuario> lista = null;
     private Usuario selected;
 
     public UsuarioController() {
@@ -39,6 +42,14 @@ public class UsuarioController implements Serializable {
         this.selected = selected;
     }
 
+    public List<Usuario> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Usuario> lista) {
+        this.lista = lista;
+    }
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -56,6 +67,7 @@ public class UsuarioController implements Serializable {
     }
 
     public void create() {
+        this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -161,5 +173,14 @@ public class UsuarioController implements Serializable {
         }
 
     }
+    public void verificarCrear(){
+        Usuario us=ejbFacade.virifcarUsuario(selected.getIdDatosPersonales().getIdDatosPersonales());
+        if(us==null){
+            create();
+        }else{
+           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "El estudiante ya tiene un usuario.", ""));
+        }
+    }
+   
 
 }

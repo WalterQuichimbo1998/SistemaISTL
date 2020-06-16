@@ -13,7 +13,7 @@ import modelo.Matricula;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class MatriculaFacade extends AbstractFacade<Matricula> {
@@ -31,16 +31,34 @@ public class MatriculaFacade extends AbstractFacade<Matricula> {
     }
 
     public Matricula obtenerMatricula(Integer id) {
-        Matricula matricula = null;
+        Matricula ma = null;
         try {
-            Query q = em.createNativeQuery("SELECT * FROM datos_personales\n"
-                    + "LEFT JOIN persona ON persona.id_datos_personales=datos_personales.id_datos_personales\n"
-                    + "LEFT JOIN matricula ON matricula.id_persona=persona.id_persona\n"
-                    + "WHERE datos_personales.id_datos_personales='" + id + "';", Matricula.class);
-            matricula = (Matricula) q.getSingleResult();
+            Query q = em.createNativeQuery("SELECT * FROM matricula WHERE id_datos_personales='" + id + "';", Matricula.class);
+            ma = (Matricula) q.getSingleResult();
         } catch (Exception e) {
         }
-        return matricula;
+        return ma;
     }
 
+    public Matricula obtenerMatricula2(String cedula) {
+        Matricula ma = null;
+        try {
+            Query q = em.createNativeQuery("SELECT datos_personales.id_datos_personales,matricula.id_matricula FROM datos_personales \n"
+                    + "LEFT JOIN matricula ON datos_personales.id_datos_personales = matricula.id_datos_personales\n"
+                    + "WHERE\n"
+                    + "datos_personales.num_identificacion = '"+cedula+"';", Matricula.class);
+            ma = (Matricula) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return ma;
+    }
+    public Matricula virifcarMatricula(Integer id) {
+        Matricula ma = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_matricula,id_datos_personales FROM matricula WHERE id_datos_personales='" + id + "';", Matricula.class);
+            ma = (Matricula) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return ma;
+    }
 }

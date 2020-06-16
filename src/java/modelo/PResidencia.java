@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "p_residencia", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PResidencia.findAll", query = "SELECT p FROM PResidencia p")
     , @NamedQuery(name = "PResidencia.findByIdPResidencia", query = "SELECT p FROM PResidencia p WHERE p.idPResidencia = :idPResidencia")
@@ -49,9 +52,11 @@ public class PResidencia implements Serializable {
     private Date estado;
     @OneToMany(mappedBy = "idProvinciaResidencia")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idProvinciaResidencia")
+    private List<Matricula> matriculaList; 
 
     public PResidencia() {
-    }
+    } 
 
     public PResidencia(Integer idPResidencia) {
         this.idPResidencia = idPResidencia;
@@ -81,12 +86,22 @@ public class PResidencia implements Serializable {
         this.estado = estado;
     }
 
+    @XmlTransient
     public List<Persona> getPersonaList() {
         return personaList;
     }
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+
+    @XmlTransient
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override

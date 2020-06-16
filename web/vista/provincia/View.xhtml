@@ -12,17 +12,9 @@
             <h:form id="ProvinciaViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{provinciaController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProvinciaLabel_idProvincia}"/>
-                        <h:outputText value="#{provinciaController.selected.idProvincia}" title="#{bundle.ViewProvinciaTitle_idProvincia}"/>
                         <h:outputText value="#{bundle.ViewProvinciaLabel_nombre}"/>
                         <h:outputText value="#{provinciaController.selected.nombre}" title="#{bundle.ViewProvinciaTitle_nombre}"/>
-                        <h:outputText value="#{bundle.ViewProvinciaLabel_estado}"/>
-                        <h:outputText value="#{provinciaController.selected.estado}" title="#{bundle.ViewProvinciaTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewProvinciaLabel_fechaDeRegistro}"/>
-                        <h:outputText value="#{provinciaController.selected.fechaDeRegistro}" title="#{bundle.ViewProvinciaTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                    </p:panelGrid>
+                       </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="ProvinciaViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

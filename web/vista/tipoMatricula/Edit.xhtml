@@ -7,23 +7,18 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoMatriculaEditDlg" widgetVar="TipoMatriculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoMatriculaTitle}">
+        <p:dialog id="TipoMatriculaEditDlg" widgetVar="TipoMatriculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoMatriculaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoMatriculaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoMatriculaController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_idTipoMatricula}" for="idTipoMatricula" />
-                        <p:inputText id="idTipoMatricula" value="#{tipoMatriculaController.selected.idTipoMatricula}" title="#{bundle.EditTipoMatriculaTitle_idTipoMatricula}" required="true" requiredMessage="#{bundle.EditTipoMatriculaRequiredMessage_idTipoMatricula}"/>
                         <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_tipo}" for="tipo" />
-                        <p:inputText id="tipo" value="#{tipoMatriculaController.selected.tipo}" title="#{bundle.EditTipoMatriculaTitle_tipo}" />
+                        <p:inputText id="tipo" value="#{tipoMatriculaController.selected.tipo}" title="#{bundle.EditTipoMatriculaTitle_tipo}" required="true" requiredMessage="Complete"/>
                         <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tipoMatriculaController.selected.descripcion}" title="#{bundle.EditTipoMatriculaTitle_descripcion}" />
-                        <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_estado}" for="estado" />
-                        <p:inputText id="estado" value="#{tipoMatriculaController.selected.estado}" title="#{bundle.EditTipoMatriculaTitle_estado}" required="true" requiredMessage="#{bundle.EditTipoMatriculaRequiredMessage_estado}"/>
-                        <p:outputLabel value="#{bundle.EditTipoMatriculaLabel_fechaDeRegistro}" for="fechaDeRegistro" />
-                        <p:calendar id="fechaDeRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{tipoMatriculaController.selected.fechaDeRegistro}" title="#{bundle.EditTipoMatriculaTitle_fechaDeRegistro}"  showOn="button"/>
-                    </p:panelGrid>
+                         </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoMatriculaController.update}" value="#{bundle.Save}" update="display,:TipoMatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoMatriculaEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoMatriculaEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoMatriculaEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

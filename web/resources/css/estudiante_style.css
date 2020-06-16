@@ -15,13 +15,19 @@ body{
 }
 .cabecera-barra{
     width: 100%;
-    background-color: #F9F9F9;
+    background-color: #e7e7e7;
+    background: #e7e7e7;
     box-shadow: 2px 2px 7px 1px #cccccc;
 }
 .menuBarra{
-    background-color: #E8E8E8;
+    background-color: #e7e7e7 !important;
+    background: #e7e7e7 !important;
     border-style: none;
-    padding-left: 100px;
+    margin:0px !important;
+    margin-top: 0px !important;
+    border-radius: 0px !important;
+    border-color: #e7e7e7 !important;
+    border:1px solid #e7e7e7 !important;
 }
 
 .menuBarra li:hover a, .link-active, .current-menu-item a{
@@ -39,6 +45,15 @@ body{
     border-radius: 0px;
 }
 
+.item .ui-menu-child{
+    background: none;
+    box-shadow: none;
+    outline: none;
+    background:#eee !important; 
+    border-radius: 4px;
+    color:#007bff !important; 
+    box-shadow:none;
+}
 .box_data_panel{
     text-align: center;
 }
@@ -153,6 +168,17 @@ body{
     padding: 10px 5px;
 
 }
+.boxContainerData2{
+    width: 860px;
+    border-radius: 6px;
+    background: #fff;
+    margin: auto;
+    transition: all .3s ease;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+  
+
+}
 .title_datosPersonales{
     font-family: Arial;
     background-color: #4f8ff4;
@@ -179,11 +205,62 @@ body{
     border:none;
     transition: all .3s ease;
 vertical-align: top;
+margin: auto;
 }
+.botones21{
+    width: 65%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+}
+.botones22{
+    width: 32%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+
+}
+.botones23{
+    width: 99%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+
+}
+
+
 .labelDatosPersonales{
     display: block;
     color: #454545;
     font-size: 16px !important;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 0px 5px;
+    font-family: Arial;
+    text-align: left;
+}
+.labelDatos{
+    display: block;
+    color: #454545;
+    font-size: 14px !important;
     margin-bottom: 5px;
     margin-top: 10px;
     padding: 0px 5px;
@@ -451,21 +528,23 @@ vertical-align: top;
      outline: none;
      margin: 0;
      margin-bottom: 0px !important;
+     
 }
 .ui-selectonemenu-label{
      width: 96% !important;
      color:#4f8ff4;
 }  
 .camposDeDatos2.ui-inputfield{
-    width: 94%;
+    width: 97%;
     padding-left: 5px;
     text-align: left;
     font-size: 16px !important;
     color:#4f8ff4;
  
 }
+
 .calendarClass2 .ui-inputfield{
-    width: 94%;
+    width: 97%;
     height: 18px;
     padding-left: 5px;
     font-size: 17px !important;
@@ -511,12 +590,48 @@ vertical-align: top;
     cursor: pointer;
 }
 
+.foto{
+    position: absolute;
+    z-index: 100;
+    margin-top: 100px !important; 
+    margin-left: 100px !important;
+    display: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    border:none;
+}
+#imagen:hover .foto{
+    display: block;
+}
+@media(max-width:1024px){
+    .boxContainerData2{
+        width: 94%;
+         margin: auto;
+    }
+}
 @media(max-width:720px){
     .boxContainerData{
         width: 96%;
         margin: auto;
     }
     .botones2{
+        width:90%;
+        margin: auto;
+    }
+    .boxContainerData2{
+        width: 96%;
+       
+    }
+    .botones21{
+        width:90%;
+        margin: auto;
+    }
+    .botones22{
+        width:90%;
+        margin: auto;
+    }
+    .botones23{
         width:90%;
         margin: auto;
     }

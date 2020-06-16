@@ -7,7 +7,6 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,18 +17,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "practicaspreprofesionales_vinculacion", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PracticaspreprofesionalesVinculacion.findAll", query = "SELECT p FROM PracticaspreprofesionalesVinculacion p")
     , @NamedQuery(name = "PracticaspreprofesionalesVinculacion.findByIdpracticasPreprofesionalesvinculacion", query = "SELECT p FROM PracticaspreprofesionalesVinculacion p WHERE p.idpracticasPreprofesionalesvinculacion = :idpracticasPreprofesionalesvinculacion")
@@ -52,8 +52,6 @@ public class PracticaspreprofesionalesVinculacion implements Serializable {
     private Date fechaDeRegistro;
     @Column(name = "estado")
     private Integer estado;
-    @OneToMany(mappedBy = "idpracticaspreProfesionalesvinculacion")
-    private List<Matricula> matriculaList;
     @JoinColumn(name = "id_alcance_vinculacion", referencedColumnName = "id_alcance_vinculacion")
     @ManyToOne
     private AlcanceVinculacion idAlcanceVinculacion;
@@ -104,14 +102,6 @@ public class PracticaspreprofesionalesVinculacion implements Serializable {
 
     public void setEstado(Integer estado) {
         this.estado = estado;
-    }
-
-    public List<Matricula> getMatriculaList() {
-        return matriculaList;
-    }
-
-    public void setMatriculaList(List<Matricula> matriculaList) {
-        this.matriculaList = matriculaList;
     }
 
     public AlcanceVinculacion getIdAlcanceVinculacion() {

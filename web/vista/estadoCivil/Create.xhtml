@@ -7,17 +7,18 @@
 
     <ui:composition>
 
-        <p:dialog id="EstadoCivilCreateDlg" widgetVar="EstadoCivilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEstadoCivilTitle}">
+        <p:dialog id="EstadoCivilCreateDlg" widgetVar="EstadoCivilCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEstadoCivilTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="EstadoCivilCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{estadoCivilController.selected != null}">
                        
-                        <p:outputLabel value="#{bundle.CreateEstadoCivilLabel_estadoCivill}" for="estadoCivill" />
-                        <p:inputText id="estadoCivill" value="#{estadoCivilController.selected.estadoCivill}" title="#{bundle.CreateEstadoCivilTitle_estadoCivill}" />
+                        <p:outputLabel value="Estado Civil" for="estadoCivil" />
+                        <p:inputText id="estadoCivil" value="#{estadoCivilController.selected.estadoCivill}" title="Estado Civil" />
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{estadoCivilController.create}" value="#{bundle.Save}" update="display,:EstadoCivilListForm:datalist,:growl" oncomplete="handleSubmit(args,'EstadoCivilCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="EstadoCivilCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('EstadoCivilCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

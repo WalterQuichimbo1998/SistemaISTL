@@ -22,14 +22,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_matricula", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoMatricula.findAll", query = "SELECT t FROM TipoMatricula t")
     , @NamedQuery(name = "TipoMatricula.findByIdTipoMatricula", query = "SELECT t FROM TipoMatricula t WHERE t.idTipoMatricula = :idTipoMatricula")
@@ -38,9 +40,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "TipoMatricula.findByEstado", query = "SELECT t FROM TipoMatricula t WHERE t.estado = :estado")
     , @NamedQuery(name = "TipoMatricula.findByFechaDeRegistro", query = "SELECT t FROM TipoMatricula t WHERE t.fechaDeRegistro = :fechaDeRegistro")})
 public class TipoMatricula implements Serializable {
-
-    @OneToMany(mappedBy = "idTipoMatricula")
-    private List<FormalizarMatricula> formalizarMatriculaList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -63,7 +62,7 @@ public class TipoMatricula implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoMatricula")
     private List<Matricula> matriculaList;
-
+ 
     public TipoMatricula() {
     }
 
@@ -116,19 +115,21 @@ public class TipoMatricula implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
+   
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idTipoMatricula != null ? idTipoMatricula.hashCode() : 0);
+        return hash;
+    }
+
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
 
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idTipoMatricula != null ? idTipoMatricula.hashCode() : 0);
-        return hash;
     }
 
     @Override
@@ -147,15 +148,6 @@ public class TipoMatricula implements Serializable {
     @Override
     public String toString() {
         return this.tipo;
-    }
-
-    @XmlTransient
-    public List<FormalizarMatricula> getFormalizarMatriculaList() {
-        return formalizarMatriculaList;
-    }
-
-    public void setFormalizarMatriculaList(List<FormalizarMatricula> formalizarMatriculaList) {
-        this.formalizarMatriculaList = formalizarMatriculaList;
     }
     
 }

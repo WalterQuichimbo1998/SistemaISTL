@@ -3,17 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
 
-        <p:dialog id="NotasViewDlg" widgetVar="NotasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNotasTitle}">
+        <p:dialog id="NotasViewDlg" widgetVar="NotasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNotasTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NotasViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
-                        <h:outputText value="#{bundle.ViewNotasLabel_idNotas}"/>
-                        <h:outputText value="#{notasController.selected.idNotas}" title="#{bundle.ViewNotasTitle_idNotas}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_idPersona}"/>
+                        <h:outputText value="#{notasController.selected.idDatosPersonales.nombres} #{notasController.selected.idDatosPersonales.nombres}" title="#{bundle.ViewNotasTitle_idPersona}"/>
+                   
+                        <h:outputText value="#{bundle.ViewNotasLabel_idMateria}"/>
+                        <h:outputText value="#{notasController.selected.idMateria.materia}" title="#{bundle.ViewNotasTitle_idMateria}"/>
                         <h:outputText value="#{bundle.ViewNotasLabel_parcialUno}"/>
                         <h:outputText value="#{notasController.selected.parcialUno}" title="#{bundle.ViewNotasTitle_parcialUno}"/>
                         <h:outputText value="#{bundle.ViewNotasLabel_parcialDos}"/>
@@ -26,15 +29,8 @@
                         <h:outputText value="#{notasController.selected.notaFinal}" title="#{bundle.ViewNotasTitle_notaFinal}"/>
                         <h:outputText value="#{bundle.ViewNotasLabel_estado}"/>
                         <h:outputText value="#{notasController.selected.estado}" title="#{bundle.ViewNotasTitle_estado}"/>
-                        <h:outputText value="#{bundle.ViewNotasLabel_fechaDeRegistro}"/>
-                        <h:outputText value="#{notasController.selected.fechaDeRegistro}" title="#{bundle.ViewNotasTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewNotasLabel_idMateria}"/>
-                        <h:outputText value="#{notasController.selected.idMateria}" title="#{bundle.ViewNotasTitle_idMateria}"/>
-                        <h:outputText value="#{bundle.ViewNotasLabel_idPersona}"/>
-                        <h:outputText value="#{notasController.selected.idPersona}" title="#{bundle.ViewNotasTitle_idPersona}"/>
-                    </p:panelGrid>
+                        
+                           </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NotasViewDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

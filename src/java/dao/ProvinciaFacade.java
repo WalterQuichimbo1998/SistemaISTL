@@ -5,14 +5,16 @@
  */
 package dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.Provincia;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class ProvinciaFacade extends AbstractFacade<Provincia> {
@@ -29,4 +31,11 @@ public class ProvinciaFacade extends AbstractFacade<Provincia> {
         super(Provincia.class);
     }
     
+      public List<Provincia> listaProvincia(Integer id){ 
+        Query q=em.createNativeQuery("SELECT * FROM provincia WHERE id_nacionalidad ="+id+";", Provincia.class);  
+        List<Provincia> lista=q.getResultList();
+        return lista;
+    }
+
+
 }

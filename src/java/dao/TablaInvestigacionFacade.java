@@ -12,7 +12,7 @@ import modelo.TablaInvestigacion;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TablaInvestigacionFacade extends AbstractFacade<TablaInvestigacion> {

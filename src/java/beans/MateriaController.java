@@ -6,14 +6,15 @@ import beans.util.JsfUtil.PersistAction;
 import dao.MateriaFacade;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.ejb.EJBException;
-import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -26,6 +27,7 @@ public class MateriaController implements Serializable {
     @EJB
     private dao.MateriaFacade ejbFacade;
     private List<Materia> items = null;
+    private List<Materia> lista = null;
     private Materia selected;
 
     public MateriaController() {
@@ -38,6 +40,15 @@ public class MateriaController implements Serializable {
     public void setSelected(Materia selected) {
         this.selected = selected;
     }
+
+    public List<Materia> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Materia> lista) {
+        this.lista = lista;
+    }
+    
 
     protected void setEmbeddableKeys() {
     }
@@ -56,6 +67,7 @@ public class MateriaController implements Serializable {
     }
 
     public void create() {
+        this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MateriaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.

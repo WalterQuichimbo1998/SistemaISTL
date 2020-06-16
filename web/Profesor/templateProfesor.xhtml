@@ -7,18 +7,20 @@
 
     <h:head>
         <title>ITSL</title>
+         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="shortcut icon" href="../resources/images/favicon.ico"></link>
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputStylesheet name="css/profesor_style.css"/>
         <h:outputStylesheet name="css/footer_style.css"/>
-        <script src="../resources/js/all.js"></script>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+
     </h:head>
     <h:body>
         <div class="cabecera-barra">
             <p:growl id="growl" life="3000" />
             <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
             <h:form>
-                <p:menubar class="menuBarra">
+                <p:menubar class="menuBarra" >
                     <p:menuitem value="#{bundle.Home}" outcome="/Profesor/profeInicio.xhtml" icon="ui-icon-home"/>
                     <p:menuitem value="Datos Personales" outcome="/Profesor/datosPersonales.xhtml" icon="ui-icon-script"/>
                     <p:menuitem value="Notas" outcome="/Profesor/notas/List.xhtml" icon="ui-icon-bookmark"/>
@@ -33,15 +35,41 @@
             <br/>
             <div class="centro_panel">
                 <ui:insert name="body">
-
+                     <h:form>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">NOTAS</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
+                        <h:outputText class="ob des_label" value="Administra las notas de los estudiantes" />
+                        <h:commandButton class="ob btn_form" action="/Profesor/notas/List.xhtml" value="VER MAS" />
+                    </div>
+                </div>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">REPORTE</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
+                        <h:outputText class="ob des_label" value="Descarga el reporte de notas de los estudiantes" />
+                        <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias.xhtml" value="VER MAS" />
+                    </div>
+                </div>
+            </h:form>
                 </ui:insert>
             </div>
         </div>
 
         <div id="bottom">
-            <ui:insert name="footer">
-                <ui:include src="/template/footer.xhtml"/>
-            </ui:insert>
+            <div class="box_footer">
+        <div class="box_iconos">
+            <a class="icono_footer" href="#"><i class="icon_footer fab fa-facebook-f"></i></a>
+            <a class="icono_footer" href="#"><i class="icon_footer fab fa-twitter"></i></a>
+            <a class="icono_footer" href="#"><i class="icon_footer fab fa-google-plus-g"></i></a>
+        </div>
+        <div class="box_txt">
+            <p class="uno">Términos y Condiciones</p>
+            <p class="uno">Política de privacidad</p>
+        </div>
+        <p class="txt_copy">Copyright (c) 2020, <b>ISTL</b></p>
+    </div>
         </div>
         <p:dialog styleClass="logout" id="form_logout" widgetVar="form_logout" modal="true" resizable="false" appendTo="@(body)" header="Cerrar Sesión" 
                   closeOnEscape="true" showEffect="clip" hideEffect="clip" showHeader="false" > 

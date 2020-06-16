@@ -16,13 +16,19 @@ body{
 }
 .cabecera-barra{
     width: 100%;
-    background-color: #F9F9F9;
+    background-color: #e7e7e7;
+    background: #e7e7e7;
     box-shadow: 2px 2px 7px 1px #cccccc;
 }
 .menuBarra{
-    background-color: #E8E8E8;
+    background-color: #e7e7e7 !important;
+    background: #e7e7e7 !important;
     border-style: none;
-    padding-left: 100px;
+    margin:0px !important;
+    margin-top: 0px !important;
+    border-radius: 0px !important;
+    border-color: #e7e7e7 !important;
+    border:1px solid #e7e7e7 !important;
 }
 
 .menuBarra li:hover a, .link-active, .current-menu-item a{
@@ -38,6 +44,16 @@ body{
     margin: 0;
     outline: none;
     border-radius: 0px;
+}
+
+.item .ui-menu-child{
+    background: none;
+    box-shadow: none;
+    outline: none;
+    background:#eee !important; 
+    border-radius: 4px;
+    color:#007bff !important; 
+    box-shadow:none;
 }
 .box_data_panel{
     text-align: center;
@@ -134,8 +150,8 @@ body{
 /*  QUITAR ESTILOS PRIMEFACES*/
 .ui-inputfield {
     margin: 0;
-    /*padding: 5px;*/
-    background: #ffffff;
+    height: 20px;
+    line-height: 20px;
     font-weight: normal;
     outline: medium none;
     box-shadow: inset 0 0 0 #8f8f8f!important;
@@ -446,10 +462,20 @@ body{
 
 }
 .ui-datatable-header{
-    background: none;
-    border:none;
+    background-color: #e8e7e7;
+    border:1px solid #e8e7e7;
     box-shadow:none;
-
+}
+.ui-datatable .ui-column-filter{
+    background:none;
+    width:0px;
+    height:0px;
+    padding: 0;
+    margin: 0;
+    box-shadow:none;
+    border:none;
+    outline: none;
+    display: none;
 }
 .ui-datatable .ui-sortable-column{
     background:  #9ecdfb;
@@ -791,6 +817,20 @@ body{
     color: white;
     box-shadow: 0px 0px 1px 1px #454545; 
     -webkit-box-shadow: 0px 0px 1px 1px #454545;
+}
+.foto{
+    position: absolute;
+    z-index: 100;
+    margin-top: 100px !important; 
+    margin-left: 100px !important;
+    display: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    border:none;
+}
+#imagen:hover .foto{
+    display: block;
 }
 @media(max-width:720px){
     .boxContainerData{

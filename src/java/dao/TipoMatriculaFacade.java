@@ -12,7 +12,7 @@ import modelo.TipoMatricula;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoMatriculaFacade extends AbstractFacade<TipoMatricula> {

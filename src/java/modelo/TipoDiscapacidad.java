@@ -22,13 +22,16 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_discapacidad", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoDiscapacidad.findAll", query = "SELECT t FROM TipoDiscapacidad t")
     , @NamedQuery(name = "TipoDiscapacidad.findByIdTipoDiscapacidad", query = "SELECT t FROM TipoDiscapacidad t WHERE t.idTipoDiscapacidad = :idTipoDiscapacidad")
@@ -59,6 +62,8 @@ public class TipoDiscapacidad implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoDiscapacidad")
     private List<Discapacidad> discapacidadList;
+    @OneToMany(mappedBy = "idTipoDiscapacidad")
+    private List<Matricula> matriculaList;
 
     public TipoDiscapacidad() {
     }
@@ -112,13 +117,16 @@ public class TipoDiscapacidad implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public List<Discapacidad> getDiscapacidadList() {
-        return discapacidadList;
+     @XmlTransient
+
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
     }
 
-    public void setDiscapacidadList(List<Discapacidad> discapacidadList) {
-        this.discapacidadList = discapacidadList;
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
+    
 
     @Override
     public int hashCode() {
@@ -142,7 +150,7 @@ public class TipoDiscapacidad implements Serializable {
 
     @Override
     public String toString() {
-        return this.discapacidad;
+        return discapacidad;
     }
     
 }

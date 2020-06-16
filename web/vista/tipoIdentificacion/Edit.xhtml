@@ -8,19 +8,20 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoIdentificacionEditDlg" widgetVar="TipoIdentificacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoIdentificacionTitle}">
+        <p:dialog id="TipoIdentificacionEditDlg" widgetVar="TipoIdentificacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoIdentificacionTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoIdentificacionEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoIdentificacionController.selected != null}">
                         
                         <p:outputLabel value="#{bundle.EditTipoIdentificacionLabel_tipo}" for="tipo" />
-                        <p:inputText id="tipo" value="#{tipoIdentificacionController.selected.tipo}" title="#{bundle.EditTipoIdentificacionTitle_tipo}" />
+                        <p:inputText id="tipo" value="#{tipoIdentificacionController.selected.tipo}" title="#{bundle.EditTipoIdentificacionTitle_tipo}" required="true" requiredMessage="Complete"/>
                         <p:outputLabel value="#{bundle.EditTipoIdentificacionLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{tipoIdentificacionController.selected.descripcion}" title="#{bundle.EditTipoIdentificacionTitle_descripcion}" />
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoIdentificacionController.update}" value="#{bundle.Save}" update="display,:TipoIdentificacionListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoIdentificacionEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoIdentificacionEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('TipoIdentificacionEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

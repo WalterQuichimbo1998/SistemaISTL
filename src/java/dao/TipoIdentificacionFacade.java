@@ -12,7 +12,7 @@ import modelo.TipoIdentificacion;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class TipoIdentificacionFacade extends AbstractFacade<TipoIdentificacion> {

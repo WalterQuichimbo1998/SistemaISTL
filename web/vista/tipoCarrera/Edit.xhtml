@@ -8,7 +8,8 @@
 
     <ui:composition>
 
-        <p:dialog id="TipoCarreraEditDlg" widgetVar="TipoCarreraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoCarreraTitle}">
+        <p:dialog id="TipoCarreraEditDlg" widgetVar="TipoCarreraEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoCarreraTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TipoCarreraEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tipoCarreraController.selected != null}">
@@ -18,7 +19,7 @@
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{tipoCarreraController.update}" value="#{bundle.Save}" update="display,:TipoCarreraListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoCarreraEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="TipoCarreraEditDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('TipoCarreraEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

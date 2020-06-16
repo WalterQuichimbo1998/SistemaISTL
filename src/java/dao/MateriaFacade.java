@@ -12,7 +12,7 @@ import modelo.Materia;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Stateless
 public class MateriaFacade extends AbstractFacade<Materia> {

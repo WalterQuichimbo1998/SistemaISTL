@@ -8,17 +8,19 @@
 
     <ui:composition>
 
-        <p:dialog id="CantonCreateDlg" widgetVar="CantonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCantonTitle}">
+        <p:dialog id="CantonCreateDlg" widgetVar="CantonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateCantonTitle}"
+                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="CantonCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{cantonController.selected != null}">
                        
                         <p:outputLabel value="#{bundle.CreateCantonLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{cantonController.selected.nombre}" title="#{bundle.CreateCantonTitle_nombre}" />
+                        <p:inputText id="nombre" value="#{cantonController.selected.nombre}" title="#{bundle.CreateCantonTitle_nombre}" 
+                                     onkeyup="javascript:this.value = this.value.toUpperCase();"/>
                         
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{cantonController.create}" value="#{bundle.Save}" update="display,:CantonListForm:datalist,:growl" oncomplete="handleSubmit(args,'CantonCreateDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="CantonCreateDialog.hide()"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('CantonCreateDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

@@ -12,24 +12,16 @@
             <h:form id="PracticaspreprofesionalesVinculacionViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{practicaspreprofesionalesVinculacionController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_idpracticasPreprofesionalesvinculacion}"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idpracticasPreprofesionalesvinculacion}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idpracticasPreprofesionalesvinculacion}"/>
-                        <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_nrohoraspracticasPreprosionales}"/>
+                          <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_nrohoraspracticasPreprosionales}"/>
                         <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.nrohoraspracticasPreprosionales}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_nrohoraspracticasPreprosionales}"/>
-                        <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_fechaDeRegistro}"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.fechaDeRegistro}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_fechaDeRegistro}">
-                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
-                        </h:outputText>
-                        <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_estado}"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.estado}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_estado}"/>
                         <h:outputText value="Alcance Vinculacion"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idAlcanceVinculacion}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idAlcanceVinculacion}"/>
+                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idAlcanceVinculacion.alcance}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idAlcanceVinculacion}"/>
                         <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_idDatosPersonales}"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idDatosPersonales}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idDatosPersonales}"/>
+                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idDatosPersonales.nombres}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idDatosPersonales}"/>
                         <h:outputText value="#{bundle.ViewPracticaspreprofesionalesVinculacionLabel_idsectorpracticasPreprofesionales}"/>
                         <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idsectorpracticasPreprofesionales}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idsectorpracticasPreprofesionales}"/>
                         <h:outputText value="Institucion Practicas"/>
-                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idtipoinstitucionpracticasPreprofesionales}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idtipoinstitucionpracticasPreprofesionales}"/>
+                        <h:outputText value="#{practicaspreprofesionalesVinculacionController.selected.idtipoinstitucionpracticasPreprofesionales.nombreTipo}" title="#{bundle.ViewPracticaspreprofesionalesVinculacionTitle_idtipoinstitucionpracticasPreprofesionales}"/>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PracticaspreprofesionalesVinculacionViewDialog.hide()"/>
                 </h:panelGroup>

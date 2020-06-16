@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "tipo_carrera", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "TipoCarrera.findAll", query = "SELECT t FROM TipoCarrera t")
     , @NamedQuery(name = "TipoCarrera.findByIdTipoCarrera", query = "SELECT t FROM TipoCarrera t WHERE t.idTipoCarrera = :idTipoCarrera")
@@ -92,19 +95,22 @@ public class TipoCarrera implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public List<Matricula> getMatriculaList() {
-        return matriculaList;
-    }
-
-    public void setMatriculaList(List<Matricula> matriculaList) {
-        this.matriculaList = matriculaList;
-    }
+    @XmlTransient
+   
 
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (idTipoCarrera != null ? idTipoCarrera.hashCode() : 0);
         return hash;
+    }
+
+    public List<Matricula> getMatriculaList() {
+        return matriculaList;
+    }
+
+    public void setMatriculaList(List<Matricula> matriculaList) {
+        this.matriculaList = matriculaList;
     }
 
     @Override

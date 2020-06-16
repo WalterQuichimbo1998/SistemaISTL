@@ -16,12 +16,19 @@ body{
 }
 .cabecera-barra{
     width: 100%;
-    background-color: #F9F9F9;
+    background-color: #e7e7e7;
+    background: #e7e7e7;
     box-shadow: 2px 2px 7px 1px #cccccc;
 }
 .menuBarra{
-    background-color: #E8E8E8;
+    background-color: #e7e7e7 !important;
+    background: #e7e7e7 !important;
     border-style: none;
+    margin:0px !important;
+    margin-top: 0px !important;
+    border-radius: 0px !important;
+    border-color: #e7e7e7 !important;
+    border:1px solid #e7e7e7 !important;
 }
 
 .menuBarra li:hover a, .link-active, .current-menu-item a{
@@ -43,14 +50,16 @@ body{
     background: none;
     box-shadow: none;
     outline: none;
-    background: #eee;
+    background:#eee !important; 
+    border-radius: 4px;
+    color:#007bff !important; 
     box-shadow:none;
 }
-.item_2:hover{
+/*.item_2:hover{
     width:100%; 
     background:#29a0c7 !important; 
     color:#fff !important;
-}
+}*/
 
 
 .box_data_panel{
@@ -171,12 +180,14 @@ body{
 /*  QUITAR ESTILOS PRIMEFACES*/
 .ui-inputfield {
     margin: 0;
-    /*padding: 5px;*/
+    height: 20px;
+    line-height: 20px;
     background: #ffffff;
     font-weight: normal;
     outline: medium none;
     box-shadow: inset 0 0 0 #8f8f8f!important;
     -webkit-box-shadow: inset 0 0 0 #8f8f8f!important;
+    outline: none !important;
 }
 .ui-selectonemenu .ui-selectonemenu-label {
     width: 100%;
@@ -190,13 +201,113 @@ body{
     font-weight: normal;    
 }
 
+.boxContainerData2{
+    width: 860px;
+    border-radius: 6px;
+    background: #fff;
+    margin: auto;
+    transition: all .3s ease;
+    box-shadow: 0px 0px 1px 1px #ccc;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+}
 
-/*@media(max-width:720px){
+.ui-selectonemenu{
+     width: 98% !important;
+     font-size: 16px !important;
+     box-shadow:none;
+     outline: none;
+     margin: 0;
+     margin-bottom: 0px !important;
+     
+}
+.ui-selectonemenu-label{
+     width: 96% !important;
+     color:#4f8ff4;
+}  
+.camposDeDatos2.ui-inputfield{
+    width: 97%;
+    padding-left: 5px;
+    text-align: left;
+    font-size: 16px !important;
+    color:#4f8ff4;
+ 
+}
 
-    .centro_panel{
-        width: 100%;
-    }
-}*/
+.calendarClass2 .ui-inputfield{
+    width: 97%;
+    height: 18px;
+    padding-left: 5px;
+    font-size: 17px !important;
+    color:#4f8ff4;
+    
+}
+.ui-selectonemenu .ui-selectonemenu-label {
+    width: 100%;
+    border: none;
+    display: block;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    margin-bottom: 0px;
+    white-space: nowrap;
+    font-weight: normal;    
+}
+
+.ui-selectonemenu .ui-selectonemenu-label.ui-inputfield.ui-corner-all {
+    text-overflow: ellipsis;
+}
+.botones2{
+    width: 44%;
+    height: auto;
+    border:none;   
+    background: none;
+    margin: 10px;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: auto;
+}
+
+.botones21{
+    width: 65%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+}
+.botones22{
+    width: 32%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+
+}
+.botones23{
+    width: 99%;
+    height: auto;
+    border:none;   
+    background: none;
+    outline: none;
+    display: inline-block;
+    border:none;
+    transition: all .3s ease;
+vertical-align: top;
+margin: 4px;
+
+}
 
 .cancelar.ui-button{
     height: 50px; 
@@ -456,9 +567,8 @@ body{
 }
 .ui-datatable-header{
     background-color: #e8e7e7;
-    border:1px solid #E8E8E8;
+    border:1px solid #e8e7e7;
     box-shadow:none;
-
 
 }
 
@@ -491,6 +601,7 @@ body{
     outline: none;
     border:none;
     color: #000;
+
 }
 .ui-datatable tbody tr {
     height: 40px;   
@@ -530,7 +641,27 @@ body{
     background: none;
 
 }
-
+.title_datosPersonales{
+    font-family: Arial;
+    background-color: #4f8ff4;
+    color: #fff;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-shadow:1px 1px #454545;
+    padding: 5px 0px;
+    border-radius: 6px;
+}
+.labelDatos{
+    display: block;
+    color: #454545;
+    font-size: 14px !important;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    padding: 0px 5px;
+    font-family: Arial;
+    text-align: left;
+}
 .crear.ui-button{
     background: #57a3f4; 
     height: 30px; 
@@ -720,6 +851,27 @@ body{
     overflow: scroll;
 
 }
+
+.foto{
+    position: absolute;
+    z-index: 100;
+    margin-top: 45px !important; 
+    margin-left: 44px !important;
+    display: none;
+    outline: none;
+    background: none;
+    box-shadow: none;
+    border:none;
+}
+.imagen:hover .foto{
+    display: block;
+}
+@media(max-width:1024px){
+    .boxContainerData2{
+        width: 94%;
+         margin: auto;
+    }
+}
 @media(max-width:720px){
     .boxContainerData{
         width: 96%;
@@ -729,16 +881,29 @@ body{
         width:90%;
         margin: auto;
     }
+     .boxContainerData2{
+        width: 96%;
+       
+    }
+    .botones21{
+        width:90%;
+        margin: auto;
+    }
+    .botones22{
+        width:90%;
+        margin: auto;
+    }
+    .botones23{
+        width:90%;
+        margin: auto;
+    }
     #foto{
         margin-top: 14px;
     }
     #espa{
         display: none;
     }
-    .title_datosPersonales{
-        margin: 0px;
-        margin-bottom: 10px;
-    }
+    
     .btn_actualizarEstudiante{
         font-size: 27px;
         width: 180px;

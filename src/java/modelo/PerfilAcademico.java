@@ -23,16 +23,20 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "perfil_academico", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "PerfilAcademico.findAll", query = "SELECT p FROM PerfilAcademico p")
     , @NamedQuery(name = "PerfilAcademico.findByIdPerfilAcademico", query = "SELECT p FROM PerfilAcademico p WHERE p.idPerfilAcademico = :idPerfilAcademico")
+    , @NamedQuery(name = "PerfilAcademico.findByIdDatosPersonales", query = "SELECT p FROM PerfilAcademico p WHERE p.idDatosPersonales = :idDatosPersonales")
     , @NamedQuery(name = "PerfilAcademico.findByTituloContrato", query = "SELECT p FROM PerfilAcademico p WHERE p.tituloContrato = :tituloContrato")
     , @NamedQuery(name = "PerfilAcademico.findByOtrosTitulos", query = "SELECT p FROM PerfilAcademico p WHERE p.otrosTitulos = :otrosTitulos")
     , @NamedQuery(name = "PerfilAcademico.findByGradoOcupacional", query = "SELECT p FROM PerfilAcademico p WHERE p.gradoOcupacional = :gradoOcupacional")
@@ -46,6 +50,7 @@ public class PerfilAcademico implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_perfil_academico")
     private Integer idPerfilAcademico;
+
     @Size(max = 45)
     @Column(name = "titulo_contrato")
     private String tituloContrato;
@@ -60,12 +65,11 @@ public class PerfilAcademico implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
+    @OneToMany(mappedBy = "idPerfilAcademico")
+    private List<Distributivo> distributivoList;
     @JoinColumn(name = "id_datos_personales", referencedColumnName = "id_datos_personales")
     @ManyToOne
     private DatosPersonales idDatosPersonales;
-    @OneToMany(mappedBy = "idPerfilAcademico")
-    private List<Distributivo> distributivoList;
-
     public PerfilAcademico() {
     }
 
@@ -80,6 +84,18 @@ public class PerfilAcademico implements Serializable {
     public void setIdPerfilAcademico(Integer idPerfilAcademico) {
         this.idPerfilAcademico = idPerfilAcademico;
     }
+
+    public DatosPersonales getIdDatosPersonales() {
+        return idDatosPersonales;
+    }
+
+    public void setIdDatosPersonales(DatosPersonales idDatosPersonales) {
+        this.idDatosPersonales = idDatosPersonales;
+    }
+
+    
+
+   
 
     public String getTituloContrato() {
         return tituloContrato;
@@ -121,14 +137,7 @@ public class PerfilAcademico implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-    public DatosPersonales getIdDatosPersonales() {
-        return idDatosPersonales;
-    }
-
-    public void setIdDatosPersonales(DatosPersonales idDatosPersonales) {
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
+    @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;
     }

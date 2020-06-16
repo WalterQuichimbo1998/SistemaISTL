@@ -12,14 +12,18 @@
             <h:form id="DiscapacidadEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{discapacidadController.selected != null}">
-                        
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_idDiscapacidad}" for="idDiscapacidad" />
+                        <p:inputText id="idDiscapacidad" value="#{discapacidadController.selected.idDiscapacidad}" title="#{bundle.EditDiscapacidadTitle_idDiscapacidad}" required="true" requiredMessage="#{bundle.EditDiscapacidadRequiredMessage_idDiscapacidad}"/>
                         <p:outputLabel value="#{bundle.EditDiscapacidadLabel_numCarnetConadis}" for="numCarnetConadis" />
                         <p:inputText id="numCarnetConadis" value="#{discapacidadController.selected.numCarnetConadis}" title="#{bundle.EditDiscapacidadTitle_numCarnetConadis}" />
                         <p:outputLabel value="#{bundle.EditDiscapacidadLabel_porcentajeDiscapacidad}" for="porcentajeDiscapacidad" />
                         <p:inputText id="porcentajeDiscapacidad" value="#{discapacidadController.selected.porcentajeDiscapacidad}" title="#{bundle.EditDiscapacidadTitle_porcentajeDiscapacidad}" />
                         <p:outputLabel value="#{bundle.EditDiscapacidadLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{discapacidadController.selected.descripcion}" title="#{bundle.EditDiscapacidadTitle_descripcion}" />
-                        
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{discapacidadController.selected.estado}" title="#{bundle.EditDiscapacidadTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_fechaDeRegistro}" for="fechaDeRegistro" />
+                        <p:calendar id="fechaDeRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{discapacidadController.selected.fechaDeRegistro}" title="#{bundle.EditDiscapacidadTitle_fechaDeRegistro}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditDiscapacidadLabel_idTipoDiscapacidad}" for="idTipoDiscapacidad" />
                         <p:selectOneMenu id="idTipoDiscapacidad" value="#{discapacidadController.selected.idTipoDiscapacidad}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -28,8 +32,8 @@
                                            itemValue="#{idTipoDiscapacidadItem}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                        <p:commandButton styleClass="btn_g" actionListener="#{discapacidadController.update}" value="#{bundle.Save}" update="display,:DiscapacidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiscapacidadEditDialog');"/>
-                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="DiscapacidadEditDialog.hide()"/>
+                    <p:commandButton actionListener="#{discapacidadController.update}" value="#{bundle.Save}" update="display,:DiscapacidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiscapacidadEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiscapacidadEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

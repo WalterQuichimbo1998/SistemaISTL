@@ -21,13 +21,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author JANETH
+ * @author TOSHIBA
  */
 @Entity
 @Table(name = "sector_economico", catalog = "sistema_gestion", schema = "")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "SectorEconomico.findAll", query = "SELECT s FROM SectorEconomico s")
     , @NamedQuery(name = "SectorEconomico.findByIdSectorEconomico", query = "SELECT s FROM SectorEconomico s WHERE s.idSectorEconomico = :idSectorEconomico")
@@ -92,6 +95,7 @@ public class SectorEconomico implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
+    @XmlTransient
     public List<PracticaspreprofesionalesVinculacion> getPracticaspreprofesionalesVinculacionList() {
         return practicaspreprofesionalesVinculacionList;
     }
@@ -122,7 +126,7 @@ public class SectorEconomico implements Serializable {
 
     @Override
     public String toString() {
-        return this.sectorEconomico;
+        return sectorEconomico;
     }
     
 }
