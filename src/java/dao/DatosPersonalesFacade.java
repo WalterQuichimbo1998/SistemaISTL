@@ -38,6 +38,15 @@ public class DatosPersonalesFacade extends AbstractFacade<DatosPersonales> {
         }
         return datosPersonales;
     }
+     public DatosPersonales verificarCedula(String cedula) {
+        DatosPersonales datosPersonales = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_datos_personales,num_identificacion FROM datos_personales WHERE num_identificacion = '" + cedula + "';", DatosPersonales.class);
+            datosPersonales = (DatosPersonales) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return datosPersonales;
+    }
      public DatosPersonales obtenerDatos(Integer id) {
         DatosPersonales datosPersonales = null;
         try {

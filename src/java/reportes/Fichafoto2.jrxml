@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="556" pageHeight="842" columnWidth="556" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2150f90b-0b42-4a46-99e2-3a217a826be1">
-	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="553"/>
+	<property name="ireport.y" value="185"/>
 	<parameter name="num_identificacion" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="periodo" class="java.lang.Integer">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -82,7 +85,7 @@ LEFT JOIN `materia` materia ON nivel_academico.`id_nivel_academico` = materia.`i
      AND titulo_carrera.`id_titulo_carrera` = materia.`id_titulo_carrera`
      AND nivel_academico.`id_nivel_academico` = materia.`id_nivel_academico`
 WHERE
-     datos_personales.num_identificacion = $P!{num_identificacion}]]>
+     datos_personales.num_identificacion = $P{num_identificacion} AND matricula.id_periodo_academico=$P{periodo}]]>
 	</queryString>
 	<field name="id_datos_personales" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -633,7 +636,7 @@ WHERE
 				<reportElement x="61" y="427" width="100" height="20" uuid="d85465d6-005b-4a9c-82bf-1c2f65292a2a"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="150" y="401" width="274" height="17" uuid="716e7965-0d65-43dd-a4ae-227d19454aac"/>
+				<reportElement x="135" y="401" width="274" height="17" uuid="716e7965-0d65-43dd-a4ae-227d19454aac"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -817,7 +820,7 @@ WHERE
 				<text><![CDATA[SECRETARIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="118" y="50" width="47" height="20" uuid="ac93f427-6347-4365-ba8b-22e9bc305c17"/>
+				<reportElement x="118" y="50" width="47" height="16" uuid="ac93f427-6347-4365-ba8b-22e9bc305c17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>

@@ -24,7 +24,8 @@
                         <label class="txt_titles">Usuario</label>
                         <div class="caja">
                             <i class="icon fas fa-user"></i>
-                            <h:inputText  class="txt" required="true" maxlength="60" autocomplete="off" value="#{accesoBean.selected.usuario}"/>
+                            <h:inputText  class="txt" id="inputId" required="true" maxlength="60" autocomplete="off" value="#{accesoBean.selected.usuario}"/>
+                        <p:focus for="inputId"/>
                         </div>
                         <label class="txt_titles">Contraseña</label>
                         <div class="caja">

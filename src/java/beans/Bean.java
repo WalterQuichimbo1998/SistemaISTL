@@ -20,7 +20,6 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import modelo.DatosPersonales;
-import modelo.PerfilAcademico;
 import modelo.PeriodoAcademico;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
@@ -33,11 +32,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.export.JRXlsExporter;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Usuario
@@ -238,7 +232,7 @@ public class Bean implements Serializable {
     public void imprimirCertificado() throws Exception {
         reportPdf = null;
         if (ejbFacadeMa.obtenerMatricula2(paramCertificado) == null) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Número de cédula no ragistrada.", ""));
 
         } else {
             File fichero = new File(getClass().getResource("/reportes/CertificadoMatricula2.jasper").toURI());
@@ -379,6 +373,7 @@ public class Bean implements Serializable {
     }
 
     public void imprimirfichaFoto() throws Exception {
+        if(ejbFacadeDP.verificarCedula(parametroFicha2)!=null){
         String relativePath = "";
         datosPersonales = null;
         datosPersonales = ejbFacadeDP.obtenerFoto(parametroFicha2);
@@ -406,6 +401,7 @@ public class Bean implements Serializable {
             parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
             parametros.put("num_identificacion", getParametroFicha2());
             parametros.put("foto", in);
+            parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
 
             //Compilamos el archivo XML y lo cargamos en memoria
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
@@ -423,6 +419,9 @@ public class Bean implements Serializable {
             FacesContext.getCurrentInstance().responseComplete();
 
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
+        }}else{
+     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Número de cédula no ragistrada.", ""));
+
         }
     }
 
