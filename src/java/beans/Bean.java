@@ -20,6 +20,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import modelo.DatosPersonales;
+import modelo.PerfilAcademico;
+import modelo.PeriodoAcademico;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JRExporterParameter;
 
@@ -45,6 +47,12 @@ import net.sf.jasperreports.engine.export.JRXlsExporter;
 
 public class Bean implements Serializable {
 
+    @EJB
+    private dao.MatriculaFacade ejbFacadeMa;
+    @EJB
+    private dao.DatosPersonalesFacade ejbFacadeDP;
+//    @EJB
+//    private PeriodoAcademicoFacade ejbFacadePeriodo;
     private static final long serialVersionUID = 1L;
 
     private String text;
@@ -64,10 +72,10 @@ public class Bean implements Serializable {
     private final String logotipo = "/reportes/logo.jpg";
     private final String logotipo1 = "/reportes/logo1.png";
     private DatosPersonales datosPersonales = null;
-    @EJB
-    private dao.MatriculaFacade ejbFacadeMa;
-    @EJB
-    private dao.DatosPersonalesFacade ejbFacadeDP;
+
+//    private List<PerfilAcademico> itemsPerfilAcademico = null;
+    private PeriodoAcademico periodoAcademicoSelected;
+//    private List<PerfilAcademico> lista = null;
 
     public Bean() {
     }
@@ -167,6 +175,25 @@ public class Bean implements Serializable {
         this.param3 = param3;
     }
 
+    public PeriodoAcademico getPeriodoAcademicoSelected() {
+        return periodoAcademicoSelected;
+    }
+
+    public void setPeriodoAcademicoSelected(PeriodoAcademico periodoAcademicoSelected) {
+        this.periodoAcademicoSelected = periodoAcademicoSelected;
+    }
+
+    
+  
+
+//    public PeriodoAcademicoFacade getEjbFacadePeriodo() {
+//        return ejbFacadePeriodo;
+//    }
+//
+//    public void setEjbFacadePeriodo(PeriodoAcademicoFacade ejbFacadePeriodo) {
+//        this.ejbFacadePeriodo = ejbFacadePeriodo;
+//    }
+
 //
 //    public void recibir(){
 //    String param1 = getParametro() ;
@@ -221,6 +248,7 @@ public class Bean implements Serializable {
                 //parametros que enviamos al report.
                 parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
                 parametros.put("num_identificacion", getParamCertificado());
+                parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
                 //Exportamos el reporte a pdf y lo guardamos en disco
                 reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
@@ -355,17 +383,13 @@ public class Bean implements Serializable {
         datosPersonales = null;
         datosPersonales = ejbFacadeDP.obtenerFoto(parametroFicha2);
         if (datosPersonales != null) {
-            System.out.println("entro");
             if (datosPersonales.getFoto().equals("foto/0000000000.png")) {
                 relativePath = "/resources/foto/0000000000.png";
-                System.out.println("sin foto");
             } else {
-                 System.out.println("con foto");
                 relativePath = "/resources/" + datosPersonales.getFoto();
             }
         } else {
-            System.out.println("sin cedula");
-             relativePath = "/resources/foto/0000000000.png";
+            relativePath = "/resources/foto/0000000000.png";
         }
 
         String absolutePath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(relativePath);

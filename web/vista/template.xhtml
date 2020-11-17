@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
         <title>ITSL</title>
@@ -21,7 +22,7 @@
             <h:form style="margin: 0;margin-top: 0px;padding: 0;">
                 <p:growl id="messages" showDetail="false" life="3000" />
                 <p:menubar styleClass="menuBarra">
-                    <p:menuitem value="#{bundle.Home} " outcome="/vista/administrador.xhtml" icon="ui-icon-home"/>
+                    <p:menuitem value="#{bundle.Home} " outcome="/vista/template.xhtml" icon="ui-icon-home"/>
 
                     <p:submenu label="Datos Matrícula" styleClass="item" icon="ui-icon-person">
                         <p:menuitem value="Datos personales" styleClass="item_2" outcome="/vista/datosPersonales/List.xhtml"/>  
@@ -121,6 +122,14 @@
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="certificado.png" />
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.paramCertificado}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
+                                <p:outputLabel value="Periódo Académico"  />
+                             <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom: 5px;" 
+                                                 effect="fade" filter="true" filterMatchMode="contains" height="140" required="true" requiredMessage="Seleccione el periódo académico" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idPeriodoAcademicoItem"
+                                                   itemValue="#{idPeriodoAcademicoItem}"/>
+                                </p:selectOneMenu>
                                 <h:commandButton class="ob btn_form" action="#{bean.imprimirCertificado()}" value="DESCARGAR CERTIFICADO" title="Descargar"/>
                             </div>
 
