@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <h:head>
+        <title>ITSL</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="shortcut icon" href="../resources/images/favicon.ico"></link>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputStylesheet name="css/estudiante_style.css"/>
+        <h:outputStylesheet name="css/footer_style.css"/>
+        <script src="../resources/js/all.js"></script>
+    </h:head>    
+    <h:body>
+        <p:growl id="growl" life="3000" />
+        <div class="cabecera-barra">
+            <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
+            <h:form>
+
+                <p:menubar class="menuBarra">
+                    <p:menuitem value="#{bundle.Home}" action="/Estudiante/templateEstudiante?faces-redirect=true" icon="ui-icon-home"/>
+                    <p:menuitem value="Datos Personales" action="/Estudiante/datosPersonales?faces-redirect=true" icon="ui-icon-script"/>
+                   
+                    <c:if test="#{matriculaController.datosP()==false}">
+                        <p:menuitem value="Matricula" actionListener="#{matriculaController.prepareCreate}" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
+                    </c:if>
+                    <c:if test="#{matriculaController.datosP()==true}">
+                        <p:menuitem value="Matricula" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
+                    </c:if>
+                    
+                    <p:menuitem value="Información"  action="/Estudiante/infoEstu?faces-redirect=true" icon="ui-icon-info"/>
+                    <p:menuitem value="Cerrar Sesión" icon="ui-icon-power" oncomplete="PF('form_logout').show()"/>
+                </p:menubar>
+            </h:form>
+        </div>
+
+        <div class="panel_continer">
+            <br/>
+            <div class="centro_panel">
+                <ui:insert name="body">
+                    <h:form>
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">DATOS PERSONALES</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
+                                <h:outputText class="ob des_label" value="Revisa tus datos personales" />
+                                <h:commandButton class="ob btn_form" action="/Estudiante/datosPersonales.xhtml" value="VER MAS" />
+                            </div>
+                        </div>
+
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">REPORTE DE NOTAS</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
+                                <h:outputText class="ob des_label" value="Revisa tus notas" />
+                                <h:commandButton class="ob btn_form" actionListener="#{bean.imprimirNotas2(datosPersonalesController.selected.numIdentificacion)}" value="DESCARGAR" />
+                            </div>
+                        </div>
+
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">DATOS DE MATRICULA</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="formulario.png" />
+                                <h:outputText class="ob des_label" value="Revisa tus datos de matrícula" />
+                                <h:commandButton class="ob btn_form" actionListener="#{bean.doImprimirFicha2(datosPersonalesController.selected.numIdentificacion)}" value="DESCARGAR"  />
+                            </div>
+                        </div>
+                    </h:form>
+                </ui:insert>
+            </div>
+        </div>
+
+        <div id="bottom">
+            <div class="box_footer">
+                <div class="box_iconos">
+                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-facebook-f"></i></a>
+                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-twitter"></i></a>
+                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-google-plus-g"></i></a>
+                </div>
+                <div class="box_txt">
+                    <p class="uno">Términos y Condiciones</p>
+                    <p class="uno">Política de privacidad</p>
+                </div>
+                <p class="txt_copy">Copyright (c) 2020, <b>ISTL</b></p>
+            </div>
+        </div>
+        <p:dialog styleClass="logout" id="form_logout" widgetVar="form_logout" modal="true" resizable="false" appendTo="@(body)" header="Cerrar Sesión" 
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip" showHeader="false" > 
+            <h:form class="session2" >
+                <br/>
+                <div style="width: 120px; height: 120px; margin: auto; background: white; ">
+                    <img style="width: 120px; height: 120px;" 
+                         src="#{request.contextPath}/resources/images/logout.png"></img>
+                </div>
+                <br/>
+
+                <br/>
+                <h2 class="textoSalida">Cerrar Sesión</h2>
+                <br/>
+                <center>
+                    <p:commandButton styleClass="boton" style="font-size: 18px" value="SI" action="#{accesoBean.logout()}" />           
+                    <p:commandButton styleClass="boton2" style="font-size: 18px" value="NO" oncomplete="PF('form_logout').hide()"/>
+                </center>
+            </h:form>	
+
+        </p:dialog>
+    </h:body>    
+
+
+</html>

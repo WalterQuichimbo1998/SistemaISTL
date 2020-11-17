@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MatriculaCreateDlg" widgetVar="MatriculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMatriculaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="MatriculaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{matriculaController.selected != null}">
+                        <p:outputLabel value="N.Formulario:" for="numeroFormulario" />
+                        <p:inputText id="numeroFormulario" value="#{matriculaController.selected.numeroFormulario}" title="#{bundle.CreateMatriculaTitle_numeroFormulario}" required="true" requiredMessage="Ingrese número de Formmulario"/>
+                        <p:outputLabel value="Código Matricula:" for="codigoMatricula" />
+                        <p:inputText id="codigoMatricula" value="#{matriculaController.selected.codigoMatricula}" title="#{bundle.CreateMatriculaTitle_codigoMatricula}" required="true" requiredMessage="Ingrese código de matricula"/>
+                        <p:outputLabel value="Fecha Matricula:" for="fechaMatricula" />
+                        <p:calendar id="fechaMatricula" pattern="MM/dd/yyyy" value="#{matriculaController.selected.fechaMatricula}" title="#{bundle.EditMatriculaTitle_fechaMatricula}" mask="true" navigator="true" required="true" requiredMessage="Ingrese fecha matricula"/>
+                         <p:outputLabel value="Tipo Matricula:" for="idTipoMatricula" />
+                        <p:selectOneMenu id="idTipoMatricula" value="#{matriculaController.selected.idTipoMatricula}" >
+                            <f:selectItems value="#{tipoMatriculaController.itemsAvailableSelectOne}"
+                                           var="idTipoMatriculaItem"
+                                           itemValue="#{idTipoMatriculaItem}"/>
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="Persona:" for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{matriculaController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160"
+                                         required="true" requiredMessage="Seleccione una persona">
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                      
+                        <p:outputLabel value="Nivel Académico:" for="idNivelAcademico" />
+                        <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" 
+                                          required="true" requiredMessage="Seleccione el nivel académico">
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
+                                           var="idNivelAcademicoItem"
+                                           itemValue="#{idNivelAcademicoItem}"/>
+                        </p:selectOneMenu>
+                         <p:outputLabel value="Paralelo:" for="idParalelo" />
+                        <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" >
+                            <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
+                                           var="idParaleloItem"
+                                           itemValue="#{idParaleloItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Periódo Académico:" for="idPeriodoAcademico" />
+                        <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" 
+                                          required="true" requiredMessage="Seleccione el periódo académico">
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                           var="idPeriodoAcademicoItem"
+                                           itemValue="#{idPeriodoAcademicoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Carrera:" for="idTituloCarrera" />
+                        <p:selectOneMenu id="idTituloCarrera" value="#{matriculaController.selected.idTituloCarrera}" 
+                                          required="true" requiredMessage="Seleccione el titulo">
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                           var="idTituloCarreraItem"
+                                           itemValue="#{idTituloCarreraItem}"/>
+                        </p:selectOneMenu>
+                        
+                    </p:panelGrid>
+                    <p:commandButton styleClass="btn_g" actionListener="#{matriculaController.verificarCrear()}" value="#{bundle.Save}" update="display,:MatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MatriculaCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" onclick="MatriculaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

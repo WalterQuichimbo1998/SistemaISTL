@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MateriaCreateDlg" widgetVar="MateriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMateriaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="MateriaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{materiaController.selected != null}">
+                         <p:outputLabel value="#{bundle.CreateMateriaLabel_codMateria}" for="codMateria" />
+                        <p:inputText id="codMateria" value="#{materiaController.selected.codMateria}" title="#{bundle.CreateMateriaTitle_codMateria}" />
+                        <p:outputLabel value="#{bundle.CreateMateriaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{materiaController.selected.descripcion}" title="#{bundle.CreateMateriaTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.CreateMateriaLabel_materia}" for="materia" />
+                        <p:inputText id="materia" value="#{materiaController.selected.materia}" title="#{bundle.CreateMateriaTitle_materia}" required="true" requiredMessage="Complete"/>
+                        <p:outputLabel value="#{bundle.CreateMateriaLabel_creditos}" for="creditos" />
+                        <p:inputText id="creditos" value="#{materiaController.selected.creditos}" title="#{bundle.CreateMateriaTitle_creditos}" />
+                        <p:outputLabel value="#{bundle.CreateMateriaLabel_numHoras}" for="numHoras" />
+                        <p:inputText id="numHoras" value="#{materiaController.selected.numHoras}" title="#{bundle.CreateMateriaTitle_numHoras}" />
+                        <p:outputLabel value="#{bundle.CreateMateriaLabel_numHorasSemanales}" for="numHorasSemanales" />
+                        <p:inputText id="numHorasSemanales" value="#{materiaController.selected.numHorasSemanales}" title="#{bundle.CreateMateriaTitle_numHorasSemanales}" />
+                       <p:outputLabel value="Nivel académico:" for="idNivelAcademico" />
+                        <p:selectOneMenu id="idNivelAcademico" value="#{materiaController.selected.idNivelAcademico}" required="true" requiredMessage="Seleccione un nivel">
+                            <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
+                                           var="idNivelAcademicoItem"
+                                           itemValue="#{idNivelAcademicoItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="Carrera:" for="idTituloCarrera" />
+                        <p:selectOneMenu id="idTituloCarrera" value="#{materiaController.selected.idTituloCarrera}" required="true" requiredMessage="Seleccione una carrera">
+                            <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                           var="idTituloCarreraItem"
+                                           itemValue="#{idTituloCarreraItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton styleClass="btn_g" actionListener="#{materiaController.create}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MateriaCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MateriaCreateDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

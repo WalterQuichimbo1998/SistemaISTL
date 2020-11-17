@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="555" pageHeight="802" columnWidth="535" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="6d5235ca-a918-4c3f-b5c7-b4ac51330d39">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="num_identificacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     datos_personales.`id_datos_personales` AS datos_personales_id_datos_personales,
+     datos_personales.`nombres` AS datos_personales_nombres,
+     datos_personales.`apellidos` AS datos_personales_apellidos,
+     datos_personales.`correo_electronico` AS datos_personales_correo_electronico,
+     datos_personales.`direccion` AS datos_personales_direccion,
+     datos_personales.`fecha_nacimiento` AS datos_personales_fecha_nacimiento,
+     datos_personales.`num_identificacion` AS datos_personales_num_identificacion,
+     datos_personales.`sexo` AS datos_personales_sexo,
+     datos_personales.`genero` AS datos_personales_genero,
+     datos_personales.`celular` AS datos_personales_celular,
+     datos_personales.`convencional` AS datos_personales_convencional,
+     datos_personales.`cod_postal` AS datos_personales_cod_postal,
+     datos_personales.`edad` AS datos_personales_edad,
+     datos_personales.`estado` AS datos_personales_estado,
+     datos_personales.`fecha_de_registro` AS datos_personales_fecha_de_registro,
+     persona.`id_persona` AS persona_id_persona,
+     persona.`id_tipo_identificacion` AS persona_id_tipo_identificacion,
+     persona.`id_contacto_emergencia` AS persona_id_contacto_emergencia,
+     persona.`id_etnia` AS persona_id_etnia,
+     persona.`id_tipo_sangre` AS persona_id_tipo_sangre,
+     persona.`id_nacionalidad` AS persona_id_nacionalidad,
+     persona.`id_estado_civil` AS persona_id_estado_civil,
+     persona.`id_discapacidad` AS persona_id_discapacidad,
+     persona.`idioma_ancestral` AS persona_idioma_ancestral,
+     persona.`descripcion_idioma_ancestral` AS persona_descripcion_idioma_ancestral,
+     persona.`id_tipo_operador` AS persona_id_tipo_operador,
+     persona.`id_datos_personales` AS persona_id_datos_personales,
+     persona.`id_provincia_residencia` AS persona_id_provincia_residencia,
+     persona.`id_canton_nacimiento` AS persona_id_canton_nacimiento,
+     persona.`id_provincia_nacimiento` AS persona_id_provincia_nacimiento,
+     persona.`pais_nacionalidad` AS persona_pais_nacionalidad,
+     persona.`pais_residencia` AS persona_pais_residencia,
+     persona.`posee_discapacidad` AS persona_posee_discapacidad,
+     persona.`estado` AS persona_estado,
+     persona.`fecha_de_registro` AS persona_fecha_de_registro,
+     persona.`participacion_practicas` AS persona_participacion_practicas,
+     persona.`participacion_vinculacion` AS persona_participacion_vinculacion,
+     persona.`id_residencia` AS persona_id_residencia,
+     persona.`id_nivel_academico` AS persona_id_nivel_academico,
+     nacionalidad.`id_nacionalidad` AS nacionalidad_id_nacionalidad,
+     nacionalidad.`tipo_nacionalidad` AS nacionalidad_tipo_nacionalidad,
+     nacionalidad.`id_provincia` AS nacionalidad_id_provincia,
+     nacionalidad.`id_canton` AS nacionalidad_id_canton,
+     nacionalidad.`categoria_migratoria` AS nacionalidad_categoria_migratoria,
+     nacionalidad.`estado` AS nacionalidad_estado,
+     nacionalidad.`fecha_de_registro` AS nacionalidad_fecha_de_registro,
+     p_residencia.`id_p_residencia` AS p_residencia_id_p_residencia,
+     p_residencia.`nombre` AS p_residencia_nombre,
+     residencia.`id_residencia` AS residencia_id_residencia,
+     residencia.`nombre` AS residencia_nombre,
+     matricula.`id_matricula` AS matricula_id_matricula,
+     matricula.`id_persona` AS matricula_id_persona,
+     matricula.`id_tipo_matricula` AS matricula_id_tipo_matricula,
+     matricula.`id_titulo_carrera` AS matricula_id_titulo_carrera,
+     matricula.`id_periodo_academico` AS matricula_id_periodo_academico,
+     matricula.`id_tipo_colegio` AS matricula_id_tipo_colegio,
+     matricula.`id_tipo_bachillerato` AS matricula_id_tipo_bachillerato,
+     matricula.`fecha_matricula` AS matricula_fecha_matricula,
+     matricula.`cod_matricula` AS matricula_cod_matricula,
+     matricula.`anio_graduacion` AS matricula_anio_graduacion,
+     matricula.`modalidad` AS matricula_modalidad,
+     matricula.`id_jornada_academica` AS matricula_id_jornada_academica,
+     matricula.`fecha_inicio_carrera` AS matricula_fecha_inicio_carrera,
+     matricula.`titulo_educacion_superior` AS matricula_titulo_educacion_superior,
+     matricula.`especifique_titulo` AS matricula_especifique_titulo,
+     matricula.`titulo_otorgado` AS matricula_titulo_otorgado,
+     matricula.`ocupacion_estudiante` AS matricula_ocupacion_estudiante,
+     matricula.`nombre_empresa` AS matricula_nombre_empresa,
+     matricula.`empleo_ingresos_economicos` AS matricula_empleo_ingresos_economicos,
+     matricula.`bono_desarrollo_humano` AS matricula_bono_desarrollo_humano,
+     matricula.`id_formacion_padre` AS matricula_id_formacion_padre,
+     matricula.`id_formacion_madre` AS matricula_id_formacion_madre,
+     matricula.`ingreso_hogar` AS matricula_ingreso_hogar,
+     matricula.`nro_miembros_hogar` AS matricula_nro_miembros_hogar,
+     matricula.`materia_repetida` AS matricula_materia_repetida,
+     matricula.`materia_perdida` AS matricula_materia_perdida,
+     matricula.`id_nivel_academico` AS matricula_id_nivel_academico,
+     matricula.`id_practicas_preProfesionales_vinculacion` AS matricula_id_practicas_preProfesionales_vinculacion,
+     matricula.`id_tipo_carrera` AS matricula_id_tipo_carrera,
+     matricula.`estado` AS matricula_estado,
+     matricula.`fecha_de_registro` AS matricula_fecha_de_registro,
+     matricula.`id_tipo_institucion` AS matricula_id_tipo_institucion,
+     matricula.`id_alcance_vinculacion` AS matricula_id_alcance_vinculacion,
+     matricula.`id_paralelo` AS matricula_id_paralelo,
+     matricula.`numero_formulario` AS matricula_numero_formulario,
+     matricula.`id_sector_economico_empresa` AS matricula_id_sector_economico_empresa,
+     nivel_academico.`id_nivel_academico` AS nivel_academico_id_nivel_academico,
+     nivel_academico.`nivel_academico` AS nivel_academico_nivel_academico,
+     nivel_academico.`estado` AS nivel_academico_estado,
+     nivel_academico.`fecha_de_registro` AS nivel_academico_fecha_de_registro,
+     titulo_carrera.`id_titulo_carrera` AS titulo_carrera_id_titulo_carrera,
+     titulo_carrera.`nombre_titulo` AS titulo_carrera_nombre_titulo,
+     titulo_carrera.`descripcion` AS titulo_carrera_descripcion,
+     titulo_carrera.`estado` AS titulo_carrera_estado,
+     titulo_carrera.`fecha_de_registro` AS titulo_carrera_fecha_de_registro,
+     tipo_matricula.`id_tipo_matricula` AS tipo_matricula_id_tipo_matricula,
+     tipo_matricula.`tipo` AS tipo_matricula_tipo,
+     tipo_matricula.`descripcion` AS tipo_matricula_descripcion,
+     tipo_matricula.`estado` AS tipo_matricula_estado,
+     tipo_matricula.`fecha_de_registro` AS tipo_matricula_fecha_de_registro,
+     materia.`id_materia` AS materia_id_materia,
+     materia.`cod_materia` AS materia_cod_materia,
+     materia.`descripcion` AS materia_descripcion,
+     materia.`materia` AS materia_materia,
+     materia.`creditos` AS materia_creditos,
+     materia.`num_horas` AS materia_num_horas,
+     materia.`num_horas_semanales` AS materia_num_horas_semanales,
+     materia.`estado` AS materia_estado,
+     materia.`fecha_de_registro` AS materia_fecha_de_registro,
+     materia.`id_nivel_academico` AS materia_id_nivel_academico,
+     materia.`id_titulo_carrera` AS materia_id_titulo_carrera
+FROM
+     `datos_personales` datos_personales INNER JOIN `persona` persona ON datos_personales.`id_datos_personales` = persona.`id_datos_personales`
+     INNER JOIN `nacionalidad` nacionalidad ON persona.`id_nacionalidad` = nacionalidad.`id_nacionalidad`
+     INNER JOIN `p_residencia` p_residencia ON persona.`id_provincia_residencia` = p_residencia.`id_p_residencia`
+     INNER JOIN `residencia` residencia ON persona.`id_residencia` = residencia.`id_residencia`
+     INNER JOIN `matricula` matricula ON persona.`id_persona` = matricula.`id_persona`
+     INNER JOIN `nivel_academico` nivel_academico ON persona.`id_nivel_academico` = nivel_academico.`id_nivel_academico`
+     AND nivel_academico.`id_nivel_academico` = matricula.`id_nivel_academico`
+     INNER JOIN `materia` materia ON nivel_academico.`id_nivel_academico` = materia.`id_nivel_academico`
+     INNER JOIN `titulo_carrera` titulo_carrera ON materia.`id_titulo_carrera` = titulo_carrera.`id_titulo_carrera`
+     AND matricula.`id_titulo_carrera` = titulo_carrera.`id_titulo_carrera`
+     INNER JOIN `tipo_matricula` tipo_matricula ON matricula.`id_tipo_matricula` = tipo_matricula.`id_tipo_matricula`
+WHERE
+     datos_personales.num_identificacion = $P!{num_identificacion}]]>
+	</queryString>
+	<field name="datos_personales_id_datos_personales" class="java.lang.Integer"/>
+	<field name="datos_personales_nombres" class="java.lang.String"/>
+	<field name="datos_personales_apellidos" class="java.lang.String"/>
+	<field name="datos_personales_correo_electronico" class="java.lang.String"/>
+	<field name="datos_personales_direccion" class="java.lang.String"/>
+	<field name="datos_personales_fecha_nacimiento" class="java.sql.Date"/>
+	<field name="datos_personales_num_identificacion" class="java.lang.String"/>
+	<field name="datos_personales_sexo" class="java.lang.String"/>
+	<field name="datos_personales_genero" class="java.lang.String"/>
+	<field name="datos_personales_celular" class="java.lang.String"/>
+	<field name="datos_personales_convencional" class="java.lang.String"/>
+	<field name="datos_personales_cod_postal" class="java.lang.String"/>
+	<field name="datos_personales_edad" class="java.lang.Integer"/>
+	<field name="datos_personales_estado" class="java.lang.Integer"/>
+	<field name="datos_personales_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="persona_id_persona" class="java.lang.Integer"/>
+	<field name="persona_id_tipo_identificacion" class="java.lang.Integer"/>
+	<field name="persona_id_contacto_emergencia" class="java.lang.Integer"/>
+	<field name="persona_id_etnia" class="java.lang.Integer"/>
+	<field name="persona_id_tipo_sangre" class="java.lang.Integer"/>
+	<field name="persona_id_nacionalidad" class="java.lang.Integer"/>
+	<field name="persona_id_estado_civil" class="java.lang.Integer"/>
+	<field name="persona_id_discapacidad" class="java.lang.Integer"/>
+	<field name="persona_idioma_ancestral" class="java.lang.String"/>
+	<field name="persona_descripcion_idioma_ancestral" class="java.lang.String"/>
+	<field name="persona_id_tipo_operador" class="java.lang.Integer"/>
+	<field name="persona_id_datos_personales" class="java.lang.Integer"/>
+	<field name="persona_id_provincia_residencia" class="java.lang.Integer"/>
+	<field name="persona_id_canton_nacimiento" class="java.lang.Integer"/>
+	<field name="persona_id_provincia_nacimiento" class="java.lang.Integer"/>
+	<field name="persona_pais_nacionalidad" class="java.lang.String"/>
+	<field name="persona_pais_residencia" class="java.lang.String"/>
+	<field name="persona_posee_discapacidad" class="java.lang.String"/>
+	<field name="persona_estado" class="java.lang.Integer"/>
+	<field name="persona_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="persona_participacion_practicas" class="java.lang.String"/>
+	<field name="persona_participacion_vinculacion" class="java.lang.String"/>
+	<field name="persona_id_residencia" class="java.lang.Integer"/>
+	<field name="persona_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="nacionalidad_id_nacionalidad" class="java.lang.Integer"/>
+	<field name="nacionalidad_tipo_nacionalidad" class="java.lang.String"/>
+	<field name="nacionalidad_id_provincia" class="java.lang.Integer"/>
+	<field name="nacionalidad_id_canton" class="java.lang.Integer"/>
+	<field name="nacionalidad_categoria_migratoria" class="java.lang.String"/>
+	<field name="nacionalidad_estado" class="java.lang.Integer"/>
+	<field name="nacionalidad_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="p_residencia_id_p_residencia" class="java.lang.Integer"/>
+	<field name="p_residencia_nombre" class="java.lang.String"/>
+	<field name="residencia_id_residencia" class="java.lang.Integer"/>
+	<field name="residencia_nombre" class="java.lang.String"/>
+	<field name="matricula_id_matricula" class="java.lang.Integer"/>
+	<field name="matricula_id_persona" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_matricula" class="java.lang.Integer"/>
+	<field name="matricula_id_titulo_carrera" class="java.lang.Integer"/>
+	<field name="matricula_id_periodo_academico" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_colegio" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_bachillerato" class="java.lang.Integer"/>
+	<field name="matricula_fecha_matricula" class="java.sql.Date"/>
+	<field name="matricula_cod_matricula" class="java.lang.String"/>
+	<field name="matricula_anio_graduacion" class="java.lang.String"/>
+	<field name="matricula_modalidad" class="java.lang.Integer"/>
+	<field name="matricula_id_jornada_academica" class="java.lang.Integer"/>
+	<field name="matricula_fecha_inicio_carrera" class="java.lang.String"/>
+	<field name="matricula_titulo_educacion_superior" class="java.lang.String"/>
+	<field name="matricula_especifique_titulo" class="java.lang.String"/>
+	<field name="matricula_titulo_otorgado" class="java.lang.String"/>
+	<field name="matricula_ocupacion_estudiante" class="java.lang.Integer"/>
+	<field name="matricula_nombre_empresa" class="java.lang.String"/>
+	<field name="matricula_empleo_ingresos_economicos" class="java.lang.String"/>
+	<field name="matricula_bono_desarrollo_humano" class="java.lang.Integer"/>
+	<field name="matricula_id_formacion_padre" class="java.lang.Integer"/>
+	<field name="matricula_id_formacion_madre" class="java.lang.Integer"/>
+	<field name="matricula_ingreso_hogar" class="java.lang.String"/>
+	<field name="matricula_nro_miembros_hogar" class="java.lang.String"/>
+	<field name="matricula_materia_repetida" class="java.lang.Integer"/>
+	<field name="matricula_materia_perdida" class="java.lang.Integer"/>
+	<field name="matricula_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="matricula_id_practicas_preProfesionales_vinculacion" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_carrera" class="java.lang.Integer"/>
+	<field name="matricula_estado" class="java.lang.Integer"/>
+	<field name="matricula_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="matricula_id_tipo_institucion" class="java.lang.Integer"/>
+	<field name="matricula_id_alcance_vinculacion" class="java.lang.Integer"/>
+	<field name="matricula_id_paralelo" class="java.lang.Integer"/>
+	<field name="matricula_numero_formulario" class="java.lang.Integer"/>
+	<field name="matricula_id_sector_economico_empresa" class="java.lang.Integer"/>
+	<field name="nivel_academico_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="nivel_academico_nivel_academico" class="java.lang.String"/>
+	<field name="nivel_academico_estado" class="java.lang.Integer"/>
+	<field name="nivel_academico_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="titulo_carrera_id_titulo_carrera" class="java.lang.Integer"/>
+	<field name="titulo_carrera_nombre_titulo" class="java.lang.String"/>
+	<field name="titulo_carrera_descripcion" class="java.lang.String"/>
+	<field name="titulo_carrera_estado" class="java.lang.Integer"/>
+	<field name="titulo_carrera_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="tipo_matricula_id_tipo_matricula" class="java.lang.Integer"/>
+	<field name="tipo_matricula_tipo" class="java.lang.String"/>
+	<field name="tipo_matricula_descripcion" class="java.lang.String"/>
+	<field name="tipo_matricula_estado" class="java.lang.Integer"/>
+	<field name="tipo_matricula_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="materia_id_materia" class="java.lang.Integer"/>
+	<field name="materia_cod_materia" class="java.lang.String"/>
+	<field name="materia_descripcion" class="java.lang.String"/>
+	<field name="materia_materia" class="java.lang.String"/>
+	<field name="materia_creditos" class="java.lang.String"/>
+	<field name="materia_num_horas" class="java.lang.Integer"/>
+	<field name="materia_num_horas_semanales" class="java.lang.Integer"/>
+	<field name="materia_estado" class="java.lang.Integer"/>
+	<field name="materia_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="materia_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="materia_id_titulo_carrera" class="java.lang.Integer"/>
+	<variable name="datos_personales_num_identificacion_1" class="java.lang.Integer" resetType="Page" calculation="Count">
+		<variableExpression><![CDATA[$F{datos_personales_num_identificacion}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="103" splitType="Stretch">
+			<staticText>
+				<reportElement x="120" y="37" width="298" height="20" uuid="7a341297-6672-4b52-b4b3-2ebd56a359fc"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO  "LIMÓN"]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="144" y="57" width="243" height="17" uuid="21ed82ab-5e12-45e9-8fcf-f8be0212c7b1"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Av. 12 de diciembre S/N Telefono: 2771-303]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="74" width="149" height="17" uuid="0a73f0e4-0df1-48bd-b22d-27da119e91f8"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[r.limon@institutos.gob.ec]]></text>
+			</staticText>
+			<image>
+				<reportElement x="45" y="30" width="69" height="65" uuid="94389c8e-0f6d-404f-8571-f4dc9eede8ec"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="426" splitType="Stretch">
+			<rectangle>
+				<reportElement x="387" y="405" width="113" height="20" uuid="f1e1a7a1-622f-4937-976a-1a070c19ccfd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="162" y="405" width="225" height="20" uuid="5cd11ff6-52c5-4315-99a5-91c67da67468"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="62" y="405" width="100" height="20" uuid="147357a4-a8ce-4b65-8175-fd7e8ce56446"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="51" y="25" width="128" height="17" uuid="31198f92-3a35-41e2-b100-9fab20b153d9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE MATRICULA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="42" width="100" height="17" uuid="36f9d08e-bbcd-4789-9326-5e5fdf2ebfde"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° DE MATRÍCULA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="59" width="123" height="17" uuid="5841351d-7ca6-49ed-93a6-312b4c95782d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO DE MATÍCULA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="76" width="100" height="17" uuid="9a00e4ee-fbe4-4ee0-ae64-f890a80a2ec3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARRERA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="93" width="100" height="17" uuid="5d527fbe-6741-4552-96a6-85df9a4a78a5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CICLO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="5" width="36" height="20" uuid="c709d1c4-4b32-4a67-ad3e-ff712f5b2521"/>
+				<text><![CDATA[FOLIO:     ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="117" width="100" height="20" uuid="8371b7a8-3572-4493-9598-8ccc91e2df85"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTUDIANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="146" width="100" height="17" uuid="1266cfa7-b7be-41cf-93ac-d86f899dc8d3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CEDULA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="163" width="100" height="17" uuid="77b0f447-58e0-43b7-befe-ad09da91cdf2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[APELLIDOS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="180" width="100" height="17" uuid="bad184d7-17a5-46e5-aad0-08639f91d11d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRES:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="197" width="111" height="17" uuid="aef28652-84a7-4255-8eec-6d920bd3a363"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA NACIMIENTO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="214" width="100" height="17" uuid="d0e871cf-16f0-4bd9-a8b5-14c5f5c09c45"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NACIONALIDAD:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="231" width="100" height="17" uuid="8bfcadb2-46ba-41d8-a7a6-59637efa6d15"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="256" width="198" height="20" uuid="b394ae22-42fc-4217-ae5a-92b1e43f14f1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS GENERALES ESTUDIANTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="287" width="100" height="17" uuid="f2513413-8fc1-4e3b-9b46-e37ce8db6c07"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROVINCIA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="304" width="100" height="17" uuid="b4e182b5-a906-4cce-b5e9-10f6d1cc6d4f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CANTÓN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="321" width="100" height="17" uuid="8f31fa21-80e2-4bcb-8e8c-56fd5a3cd0a4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELÉFONO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="338" width="100" height="17" uuid="d57b0b26-a7e8-4197-ae93-bf7b1466710e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CELULAR:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="355" width="100" height="17" uuid="39b43d33-1095-4f24-b647-61635662f397"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMAIL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="151" y="379" width="274" height="17" uuid="04e030a2-9378-46b2-88bb-7ca7fbdd1ce5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNATURAS EN LAS QUE SE MATRICULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="79" y="408" width="72" height="17" uuid="b46a89de-ff97-4584-b255-d5753c44e68e"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[CICLO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="408" width="172" height="17" uuid="7fce9b43-a273-469b-b757-153421525b98"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE LA ASIGNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="398" y="408" width="90" height="17" uuid="8c8dfe24-ff6f-4cf5-a5bd-88af82ad37a7"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° DE CRÉDITOS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="398" y="45" width="89" height="92" uuid="8a2d2b54-c3cd-4839-9c2b-82aa0030861a"/>
+			</rectangle>
+			<textField>
+				<reportElement x="185" y="320" width="202" height="17" uuid="a72025b7-bf6e-4cfa-80cc-3e5dfefc9e8d"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_convencional}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="28" width="47" height="17" uuid="d86e45a9-1ed7-4ddc-861f-371470255830"/>
+				<textFieldExpression><![CDATA[$F{matricula_fecha_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="42" width="47" height="17" uuid="963c4342-87dc-4f1a-9670-15954a92002b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{matricula_cod_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="5" width="28" height="20" uuid="73a3d32f-f3a8-4e60-af24-0003d8fbf56f"/>
+				<textFieldExpression><![CDATA[$F{matricula_cod_matricula}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="59" width="82" height="17" uuid="ba4d7c0f-235e-4ca6-bf07-68a64ee9a61f"/>
+				<textFieldExpression><![CDATA[$F{tipo_matricula_tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="76" width="185" height="17" uuid="133325ba-d5e6-41d4-a177-3e0704c030cd"/>
+				<textFieldExpression><![CDATA[$F{titulo_carrera_nombre_titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="93" width="125" height="17" uuid="bdb0c397-4417-466d-b07f-e7b65613b18c"/>
+				<textFieldExpression><![CDATA[$F{nivel_academico_nivel_academico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="180" width="166" height="17" uuid="3982315c-a3c6-4677-874c-932b363c4d49"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="163" width="166" height="17" uuid="96e79dc0-5703-4d69-a84a-8c7034e2c8f6"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="146" width="166" height="17" uuid="8f69b60d-a5a3-4de5-8e60-28835d64f7ae"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_num_identificacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="197" width="47" height="17" uuid="e7223abc-b0e2-410d-945e-fd5c69fddba6"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="214" width="166" height="17" uuid="1bb419b1-5d78-48f3-9ec5-d566ce990398"/>
+				<textFieldExpression><![CDATA[$F{nacionalidad_tipo_nacionalidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="231" width="138" height="17" uuid="86199732-13fe-42f1-b8c5-0196745442c7"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="287" width="202" height="17" uuid="ec0c74b0-a428-4053-8f47-cc85ba8a22a0"/>
+				<textFieldExpression><![CDATA[$F{p_residencia_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="304" width="202" height="17" uuid="379d5021-2b84-4fa9-bda1-c68ef1771e59"/>
+				<textFieldExpression><![CDATA[$F{residencia_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="337" width="202" height="18" uuid="e7806440-8ae5-4d41-916d-b05ccf6529b5"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_celular}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="185" y="355" width="233" height="17" uuid="7b7a1da4-19f2-4ee0-b9e9-ca195fb66869"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_correo_electronico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="185" y="42" width="30" height="17" uuid="c1520a72-769f-4817-865b-0235f5db683c"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[2280 - ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement x="62" y="-1" width="100" height="18" uuid="975288fd-a548-4966-ad9a-f736362e8710"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="387" y="-1" width="113" height="18" uuid="810835ea-4cee-4eb1-83fd-cec1194e6c92"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="162" y="-1" width="225" height="18" uuid="2c03b663-45a4-4e79-8e5e-de395c302e55"/>
+			</rectangle>
+			<textField>
+				<reportElement x="71" y="0" width="80" height="17" uuid="6bae7a8b-8af3-47fc-839e-e16a1b995f35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{nivel_academico_nivel_academico}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="179" y="0" width="191" height="17" uuid="1fd90f2a-e966-4004-a48d-0ed7ed2f8c36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{materia_materia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="425" y="0" width="47" height="17" uuid="3540a832-52e1-4959-a399-b51cd9edca1a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{materia_creditos}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="149" splitType="Stretch">
+			<staticText>
+				<reportElement x="102" y="22" width="100" height="20" uuid="1d77bd84-1f48-48f2-8707-579218c1cb88"/>
+				<text><![CDATA[Mgs. Angel Cabrera]]></text>
+			</staticText>
+			<line>
+				<reportElement x="202" y="84" width="160" height="1" uuid="aba6f293-017d-4da7-a42d-173ec5410337"/>
+			</line>
+			<staticText>
+				<reportElement x="251" y="85" width="100" height="20" uuid="b4336e59-0bd0-40f8-845b-bd1b8916d244"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESTUDIANTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="71" y="20" width="157" height="1" uuid="3f6edabe-dcf9-44e4-b45a-21a5f3443dfc"/>
+			</line>
+			<staticText>
+				<reportElement x="393" y="25" width="100" height="20" uuid="283f842e-807d-4d02-b89b-099e9acd6fb5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SECRETARIA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="346" y="21" width="154" height="1" uuid="d406db41-7ee1-45e0-897b-2b5ad16501fa"/>
+			</line>
+			<staticText>
+				<reportElement x="124" y="42" width="47" height="20" uuid="42d1b74f-ebac-4a52-b561-520ce044e04b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[RECTOR]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

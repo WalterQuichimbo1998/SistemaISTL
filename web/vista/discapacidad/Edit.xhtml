@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DiscapacidadEditDlg" widgetVar="DiscapacidadEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDiscapacidadTitle}">
+            <h:form id="DiscapacidadEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{discapacidadController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_idDiscapacidad}" for="idDiscapacidad" />
+                        <p:inputText id="idDiscapacidad" value="#{discapacidadController.selected.idDiscapacidad}" title="#{bundle.EditDiscapacidadTitle_idDiscapacidad}" required="true" requiredMessage="#{bundle.EditDiscapacidadRequiredMessage_idDiscapacidad}"/>
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_numCarnetConadis}" for="numCarnetConadis" />
+                        <p:inputText id="numCarnetConadis" value="#{discapacidadController.selected.numCarnetConadis}" title="#{bundle.EditDiscapacidadTitle_numCarnetConadis}" />
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_porcentajeDiscapacidad}" for="porcentajeDiscapacidad" />
+                        <p:inputText id="porcentajeDiscapacidad" value="#{discapacidadController.selected.porcentajeDiscapacidad}" title="#{bundle.EditDiscapacidadTitle_porcentajeDiscapacidad}" />
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{discapacidadController.selected.descripcion}" title="#{bundle.EditDiscapacidadTitle_descripcion}" />
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{discapacidadController.selected.estado}" title="#{bundle.EditDiscapacidadTitle_estado}" />
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_fechaDeRegistro}" for="fechaDeRegistro" />
+                        <p:calendar id="fechaDeRegistro" pattern="MM/dd/yyyy HH:mm:ss" value="#{discapacidadController.selected.fechaDeRegistro}" title="#{bundle.EditDiscapacidadTitle_fechaDeRegistro}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditDiscapacidadLabel_idTipoDiscapacidad}" for="idTipoDiscapacidad" />
+                        <p:selectOneMenu id="idTipoDiscapacidad" value="#{discapacidadController.selected.idTipoDiscapacidad}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{tipoDiscapacidadController.itemsAvailableSelectOne}"
+                                           var="idTipoDiscapacidadItem"
+                                           itemValue="#{idTipoDiscapacidadItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{discapacidadController.update}" value="#{bundle.Save}" update="display,:DiscapacidadListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DiscapacidadEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DiscapacidadEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

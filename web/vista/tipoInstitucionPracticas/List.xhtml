@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTipoInstitucionPracticasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="TipoInstitucionPracticasListForm">
+                <p class="title_modulos">#{bundle.ListTipoInstitucionPracticasTitle}</p>
+                    <p:dataTable id="datalist" value="#{tipoInstitucionPracticasController.items}" var="item" styleClass="tabla"
+                                 selectionMode="single" selection="#{tipoInstitucionPracticasController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idTipoInstitucionPracticaspreprofesionales}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 500px;display: inline-block"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados.">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTipoInstitucionPracticasTitle_nombreTipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreTipo}"/>
+                        </p:column>
+                        
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tipoInstitucionPracticasController.prepareCreate}" update=":TipoInstitucionPracticasCreateForm" oncomplete="PF('TipoInstitucionPracticasCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":TipoInstitucionPracticasViewForm" oncomplete="PF('TipoInstitucionPracticasViewDialog').show()" disabled="#{empty tipoInstitucionPracticasController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TipoInstitucionPracticasEditForm" oncomplete="PF('TipoInstitucionPracticasEditDialog').show()" disabled="#{empty tipoInstitucionPracticasController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tipoInstitucionPracticasController.destroy}" update=":growl,datalist" disabled="#{empty tipoInstitucionPracticasController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

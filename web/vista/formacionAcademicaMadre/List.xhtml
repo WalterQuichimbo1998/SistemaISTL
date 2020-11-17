@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFormacionAcademicaMadreTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="FormacionAcademicaMadreListForm">
+                <p class="title_modulos">#{bundle.ListFormacionAcademicaMadreTitle}</p>
+                    <p:dataTable id="datalist" value="#{formacionAcademicaMadreController.items}" var="item" styleClass="tabla" 
+                                 selectionMode="single" selection="#{formacionAcademicaMadreController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idFormacionAcademicaMadre}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 style="width: 500px;display: inline-block"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFormacionAcademicaMadreTitle_nivel}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nivel}"/>
+                        </p:column>
+                       
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{formacionAcademicaMadreController.prepareCreate}" update=":FormacionAcademicaMadreCreateForm" oncomplete="PF('FormacionAcademicaMadreCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":FormacionAcademicaMadreViewForm" oncomplete="PF('FormacionAcademicaMadreViewDialog').show()" disabled="#{empty formacionAcademicaMadreController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FormacionAcademicaMadreEditForm" oncomplete="PF('FormacionAcademicaMadreEditDialog').show()" disabled="#{empty formacionAcademicaMadreController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{formacionAcademicaMadreController.destroy}" update=":growl,datalist" disabled="#{empty formacionAcademicaMadreController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

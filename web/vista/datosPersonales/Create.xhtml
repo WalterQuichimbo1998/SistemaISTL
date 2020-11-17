@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <p:dialog  id="DatosPersonalesCreateDlg" widgetVar="DatosPersonalesCreateDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.CreateDatosPersonalesTitle}" closeOnEscape="true" hideEffect="clip" showEffect="clip" >
+            <h:form id="DatosPersonalesCreateForm"  enctype="multipart/form-data" >
+                <p:growl id="messages" showDetail="false" life="3000" />
+                <p:panel style="margin: 0;margin: auto;padding: 0;">
+                    <h:panelGrid  columns="4" rendered="#{datosPersonalesController.selected != null}" >
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_nombres}" for="nombres" />
+                        <p:inputText styleClass="camposDeDatos" id="nombres" value="#{datosPersonalesController.selected.nombres}" title="#{bundle.CreateDatosPersonalesTitle_nombres}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_apellidos}" for="apellidos" />
+                        <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.CreateDatosPersonalesTitle_apellidos}" />
+                        <p:outputLabel class="labelDatosPersonales"  value="#{bundle.CreateDatosPersonalesLabel_correoElectronico}" for="correoElectronico" />
+                        <p:inputText styleClass="camposDeDatos" id="correoElectronico" value="#{datosPersonalesController.selected.correoElectronico}" title="#{bundle.CreateDatosPersonalesTitle_correoElectronico}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_direccion}" for="direccion" />
+                        <p:inputText styleClass="camposDeDatos" id="direccion" value="#{datosPersonalesController.selected.direccion}" title="#{bundle.CreateDatosPersonalesTitle_direccion}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_fechaNacimiento}" for="fechaNacimiento" />
+                        <p:calendar  styleClass="camposDeDatos" id="fechaNacimiento" pattern="dd/MM/yyyy" value="#{datosPersonalesController.selected.fechaNacimiento}" title="#{bundle.EditDatosPersonalesTitle_fechaNacimiento}"  mask="true" navigator="true"/>
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_numIdentificacion}" for="numIdentificacion" />
+                        <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.CreateDatosPersonalesTitle_numIdentificacion}" />  
+                        <p:outputLabel class="labelDatosPersonales" value="Sexo" />
+                        <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.sexo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem  itemValue = "Hombre" itemLabel = "Hombre" /> 
+                            <f:selectItem itemValue = "Mujer" itemLabel = "Mujer" />
+                        </p:selectOneMenu>
+                        <p:outputLabel class="labelDatosPersonales" value="Género" />
+                        <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.genero}"> 
+                           <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItem class="labelDatosPersonales" itemValue = "0" itemLabel = "Masculino" /> 
+                            <f:selectItem class="labelDatosPersonales" itemValue = "1" itemLabel = "Femenino" />
+                        </p:selectOneMenu> 
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_celular}" for="celular" />
+                        <p:inputText styleClass="camposDeDatos"  id="celular" value="#{datosPersonalesController.selected.celular}" title="#{bundle.CreateDatosPersonalesTitle_celular}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_convencional}" for="convencional" />
+                        <p:inputText styleClass="camposDeDatos" id="convencional" value="#{datosPersonalesController.selected.convencional}" title="#{bundle.CreateDatosPersonalesTitle_convencional}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_codPostal}" for="codPostal" />
+                        <p:inputText styleClass="camposDeDatos" id="codPostal" value="#{datosPersonalesController.selected.codPostal}" title="#{bundle.CreateDatosPersonalesTitle_codPostal}" />
+                        <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_edad}" for="edad" />
+                        <p:inputText styleClass="camposDeDatos" id="edad" value="#{datosPersonalesController.selected.edad}" title="#{bundle.CreateDatosPersonalesTitle_edad}" /> 
+                    </h:panelGrid>
+                        <p:commandButton ajax="false" icon="ui-icon-plus" styleClass="btn_g"  actionListener="#{datosPersonalesController.create}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args,'DatosPersonalesCreateDialog');"/>
+                            <p:commandButton  styleClass="btn_s"  icon="ui-icon-close" value="#{bundle.Cancel}" oncomplete="PF('DatosPersonalesCreateDialog').hide()"/>
+                </p:panel>
+            </h:form>
+
+        </p:dialog>
+
+    </ui:composition>
+</html>

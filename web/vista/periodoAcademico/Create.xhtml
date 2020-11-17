@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PeriodoAcademicoCreateDlg" widgetVar="PeriodoAcademicoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreatePeriodoAcademicoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="PeriodoAcademicoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{periodoAcademicoController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{periodoAcademicoController.selected.nombre}" title="#{bundle.CreatePeriodoAcademicoTitle_nombre}" required="true" requiredMessage="Complete"/>
+                        <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{periodoAcademicoController.selected.descripcion}" title="#{bundle.CreatePeriodoAcademicoTitle_descripcion}" />
+                        <p:outputLabel value="Modalidad" />
+                        <p:selectOneMenu value = "#{periodoAcademicoController.selected.modalidad}" required="true" requiredMessage="Seleccione"> 
+                            <f:selectItem itemValue = "1" itemLabel = "Presencial" /> 
+                            <f:selectItem itemValue = "2" itemLabel = "Semipresencial" /> 
+                            <f:selectItem itemValue = "3" itemLabel = "Dual" />                                                  
+
+                        </p:selectOneMenu> 
+                        <p:outputLabel value="Año Periodo Académico" for="añoPeriodoAcademico" />
+                        <p:inputText id="añoPeriodoAcademico" value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.CreatePeriodoAcademicoTitle_añoPeriodoAcademico}" />
+                    </p:panelGrid>
+                    <p:commandButton styleClass="btn_g" actionListener="#{periodoAcademicoController.create}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeriodoAcademicoCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('PeriodoAcademicoCreateDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

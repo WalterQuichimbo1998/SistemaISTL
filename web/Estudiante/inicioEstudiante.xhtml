@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <ui:composition template="/Estudiante/templateEstudiante.xhtml">
+        
+        <ui:define name="body">
+            <h:form>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">REPORTE DE NOTAS</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
+                        <h:outputText class="ob des_label" value="Revisa tus notas" />
+                        <h:commandButton class="ob btn_form" action="#{bean.imprimirNotas()}" value="DESCARGAR" />
+                    </div>
+                </div>
+                <div class="box_campos">
+                    <div class="box_caja_op">
+                        <p class="ob title_panel_re">DATOS PERSONALES</p><br/>
+                        <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
+                        <h:outputText class="ob des_label" value="Revisa tus datos personales" />
+                        <h:commandButton class="ob btn_form" action="/Estudiante/datosPersonales.xhtml" value="VER MAS" />
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+        
+    </ui:composition>
+    
+</html>

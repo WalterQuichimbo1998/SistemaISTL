@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+     <h:head>
+        <link rel="shortcut icon" href="../resources/images/favicon.ico"></link>
+        <title>ITSL</title>
+        <h:outputStylesheet library="css" name="cssLayout.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+
+        <h:outputStylesheet name="css/estilos.css"/>
+   
+    <p:growl id="growl" showDetail="false" life="3000" />
+    <div id="top">
+      
+        <div id="menuBar">
+        <h:form >
+                    <p:growl id="messages" showDetail="false"/>
+              <p:menubar>
+                    <p:menuitem value="#{bundle.Home}" outcome="/vista/administrador.xhtml" icon="ui-icon-home"/>
+                    <p:submenu label="Datos Matrícula" icon="ui-icon-person">
+                        <p:menuitem value="1. Datos Personales" outcome="/vista/datosPersonales/List.xhtml" icon="ui-icon-plus" />
+                        <p:menuitem value="2. Contacto Emergencia" outcome="/vista/contactoEmergencia/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="3. Discapacidad" outcome="/vista/discapacidad/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="4. Persona" outcome="/vista/persona/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="5. Practicas Preprofesionales Vinculación" outcome="/vista/practicaspreprofesionalesVinculacion/List.xhtml" icon="ui-icon-plus"/>
+                       
+                        <p:menuitem value="7. Matrícula" outcome="/vista/matricula/List.xhtml" icon="ui-icon-plus" />
+                                   
+                       
+                    </p:submenu>
+                     <p:submenu label="Datos Generales" icon="ui-icon-person">
+                          <p:menuitem value="Perfil Academico" outcome="/vista/perfilAcademico/List.xhtml" icon="ui-icon-plus"/>  
+                        <p:menuitem value="Periodo Académico" outcome="/vista/periodoAcademico/List.xhtml" icon="ui-icon-plus"/> 
+                       <p:menuitem value="Cantón" outcome="/vista/canton/List.xhtml" icon="ui-icon-plus"/> 
+                        <p:menuitem value="Provincia" outcome="/vista/provincia/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Nacionalidad" outcome="/vista/nacionalidad/List.xhtml" icon="ui-icon-plus"/>
+                          <p:menuitem value="Materia" outcome="/vista/materia/List.xhtml" icon="ui-icon-plus"/>
+                       
+                    </p:submenu>
+
+                    <p:submenu label="Notas" icon="ui-icon-bookmark"> 
+                        <p:menuitem value="Notas" outcome="/vista/notas/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Reporte Notas por Materia" outcome="/vista/reporteImprimirMaterias.xhtml" icon="ui-icon-plus"/>
+                    </p:submenu>
+
+                    <p:submenu label="Distributivo" icon="ui-icon-script">
+                        <p:menuitem value="Distributivo" outcome="/vista/distributivo/List.xhtml" icon="ui-icon-plus"/>
+                      
+                    </p:submenu>
+
+                    <p:submenu label="Usuario" icon="ui-icon-person">
+                        <p:menuitem value="Usuario" outcome="/vista/usuario/List.xhtml" icon="ui-icon-plus"/>
+                       
+                    </p:submenu>
+                    
+                    <p:submenu label="Nomina Estudiantes" icon="ui-icon-person">
+                        <p:menuitem value="Nomina" outcome="/vista/nominaEstudiantes.xhtml" icon="ui-icon-plus"/>
+                       
+                    </p:submenu>
+                    
+                      <p:submenu label="Datos Complementarios" icon="ui-icon-suitcase">   
+                        <p:menuitem value="Formacion Académica Padres" outcome="/vista/formacionAcademica/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Jornada Académica" outcome="/vista/jornadaAcademica/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Ciclo Académico" outcome="/vista/nivelAcademico/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Identificacion" outcome="/vista/tipoIdentificacion/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Estado Civil" outcome="/vista/estadoCivil/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Discapacidad" outcome="/vista/tipoDiscapacidad/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Sangre" outcome="/vista/tipoSangre/List.xhtml" icon="ui-icon-plus" />
+                        <p:menuitem value="Tipo Carrera" outcome="/vista/tipoCarrera/List.xhtml" icon="ui-icon-plus"/> 
+                        <p:menuitem value="Tipo Colegio" outcome="/vista/tipoColegio/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Bachillerato" outcome="/vista/tipoBachillerato/List.xhtml" icon="ui-icon-plus"/>
+                       <p:menuitem value="Etnia" outcome="/vista/etnia/List.xhtml" icon="ui-icon-plus"/>
+                       <p:menuitem value="Paralelo" outcome="/vista/paralelo/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Matricula" outcome="/vista/tipoMatricula/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Sector Economico" outcome="/vista/sectorEconomico/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="TituloCarrera" outcome="/vista/tituloCarrera/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Materia Carrera" outcome="/vista/materiaCarrera/List.xhtml" icon="ui-icon-plus"/>
+                          <p:menuitem value="Tabla Investigacion" outcome="/vista/tablaInvestigacion/List.xhtml" icon="ui-icon-plus"/>
+                        <p:menuitem value="Tipo Tiempo" outcome="/vista/tipoTiempo/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Tipo Operador" outcome="/vista/tipoOperador/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Sector Empresa" outcome="/vista/sectorEconomicoEmpresa/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Formacion Academica Madre" outcome="/vista/formacionAcademicaMadre/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Alcance Vinculación" outcome="/vista/alcanceVinculacion/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Canton Residencia" outcome="/vista/residencia/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Provincia Residencia" outcome="/vista/pResidencia/List.xhtml" icon="ui-icon-plus"/>
+                         <p:menuitem value="Tipo Institución Prácticas" outcome="/vista/tipoInstitucionPracticas/List.xhtml" icon="ui-icon-plus"/>
+                         
+                    </p:submenu>
+
+                    <p:menuitem value="Info" outcome="/info" icon="ui-icon-info"/>
+
+                    <f:facet name="options">
+                        <p:commandButton  style="width: 120px; height: 30px; background: yellow;  font-size: 10px"  icon="ui-icon-power" value="Cerrar Sesión" action="#{accesoBean.logout()}" >
+                        </p:commandButton>
+                    </f:facet>
+                </p:menubar>
+                </h:form>
+        </div>
+    </div>
+    <br></br>
+    </h:head>
+    <div class="materiasDocente">
+    <h:body>
+        <h:form>
+            <p:growl id="growl" showDetail="true" sticky="true" />
+            <h:panelGrid columns="1"  cellpadding="5"   style="margin-left: 35%">
+                
+                 <img src="../resources/images/materia.png" style=" width: 8%; position: absolute;top: 53%; left: 31%"></img>
+                
+                <h:outputText value="Ciclo" />
+                <p:inputText  value="#{bean.param1Nomina}" />
+                
+                <h:outputText value="Periodo Académico" />
+                <p:inputText  value="#{bean.param2Nomina}" />
+                
+                 <h:outputText value="Titulo carrera" />
+                <p:inputText  value="#{bean.param3Nomina}" />
+                        
+                <h:commandButton style="background-color: #43A047; color: #ffffff; height: 40px; width: 180px" action="#{bean.imprimirNomina()}" value="IMPRIMIR" >
+                         </h:commandButton>
+                <h:commandButton style="background-color: #43A047; color: #ffffff; height: 40px; width: 180px" action="#{bean.imprimirNominaExcel()}" value="IMPRIMIR Excel" >
+                         </h:commandButton>     
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</div>
+     <div id="bottom">
+        <ui:insert name="footer">
+            <ui:include src="../template/footer.xhtml"/>
+        </ui:insert>
+    </div>
+</html>

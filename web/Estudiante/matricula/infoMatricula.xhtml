@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:composition template="/Estudiante/templateEstudiante.xhtml">
+
+        <ui:define name="body">
+            <br/>
+            <h:form rendered="#{matriculaController.selected == null}">
+                <br/>
+                <br/>
+                <br/>
+                <h1 style="width: 100%;margin: auto;text-align: center;font-family: Arial;">Usted aún no está matriculado</h1>
+                <br/>
+                <br/>
+                <br/>
+            </h:form>
+            <h:form id="MatriculaEditForm" rendered="#{matriculaController.selected != null}">
+                <p:growl id="mensaje" life="3000" />    
+                <div class="boxContainerData2">
+                    <p class="title_datosPersonales">DESCARGAR MATRÍCULA</p>
+                    <div>
+                        <center>
+                            <p:outputLabel style="width: 100%; margin: auto;text-align: center;font-size: 14px !important;font-family: Arial;" value="Ingrese su número de cédula"/><br/>
+                            <h:inputText class="ob campo_txt" rendered="true" value="#{bean.parametroFicha}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
+                            <h:commandButton class="ob btn_form" action="#{bean.doImprimirFicha}" style="padding: 0px 3px;" value="DESCARGAR" title="Descargar"/>
+                      <br/>
+                      <br/>
+                        </center>
+                    </div>
+                </div>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>
+

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NotasViewDlg" widgetVar="NotasViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNotasTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="NotasViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNotasLabel_idPersona}"/>
+                        <h:outputText value="#{notasController.selected.idDatosPersonales.nombres} #{notasController.selected.idDatosPersonales.nombres}" title="#{bundle.ViewNotasTitle_idPersona}"/>
+                   
+                        <h:outputText value="#{bundle.ViewNotasLabel_idMateria}"/>
+                        <h:outputText value="#{notasController.selected.idMateria.materia}" title="#{bundle.ViewNotasTitle_idMateria}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_parcialUno}"/>
+                        <h:outputText value="#{notasController.selected.parcialUno}" title="#{bundle.ViewNotasTitle_parcialUno}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_parcialDos}"/>
+                        <h:outputText value="#{notasController.selected.parcialDos}" title="#{bundle.ViewNotasTitle_parcialDos}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_notaSupletorio}"/>
+                        <h:outputText value="#{notasController.selected.notaSupletorio}" title="#{bundle.ViewNotasTitle_notaSupletorio}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_notaRemedial}"/>
+                        <h:outputText value="#{notasController.selected.notaRemedial}" title="#{bundle.ViewNotasTitle_notaRemedial}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_notaFinal}"/>
+                        <h:outputText value="#{notasController.selected.notaFinal}" title="#{bundle.ViewNotasTitle_notaFinal}"/>
+                        <h:outputText value="#{bundle.ViewNotasLabel_estado}"/>
+                        <h:outputText value="#{notasController.selected.estado}" title="#{bundle.ViewNotasTitle_estado}"/>
+                        
+                           </p:panelGrid>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="NotasViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

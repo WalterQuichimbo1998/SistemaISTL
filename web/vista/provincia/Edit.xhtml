@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+
+        <p:dialog id="ProvinciaEditDlg" widgetVar="ProvinciaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProvinciaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="ProvinciaEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{provinciaController.selected != null}">
+                        <p:outputLabel value="País de Nacionalidad" for="pais" />
+                       <p:selectOneMenu id="pais" value="#{provinciaController.selected.idNacionalidad}" panelStyle="width:260px" effect="fade"
+                                        required="true" requiredMessage="Seleccione">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{nacionalidadController.itemsAvailableSelectOne}"
+                                               var="idNacionalidadItem"
+                                               itemValue="#{idNacionalidadItem}"/>
+                            </p:selectOneMenu>
+                        
+                        <p:outputLabel value="Provincia" for="nombre" />
+                        <p:inputText id="nombre" value="#{provinciaController.selected.nombre}" title="#{bundle.EditProvinciaTitle_nombre}" required="true" requiredMessage="Complete"
+                                     onkeyup="javascript:this.value = this.value.toUpperCase();"/>
+                        
+                    </p:panelGrid>
+                        <p:commandButton styleClass="btn_g" actionListener="#{provinciaController.update}" value="#{bundle.Save}" update="display,:ProvinciaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProvinciaEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('ProvinciaEditDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

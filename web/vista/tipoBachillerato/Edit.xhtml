@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TipoBachilleratoEditDlg" widgetVar="TipoBachilleratoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTipoBachilleratoTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="TipoBachilleratoEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tipoBachilleratoController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.EditTipoBachilleratoLabel_tipo}" for="tipo" />
+                        <p:inputText id="tipo" value="#{tipoBachilleratoController.selected.tipo}" title="#{bundle.EditTipoBachilleratoTitle_tipo}" />
+                        
+                    </p:panelGrid>
+                        <p:commandButton styleClass="btn_g" actionListener="#{tipoBachilleratoController.update}" value="#{bundle.Save}" update="display,:TipoBachilleratoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'TipoBachilleratoEditDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('TipoBachilleratoEditDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

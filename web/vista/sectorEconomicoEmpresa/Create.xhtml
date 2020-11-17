@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="SectorEconomicoEmpresaCreateDlg" widgetVar="SectorEconomicoEmpresaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateSectorEconomicoEmpresaTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="SectorEconomicoEmpresaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{sectorEconomicoEmpresaController.selected != null}">
+                        
+                        <p:outputLabel value="#{bundle.CreateSectorEconomicoEmpresaLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{sectorEconomicoEmpresaController.selected.nombre}" title="#{bundle.CreateSectorEconomicoEmpresaTitle_nombre}" />
+                        
+                    </p:panelGrid>
+                        <p:commandButton styleClass="btn_g" actionListener="#{sectorEconomicoEmpresaController.create}" value="#{bundle.Save}" update="display,:SectorEconomicoEmpresaListForm:datalist,:growl" oncomplete="handleSubmit(args,'SectorEconomicoEmpresaCreateDialog');"/>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('SectorEconomicoEmpresaCreateDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

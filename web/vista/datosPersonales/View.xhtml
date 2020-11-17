@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DatosPersonalesViewDlg" widgetVar="DatosPersonalesViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDatosPersonalesTitle}"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="DatosPersonalesViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{datosPersonalesController.selected != null}">
+                       
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_nombres}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.nombres}" title="#{bundle.ViewDatosPersonalesTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_apellidos}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.ViewDatosPersonalesTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_correoElectronico}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.correoElectronico}" title="#{bundle.ViewDatosPersonalesTitle_correoElectronico}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_direccion}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.direccion}" title="#{bundle.ViewDatosPersonalesTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_fechaNacimiento}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.fechaNacimiento}" title="#{bundle.ViewDatosPersonalesTitle_fechaNacimiento}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_numIdentificacion}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.ViewDatosPersonalesTitle_numIdentificacion}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_sexo}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.sexo}" title="#{bundle.ViewDatosPersonalesTitle_sexo}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_genero}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.genero==null ? '' : datosPersonalesController.selected.genero==0 ? 'Masculino':'Femenino'}" title="#{bundle.ViewDatosPersonalesTitle_genero}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_celular}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.celular}" title="#{bundle.ViewDatosPersonalesTitle_celular}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_convencional}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.convencional}" title="#{bundle.ViewDatosPersonalesTitle_convencional}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_codPostal}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.codPostal}" title="#{bundle.ViewDatosPersonalesTitle_codPostal}"/>
+                        <h:outputText value="#{bundle.ViewDatosPersonalesLabel_edad}"/>
+                        <h:outputText value="#{datosPersonalesController.selected.edad}" title="#{bundle.ViewDatosPersonalesTitle_edad}"/>
+                        
+                        
+                    </p:panelGrid>
+                        <p:commandButton styleClass="btn_s" value="#{bundle.Close}" oncomplete="PF('DatosPersonalesViewDialog').hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

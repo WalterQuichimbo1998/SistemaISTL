@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPersonaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="PersonaListForm">
+                <p:panel>
+                    <p:dataTable id="datalist" value="#{personaController.items}" var="item" styleClass="tabla"
+                                 selectionMode="single" selection="#{personaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idPersona}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPersona}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idiomaAncestral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idiomaAncestral}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_descripcionIdiomaAncestral}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.descripcionIdiomaAncestral}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_paisNacionalidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paisNacionalidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_paisResidencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.paisResidencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_poseeDiscapacidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.poseeDiscapacidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_fechaDeRegistro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaDeRegistro}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_participacionPracticas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.participacionPracticas}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_participacionVinculacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.participacionVinculacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idEstadoCivil}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEstadoCivil}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idCantonNacimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCantonNacimiento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idContactoEmergencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idContactoEmergencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idDatosPersonales}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDatosPersonales}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idDiscapacidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDiscapacidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idEtnia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idEtnia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idNacionalidad}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNacionalidad}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idTipoSangre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoSangre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idNivelAcademico}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNivelAcademico}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idProvinciaResidencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProvinciaResidencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idTipoIdentificacion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoIdentificacion}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idProvinciaNacimiento}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idProvinciaNacimiento}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idResidencia}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idResidencia}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPersonaTitle_idTipoOperador}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoOperador}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{personaController.prepareCreate}" update=":PersonaCreateForm" oncomplete="PF('PersonaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":PersonaViewForm" oncomplete="PF('PersonaViewDialog').show()" disabled="#{empty personaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PersonaEditForm" oncomplete="PF('PersonaEditDialog').show()" disabled="#{empty personaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{personaController.destroy}" update=":growl,datalist" disabled="#{empty personaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

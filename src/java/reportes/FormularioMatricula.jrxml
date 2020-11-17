@@ -1,0 +1,1489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fa4fdfa-129a-4631-9936-96d5c9208d0f">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="num_identificacion" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="logo1" class="java.io.InputStream"/>
+	<parameter name="logoA" class="java.io.InputStream"/>
+	<parameter name="logoB" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+     datos_personales.`id_datos_personales` AS datos_personales_id_datos_personales,
+     datos_personales.`nombres` AS datos_personales_nombres,
+     datos_personales.`apellidos` AS datos_personales_apellidos,
+     datos_personales.`correo_electronico` AS datos_personales_correo_electronico,
+     datos_personales.`direccion` AS datos_personales_direccion,
+     datos_personales.`fecha_nacimiento` AS datos_personales_fecha_nacimiento,
+     datos_personales.`num_identificacion` AS datos_personales_num_identificacion,
+     datos_personales.`sexo` AS datos_personales_sexo,
+     datos_personales.`genero` AS datos_personales_genero,
+     datos_personales.`celular` AS datos_personales_celular,
+     datos_personales.`convencional` AS datos_personales_convencional,
+     datos_personales.`cod_postal` AS datos_personales_cod_postal,
+     datos_personales.`edad` AS datos_personales_edad,
+     matricula.`id_matricula` AS matricula_id_matricula,
+     matricula.`id_tipo_identificacion` AS matricula_id_tipo_identificacion,
+     matricula.`id_etnia` AS matricula_id_etnia,
+     matricula.`id_tipo_sangre` AS matricula_id_tipo_sangre,
+     matricula.`id_nacionalidad` AS matricula_id_nacionalidad,
+     matricula.`id_estado_civil` AS matricula_id_estado_civil,
+     matricula.`id_tipo_operador` AS matricula_id_tipo_operador,
+     matricula.`id_datos_personales` AS matricula_id_datos_personales,
+     matricula.`id_provincia_residencia` AS matricula_id_provincia_residencia,
+     matricula.`id_canton_nacimiento` AS matricula_id_canton_nacimiento,
+     matricula.`id_provincia_nacimiento` AS matricula_id_provincia_nacimiento,
+     matricula.`id_residencia` AS matricula_id_residencia,
+     matricula.`id_nivel_academico` AS matricula_id_nivel_academico,
+     matricula.`id_tipo_matricula` AS matricula_id_tipo_matricula,
+     matricula.`id_titulo_carrera` AS matricula_id_titulo_carrera,
+     matricula.`id_periodo_academico` AS matricula_id_periodo_academico,
+     matricula.`id_tipo_colegio` AS matricula_id_tipo_colegio,
+     matricula.`id_tipo_bachillerato` AS matricula_id_tipo_bachillerato,
+     matricula.`id_jornada_academica` AS matricula_id_jornada_academica,
+     matricula.`id_formacion_padre` AS matricula_id_formacion_padre,
+     matricula.`id_formacion_madre` AS matricula_id_formacion_madre,
+     matricula.`id_tipo_carrera` AS matricula_id_tipo_carrera,
+     matricula.`id_sector_economico_empresa` AS matricula_id_sector_economico_empresa,
+     matricula.`id_paralelo` AS matricula_id_paralelo,
+     matricula.`id_tipo_discapacidad` AS matricula_id_tipo_discapacidad,
+     matricula.`id_tipo_institucion_practicasPreprofesionales` AS matricula_id_tipo_institucion_practicasPreprofesionales,
+     matricula.`id_sector_practicasPreprofesionales` AS matricula_id_sector_practicasPreprofesionales,
+     matricula.`id_alcance_vinculacion` AS matricula_id_alcance_vinculacion,
+     matricula.`id_materia` AS matricula_id_materia,
+     matricula.`idioma_ancestral` AS matricula_idioma_ancestral,
+     matricula.`descripcion_idioma_ancestral` AS matricula_descripcion_idioma_ancestral,
+     matricula.`pais_nacionalidad` AS matricula_pais_nacionalidad,
+     matricula.`pais_residencia` AS matricula_pais_residencia,
+     matricula.`provincia_residencia` AS matricula_provincia_residencia,
+     matricula.`canton_residencia` AS matricula_canton_residencia,
+     matricula.`posee_discapacidad` AS matricula_posee_discapacidad,
+     matricula.`participacion_practicas` AS matricula_participacion_practicas,
+     matricula.`participacion_vinculacion` AS matricula_participacion_vinculacion,
+     matricula.`fecha_matricula` AS matricula_fecha_matricula,
+     matricula.`anio_graduacion` AS matricula_anio_graduacion,
+     matricula.`modalidad` AS matricula_modalidad,
+     matricula.`fecha_inicio_carrera` AS matricula_fecha_inicio_carrera,
+     matricula.`titulo_educacion_superior` AS matricula_titulo_educacion_superior,
+     matricula.`especifique_titulo` AS matricula_especifique_titulo,
+     matricula.`titulo_otorgado` AS matricula_titulo_otorgado,
+     matricula.`ocupacion_estudiante` AS matricula_ocupacion_estudiante,
+     matricula.`nombre_empresa` AS matricula_nombre_empresa,
+     matricula.`empleo_ingresos_economicos` AS matricula_empleo_ingresos_economicos,
+     matricula.`bono_desarrollo_humano` AS matricula_bono_desarrollo_humano,
+     matricula.`ingreso_hogar` AS matricula_ingreso_hogar,
+     matricula.`nro_miembros_hogar` AS matricula_nro_miembros_hogar,
+     matricula.`materia_repetida` AS matricula_materia_repetida,
+     matricula.`materia_perdida` AS matricula_materia_perdida,
+     matricula.`numero_formulario` AS matricula_numero_formulario,
+     matricula.`codigo_matricula` AS matricula_codigo_matricula,
+     matricula.`nombre_contacto` AS matricula_nombre_contacto,
+     matricula.`apellido_contacto` AS matricula_apellido_contacto,
+     matricula.`celular_contacto` AS matricula_celular_contacto,
+     matricula.`parentesco_contacto` AS matricula_parentesco_contacto,
+     matricula.`num_carnet_conadis` AS matricula_num_carnet_conadis,
+     matricula.`porcentaje_discapacidad` AS matricula_porcentaje_discapacidad,
+     matricula.`descripcion_discapacidad` AS matricula_descripcion_discapacidad,
+     matricula.`nro_horas_practicasPreprosionales` AS matricula_nro_horas_practicasPreprosionales,
+     matricula.`categoria_migratoria` AS matricula_categoria_migratoria,
+     matricula.`nacionalidad` AS matricula_nacionalidad,
+     tipo_identificacion.`id_tipo_identificacion` AS tipo_identificacion_id_tipo_identificacion,
+     tipo_identificacion.`tipo` AS tipo_identificacion_tipo,
+     tipo_identificacion.`descripcion` AS tipo_identificacion_descripcion,
+     etnia.`id_etnia` AS etnia_id_etnia,
+     etnia.`tipo_etnia` AS etnia_tipo_etnia,
+     tipo_sangre.`id_tipo_sangre` AS tipo_sangre_id_tipo_sangre,
+     tipo_sangre.`tipo` AS tipo_sangre_tipo,
+     nacionalidad.`id_nacionalidad` AS nacionalidad_id_nacionalidad,
+     nacionalidad.`pais_nacionalidad` AS nacionalidad_pais_nacionalidad,
+     estado_civil.`id_estado_civil` AS estado_civil_id_estado_civil,
+     estado_civil.`estado_civill` AS estado_civil_estado_civill,
+     p_residencia.`id_p_residencia` AS p_residencia_id_p_residencia,
+     p_residencia.`nombre` AS p_residencia_nombre,
+     canton.`id_canton` AS canton_id_canton,
+     canton.`nombre` AS canton_nombre,
+     provincia.`id_provincia` AS provincia_id_provincia,
+     provincia.`nombre` AS provincia_nombre,
+     residencia.`id_residencia` AS residencia_id_residencia,
+     residencia.`nombre` AS residencia_nombre,
+     nivel_academico.`id_nivel_academico` AS nivel_academico_id_nivel_academico,
+     nivel_academico.`nivel_academico` AS nivel_academico_nivel_academico,
+     tipo_matricula.`id_tipo_matricula` AS tipo_matricula_id_tipo_matricula,
+     tipo_matricula.`tipo` AS tipo_matricula_tipo,
+     tipo_matricula.`descripcion` AS tipo_matricula_descripcion,
+     titulo_carrera.`id_titulo_carrera` AS titulo_carrera_id_titulo_carrera,
+     titulo_carrera.`nombre_titulo` AS titulo_carrera_nombre_titulo,
+     titulo_carrera.`descripcion` AS titulo_carrera_descripcion,
+     periodo_academico.`id_periodo_academico` AS periodo_academico_id_periodo_academico,
+     periodo_academico.`nombre` AS periodo_academico_nombre,
+     periodo_academico.`descripcion` AS periodo_academico_descripcion,
+     periodo_academico.`modalidad` AS periodo_academico_modalidad,
+     periodo_academico.`año_periodo_academico` AS periodo_academico_año_periodo_academico,
+     tipo_colegio.`id_tipo_colegio` AS tipo_colegio_id_tipo_colegio,
+     tipo_colegio.`tipo` AS tipo_colegio_tipo,
+     tipo_colegio.`observacion` AS tipo_colegio_observacion,
+     tipo_bachillerato.`id_tipo_bachillerato` AS tipo_bachillerato_id_tipo_bachillerato,
+     tipo_bachillerato.`tipo` AS tipo_bachillerato_tipo,
+     jornada_academica.`id_jornada_academica` AS jornada_academica_id_jornada_academica,
+     jornada_academica.`tipo_jornada` AS jornada_academica_tipo_jornada,
+     formacion_academica.`id_formacion_academica` AS formacion_academica_id_formacion_academica,
+     formacion_academica.`nivel` AS formacion_academica_nivel,
+     formacion_academica_madre.`id_formacion_academica_madre` AS formacion_academica_madre_id_formacion_academica_madre,
+     formacion_academica_madre.`nivel` AS formacion_academica_madre_nivel,
+     tipo_carrera.`id_tipo_carrera` AS tipo_carrera_id_tipo_carrera,
+     tipo_carrera.`nombre` AS tipo_carrera_nombre,
+     tipo_institucion_practicas.`id_tipo_institucion_practicaspreprofesionales` AS tipo_institucion_practicas_id_tipo_institucion_practicaspreprofe,
+     tipo_institucion_practicas.`nombre_tipo` AS tipo_institucion_practicas_nombre_tipo,
+     tipo_institucion_practicas.`estado` AS tipo_institucion_practicas_estado,
+     tipo_institucion_practicas.`fecha_de_registro` AS tipo_institucion_practicas_fecha_de_registro,
+     sector_economico_empresa.`id_sector_economico_empresa` AS sector_economico_empresa_id_sector_economico_empresa,
+     sector_economico_empresa.`nombre` AS sector_economico_empresa_nombre,
+     paralelo.`id_paralelo` AS paralelo_id_paralelo,
+     paralelo.`nombre_paralelo` AS paralelo_nombre_paralelo,
+     discapacidad.`id_discapacidad` AS discapacidad_id_discapacidad,
+     discapacidad.`id_tipo_discapacidad` AS discapacidad_id_tipo_discapacidad,
+     discapacidad.`num_carnet_conadis` AS discapacidad_num_carnet_conadis,
+     discapacidad.`porcentaje_discapacidad` AS discapacidad_porcentaje_discapacidad,
+     discapacidad.`descripcion` AS discapacidad_descripcion,
+
+     alcance_vinculacion.`id_alcance_vinculacion` AS alcance_vinculacion_id_alcance_vinculacion,
+     alcance_vinculacion.`alcance` AS alcance_vinculacion_alcance
+FROM
+     `datos_personales` datos_personales
+ LEFT JOIN `matricula` matricula ON datos_personales.`id_datos_personales` = matricula.`id_datos_personales`
+LEFT JOIN `nacionalidad` nacionalidad ON matricula.`id_nacionalidad` = nacionalidad.`id_nacionalidad`
+  LEFT JOIN `p_residencia` p_residencia ON matricula.`id_provincia_residencia` = p_residencia.`id_p_residencia`
+  
+
+     LEFT JOIN `provincia` provincia ON matricula.`id_provincia_nacimiento` = provincia.`id_provincia`
+
+     LEFT JOIN `canton` canton ON matricula.`id_canton_nacimiento` = canton.`id_canton`
+
+     LEFT JOIN `residencia` residencia ON matricula.`id_residencia` = residencia.`id_residencia`
+
+     LEFT JOIN `discapacidad` discapacidad ON matricula.`id_tipo_discapacidad` = discapacidad.`id_tipo_discapacidad`
+ 
+     LEFT JOIN `tipo_identificacion` tipo_identificacion ON matricula.`id_tipo_identificacion` = tipo_identificacion.`id_tipo_identificacion`
+
+     LEFT JOIN `tipo_sangre` tipo_sangre ON matricula.`id_tipo_sangre` = tipo_sangre.`id_tipo_sangre`
+
+     LEFT JOIN `estado_civil` estado_civil ON matricula.`id_estado_civil` = estado_civil.`id_estado_civil`
+
+     LEFT JOIN `etnia` etnia ON matricula.`id_etnia` = etnia.`id_etnia`
+
+     LEFT JOIN `nivel_academico` nivel_academico ON matricula.`id_nivel_academico` = nivel_academico.`id_nivel_academico`
+
+     LEFT JOIN `tipo_matricula` tipo_matricula ON matricula.`id_tipo_matricula` = tipo_matricula.`id_tipo_matricula`
+
+     LEFT JOIN `titulo_carrera` titulo_carrera ON matricula.`id_titulo_carrera` = titulo_carrera.`id_titulo_carrera`
+
+     LEFT JOIN `periodo_academico` periodo_academico ON matricula.`id_periodo_academico` = periodo_academico.`id_periodo_academico`
+    
+     LEFT JOIN `tipo_colegio` tipo_colegio ON matricula.`id_tipo_colegio` = tipo_colegio.`id_tipo_colegio`
+
+     LEFT JOIN `tipo_bachillerato` tipo_bachillerato ON matricula.`id_tipo_bachillerato` = tipo_bachillerato.`id_tipo_bachillerato`
+    
+     LEFT JOIN `jornada_academica` jornada_academica ON matricula.`id_jornada_academica` = jornada_academica.`id_jornada_academica`
+    
+     LEFT JOIN `formacion_academica` formacion_academica ON matricula.`id_formacion_padre` = formacion_academica.`id_formacion_academica`
+    
+     LEFT JOIN `formacion_academica_madre` formacion_academica_madre ON matricula.`id_formacion_madre` = formacion_academica_madre.`id_formacion_academica_madre`
+    
+     LEFT JOIN `sector_economico_empresa` sector_economico_empresa ON matricula.`id_sector_economico_empresa` = sector_economico_empresa.`id_sector_economico_empresa`
+    
+     LEFT JOIN `paralelo` paralelo ON matricula.`id_paralelo` = paralelo.`id_paralelo`
+
+     LEFT JOIN `tipo_carrera` tipo_carrera ON matricula.`id_tipo_carrera` = tipo_carrera.`id_tipo_carrera`
+
+     LEFT JOIN `alcance_vinculacion` alcance_vinculacion ON matricula.`id_alcance_vinculacion` = alcance_vinculacion.`id_alcance_vinculacion`
+   
+     LEFT JOIN `tipo_institucion_practicas` tipo_institucion_practicas ON matricula.`id_tipo_institucion_practicasPreprofesionales` = tipo_institucion_practicas.`id_tipo_institucion_practicaspreprofesionales`
+   
+   
+WHERE
+     datos_personales.num_identificacion = $P!{num_identificacion}]]>
+	</queryString>
+	<field name="datos_personales_id_datos_personales" class="java.lang.Integer"/>
+	<field name="datos_personales_nombres" class="java.lang.String"/>
+	<field name="datos_personales_apellidos" class="java.lang.String"/>
+	<field name="datos_personales_correo_electronico" class="java.lang.String"/>
+	<field name="datos_personales_direccion" class="java.lang.String"/>
+	<field name="datos_personales_fecha_nacimiento" class="java.sql.Date"/>
+	<field name="datos_personales_num_identificacion" class="java.lang.String"/>
+	<field name="datos_personales_sexo" class="java.lang.String"/>
+	<field name="datos_personales_genero" class="java.lang.Integer"/>
+	<field name="datos_personales_celular" class="java.lang.String"/>
+	<field name="datos_personales_convencional" class="java.lang.String"/>
+	<field name="datos_personales_cod_postal" class="java.lang.String"/>
+	<field name="datos_personales_edad" class="java.lang.Integer"/>
+	<field name="matricula_id_matricula" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_identificacion" class="java.lang.Integer"/>
+	<field name="matricula_id_etnia" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_sangre" class="java.lang.Integer"/>
+	<field name="matricula_id_nacionalidad" class="java.lang.Integer"/>
+	<field name="matricula_id_estado_civil" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_operador" class="java.lang.Integer"/>
+	<field name="matricula_id_datos_personales" class="java.lang.Integer"/>
+	<field name="matricula_id_provincia_residencia" class="java.lang.Integer"/>
+	<field name="matricula_id_canton_nacimiento" class="java.lang.Integer"/>
+	<field name="matricula_id_provincia_nacimiento" class="java.lang.Integer"/>
+	<field name="matricula_id_residencia" class="java.lang.Integer"/>
+	<field name="matricula_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_matricula" class="java.lang.Integer"/>
+	<field name="matricula_id_titulo_carrera" class="java.lang.Integer"/>
+	<field name="matricula_id_periodo_academico" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_colegio" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_bachillerato" class="java.lang.Integer"/>
+	<field name="matricula_id_jornada_academica" class="java.lang.Integer"/>
+	<field name="matricula_id_formacion_padre" class="java.lang.Integer"/>
+	<field name="matricula_id_formacion_madre" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_carrera" class="java.lang.Integer"/>
+	<field name="matricula_id_sector_economico_empresa" class="java.lang.Integer"/>
+	<field name="matricula_id_paralelo" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_discapacidad" class="java.lang.Integer"/>
+	<field name="matricula_id_tipo_institucion_practicasPreprofesionales" class="java.lang.Integer"/>
+	<field name="matricula_id_sector_practicasPreprofesionales" class="java.lang.Integer"/>
+	<field name="matricula_id_alcance_vinculacion" class="java.lang.Integer"/>
+	<field name="matricula_id_materia" class="java.lang.Integer"/>
+	<field name="matricula_idioma_ancestral" class="java.lang.String"/>
+	<field name="matricula_descripcion_idioma_ancestral" class="java.lang.String"/>
+	<field name="matricula_pais_nacionalidad" class="java.lang.String"/>
+	<field name="matricula_pais_residencia" class="java.lang.String"/>
+	<field name="matricula_provincia_residencia" class="java.lang.String"/>
+	<field name="matricula_canton_residencia" class="java.lang.String"/>
+	<field name="matricula_posee_discapacidad" class="java.lang.String"/>
+	<field name="matricula_participacion_practicas" class="java.lang.String"/>
+	<field name="matricula_participacion_vinculacion" class="java.lang.String"/>
+	<field name="matricula_fecha_matricula" class="java.sql.Date"/>
+	<field name="matricula_anio_graduacion" class="java.lang.String"/>
+	<field name="matricula_modalidad" class="java.lang.Integer"/>
+	<field name="matricula_fecha_inicio_carrera" class="java.sql.Date"/>
+	<field name="matricula_titulo_educacion_superior" class="java.lang.String"/>
+	<field name="matricula_especifique_titulo" class="java.lang.String"/>
+	<field name="matricula_titulo_otorgado" class="java.lang.String"/>
+	<field name="matricula_ocupacion_estudiante" class="java.lang.Integer"/>
+	<field name="matricula_nombre_empresa" class="java.lang.String"/>
+	<field name="matricula_empleo_ingresos_economicos" class="java.lang.String"/>
+	<field name="matricula_bono_desarrollo_humano" class="java.lang.Integer"/>
+	<field name="matricula_ingreso_hogar" class="java.lang.String"/>
+	<field name="matricula_nro_miembros_hogar" class="java.lang.String"/>
+	<field name="matricula_materia_repetida" class="java.lang.Integer"/>
+	<field name="matricula_materia_perdida" class="java.lang.Integer"/>
+	<field name="matricula_numero_formulario" class="java.lang.Integer"/>
+	<field name="matricula_codigo_matricula" class="java.lang.Integer"/>
+	<field name="matricula_nombre_contacto" class="java.lang.String"/>
+	<field name="matricula_apellido_contacto" class="java.lang.String"/>
+	<field name="matricula_celular_contacto" class="java.lang.String"/>
+	<field name="matricula_parentesco_contacto" class="java.lang.String"/>
+	<field name="matricula_num_carnet_conadis" class="java.lang.String"/>
+	<field name="matricula_porcentaje_discapacidad" class="java.lang.String"/>
+	<field name="matricula_descripcion_discapacidad" class="java.lang.String"/>
+	<field name="matricula_nro_horas_practicasPreprosionales" class="java.lang.String"/>
+	<field name="matricula_categoria_migratoria" class="java.lang.String"/>
+	<field name="matricula_nacionalidad" class="java.lang.String"/>
+	<field name="tipo_identificacion_id_tipo_identificacion" class="java.lang.Integer"/>
+	<field name="tipo_identificacion_tipo" class="java.lang.String"/>
+	<field name="tipo_identificacion_descripcion" class="java.lang.String"/>
+	<field name="etnia_id_etnia" class="java.lang.Integer"/>
+	<field name="etnia_tipo_etnia" class="java.lang.String"/>
+	<field name="tipo_sangre_id_tipo_sangre" class="java.lang.Integer"/>
+	<field name="tipo_sangre_tipo" class="java.lang.String"/>
+	<field name="nacionalidad_id_nacionalidad" class="java.lang.Integer"/>
+	<field name="nacionalidad_pais_nacionalidad" class="java.lang.String"/>
+	<field name="estado_civil_id_estado_civil" class="java.lang.Integer"/>
+	<field name="estado_civil_estado_civill" class="java.lang.String"/>
+	<field name="p_residencia_id_p_residencia" class="java.lang.Integer"/>
+	<field name="p_residencia_nombre" class="java.lang.String"/>
+	<field name="canton_id_canton" class="java.lang.Integer"/>
+	<field name="canton_nombre" class="java.lang.String"/>
+	<field name="provincia_id_provincia" class="java.lang.Integer"/>
+	<field name="provincia_nombre" class="java.lang.String"/>
+	<field name="residencia_id_residencia" class="java.lang.Integer"/>
+	<field name="residencia_nombre" class="java.lang.String"/>
+	<field name="nivel_academico_id_nivel_academico" class="java.lang.Integer"/>
+	<field name="nivel_academico_nivel_academico" class="java.lang.String"/>
+	<field name="tipo_matricula_id_tipo_matricula" class="java.lang.Integer"/>
+	<field name="tipo_matricula_tipo" class="java.lang.String"/>
+	<field name="tipo_matricula_descripcion" class="java.lang.String"/>
+	<field name="titulo_carrera_id_titulo_carrera" class="java.lang.Integer"/>
+	<field name="titulo_carrera_nombre_titulo" class="java.lang.String"/>
+	<field name="titulo_carrera_descripcion" class="java.lang.String"/>
+	<field name="periodo_academico_id_periodo_academico" class="java.lang.Integer"/>
+	<field name="periodo_academico_nombre" class="java.lang.String"/>
+	<field name="periodo_academico_descripcion" class="java.lang.String"/>
+	<field name="periodo_academico_modalidad" class="java.lang.Integer"/>
+	<field name="periodo_academico_año_periodo_academico" class="java.lang.String"/>
+	<field name="tipo_colegio_id_tipo_colegio" class="java.lang.Integer"/>
+	<field name="tipo_colegio_tipo" class="java.lang.String"/>
+	<field name="tipo_colegio_observacion" class="java.lang.String"/>
+	<field name="tipo_bachillerato_id_tipo_bachillerato" class="java.lang.Integer"/>
+	<field name="tipo_bachillerato_tipo" class="java.lang.String"/>
+	<field name="jornada_academica_id_jornada_academica" class="java.lang.Integer"/>
+	<field name="jornada_academica_tipo_jornada" class="java.lang.String"/>
+	<field name="formacion_academica_id_formacion_academica" class="java.lang.Integer"/>
+	<field name="formacion_academica_nivel" class="java.lang.String"/>
+	<field name="formacion_academica_madre_id_formacion_academica_madre" class="java.lang.Integer"/>
+	<field name="formacion_academica_madre_nivel" class="java.lang.String"/>
+	<field name="tipo_carrera_id_tipo_carrera" class="java.lang.Integer"/>
+	<field name="tipo_carrera_nombre" class="java.lang.String"/>
+	<field name="tipo_institucion_practicas_id_tipo_institucion_practicaspreprofe" class="java.lang.Integer"/>
+	<field name="tipo_institucion_practicas_nombre_tipo" class="java.lang.String"/>
+	<field name="tipo_institucion_practicas_estado" class="java.lang.Integer"/>
+	<field name="tipo_institucion_practicas_fecha_de_registro" class="java.sql.Timestamp"/>
+	<field name="sector_economico_empresa_id_sector_economico_empresa" class="java.lang.Integer"/>
+	<field name="sector_economico_empresa_nombre" class="java.lang.String"/>
+	<field name="paralelo_id_paralelo" class="java.lang.Integer"/>
+	<field name="paralelo_nombre_paralelo" class="java.lang.String"/>
+	<field name="discapacidad_id_discapacidad" class="java.lang.Integer"/>
+	<field name="discapacidad_id_tipo_discapacidad" class="java.lang.Integer"/>
+	<field name="discapacidad_num_carnet_conadis" class="java.lang.String"/>
+	<field name="discapacidad_porcentaje_discapacidad" class="java.lang.String"/>
+	<field name="discapacidad_descripcion" class="java.lang.String"/>
+	<field name="alcance_vinculacion_id_alcance_vinculacion" class="java.lang.Integer"/>
+	<field name="alcance_vinculacion_alcance" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="117" splitType="Stretch">
+			<staticText>
+				<reportElement x="267" y="43" width="45" height="20" uuid="6ce93cfa-bbbc-4668-94d1-96ba549b6257"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIMÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="89" width="105" height="20" uuid="de51b2b3-4ba0-40ce-a7e6-230f301673ea"/>
+				<textElement verticalAlignment="Bottom">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NRO. FORMULARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="18" width="326" height="20" uuid="9bb5680b-ff2f-4e67-9501-ef8a264e8c8f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBSECRETARÍA DE FORMACÍON TÉCNICA Y TECNOLÓGICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="31" width="201" height="20" uuid="521d57a0-b80d-4bb1-a05d-4afe78abbc21"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="60" width="96" height="20" uuid="88c8c160-ac2d-4f40-a1f7-3d216b9efe7a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(CÓDIGO: 2280)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="82" width="151" height="20" uuid="688d94c5-3054-4278-b6cb-2313e4673406"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULARIO DE MATRÍCULA]]></text>
+			</staticText>
+			<image>
+				<reportElement x="27" y="9" width="94" height="71" uuid="ffad8015-8dda-4453-8245-b22dcdb5d9d1"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="441" y="18" width="113" height="62" uuid="ee10f9f1-9301-482b-a203-2db7b4fe0c10"/>
+				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="502" y="89" width="47" height="20" uuid="a8a4801a-af5c-4b3b-92c8-008f969cfe50"/>
+				<textElement verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[( $F{matricula_numero_formulario}==null ? "" : $F{matricula_numero_formulario}+"" )]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="685" splitType="Stretch">
+			<staticText>
+				<reportElement x="205" y="437" width="18" height="20" uuid="5a3a4d2c-548b-479e-88ce-5bb10688aa92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[%]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="557" width="555" height="20" uuid="a783fcf6-bb86-47b6-a47f-6a0bb9d98c3b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="457" width="555" height="20" uuid="a82aac5e-8cf2-40ed-b332-2d17bf8e8d7a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="517" width="297" height="40" uuid="76dbb5bb-793f-4670-953a-e2d103414137"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="497" width="555" height="20" uuid="8aa46cdc-a159-43c9-881b-d948458b248d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="477" width="342" height="20" uuid="dd5f08cc-6b38-4abb-baa3-ed316378aabe"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="267" y="437" width="288" height="20" uuid="674da3f2-b302-404f-a69e-ff7844f8e238"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="297" y="417" width="258" height="20" uuid="82f1efbb-5a4c-4f01-956a-8b8632114882"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="417" width="297" height="20" uuid="2b19dfb4-fc84-421c-8d88-d15bf45b9224"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="397" width="555" height="20" uuid="04541f3d-1c4d-4672-b0dd-6ebce6a370af"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="181" y="357" width="216" height="40" uuid="ab00fd71-095b-40c8-a817-150c6609f09c"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="317" width="555" height="40" uuid="937e212f-688e-4cb5-ae9b-eb35b308af84"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="397" y="276" width="158" height="41" uuid="0662cdaf-aa5a-435d-bf19-be9d7c238269"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="181" y="276" width="216" height="41" uuid="73df7778-ad87-40ea-8f4d-ce584be0b28d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="276" width="181" height="41" uuid="f1e31c00-f988-42b8-b065-8822000825ea"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="380" y="236" width="175" height="40" uuid="b6f0664a-f7f3-4017-bc38-5129a30a5568"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="235" y="236" width="145" height="40" uuid="e64b9dc7-a336-4aea-832c-5b8c45757368"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="236" width="235" height="40" uuid="3c0c288a-5a43-4b83-832b-549703dfbb1e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="216" width="555" height="20" uuid="10c90a40-86f0-4395-b6ab-523200110091"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="196" width="555" height="20" uuid="ccb3f39d-d8cb-4ac5-aea4-6d1b36dfae0a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="176" width="555" height="20" uuid="318b1b15-d92d-4643-a522-be1da107618e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="409" y="136" width="146" height="40" uuid="f4a66782-50a3-4e2f-95fa-da4895361d8b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="300" y="136" width="109" height="40" uuid="4e79c2a4-5272-410e-b9e3-581dc323811e"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="136" width="300" height="40" uuid="3dbc8ff2-dc8d-4230-97a9-d83fbaebb1e0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="323" y="76" width="232" height="40" uuid="0b900bce-bf1e-4648-b645-ed74872d7ebd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="76" width="323" height="40" uuid="e524abc3-acaa-40cf-ae9d-8620346c2665"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="56" width="555" height="20" uuid="90a58d4b-6255-4334-a4f2-f930f3353f64"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="56" width="197" height="20" uuid="a23e01c2-6537-42db-87c6-994da17edf7e"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[5. Apellidos y Nombres del Estudiante:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="235" y="20" width="145" height="36" uuid="137d3e40-51b2-4e8b-aef5-d78287547b1f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="380" y="20" width="175" height="36" uuid="4dbce428-dc02-4dad-b7ee-ce6a1dbded45"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="20" width="235" height="36" uuid="e9245889-5c37-4d8d-9a20-1c938bec97dd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="20" uuid="8e7a1412-64bb-48e9-bd7b-984fcaa898c5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="323" y="116" width="232" height="20" uuid="2667ebcd-4767-48f0-87e0-2963507afb8b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="116" width="323" height="20" uuid="a5df0d65-12d4-4e80-8721-4a747858cbc7"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="216" width="167" height="20" uuid="d5c7efa4-2525-48cd-91b5-2fdb344ae544"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[16. Habla algún idioma ancestral:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="297" y="216" width="71" height="20" uuid="5b980f24-ee55-46eb-aecd-1a127113a141"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Especifique:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="246" width="60" height="20" uuid="855cd885-ca8b-4d98-b6ab-fc861ce8a653"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[17.1 Edad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="0" width="197" height="20" uuid="1d9cf2fa-ffb3-46e1-8821-2791f898908f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[1.Tipo de Documento de Identificación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="76" width="81" height="20" uuid="5a716785-d58c-4c1b-a662-92cc88f21b41"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[7. Nro. Celular:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="30" width="65" height="20" uuid="c634ae0a-7d11-498b-bcef-b2d3fbac5578"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[4. Género:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="86" width="117" height="20" uuid="982f7eec-8ce9-4f5a-9556-477e5b78f838"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[6. Correo Electronico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="423" y="136" width="115" height="20" uuid="b50db2c2-8e37-4246-ad3e-48c7e98fc24f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[13. Nro. de Contacto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="22" width="219" height="16" uuid="af7fd256-e54e-4a2d-971f-8456f4d71784"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[2. Número de Documento de Identificación]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="136" width="299" height="20" uuid="cd3e7123-9a8d-4822-96a4-ea5ba1732da9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[11. En caso de emergencia contactar a: (Apellidos y Nombres)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="196" width="364" height="20" uuid="52c69181-e7a9-4274-b364-37b69574f2a3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[15. En caso de escoger etnia Indigena u Otro especifique su nacionalidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="116" width="67" height="20" uuid="4f786fba-45d6-42ed-aa57-9105fd261ff9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[9. Dirección:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="136" width="100" height="20" uuid="6b14144a-3926-4c69-84c5-7d7091e3bd48"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[12. Parentesco:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="246" width="100" height="20" uuid="586aa28d-924a-4549-893f-b8afe9deaca1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[18. Tipo de Sangre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="96" width="113" height="20" uuid="e866cf2f-6bf1-427e-9239-edd4f98e6af9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[8. Nro. Convencional:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="176" width="67" height="20" uuid="cac240d4-3e17-4cce-9ec8-6501f2e44a3f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[14. Etnia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="246" width="129" height="20" uuid="08bd7c60-a983-4428-9f81-1354dd22b6fd"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[17. Fecha de Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="30" width="45" height="20" uuid="36d1f205-6129-4a48-a7ae-1ff9237c9234"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[3. Sexo:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="342" y="116" width="100" height="20" uuid="2f35735d-8f08-4f6e-9603-8b6dc77d9c6f"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[10. Código postal:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="497" width="235" height="20" uuid="2aae05a9-20f1-4e0e-a890-66c4533df0fe"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[34. Posee algún título de Educación Superior:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="277" width="131" height="20" uuid="851edaa4-aaa2-4b24-920b-23b3a55b17ee"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[19. País de Nacionalidad:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="342" y="477" width="213" height="20" uuid="12d9f137-986f-4765-89db-9db378236efe"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="280" y="437" width="50" height="20" uuid="26ac0c8d-9c0a-4290-a733-fcb0e212a9a3"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[30. Tipo:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="357" width="181" height="40" uuid="2a1d9915-4706-4878-a0d7-5dd36ca9f550"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="297" y="517" width="258" height="40" uuid="5629ea8e-163a-465b-b4b9-8e5d543f908d"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="2" y="357" width="117" height="20" uuid="9873ddc0-0878-4729-8141-b9c5364d07f2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[23. Pais de Residencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="417" width="167" height="20" uuid="e4ec352c-be85-48be-afa7-4f528863b92c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[27. Tiene Alguna Discapacidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="527" width="125" height="20" uuid="f22e55b3-77fe-43d6-8f4f-dea27baa4198"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[36. Fecha de Matrícula:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="437" width="267" height="20" uuid="52cc7fbc-92ed-4a16-bec7-360988569a67"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="409" y="277" width="145" height="20" uuid="078d2788-197e-4de1-a36c-04eb44ee7c90"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[21. Cantón de Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="417" width="133" height="20" uuid="36d512f6-7ded-4dbb-83cf-1ebd1d25b74d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[28. Nro. Carnet CONADIS:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="457" width="115" height="20" uuid="3cd9bb68-e4a2-44c9-a51c-670b62157b5b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[31. Tipo de Colegio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="357" width="145" height="20" uuid="5c961e06-7815-4c95-87f6-47650df4a737"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[24. Provincia de Residencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="498" width="100" height="20" uuid="104a10f5-c300-402e-ad42-de30fa88f538"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Especifique el título:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="517" width="267" height="20" uuid="df9c996a-7829-45a1-b6fa-bc127fe30628"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[35. Fecha en la que inició el estudiante la Carrera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="397" width="88" height="20" uuid="65ec3c5d-8396-42d3-bd44-56af449481b0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[26. Estado Civil:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="438" width="167" height="20" uuid="bab80845-29c2-49f9-9002-e672bb3cda11"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[29. Porcentaje de Discapacidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="478" width="131" height="20" uuid="6aa99693-0ebc-4998-b753-5b6b1beac562"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[32. Tipo de Bachillerato:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="397" y="357" width="158" height="40" uuid="3683c77b-2e39-47f1-9338-a0c0a7b14e22"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="197" y="277" width="145" height="20" uuid="d757c196-9897-4bf5-9f30-0a1865bbf52c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[20. Provincia de Nacimiento:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="326" width="249" height="20" uuid="cb7f6390-8fc9-450d-91cc-d6cc85ec71d5"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[22. Categoría migratoría (en caso de ser extranjero):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="409" y="357" width="145" height="20" uuid="c9669166-3c70-4c46-8190-2374467de7ce"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[25. Cantón de Residencia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="349" y="477" width="115" height="20" uuid="362795aa-f741-415b-9d27-28041e159a88"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[33. Año de graduación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="2" y="557" width="117" height="20" uuid="95741a5c-72fa-4c13-8a21-743bbb389329"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[37. Tipo de Matrícula:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="-705" width="66" height="20" uuid="b94a63f6-1e34-42b5-8117-ab5cbad17e54"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pág. 1 de 2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="496" y="638" width="16" height="20" uuid="46485175-2d29-4b62-8f4d-063284148fc4"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="468" y="638" width="28" height="20" uuid="4a032b58-556e-42a0-8502-e62493f5481d"/>
+				<text><![CDATA[Pág.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="36" width="187" height="20" uuid="9dbcc61e-ea18-4863-80bc-223752446812"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{datos_personales_num_identificacion}==null ? "":$F{datos_personales_num_identificacion}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="0" width="145" height="20" uuid="106ff114-7f2a-4bdf-967a-8b8f3773de21"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{tipo_identificacion_tipo}==null ? "":$F{tipo_identificacion_tipo}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="283" y="30" width="80" height="20" uuid="ca02d47c-fcf5-4721-a193-8b63d5311343"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_sexo}==null ? "" : $F{datos_personales_sexo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="30" width="100" height="20" uuid="2b8bccd0-f32b-4791-bd21-6d0e93c6cfb5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_genero}==null ? "":$F{datos_personales_genero}=='0' ? "Masculino" : "Femenino" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="199" y="56" width="285" height="20" uuid="92283ac0-01a1-4768-9121-7a4d0f2f3b62"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_apellidos}+" "+$F{datos_personales_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="86" width="198" height="20" uuid="6f6861fb-d35f-4b95-bc61-a57ca1456376"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_correo_electronico}==null ? "" : $F{datos_personales_correo_electronico}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="423" y="76" width="100" height="20" uuid="b7e2df33-3729-4471-86b2-690a2ffaaac3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_celular}==null ? "" : $F{datos_personales_celular}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="96" width="100" height="20" uuid="54a2b148-9c9a-43bd-afdf-ad16cbe31b09"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_convencional}==null ? "" : $F{datos_personales_convencional}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="116" width="248" height="20" uuid="897103ef-e721-46ac-8b0b-4c01bc99681f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="116" width="109" height="20" uuid="1e2d1c42-d83b-463f-b453-e9085ab213a4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_cod_postal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="156" width="264" height="20" uuid="069241e9-3af7-442a-b780-aa3febfb7a2a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{matricula_apellido_contacto}+" "+$F{matricula_nombre_contacto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="156" width="110" height="20" uuid="9152f209-7211-4563-8fc4-ea5d8df80d5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{matricula_parentesco_contacto}==null ? "":$F{matricula_parentesco_contacto}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="409" y="156" width="146" height="20" uuid="b2531442-8560-48d7-8f7f-91022df7f57d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_celular_contacto}==null ? "" : $F{matricula_celular_contacto}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="69" y="176" width="158" height="20" uuid="ff2fac41-7694-41de-a5af-88ede2534ff0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{etnia_tipo_etnia}==null ? "":$F{etnia_tipo_etnia}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="196" width="185" height="20" uuid="4b56f5a3-b311-4aca-968b-f8dd976ecba8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_nacionalidad}==null ? "" : $F{matricula_nacionalidad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="169" y="216" width="120" height="20" uuid="28a6e620-245b-4f79-9038-e73780a17687"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_idioma_ancestral}==null ? "" : $F{matricula_idioma_ancestral}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="368" y="217" width="186" height="20" uuid="a3879172-a53d-4106-9408-8c2466a0cdad"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_descripcion_idioma_ancestral}==null ? "" : $F{matricula_descripcion_idioma_ancestral}+"" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="132" y="246" width="97" height="20" uuid="747d8176-e09e-489f-924b-e9d345dadf51"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{datos_personales_fecha_nacimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="297" y="246" width="78" height="20" uuid="eeb04e56-af73-4b17-b357-ac0b7e2a2bbd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{datos_personales_edad}==null ? "" : $F{datos_personales_edad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="482" y="246" width="73" height="20" uuid="51d4906c-dc75-46bd-b0c2-d7acf9484092"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{tipo_sangre_tipo}==null ? "" : $F{tipo_sangre_tipo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="297" width="125" height="20" uuid="feb0fed3-5666-4de8-8d0b-1bd5ed74ca14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{nacionalidad_pais_nacionalidad}==null ? "" : $F{nacionalidad_pais_nacionalidad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="197" y="297" width="145" height="20" uuid="0d1dbff7-3773-4970-8faa-34cdb239bcf4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{provincia_nombre}==null ? "" : $F{provincia_nombre}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="402" y="297" width="147" height="20" uuid="4fe2f4b8-3ee8-45b1-acc3-bac28841915a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{canton_nombre}==null ? "" : $F{canton_nombre}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="377" width="106" height="20" uuid="71804e83-701f-4eae-babf-5ce6c6530947"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_pais_residencia}==null ? "" : $F{matricula_pais_residencia}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="397" width="100" height="20" uuid="e1b15806-a350-4d64-8912-1c999173430b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{estado_civil_estado_civill}==null ? "" : $F{estado_civil_estado_civill}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="442" y="418" width="113" height="20" uuid="9697785c-e37f-4975-84a7-00543e63f5fe"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_num_carnet_conadis}==null ? "" : $F{matricula_num_carnet_conadis}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="332" y="438" width="198" height="20" uuid="d5e124db-7f02-4552-8d67-0e667fec677b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{discapacidad_id_tipo_discapacidad}==null ? "" : $F{discapacidad_id_tipo_discapacidad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="417" width="100" height="20" uuid="ef6da1c6-5208-47da-a689-6d41d52762b6"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_posee_discapacidad}==null ? "" : $F{matricula_posee_discapacidad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="438" width="100" height="20" uuid="49115cc7-e3ce-4c3d-bb7d-a831b3397200"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_porcentaje_discapacidad}==null ? "" : $F{matricula_porcentaje_discapacidad}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="458" width="169" height="20" uuid="6855d6be-7678-4488-ab3a-fc8939326d4d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{tipo_colegio_tipo}==null ? "" : $F{tipo_colegio_tipo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="132" y="478" width="193" height="20" uuid="5978c224-26e7-409d-b361-9decf7dac881"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{tipo_bachillerato_tipo}==null ? "" : $F{tipo_bachillerato_tipo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="466" y="477" width="85" height="20" uuid="839d6a17-f6f5-453b-a461-660205d7f7dd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_anio_graduacion}==null ? "" : $F{matricula_anio_graduacion}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="498" width="186" height="20" uuid="32482422-2286-49c8-8634-088c7d909dab"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_especifique_titulo}==null ? "" : $F{matricula_especifique_titulo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="498" width="33" height="20" uuid="e4c92535-46f5-490e-a003-906f3d0f5228"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_titulo_educacion_superior}==null ? "" : $F{matricula_titulo_educacion_superior}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="535" width="224" height="20" uuid="c4b5395c-355b-4484-b578-63784dae9f01"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_fecha_inicio_carrera}==null ? "" : $F{matricula_fecha_inicio_carrera}+"" )]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="441" y="527" width="100" height="20" uuid="e55124af-9055-4fb6-ada6-deae829900e7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_fecha_matricula}==null ? "" : $F{matricula_fecha_matricula}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="557" width="167" height="20" uuid="3a3561ca-8be4-4a9e-b19e-b52cca553f8b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{tipo_matricula_tipo}==null ? "" : $F{tipo_matricula_tipo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="252" y="326" width="205" height="20" uuid="8c87559e-01ba-4c29-a13a-fea57668c64e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_categoria_migratoria}==null ? "" : $F{matricula_categoria_migratoria}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="188" y="377" width="176" height="20" uuid="a4e8063c-3254-4834-a405-26f772b54a46"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{matricula_provincia_residencia}==null ? "":$F{matricula_provincia_residencia}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="377" width="126" height="20" uuid="3c20019e-cb20-43e1-8823-d9b63ea26fed"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{matricula_canton_residencia}==null ? "": $F{matricula_canton_residencia}+"")]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="802" splitType="Stretch">
+			<rectangle>
+				<reportElement x="281" y="131" width="274" height="41" uuid="472c0ba1-ea4a-41f5-8698-3df9b0b61cc5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="131" width="280" height="41" uuid="815ba059-e2a6-423c-8a19-e20a2e946c0a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="171" width="354" height="25" uuid="acb52194-75b4-47b4-944d-6622e38fb1be"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="353" y="171" width="202" height="25" uuid="67264dec-44c0-4360-b68f-bdf51b06ef3a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="434" width="554" height="21" uuid="42321350-5889-4183-9048-71acd565fc7d"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="298" y="250" width="256" height="20" uuid="6449add3-29ed-4765-b9af-308f5110620b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="256" width="554" height="20" uuid="7d8b1697-6f76-49be-abdd-7963b2d3ad90"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="281" y="236" width="274" height="20" uuid="0196061b-12f4-4bc1-a59b-e691f4dea78f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="632" width="284" height="20" uuid="291bd0f3-fc08-4801-be6a-083fcae7e7f6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="612" width="554" height="20" uuid="a02df0de-d93e-4409-89b9-16377717da48"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="593" width="554" height="19" uuid="67aebaa7-499e-4f62-b840-95fbe004b1b7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="573" width="554" height="20" uuid="86a9a158-4741-4e8a-9e8f-2093fb809ba9"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="552" width="554" height="21" uuid="e2acd833-0599-46f5-a6d2-e70375e7a43b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="508" width="554" height="23" uuid="cf1f71e6-e4eb-40fe-814f-043e2ef9996b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="358" width="554" height="32" uuid="b8182f78-1777-461e-9503-3aafbd7794bd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="196" width="280" height="40" uuid="94e894d8-f121-4827-a83b-42f33928ea97"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="281" y="196" width="274" height="40" uuid="c5fcd4e9-0387-495d-bdb4-1c9c9e0a691f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="389" width="554" height="45" uuid="cb98c5ae-25dd-4143-b9cb-a8615a561358"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="281" y="276" width="274" height="40" uuid="0d0a2bdf-9d4d-4795-ace7-37cb1278daaa"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="316" width="280" height="42" uuid="3d043551-c934-4cfa-b7c4-40c80b75f3b5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="276" width="280" height="40" uuid="2759f378-5238-4196-bb9c-04f1c0758258"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="233" y="72" width="96" height="20" uuid="2a3e373c-e3d5-48f6-87c2-da3fdb287115"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[(CÓDIGO: 2280)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="94" width="151" height="20" uuid="564a983f-c652-41e3-8ab2-01d8b92d064b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMULARIO DE MATRÍCULA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="43" width="201" height="20" uuid="4e09b9e8-0823-428c-98e4-956da9914566"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="30" width="326" height="20" uuid="e115492b-6133-4395-a6c4-cac3445475cc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUBSECRETARÍA DE FORMACÍON TÉCNICA Y TECNOLÓGICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="55" width="45" height="20" uuid="545ff05f-8614-458e-8f9d-50f8c80ae095"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[LIMÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="365" width="346" height="20" uuid="7d2867ad-9a3f-4c5a-bafc-f4e486b3f431"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[51. Tipo de Institución en el que se realiza Prácticas Pre profesionales:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="287" width="138" height="20" uuid="479786d5-3d85-4156-982e-b0dc193722f0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[48. Ha perdido la Gratuidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="276" width="204" height="20" uuid="09f058a8-d970-4125-8e5c-ba8027f01a2a"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[47. Ha repetido al menos una materia:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="281" y="316" width="274" height="42" uuid="e0e69f42-7864-48a6-9fd9-cebaf0dbb4bd"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="283" y="316" width="270" height="20" uuid="065460ff-63da-498c-bb80-163a21dfddeb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[50. Nro. Horas de Prácticas Preprofesionales Realizadas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="391" width="330" height="20" uuid="3a30991f-69fa-46cd-b81d-c6a3a62fd6f0"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[52. Sector Económico en el que realiza Prácticas Pre profesionales:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="316" width="223" height="20" uuid="410e2ad6-ac19-4c3a-b07e-9be91b98e510"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[49. Ha realizado Prácticas Preprofesionales:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="256" width="150" height="20" uuid="ca11afb9-856f-4fbd-8675-52436fd49d82"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[46. Jornada en la que Estudia:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="236" width="280" height="20" uuid="15fa62d8-0fda-49a0-b14c-736862a54a90"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="326" y="197" width="167" height="20" uuid="0f974c33-9714-423d-8d8c-9932fd0b24a7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[43. Título que otorga la Carrrera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="296" y="237" width="142" height="20" uuid="017ed55b-cd72-4b50-a2c8-1d3ec9db56d9"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[45. Modalidad de la Carrera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="236" width="100" height="20" uuid="e89c68f6-6fa9-444d-8d2d-3e91981aee26"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[44. Tipo de Carrera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="198" width="134" height="20" uuid="eedb27d1-8077-4bc1-a574-bb06aa3d5f07"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[42. Nombre de la Carrera:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="573" width="380" height="20" uuid="0b293907-c48d-4ad8-b14d-9ec97695b1b7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[59. Usted o algún miembro de la familia recibe el bono de desarrollo humano:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="530" width="554" height="22" uuid="9e5f8e86-6a4b-4561-be75-5ada902c6272"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="1" y="455" width="554" height="30" uuid="8da6575d-323a-4193-ae00-65f1fc6a98b4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="612" width="177" height="20" uuid="cd334f91-cefd-4f5b-b94f-3bc894cc1727"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[61. Nivel de Formación de la Madre:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="285" y="632" width="270" height="20" uuid="fe0cd4ae-adf9-4086-bba5-cdbc1f91bb94"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="592" width="177" height="20" uuid="9c299761-8b5b-4441-83f4-9cb96586f1d2"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[60. Nivel de Formación del Padre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="532" width="273" height="20" uuid="740f6d43-05ee-49ae-a799-85f2d3074888"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[57. Indique cuál es el Sector Económico de la empresa:]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="1" y="485" width="554" height="23" uuid="34dea3b3-68b3-4b89-a2cc-22fefaae8f60"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="3" y="510" width="260" height="20" uuid="0b30e971-9a27-4e69-86ed-d9db5359bacb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[56. Cúal es el nombre de la empresa donde labora:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="487" width="214" height="20" uuid="3cc4a610-bc46-4745-bef5-145af9390112"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[55. El Estudiante se encuentra dedicado a:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="632" width="119" height="20" uuid="53ea63bd-3cc6-4931-81ad-dc4bb7c93637"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[62. Ingresos del hogar: $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="553" width="296" height="20" uuid="c67a05b6-da69-4dbf-9e9a-44107068bb1b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[58. Para que emplea sus ingresos económicos el estudiante:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="461" width="332" height="20" uuid="2606230b-829e-48f4-8974-50e4e869d94b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[54. Cuál es el alcance del proyecto de Vinculación con la sociedad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="435" width="411" height="20" uuid="0dfafe77-fe88-4c14-b967-cab7c16f892b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[53. Ha participado en algún Proyecto de vinculación con la Sociedad en el Instituto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="632" width="180" height="20" uuid="b4a346b5-3485-44e1-8d02-4cc741860724"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[63. Número de Miembros de Hogar:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="243" y="717" width="311" height="28" uuid="dfe28166-0b5c-4874-8dd8-0153bd32e599"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[FIRMA ESTUDIANTE:_________________________________]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="284" y="142" width="161" height="20" uuid="35a77269-27c8-4938-abbc-cccc6130aa6d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[39. Año del Período Académico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="132" width="167" height="20" uuid="9f068ac1-74eb-40bb-ac9e-f40b70143b2c"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[38. Período /Ciclo Académico:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="355" y="175" width="100" height="20" uuid="e10fe3e3-c5b3-48fe-9740-0ae6f03ce16d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[41. Paralelo (A-T):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="3" y="174" width="117" height="20" uuid="fc3161a4-cd58-4e1f-9ba9-994d299e5a7d"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[40. Nivel Académico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="512" y="765" width="42" height="20" uuid="3b12dbdb-bf4f-447e-aa16-fc482847b2a2"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="484" y="765" width="28" height="20" uuid="8f3b8019-04e9-431c-9521-499de22847ea"/>
+				<text><![CDATA[Pág.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="15" y="20" width="100" height="72" uuid="95f9f2a6-c08f-43a3-b84d-c897e500e596"/>
+				<imageExpression><![CDATA[$P{logoA}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="433" y="25" width="121" height="69" uuid="3336408b-415e-47f7-95c5-3a91acf25f25"/>
+				<imageExpression><![CDATA[$P{logoB}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="5" y="150" width="160" height="20" uuid="5ea42f26-986b-4cde-afe5-20a3c3cc9b59"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{periodo_academico_nombre}==null ? "" : $F{periodo_academico_nombre}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="142" width="100" height="20" uuid="b0aba9f8-3fff-4e36-94c9-0508759f704f"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{periodo_academico_año_periodo_academico}==null ? "" : $F{periodo_academico_año_periodo_academico}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="122" y="174" width="183" height="20" uuid="6e808dfe-1c16-40ad-8d2a-f8ddaf2e4635"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{nivel_academico_nivel_academico}==null ? "" : $F{nivel_academico_nivel_academico}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="456" y="175" width="100" height="20" uuid="ce9deb68-77a0-457c-9259-b7b04bbf4646"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{paralelo_nombre_paralelo}==null ? "" : $F{paralelo_nombre_paralelo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="11" y="216" width="252" height="20" uuid="ab8d9ba7-0ffd-48e2-8e5a-da3622ac2b3d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{titulo_carrera_nombre_titulo}==null ? "":$F{titulo_carrera_nombre_titulo}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="296" y="216" width="242" height="20" uuid="1f1cae7f-d967-410c-80c6-fd99360d50e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_titulo_otorgado}==null ? "" : $F{matricula_titulo_otorgado}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="236" width="158" height="20" uuid="66b593ad-f778-438c-b2e6-6412531145c0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{tipo_carrera_nombre}==null ? "":$F{tipo_carrera_nombre}+"")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="439" y="237" width="100" height="20" uuid="66fbc235-7bed-4a03-a8f2-b61c920c48d2"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[($F{matricula_modalidad}==null ? "" : $F{matricula_modalidad} == 1 ? "Presencial":$F{matricula_modalidad} == 2 ? "Semi Presencial":"Dual" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="153" y="256" width="222" height="20" uuid="8d21fa07-d9ed-4745-a83e-f61814084153"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{jornada_academica_tipo_jornada}==null ? "" : $F{jornada_academica_tipo_jornada}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="53" y="296" width="100" height="20" uuid="9b9fb007-07a8-428a-8a5e-cd5fdf704676"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_materia_repetida}==null ? "" : ( $F{matricula_materia_repetida}=='1' ? "Si" : "No" ) )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="356" y="336" width="100" height="20" uuid="e192550c-135f-4650-a42b-6340af19a094"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_nro_horas_practicasPreprosionales}==null ? "" : $F{matricula_nro_horas_practicasPreprosionales}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="287" width="121" height="20" uuid="74015a56-bbd7-4397-a842-62bbaa6188ca"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_materia_perdida}==null ? "" : ( $F{matricula_materia_perdida}=='1' ? "Si" : "No" ))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="67" y="336" width="100" height="20" uuid="c0e812e8-d9b6-45f7-8d97-7a03b7b754f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_participacion_practicas}==null ? "" : $F{matricula_participacion_practicas}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="365" width="163" height="20" uuid="a66b1691-ab1b-4ce1-82fc-c52ae2ed5844"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{tipo_institucion_practicas_nombre_tipo}==null ? "" : $F{tipo_institucion_practicas_nombre_tipo}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="15" y="411" width="301" height="20" uuid="bc414b78-7b22-4dbe-90ad-0d94fa0c545a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{sector_economico_empresa_nombre}==null ? "" : $F{sector_economico_empresa_nombre}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="435" width="134" height="20" uuid="0d3821ec-43ce-45c9-948a-bea11c2a904c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_participacion_vinculacion}==null ? "" : $F{matricula_participacion_vinculacion}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="217" y="487" width="227" height="20" uuid="5846fa2a-9de4-4a8e-9ab5-bb847eac7ca0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_ocupacion_estudiante}==null ? "" : ( $F{matricula_ocupacion_estudiante}=='1'? "Solamente al estudio" : "Trabaja y estudia" ))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="510" width="220" height="20" uuid="e942974c-28c1-46c1-bc1e-b20a4de8f876"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_nombre_empresa}==null ? "" : $F{matricula_nombre_empresa}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="532" width="227" height="20" uuid="b9f31b30-f9ee-4561-b39a-04674fe25048"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{sector_economico_empresa_nombre}==null ? "" : $F{sector_economico_empresa_nombre}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="299" y="553" width="231" height="20" uuid="f0b13ffb-0502-49ba-84af-3f5df11f0e29"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_empleo_ingresos_economicos}==null ? "" : $F{matricula_empleo_ingresos_economicos}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="593" width="234" height="20" uuid="e9a049b2-466c-4c23-9df5-d03f22038487"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{formacion_academica_nivel}==null ? "" : $F{formacion_academica_nivel}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="612" width="278" height="20" uuid="127c7986-b627-4bf9-a89a-585a39811359"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{formacion_academica_madre_nivel}==null ? "" : $F{formacion_academica_madre_nivel}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="632" width="100" height="20" uuid="3e5ea13b-8b7a-431b-b41d-927dcfd23739"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_ingreso_hogar}==null ? "" : $F{matricula_ingreso_hogar}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="467" y="632" width="81" height="20" uuid="ddb7bd80-6897-4450-9c57-776d9e184a99"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_nro_miembros_hogar}==null ? "" : $F{matricula_nro_miembros_hogar}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="461" width="164" height="20" uuid="4cedaa03-2aa9-435a-a1cb-992c074f87e7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{alcance_vinculacion_alcance}==null ? "" : $F{alcance_vinculacion_alcance}+"" )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="573" width="161" height="20" uuid="173d8e7a-a504-4ff7-b49e-6bc490c0dff7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[( $F{matricula_bono_desarrollo_humano}==null ? "" : ( $F{matricula_bono_desarrollo_humano}=='1' ? "Si" : "No" ) )]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
