@@ -15,7 +15,7 @@
                 <h:form id="MateriaEditForm">
                     <h:panelGroup id="display" >
                         <div class="data_campos_filto">
-                            <div style="text-align: center"><p class="title_reporte">REPORTES</p></div>
+                            <div style="text-align: center"><p class="title_reporte">REPORTES DE NOTAS</p></div>
                             <p:outputLabel class="labelLateral" value="Carrera" />
                             <p:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tiCarreraSelected.idTituloCarrera}">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -26,6 +26,15 @@
                                 <p:ajax process="@this" update="idMateria" />
                             </p:selectOneMenu> 
 
+                            <p:outputLabel class="labelLateral" value="Período Académico" for="idPeriodo" />
+                            <p:selectOneMenu id="idPeriodo" value="#{exportarNotasMaterias.periodoSelected}" >
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idPeriodoAcademicoItem"
+                                                   itemValue="#{idPeriodoAcademicoItem}"/>
+                            </p:selectOneMenu>
+                            
+                            
                             <p:outputLabel class="labelLateral" value="Ciclo" for="idNivelAcademico" />
                             <p:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected.idNivelAcademico}" >
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

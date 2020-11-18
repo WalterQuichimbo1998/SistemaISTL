@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import modelo.Materia;
 import modelo.NivelAcademico;
+import modelo.PeriodoAcademico;
 import modelo.TituloCarrera;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -57,6 +58,7 @@ public class ExportarNotasMaterias implements Serializable {
     private MateriaFacade ejbFacade;
     private List<Materia> itemsMateria = null;
     private Materia materiaSelected;
+    private PeriodoAcademico periodoSelected;
     
 
     @PostConstruct
@@ -153,11 +155,16 @@ public class ExportarNotasMaterias implements Serializable {
         this.nivelAcademicoSelected = nivelAcademicoSelected;
     }
 
-//    public void imprimirMateriasdoc() {
-//        System.out.println(tiCarreraSelected.getIdTituloCarrera());
-//        System.out.println(nivelAcademicoSelected.getIdNivelAcademico());
-//        System.out.println(materiaSelected.getIdMateria());
-//    }
+    public PeriodoAcademico getPeriodoSelected() {
+        return periodoSelected;
+    }
+
+    public void setPeriodoSelected(PeriodoAcademico periodoSelected) {
+        this.periodoSelected = periodoSelected;
+    }
+    
+
+
     private byte[] reportPdf;
     private final String logotipo = "/reportes/logo.jpg";
 

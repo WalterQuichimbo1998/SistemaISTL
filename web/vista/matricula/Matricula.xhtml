@@ -455,7 +455,7 @@
                         </div>
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="Sector económico que realiza Práticas Preprofesionales" for="sector" />
-                            <p:selectOneMenu id="sector" value="#{matriculaController.selected.idsectorpracticasPreprofesionales}" >
+                            <p:selectOneMenu id="sector" value="#{matriculaController.selected.idsectorpracticasPreprofesionales}" panelStyle="width:300px" style="width: 300px;" effect="fade" filter="true" filterMatchMode="contains" height="160">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{sectorEconomicoEmpresaController.itemsAvailableSelectOne}"
                                                var="idSectorEconomicoEmpresaItem"

@@ -29,13 +29,17 @@ body{
     border-color: #e7e7e7 !important;
     border:1px solid #e7e7e7 !important;
 }
-
+.menuBarra li a, .link-active, .current-menu-item a{
+        padding-left: 2px !important;
+    padding-right: 2px !important;
+}
 .menuBarra li:hover a, .link-active, .current-menu-item a{
     background-color: transparent;
     background: none;
     box-shadow: none;
     outline: none;
     color:#1976D3;
+    border-radius: 3px 3px !important;
 }
 .menuBarra>ul.ui-menu-list>li{
     font-size: 14px !important;
@@ -43,7 +47,9 @@ body{
     margin: 0;
     outline: none;
     border-radius: 0px;
+    padding: 0px 2px !important;
 }
+
 
 .item .ui-menu-child{
     background: none;

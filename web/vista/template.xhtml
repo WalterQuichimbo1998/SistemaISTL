@@ -14,6 +14,7 @@
         <h:outputStylesheet name="css/admin_style.css"/>
         <h:outputStylesheet name="css/footer_style.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
+        <h:outputScript library="js" name="spanishLocale.js"/>
     </h:head>
     <h:body>
         <p:growl id="growl" showDetail="false" life="3000" />
@@ -89,7 +90,7 @@
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.parametroFicha2}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
                                 <p:outputLabel value="Periódo Académico"  />
-                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom: 5px;" 
+                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom:10px !important;" 
                                                  effect="fade" filter="true" filterMatchMode="contains" height="140" required="true" requiredMessage="Seleccione el periódo académico" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
@@ -131,7 +132,7 @@
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.paramCertificado}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
                                 <p:outputLabel value="Periódo Académico"  />
-                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom: 5px;" 
+                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom:10px !important;" 
                                                  effect="fade" filter="true" filterMatchMode="contains" height="140" required="true" requiredMessage="Seleccione el periódo académico" >
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"

@@ -120,7 +120,7 @@ public class MatriculaController implements Serializable {
     }
     public void create2() {
    this.selected.setIdDatosPersonales(AccesoBean.obtenerIdPersona().getIdDatosPersonales());
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
         if (!JsfUtil.isValidationFailed()) {
             selected=AccesoBean.obtenerMatricula();
         }

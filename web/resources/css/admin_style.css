@@ -30,13 +30,17 @@ body{
     border-color: #e7e7e7 !important;
     border:1px solid #e7e7e7 !important;
 }
-
+.menuBarra li a, .link-active, .current-menu-item a{
+        padding-left: 2px !important;
+    padding-right: 2px !important;
+}
 .menuBarra li:hover a, .link-active, .current-menu-item a{
     background-color: transparent;
     background: none;
     box-shadow: none;
     outline: none;
     color:#1976D3;
+    border-radius: 3px 3px !important;
 }
 .menuBarra>ul.ui-menu-list>li{
     font-size: 14px !important;
@@ -44,6 +48,7 @@ body{
     margin: 0;
     outline: none;
     border-radius: 0px;
+    padding: 0px 2px !important;
 }
 
 .item .ui-menu-child{
@@ -100,7 +105,7 @@ body{
     color: #1976D3;
     font-size: 16px;
     font-weight: bold;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
     width: 150px;
     line-height: 20px;
 }
@@ -117,7 +122,7 @@ body{
 }
 .campo_txt{
     display: inline-block;
-    background: transparent;
+    background: #fefee7;
     padding: 8px 10px;
     margin-bottom: 15px;
     margin-top: 7px;
@@ -127,6 +132,9 @@ body{
     color: #454545;
     text-align: center;
     font-size: 15px;
+}
+.campo_txt:focus{
+border: 1px solid #ccc;
 }
 .des_label{
     color: #454545;

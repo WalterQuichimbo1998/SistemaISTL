@@ -8,9 +8,12 @@ package dao;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import modelo.DatosPersonales;
 import modelo.Materia;
+import modelo.Matricula;
 import modelo.NivelAcademico;
 import modelo.TituloCarrera;
 import modelo.Usuario;
@@ -130,5 +133,17 @@ public abstract class AbstractFacade<T> {
         return list;
     }
 
-    
+ 
+    public Matricula virifcarMatriculaF(Integer id) {
+        System.out.println("lego");
+        EntityManager em = getEntityManager();
+//        em.getEntityManagerFactory().getCache().evictAll();
+        Matricula ma = null;
+        try {
+            Query q = em.createNativeQuery("SELECT * FROM matricula WHERE id_datos_personales='" + id + "';", Matricula.class);
+            ma = (Matricula) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return ma;
+    }
 }

@@ -12,21 +12,19 @@
             <h:form id="PeriodoAcademicoViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{periodoAcademicoController.selected != null}">
-                        <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_idPeriodoAcademico}"/>
-                        <h:outputText value="#{periodoAcademicoController.selected.idPeriodoAcademico}" title="#{bundle.ViewPeriodoAcademicoTitle_idPeriodoAcademico}"/>
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_nombre}"/>
                         <h:outputText value="#{periodoAcademicoController.selected.nombre}" title="#{bundle.ViewPeriodoAcademicoTitle_nombre}"/>
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_descripcion}"/>
                         <h:outputText value="#{periodoAcademicoController.selected.descripcion}" title="#{bundle.ViewPeriodoAcademicoTitle_descripcion}"/>
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_modalidad}"/>
-                        <h:outputText value="#{periodoAcademicoController.selected.modalidad}" title="#{bundle.ViewPeriodoAcademicoTitle_modalidad}"/>
+                        <h:outputText value="#{periodoAcademicoController.selected.modalidad==1?'Presencial':periodoAcademicoController.selected.modalidad==2?'Semipresencial':'Dual'}" title="#{bundle.ViewPeriodoAcademicoTitle_modalidad}"/>
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_estado}"/>
                         <h:outputText value="#{periodoAcademicoController.selected.estado}" title="#{bundle.ViewPeriodoAcademicoTitle_estado}"/>
                         <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_fechaDeRegistro}"/>
                         <h:outputText value="#{periodoAcademicoController.selected.fechaDeRegistro}" title="#{bundle.ViewPeriodoAcademicoTitle_fechaDeRegistro}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewPeriodoAcademicoLabel_añoPeriodoAcademico}"/>
+                        <h:outputText value="Año Período académico"/>
                         <h:outputText value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.ViewPeriodoAcademicoTitle_añoPeriodoAcademico}"/>
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Close}" onclick="PeriodoAcademicoViewDialog.hide()"/>

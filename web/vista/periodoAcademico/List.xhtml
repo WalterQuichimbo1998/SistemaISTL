@@ -46,7 +46,7 @@
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoAcademicoTitle_modalidad}"/>
                             </f:facet>
-                            <h:outputText value="#{item.modalidad}"/>
+                            <h:outputText value="#{item.modalidad==1?'Presencial':item.modalidad==2?'Semipresencial':'Dual'}"/>
                         </p:column>
                         
                         <p:column>

@@ -13,6 +13,7 @@
         <h:outputStylesheet library="css" name="jsfcrud.css"/>
         <h:outputStylesheet name="css/estudiante_style.css"/>
         <h:outputStylesheet name="css/footer_style.css"/>
+        <h:outputScript library="js" name="spanishLocale.js"/>
         <script src="../resources/js/all.js"></script>
     </h:head>    
     <h:body>
@@ -26,7 +27,7 @@
                     <p:menuitem value="Datos Personales" action="/Estudiante/datosPersonales?faces-redirect=true" icon="ui-icon-script"/>
                    
                     <c:if test="#{matriculaController.datosP()==false}">
-                        <p:menuitem value="Matricula" actionListener="#{matriculaController.prepareCreate}" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
+                        <p:menuitem value="Matricula2" actionListener="#{matriculaController.prepareCreate}" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
                     </c:if>
                     <c:if test="#{matriculaController.datosP()==true}">
                         <p:menuitem value="Matricula" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />

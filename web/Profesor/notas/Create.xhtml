@@ -15,7 +15,7 @@
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateNotasLabel_idPersona}" for="idDato" />
                         <p:selectOneMenu id="idDato" value="#{notasController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" >
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione un estudiante">
                              <f:selectItem itemLabel="-Seleccione-"/>
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"
