@@ -5,6 +5,9 @@ import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
 import dao.MatriculaFacade;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,7 +21,11 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
 import modelo.Canton;
+import modelo.DatosPersonales;
 import modelo.Provincia;
 
 @Named("matriculaController")
@@ -28,31 +35,35 @@ public class MatriculaController implements Serializable {
     @EJB
     private dao.MatriculaFacade ejbFacade;
     @EJB
-    private dao.ProvinciaFacade ejbFacadeP;  
+    private dao.ProvinciaFacade ejbFacadeP;
     @EJB
-    private dao.CantonFacade ejbFacadeC; 
+    private dao.CantonFacade ejbFacadeC;
 
     private List<Matricula> items = null;
     private List<Matricula> listaMatricula = null;
     private Matricula selected;
     private List<Provincia> listaProvincias = null;
     private List<Canton> listaCanton = null;
+    private Matricula ms = null;
+    private Boolean v = false;
 
     public MatriculaController() {
+
     }
 
     public Matricula getSelected() {
-        if (ejbFacade.virifcarMatricula(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales()) != null) {
-        if ("Estudiante".equals(AccesoBean.obtenerIdPersona().getIdTipoOperador().getOperador())) {
-            this.selected=AccesoBean.obtenerMatricula();
-        }
+        if (ejbFacade.virifcarMatriculaBD(AccesoBean.obtenerIdPersona().getIdDatosPersonales()) != null) {
+            if ("Estudiante".equals(AccesoBean.obtenerIdPersona().getIdTipoOperador().getOperador())) {
+                this.selected = AccesoBean.obtenerMatricula();
+            }
         }
         return selected;
+
     }
 
     public void setSelected(Matricula selected) {
         this.selected = selected;
-    }    
+    }
 
     protected void setEmbeddableKeys() {
     }
@@ -61,8 +72,8 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Provincia> getListaProvincias() {
-       if (selected.getIdNacionalidad()!= null) {
-            return listaProvincias= ejbFacadeP.listaProvincia(selected.getIdNacionalidad().getIdNacionalidad());
+        if (selected.getIdNacionalidad() != null) {
+            return listaProvincias = ejbFacadeP.listaProvincia(selected.getIdNacionalidad().getIdNacionalidad());
         } else {
             return null;
         }
@@ -74,7 +85,7 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Canton> getListaCanton() {
-        
+
         if (selected.getIdNacionalidad() != null) {
             if (getListaProvincias().contains(selected.getIdProvinciaNacimiento()) == true) {
                 return listaCanton = ejbFacadeC.listaCanton(selected.getIdProvinciaNacimiento().getIdProvincia());
@@ -98,10 +109,25 @@ public class MatriculaController implements Serializable {
     public void setListaMatricula(List<Matricula> listaMatricula) {
         this.listaMatricula = listaMatricula;
     }
-    
-    
+
+    public Matricula getMs() {
+        return ms;
+    }
+
+    public void setMs(Matricula ms) {
+        this.ms = ms;
+    }
+
     private MatriculaFacade getFacade() {
         return ejbFacade;
+    }
+
+    public Boolean getV() {
+        return v;
+    }
+
+    public void setV(Boolean v) {
+        this.v = v;
     }
 
     public Matricula prepareCreate() {
@@ -111,31 +137,22 @@ public class MatriculaController implements Serializable {
     }
 
     public void create() {
-   
+
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
         items = null;
     }
-    public void create2() {
-   this.selected.setIdDatosPersonales(AccesoBean.obtenerIdPersona().getIdDatosPersonales());
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
-        if (!JsfUtil.isValidationFailed()) {
-            selected=AccesoBean.obtenerMatricula();
-        }
-        selected=ejbFacade.obtenerMatricula(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales());
-    }
 
     public void update() {
-         if(selected.getIdNacionalidad()==null){
+        if (selected.getIdNacionalidad() == null) {
             this.selected.setIdProvinciaNacimiento(null);
             this.selected.setIdCantonNacimiento(null);
         }
-        if(selected.getIdProvinciaNacimiento()==null){
+        if (selected.getIdProvinciaNacimiento() == null) {
             this.selected.setIdCantonNacimiento(null);
         }
-
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
     }
 
@@ -234,23 +251,42 @@ public class MatriculaController implements Serializable {
         }
 
     }
-    public void verificarCrear(){
-        Matricula ma=ejbFacade.virifcarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales());
-        if(ma==null){
+
+    public void verificarCrear() {
+        Matricula ma = ejbFacade.virificarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales());
+        if (ma == null) {
             create();
-        }else{
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante ya estÃ¡ matriculado.", ""));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante ya está matriculado.", ""));
 
         }
     }
-    public Boolean datosP(){
-        boolean r=false;
-        if(ejbFacade.virifcarMatricula(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales())==null){
-            r=false;
-        }else{
-            r=true;
-        }
-        return r;
+
+
+    public Connection getConnection() throws Exception {
+        final String DATASOURCE_CONTEXT = "java:app/sistema_gestion"; //nombre de tu pool de conexiones
+        Context initialContext = new InitialContext();
+        DataSource datasource = (DataSource) initialContext.lookup(DATASOURCE_CONTEXT);
+        return datasource.getConnection();
     }
-   
+
+    public void crearMA(DatosPersonales dp) {
+        if (dp != null) {
+            PreparedStatement ps;
+            int id = dp.getIdDatosPersonales();
+            try {
+                ps = getConnection().prepareStatement("INSERT INTO matricula (id_datos_personales) VALUES(?)");
+                ps.setInt(1, id);
+                ps.execute();
+                getConnection().close();
+            } catch (SQLException ex) {
+                System.out.println("mensaje: " + ex.getMessage());
+            } catch (Exception ex) {
+                Logger.getLogger(MatriculaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            System.out.println("error");
+        }
+
+    }
 }

@@ -52,7 +52,8 @@ public class MatriculaFacade extends AbstractFacade<Matricula> {
         }
         return ma;
     }
-    public Matricula virifcarMatricula(Integer id) {
+    public Matricula virificarMatricula(Integer id) {
+
         Matricula ma = null;
         try {
             Query q = em.createNativeQuery("SELECT id_matricula,id_datos_personales FROM matricula WHERE id_datos_personales='" + id + "';", Matricula.class);

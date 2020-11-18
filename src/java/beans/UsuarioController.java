@@ -71,7 +71,13 @@ public class UsuarioController implements Serializable {
     }
 
     public void create() {
-        System.out.println("nombre: "+selected.getIdDatosPersonales().getApellidos());
+        if(selected.getIdTipoOperador().getIdTipoOperador()==2){
+            if(ejbFacadeMA.virificarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales())==null){
+            MatriculaController mc=new MatriculaController();
+            mc.crearMA(selected.getIdDatosPersonales()); 
+        }
+        }
+        
         this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
         

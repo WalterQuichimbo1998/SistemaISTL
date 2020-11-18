@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Matricula.findAll", query = "SELECT m FROM Matricula m")
      , @NamedQuery(name = "Matricula.findByIdMatricula", query = "SELECT m FROM Matricula m WHERE m.idMatricula = :idMatricula")
+     , @NamedQuery(name = "Matricula.findByDatosPersonales", query = "SELECT m FROM Matricula m WHERE m.idDatosPersonales = :id")
     , @NamedQuery(name = "Matricula.findByIdiomaAncestral", query = "SELECT m FROM Matricula m WHERE m.idiomaAncestral = :idiomaAncestral")
     , @NamedQuery(name = "Matricula.findByDescripcionIdiomaAncestral", query = "SELECT m FROM Matricula m WHERE m.descripcionIdiomaAncestral = :descripcionIdiomaAncestral")
     , @NamedQuery(name = "Matricula.findByPaisNacionalidad", query = "SELECT m FROM Matricula m WHERE m.paisNacionalidad = :paisNacionalidad")

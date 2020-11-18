@@ -137,12 +137,34 @@ public abstract class AbstractFacade<T> {
     public Matricula virifcarMatriculaF(Integer id) {
         System.out.println("lego");
         EntityManager em = getEntityManager();
-//        em.getEntityManagerFactory().getCache().evictAll();
+        em.getEntityManagerFactory().getCache().evictAll();
         Matricula ma = null;
         try {
             Query q = em.createNativeQuery("SELECT * FROM matricula WHERE id_datos_personales='" + id + "';", Matricula.class);
             ma = (Matricula) q.getSingleResult();
         } catch (Exception e) {
+        }
+        return ma;
+    }
+    public Matricula virifcarMatriculaBD(DatosPersonales id) {
+        EntityManager em = getEntityManager();
+//        em.getEntityManagerFactory().getCache().evictAll();
+        Matricula ma = null;
+        try {
+            try {
+                TypedQuery<Matricula> query = em.createNamedQuery("Matricula.findByDatosPersonales", Matricula.class);
+                query.setParameter("id", id);
+                try {
+                    ma = query.getSingleResult();
+                } catch (NoResultException e) {
+                    ma = null;
+                }
+            } catch (NullPointerException e) {
+                ma = null;
+            }
+        } catch (NoResultException e) {
+            ma = null;
+            System.out.println("Error: " + e);
         }
         return ma;
     }

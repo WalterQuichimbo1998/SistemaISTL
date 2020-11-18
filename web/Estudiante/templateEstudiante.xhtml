@@ -25,14 +25,7 @@
                 <p:menubar class="menuBarra">
                     <p:menuitem value="#{bundle.Home}" action="/Estudiante/templateEstudiante?faces-redirect=true" icon="ui-icon-home"/>
                     <p:menuitem value="Datos Personales" action="/Estudiante/datosPersonales?faces-redirect=true" icon="ui-icon-script"/>
-                   
-                    <c:if test="#{matriculaController.datosP()==false}">
-                        <p:menuitem value="Matricula2" actionListener="#{matriculaController.prepareCreate}" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
-                    </c:if>
-                    <c:if test="#{matriculaController.datosP()==true}">
-                        <p:menuitem value="Matricula" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
-                    </c:if>
-                    
+                    <p:menuitem value="Matricula" action="/Estudiante/matricula/Matricula?faces-redirect=true" icon="ui-icon-document" />
                     <p:menuitem value="Información"  action="/Estudiante/infoEstu?faces-redirect=true" icon="ui-icon-info"/>
                     <p:menuitem value="Cerrar Sesión" icon="ui-icon-power" oncomplete="PF('form_logout').show()"/>
                 </p:menubar>

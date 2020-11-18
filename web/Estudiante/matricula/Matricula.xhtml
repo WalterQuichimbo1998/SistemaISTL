@@ -4,8 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/Estudiante/templateEstudiante.xhtml">
 
@@ -15,19 +14,15 @@
 
         <ui:define name="body">
             <br/>
-           <!-- <h:form rendered="#{matriculaController.selected == null}">
+            <h:form rendered="#{matriculaController.selected == null}">
                 <br/>
                 <br/>
                 <br/>
-                <h1 style="width: 100%;margin: auto;text-align: center;font-family: Arial;">Usted aún no está matriculado</h1>
+                <h1 style="width: 100%;margin: auto;text-align: center;font-family: Arial;">Formulario matrícula no habilitado, solicite la habilitación.</h1>
                 <br/>
                 <br/>
                 <br/>
-            </h:form>-->
-            <!--<h:form id="MatriculaEditForm" rendered="#{matriculaController.selected != null}">-->
-            <c:if test="#{matriculaController.selected == null}">
-                <h2 style="font-family: Arial;color: #454545;">Vuelva a iniciar sesión de nuevo para ver los cambios realizados!</h2>
-            </c:if>
+            </h:form>
             <h:form id="MatriculaEditForm" rendered="#{matriculaController.selected != null}">
                 <p:growl id="mensaje" life="3000" />    
 
@@ -134,7 +129,7 @@
                         <div class="botones2">
                             <p:outputLabel class="labelDatos" value="Nombres" for="nombreContacto" />
                             <p:inputText id="nombreContacto" styleClass="camposDeDatos2" value="#{matriculaController.selected.nombreContacto}"  maxlength="45" 
-                                         onkeyup="javascript:this.value = this.value.toUpperCase();" />
+                                         onkeyup="javascript:this.value = this.value.toUpperCase();" /> 
                         </div>
                         <div class="botones2">
                             <p:outputLabel class="labelDatos" value="Apellidos" for="apellidoContacto" />
@@ -356,7 +351,7 @@
                                                itemValue="#{idPeriodoAcademicoItem}"/>
                             </p:selectOneMenu>
                         </div>
-
+                       
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Nivel Académico" for="idNivelAcademico" />
                             <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" >
@@ -572,17 +567,10 @@
                             <p:inputText id="nroMiembrosHogar" styleClass="camposDeDatos2" value="#{matriculaController.selected.nroMiembrosHogar}"  maxlength="10"/>
                         </div>
 
-
                         <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
 
-                        <div class="botones2">
-                            <c:if test="#{matriculaController.datosP()==false}">
-                                <p:commandButton styleClass="crear"  ajax="false" actionListener="#{matriculaController.create2}"  value="Actualizar Datos Matrícula"  />
-                            </c:if>
-                            <c:if test="#{matriculaController.datosP()==true}">
-                                <p:commandButton styleClass="crear"  ajax="false" actionListener="#{matriculaController.update}" value="Actualizar Datos Matrícula"  />
-                            </c:if>
-
+                        <div class="botones2">                     
+                            <p:commandButton styleClass="crear" ajax="false" actionListener="#{matriculaController.update}"  value="Actualizar Datos Matrícula"  />
 
                             <br/>
                             <br/>
