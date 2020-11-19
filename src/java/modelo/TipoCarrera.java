@@ -55,6 +55,8 @@ public class TipoCarrera implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoCarrera")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idTipoCarrera")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoCarrera() {
     }
@@ -94,17 +96,15 @@ public class TipoCarrera implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
-
     @XmlTransient
-   
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (idTipoCarrera != null ? idTipoCarrera.hashCode() : 0);
-        return hash;
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
     }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -112,6 +112,15 @@ public class TipoCarrera implements Serializable {
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }
+   
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (idTipoCarrera != null ? idTipoCarrera.hashCode() : 0);
+        return hash;
+    }
+
+
 
     @Override
     public boolean equals(Object object) {

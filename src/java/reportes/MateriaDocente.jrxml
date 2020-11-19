@@ -14,6 +14,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="periodo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT
      IFNULL(notas.`parcial_uno`,"") AS notas_parcial_uno,
@@ -71,7 +74,8 @@ FROM
 WHERE
      nivel_academico.id_nivel_academico = $P!{ciclo}
      and materia.id_materia = $P!{materia}
-and titulo_carrera.id_titulo_carrera=$P!{titulo_carrera}]]>
+and titulo_carrera.id_titulo_carrera=$P!{titulo_carrera}
+AND matricula.id_periodo_academico=$P{periodo}]]>
 	</queryString>
 	<field name="notas_parcial_uno" class="java.lang.String"/>
 	<field name="notas_parcial_dos" class="java.lang.String"/>

@@ -7,7 +7,6 @@ package modelo;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,69 +17,68 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author TOSHIBA
+ * @author walter
  */
 @Entity
-@Table(name = "matricula", catalog = "sistema_gestion", schema = "")
+@Table(name = "matricula_historial")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Matricula.findAll", query = "SELECT m FROM Matricula m")
-     , @NamedQuery(name = "Matricula.findByIdMatricula", query = "SELECT m FROM Matricula m WHERE m.idMatricula = :idMatricula")
-     , @NamedQuery(name = "Matricula.findByDatosPersonales", query = "SELECT m FROM Matricula m WHERE m.idDatosPersonales = :id")
-    , @NamedQuery(name = "Matricula.findByIdiomaAncestral", query = "SELECT m FROM Matricula m WHERE m.idiomaAncestral = :idiomaAncestral")
-    , @NamedQuery(name = "Matricula.findByDescripcionIdiomaAncestral", query = "SELECT m FROM Matricula m WHERE m.descripcionIdiomaAncestral = :descripcionIdiomaAncestral")
-    , @NamedQuery(name = "Matricula.findByPaisNacionalidad", query = "SELECT m FROM Matricula m WHERE m.paisNacionalidad = :paisNacionalidad")
-    , @NamedQuery(name = "Matricula.findByPaisResidencia", query = "SELECT m FROM Matricula m WHERE m.paisResidencia = :paisResidencia")
-    , @NamedQuery(name = "Matricula.findByPoseeDiscapacidad", query = "SELECT m FROM Matricula m WHERE m.poseeDiscapacidad = :poseeDiscapacidad")
-    , @NamedQuery(name = "Matricula.findByEstado", query = "SELECT m FROM Matricula m WHERE m.estado = :estado")
-    , @NamedQuery(name = "Matricula.findByFechaDeRegistro", query = "SELECT m FROM Matricula m WHERE m.fechaDeRegistro = :fechaDeRegistro")
-    , @NamedQuery(name = "Matricula.findByParticipacionPracticas", query = "SELECT m FROM Matricula m WHERE m.participacionPracticas = :participacionPracticas")
-    , @NamedQuery(name = "Matricula.findByParticipacionVinculacion", query = "SELECT m FROM Matricula m WHERE m.participacionVinculacion = :participacionVinculacion")
-    , @NamedQuery(name = "Matricula.findByFechaMatricula", query = "SELECT m FROM Matricula m WHERE m.fechaMatricula = :fechaMatricula")
-    , @NamedQuery(name = "Matricula.findByAnioGraduacion", query = "SELECT m FROM Matricula m WHERE m.anioGraduacion = :anioGraduacion")
-    , @NamedQuery(name = "Matricula.findByModalidad", query = "SELECT m FROM Matricula m WHERE m.modalidad = :modalidad")
-    , @NamedQuery(name = "Matricula.findByFechaInicioCarrera", query = "SELECT m FROM Matricula m WHERE m.fechaInicioCarrera = :fechaInicioCarrera")
-    , @NamedQuery(name = "Matricula.findByTituloEducacionSuperior", query = "SELECT m FROM Matricula m WHERE m.tituloEducacionSuperior = :tituloEducacionSuperior")
-    , @NamedQuery(name = "Matricula.findByEspecifiqueTitulo", query = "SELECT m FROM Matricula m WHERE m.especifiqueTitulo = :especifiqueTitulo")
-    , @NamedQuery(name = "Matricula.findByTituloOtorgado", query = "SELECT m FROM Matricula m WHERE m.tituloOtorgado = :tituloOtorgado")
-    , @NamedQuery(name = "Matricula.findByOcupacionEstudiante", query = "SELECT m FROM Matricula m WHERE m.ocupacionEstudiante = :ocupacionEstudiante")
-    , @NamedQuery(name = "Matricula.findByNombreEmpresa", query = "SELECT m FROM Matricula m WHERE m.nombreEmpresa = :nombreEmpresa")
-    , @NamedQuery(name = "Matricula.findByEmpleoIngresosEconomicos", query = "SELECT m FROM Matricula m WHERE m.empleoIngresosEconomicos = :empleoIngresosEconomicos")
-    , @NamedQuery(name = "Matricula.findByBonoDesarrolloHumano", query = "SELECT m FROM Matricula m WHERE m.bonoDesarrolloHumano = :bonoDesarrolloHumano")
-    , @NamedQuery(name = "Matricula.findByIngresoHogar", query = "SELECT m FROM Matricula m WHERE m.ingresoHogar = :ingresoHogar")
-    , @NamedQuery(name = "Matricula.findByNroMiembrosHogar", query = "SELECT m FROM Matricula m WHERE m.nroMiembrosHogar = :nroMiembrosHogar")
-    , @NamedQuery(name = "Matricula.findByMateriaRepetida", query = "SELECT m FROM Matricula m WHERE m.materiaRepetida = :materiaRepetida")
-    , @NamedQuery(name = "Matricula.findByMateriaPerdida", query = "SELECT m FROM Matricula m WHERE m.materiaPerdida = :materiaPerdida")
-    , @NamedQuery(name = "Matricula.findByNumeroFormulario", query = "SELECT m FROM Matricula m WHERE m.numeroFormulario = :numeroFormulario")
-    , @NamedQuery(name = "Matricula.findByCodigoMatricula", query = "SELECT m FROM Matricula m WHERE m.codigoMatricula = :codigoMatricula")
-    , @NamedQuery(name = "Matricula.findByNombreContacto", query = "SELECT m FROM Matricula m WHERE m.nombreContacto = :nombreContacto")
-    , @NamedQuery(name = "Matricula.findByApellidoContacto", query = "SELECT m FROM Matricula m WHERE m.apellidoContacto = :apellidoContacto")
-    , @NamedQuery(name = "Matricula.findByCelularContacto", query = "SELECT m FROM Matricula m WHERE m.celularContacto = :celularContacto")
-    , @NamedQuery(name = "Matricula.findByParentescoContacto", query = "SELECT m FROM Matricula m WHERE m.parentescoContacto = :parentescoContacto")
-    , @NamedQuery(name = "Matricula.findByNumCarnetConadis", query = "SELECT m FROM Matricula m WHERE m.numCarnetConadis = :numCarnetConadis")
-    , @NamedQuery(name = "Matricula.findByPorcentajeDiscapacidad", query = "SELECT m FROM Matricula m WHERE m.porcentajeDiscapacidad = :porcentajeDiscapacidad")
-    , @NamedQuery(name = "Matricula.findByDescripcionDiscapacidad", query = "SELECT m FROM Matricula m WHERE m.descripcionDiscapacidad = :descripcionDiscapacidad")
-    , @NamedQuery(name = "Matricula.findByNrohoraspracticasPreprosionales", query = "SELECT m FROM Matricula m WHERE m.nrohoraspracticasPreprosionales = :nrohoraspracticasPreprosionales")
-    , @NamedQuery(name = "Matricula.findByCategoriaMigratoria", query = "SELECT m FROM Matricula m WHERE m.categoriaMigratoria = :categoriaMigratoria")})
-public class Matricula implements Serializable {
+    @NamedQuery(name = "MatriculaHistorial.findAll", query = "SELECT m FROM MatriculaHistorial m")
+    , @NamedQuery(name = "MatriculaHistorial.findByIdMatriculaHistorial", query = "SELECT m FROM MatriculaHistorial m WHERE m.idMatriculaHistorial = :idMatriculaHistorial")
+    , @NamedQuery(name = "MatriculaHistorial.findByIdiomaAncestral", query = "SELECT m FROM MatriculaHistorial m WHERE m.idiomaAncestral = :idiomaAncestral")
+    , @NamedQuery(name = "MatriculaHistorial.findByDescripcionIdiomaAncestral", query = "SELECT m FROM MatriculaHistorial m WHERE m.descripcionIdiomaAncestral = :descripcionIdiomaAncestral")
+    , @NamedQuery(name = "MatriculaHistorial.findByPaisNacionalidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.paisNacionalidad = :paisNacionalidad")
+    , @NamedQuery(name = "MatriculaHistorial.findByPaisResidencia", query = "SELECT m FROM MatriculaHistorial m WHERE m.paisResidencia = :paisResidencia")
+    , @NamedQuery(name = "MatriculaHistorial.findByPoseeDiscapacidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.poseeDiscapacidad = :poseeDiscapacidad")
+    , @NamedQuery(name = "MatriculaHistorial.findByEstado", query = "SELECT m FROM MatriculaHistorial m WHERE m.estado = :estado")
+    , @NamedQuery(name = "MatriculaHistorial.findByFechaDeRegistro", query = "SELECT m FROM MatriculaHistorial m WHERE m.fechaDeRegistro = :fechaDeRegistro")
+    , @NamedQuery(name = "MatriculaHistorial.findByParticipacionPracticas", query = "SELECT m FROM MatriculaHistorial m WHERE m.participacionPracticas = :participacionPracticas")
+    , @NamedQuery(name = "MatriculaHistorial.findByParticipacionVinculacion", query = "SELECT m FROM MatriculaHistorial m WHERE m.participacionVinculacion = :participacionVinculacion")
+    , @NamedQuery(name = "MatriculaHistorial.findByFechaMatricula", query = "SELECT m FROM MatriculaHistorial m WHERE m.fechaMatricula = :fechaMatricula")
+    , @NamedQuery(name = "MatriculaHistorial.findByAnioGraduacion", query = "SELECT m FROM MatriculaHistorial m WHERE m.anioGraduacion = :anioGraduacion")
+    , @NamedQuery(name = "MatriculaHistorial.findByModalidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.modalidad = :modalidad")
+    , @NamedQuery(name = "MatriculaHistorial.findByFechaInicioCarrera", query = "SELECT m FROM MatriculaHistorial m WHERE m.fechaInicioCarrera = :fechaInicioCarrera")
+    , @NamedQuery(name = "MatriculaHistorial.findByTituloEducacionSuperior", query = "SELECT m FROM MatriculaHistorial m WHERE m.tituloEducacionSuperior = :tituloEducacionSuperior")
+    , @NamedQuery(name = "MatriculaHistorial.findByEspecifiqueTitulo", query = "SELECT m FROM MatriculaHistorial m WHERE m.especifiqueTitulo = :especifiqueTitulo")
+    , @NamedQuery(name = "MatriculaHistorial.findByTituloOtorgado", query = "SELECT m FROM MatriculaHistorial m WHERE m.tituloOtorgado = :tituloOtorgado")
+    , @NamedQuery(name = "MatriculaHistorial.findByOcupacionEstudiante", query = "SELECT m FROM MatriculaHistorial m WHERE m.ocupacionEstudiante = :ocupacionEstudiante")
+    , @NamedQuery(name = "MatriculaHistorial.findByNombreEmpresa", query = "SELECT m FROM MatriculaHistorial m WHERE m.nombreEmpresa = :nombreEmpresa")
+    , @NamedQuery(name = "MatriculaHistorial.findByEmpleoIngresosEconomicos", query = "SELECT m FROM MatriculaHistorial m WHERE m.empleoIngresosEconomicos = :empleoIngresosEconomicos")
+    , @NamedQuery(name = "MatriculaHistorial.findByBonoDesarrolloHumano", query = "SELECT m FROM MatriculaHistorial m WHERE m.bonoDesarrolloHumano = :bonoDesarrolloHumano")
+    , @NamedQuery(name = "MatriculaHistorial.findByIngresoHogar", query = "SELECT m FROM MatriculaHistorial m WHERE m.ingresoHogar = :ingresoHogar")
+    , @NamedQuery(name = "MatriculaHistorial.findByNroMiembrosHogar", query = "SELECT m FROM MatriculaHistorial m WHERE m.nroMiembrosHogar = :nroMiembrosHogar")
+    , @NamedQuery(name = "MatriculaHistorial.findByMateriaRepetida", query = "SELECT m FROM MatriculaHistorial m WHERE m.materiaRepetida = :materiaRepetida")
+    , @NamedQuery(name = "MatriculaHistorial.findByMateriaPerdida", query = "SELECT m FROM MatriculaHistorial m WHERE m.materiaPerdida = :materiaPerdida")
+    , @NamedQuery(name = "MatriculaHistorial.findByNumeroFormulario", query = "SELECT m FROM MatriculaHistorial m WHERE m.numeroFormulario = :numeroFormulario")
+    , @NamedQuery(name = "MatriculaHistorial.findByCodigoMatricula", query = "SELECT m FROM MatriculaHistorial m WHERE m.codigoMatricula = :codigoMatricula")
+    , @NamedQuery(name = "MatriculaHistorial.findByNombreContacto", query = "SELECT m FROM MatriculaHistorial m WHERE m.nombreContacto = :nombreContacto")
+    , @NamedQuery(name = "MatriculaHistorial.findByApellidoContacto", query = "SELECT m FROM MatriculaHistorial m WHERE m.apellidoContacto = :apellidoContacto")
+    , @NamedQuery(name = "MatriculaHistorial.findByCelularContacto", query = "SELECT m FROM MatriculaHistorial m WHERE m.celularContacto = :celularContacto")
+    , @NamedQuery(name = "MatriculaHistorial.findByParentescoContacto", query = "SELECT m FROM MatriculaHistorial m WHERE m.parentescoContacto = :parentescoContacto")
+    , @NamedQuery(name = "MatriculaHistorial.findByNumCarnetConadis", query = "SELECT m FROM MatriculaHistorial m WHERE m.numCarnetConadis = :numCarnetConadis")
+    , @NamedQuery(name = "MatriculaHistorial.findByPorcentajeDiscapacidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.porcentajeDiscapacidad = :porcentajeDiscapacidad")
+    , @NamedQuery(name = "MatriculaHistorial.findByDescripcionDiscapacidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.descripcionDiscapacidad = :descripcionDiscapacidad")
+    , @NamedQuery(name = "MatriculaHistorial.findByNrohoraspracticasPreprosionales", query = "SELECT m FROM MatriculaHistorial m WHERE m.nrohoraspracticasPreprosionales = :nrohoraspracticasPreprosionales")
+    , @NamedQuery(name = "MatriculaHistorial.findByCategoriaMigratoria", query = "SELECT m FROM MatriculaHistorial m WHERE m.categoriaMigratoria = :categoriaMigratoria")
+    , @NamedQuery(name = "MatriculaHistorial.findByProvinciaResidencia", query = "SELECT m FROM MatriculaHistorial m WHERE m.provinciaResidencia = :provinciaResidencia")
+    , @NamedQuery(name = "MatriculaHistorial.findByCantonResidencia", query = "SELECT m FROM MatriculaHistorial m WHERE m.cantonResidencia = :cantonResidencia")
+    , @NamedQuery(name = "MatriculaHistorial.findByNacionalidad", query = "SELECT m FROM MatriculaHistorial m WHERE m.nacionalidad = :nacionalidad")})
+public class MatriculaHistorial implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id_matricula")
-    private Integer idMatricula;
-  
+    @Column(name = "id_matricula_historial")
+    private Integer idMatriculaHistorial;
     @Size(max = 45)
     @Column(name = "idioma_ancestral")
     private String idiomaAncestral;
@@ -93,12 +91,6 @@ public class Matricula implements Serializable {
     @Size(max = 45)
     @Column(name = "pais_residencia")
     private String paisResidencia;
-    @Size(max = 45)
-    @Column(name = "provincia_residencia")
-    private String provinciaResidencia;
-    @Size(max = 45)
-    @Column(name = "canton_residencia")
-    private String cantonResidencia;
     @Size(max = 45)
     @Column(name = "posee_discapacidad")
     private String poseeDiscapacidad;
@@ -121,10 +113,10 @@ public class Matricula implements Serializable {
     private String anioGraduacion;
     @Column(name = "modalidad")
     private Integer modalidad;
-     @Column(name = "fecha_inicio_carrera")
+    @Column(name = "fecha_inicio_carrera")
     @Temporal(TemporalType.DATE)
     private Date fechaInicioCarrera;
-   @Size(max = 45)
+    @Size(max = 45)
     @Column(name = "titulo_educacion_superior")
     private String tituloEducacionSuperior;
     @Size(max = 60)
@@ -176,122 +168,125 @@ public class Matricula implements Serializable {
     @Column(name = "porcentaje_discapacidad")
     private String porcentajeDiscapacidad;
     @Size(max = 45)
-    @Column(name = "nacionalidad")
-    private String nacionalidad;
-    @Size(max = 45)
     @Column(name = "descripcion_discapacidad")
     private String descripcionDiscapacidad;
     @Size(max = 45)
     @Column(name = "nro_horas_practicasPreprosionales")
     private String nrohoraspracticasPreprosionales;
+    @Size(max = 45)
     @Column(name = "categoria_migratoria")
     private String categoriaMigratoria;
-    @OneToMany(mappedBy = "idMatricula")
-    private List<MatriculaHistorial> matriculaHistorialList;
-    @JoinColumn(name = "id_formacion_madre", referencedColumnName = "id_formacion_academica_madre")
-    @ManyToOne
-    private FormacionAcademicaMadre idFormacionMadre;
-    @JoinColumn(name = "id_alcance_vinculacion", referencedColumnName = "id_alcance_vinculacion")
-    @ManyToOne
-    private AlcanceVinculacion idAlcanceVinculacion;
-    @JoinColumn(name = "id_tipo_bachillerato", referencedColumnName = "id_tipo_bachillerato")
-    @ManyToOne
-    private TipoBachillerato idTipoBachillerato;
-    @JoinColumn(name = "id_sector_economico_empresa", referencedColumnName = "id_sector_economico_empresa")
-    @ManyToOne
-    private SectorEconomicoEmpresa idSectorEconomicoEmpresa;
-    
-    @JoinColumn(name = "id_sector_practicasPreprofesionales", referencedColumnName = "id_sector_economico_empresa")
-    @ManyToOne
-    private SectorEconomicoEmpresa idsectorpracticasPreprofesionales;
-    
-    @JoinColumn(name = "id_tipo_carrera", referencedColumnName = "id_tipo_carrera")
-    @ManyToOne
-    private TipoCarrera idTipoCarrera;
-    @JoinColumn(name = "id_paralelo", referencedColumnName = "id_paralelo")
-    @ManyToOne
-    private Paralelo idParalelo;
-    @JoinColumn(name = "id_provincia_residencia", referencedColumnName = "id_p_residencia")
-    @ManyToOne
-    private PResidencia idProvinciaResidencia;
-    @JoinColumn(name = "id_tipo_institucion_practicasPreprofesionales", referencedColumnName = "id_tipo_institucion_practicaspreprofesionales")
-    @ManyToOne
-    private TipoInstitucionPracticas idtipoinstitucionpracticasPreprofesionales;
-    @JoinColumn(name = "id_canton_nacimiento", referencedColumnName = "id_canton")
-    @ManyToOne
-    private Canton idCantonNacimiento;
-    @JoinColumn(name = "id_datos_personales", referencedColumnName = "id_datos_personales")
-    @ManyToOne
-    private DatosPersonales idDatosPersonales;
+    @Size(max = 45)
+    @Column(name = "provincia_residencia")
+    private String provinciaResidencia;
+    @Size(max = 45)
+    @Column(name = "canton_residencia")
+    private String cantonResidencia;
+    @Size(max = 45)
+    @Column(name = "nacionalidad")
+    private String nacionalidad;
     @JoinColumn(name = "id_estado_civil", referencedColumnName = "id_estado_civil")
     @ManyToOne
     private EstadoCivil idEstadoCivil;
-    @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
+    @JoinColumn(name = "id_alcance_vinculacion", referencedColumnName = "id_alcance_vinculacion")
     @ManyToOne
-    private TipoSangre idTipoSangre;
-    @JoinColumn(name = "id_etnia", referencedColumnName = "id_etnia")
+    private AlcanceVinculacion idAlcanceVinculacion;
+    @JoinColumn(name = "id_tipo_institucion_practicasPreprofesionales", referencedColumnName = "id_tipo_institucion_practicaspreprofesionales")
     @ManyToOne
-    private Etnia idEtnia;
+    private TipoInstitucionPracticas idtipoinstitucionpracticasPreprofesionales;
+    @JoinColumn(name = "id_tipo_carrera", referencedColumnName = "id_tipo_carrera")
+    @ManyToOne
+    private TipoCarrera idTipoCarrera;
+    @JoinColumn(name = "id_canton_nacimiento", referencedColumnName = "id_canton")
+    @ManyToOne
+    private Canton idCantonNacimiento;
     @JoinColumn(name = "id_residencia", referencedColumnName = "id_residencia")
     @ManyToOne
     private Residencia idResidencia;
-    @JoinColumn(name = "id_formacion_padre", referencedColumnName = "id_formacion_academica")
-    @ManyToOne
-    private FormacionAcademica idFormacionPadre;
-    @JoinColumn(name = "id_tipo_matricula", referencedColumnName = "id_tipo_matricula")
-    @ManyToOne
-    private TipoMatricula idTipoMatricula;
-    @JoinColumn(name = "id_jornada_academica", referencedColumnName = "id_jornada_academica")
-    @ManyToOne
-    private JornadaAcademica idJornadaAcademica;
-    @JoinColumn(name = "id_tipo_colegio", referencedColumnName = "id_tipo_colegio")
-    @ManyToOne
-    private TipoColegio idTipoColegio;
-    @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
-    @ManyToOne
-    private Materia idMateria;
-    @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
-    @ManyToOne
-    private Nacionalidad idNacionalidad;
     @JoinColumn(name = "id_tipo_discapacidad", referencedColumnName = "id_tipo_discapacidad")
     @ManyToOne
     private TipoDiscapacidad idTipoDiscapacidad;
-    
-    @JoinColumn(name = "id_tipo_identificacion", referencedColumnName = "id_tipo_identificacion")
+    @JoinColumn(name = "id_tipo_matricula", referencedColumnName = "id_tipo_matricula")
     @ManyToOne
-    private TipoIdentificacion idTipoIdentificacion;
-    @JoinColumn(name = "id_tipo_operador", referencedColumnName = "id_tipo_operador")
+    private TipoMatricula idTipoMatricula;
+    @JoinColumn(name = "id_sector_economico_empresa", referencedColumnName = "id_sector_economico_empresa")
     @ManyToOne
-    private TipoOperador idTipoOperador;
-    @JoinColumn(name = "id_provincia_nacimiento", referencedColumnName = "id_provincia")
+    private SectorEconomicoEmpresa idSectorEconomicoEmpresa;
+    @JoinColumn(name = "id_tipo_bachillerato", referencedColumnName = "id_tipo_bachillerato")
     @ManyToOne
-    private Provincia idProvinciaNacimiento;
-    @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
+    private TipoBachillerato idTipoBachillerato;
+    @JoinColumn(name = "id_tipo_colegio", referencedColumnName = "id_tipo_colegio")
     @ManyToOne
-    private NivelAcademico idNivelAcademico;
-    @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
+    private TipoColegio idTipoColegio;
+    @JoinColumn(name = "id_tipo_sangre", referencedColumnName = "id_tipo_sangre")
     @ManyToOne
-    private TituloCarrera idTituloCarrera;
+    private TipoSangre idTipoSangre;
     @JoinColumn(name = "id_periodo_academico", referencedColumnName = "id_periodo_academico")
     @ManyToOne
     private PeriodoAcademico idPeriodoAcademico;
+    @JoinColumn(name = "id_tipo_identificacion", referencedColumnName = "id_tipo_identificacion")
+    @ManyToOne
+    private TipoIdentificacion idTipoIdentificacion;
+    @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
+    @ManyToOne
+    private TituloCarrera idTituloCarrera;
+    @JoinColumn(name = "id_datos_personales", referencedColumnName = "id_datos_personales")
+    @ManyToOne
+    private DatosPersonales idDatosPersonales;
+    @JoinColumn(name = "id_etnia", referencedColumnName = "id_etnia")
+    @ManyToOne
+    private Etnia idEtnia;
+    @JoinColumn(name = "id_formacion_madre", referencedColumnName = "id_formacion_academica_madre")
+    @ManyToOne
+    private FormacionAcademicaMadre idFormacionMadre;
+    @JoinColumn(name = "id_formacion_padre", referencedColumnName = "id_formacion_academica")
+    @ManyToOne
+    private FormacionAcademica idFormacionPadre;
+    @JoinColumn(name = "id_jornada_academica", referencedColumnName = "id_jornada_academica")
+    @ManyToOne
+    private JornadaAcademica idJornadaAcademica;
+    @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
+    @ManyToOne
+    private NivelAcademico idNivelAcademico;
+    @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
+    @ManyToOne
+    private Materia idMateria;
+    @JoinColumn(name = "id_matricula", referencedColumnName = "id_matricula")
+    @ManyToOne
+    private Matricula idMatricula;
+    @JoinColumn(name = "id_tipo_operador", referencedColumnName = "id_tipo_operador")
+    @ManyToOne
+    private TipoOperador idTipoOperador;
+    @JoinColumn(name = "id_provincia_residencia", referencedColumnName = "id_p_residencia")
+    @ManyToOne
+    private PResidencia idProvinciaResidencia;
+    @JoinColumn(name = "id_sector_practicasPreprofesionales", referencedColumnName = "id_sector_economico_empresa")
+    @ManyToOne
+    private SectorEconomicoEmpresa idsectorpracticasPreprofesionales;
+    @JoinColumn(name = "id_provincia_nacimiento", referencedColumnName = "id_provincia")
+    @ManyToOne
+    private Provincia idProvinciaNacimiento;
+    @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
+    @ManyToOne
+    private Nacionalidad idNacionalidad;
+    @JoinColumn(name = "id_paralelo", referencedColumnName = "id_paralelo")
+    @ManyToOne
+    private Paralelo idParalelo;
 
-    public Matricula() {
+    public MatriculaHistorial() {
     }
 
-    public Matricula(Integer idMatricula) {
-        this.idMatricula = idMatricula;
+    public MatriculaHistorial(Integer idMatriculaHistorial) {
+        this.idMatriculaHistorial = idMatriculaHistorial;
     }
 
-    public Integer getIdMatricula() {
-        return idMatricula;
+    public Integer getIdMatriculaHistorial() {
+        return idMatriculaHistorial;
     }
 
-    public void setIdMatricula(Integer idMatricula) {
-        this.idMatricula = idMatricula;
+    public void setIdMatriculaHistorial(Integer idMatriculaHistorial) {
+        this.idMatriculaHistorial = idMatriculaHistorial;
     }
-
-   
 
     public String getIdiomaAncestral() {
         return idiomaAncestral;
@@ -396,8 +391,6 @@ public class Matricula implements Serializable {
     public void setFechaInicioCarrera(Date fechaInicioCarrera) {
         this.fechaInicioCarrera = fechaInicioCarrera;
     }
-
-   
 
     public String getTituloEducacionSuperior() {
         return tituloEducacionSuperior;
@@ -567,6 +560,14 @@ public class Matricula implements Serializable {
         this.nrohoraspracticasPreprosionales = nrohoraspracticasPreprosionales;
     }
 
+    public String getCategoriaMigratoria() {
+        return categoriaMigratoria;
+    }
+
+    public void setCategoriaMigratoria(String categoriaMigratoria) {
+        this.categoriaMigratoria = categoriaMigratoria;
+    }
+
     public String getProvinciaResidencia() {
         return provinciaResidencia;
     }
@@ -590,30 +591,13 @@ public class Matricula implements Serializable {
     public void setNacionalidad(String nacionalidad) {
         this.nacionalidad = nacionalidad;
     }
-    
-    
-    public String getCategoriaMigratoria() {
-        return categoriaMigratoria;
+
+    public EstadoCivil getIdEstadoCivil() {
+        return idEstadoCivil;
     }
 
-    public void setCategoriaMigratoria(String categoriaMigratoria) {
-        this.categoriaMigratoria = categoriaMigratoria;
-    }
-     @XmlTransient
-    public List<MatriculaHistorial> getMatriculaHistorialList() {
-        return matriculaHistorialList;
-    }
-
-    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
-        this.matriculaHistorialList = matriculaHistorialList;
-    }
-    
-    public FormacionAcademicaMadre getIdFormacionMadre() {
-        return idFormacionMadre;
-    }
-
-    public void setIdFormacionMadre(FormacionAcademicaMadre idFormacionMadre) {
-        this.idFormacionMadre = idFormacionMadre;
+    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
+        this.idEstadoCivil = idEstadoCivil;
     }
 
     public AlcanceVinculacion getIdAlcanceVinculacion() {
@@ -624,20 +608,12 @@ public class Matricula implements Serializable {
         this.idAlcanceVinculacion = idAlcanceVinculacion;
     }
 
-    public TipoBachillerato getIdTipoBachillerato() {
-        return idTipoBachillerato;
+    public TipoInstitucionPracticas getIdtipoinstitucionpracticasPreprofesionales() {
+        return idtipoinstitucionpracticasPreprofesionales;
     }
 
-    public void setIdTipoBachillerato(TipoBachillerato idTipoBachillerato) {
-        this.idTipoBachillerato = idTipoBachillerato;
-    }
-
-    public SectorEconomicoEmpresa getIdSectorEconomicoEmpresa() {
-        return idSectorEconomicoEmpresa;
-    }
-
-    public void setIdSectorEconomicoEmpresa(SectorEconomicoEmpresa idSectorEconomicoEmpresa) {
-        this.idSectorEconomicoEmpresa = idSectorEconomicoEmpresa;
+    public void setIdtipoinstitucionpracticasPreprofesionales(TipoInstitucionPracticas idtipoinstitucionpracticasPreprofesionales) {
+        this.idtipoinstitucionpracticasPreprofesionales = idtipoinstitucionpracticasPreprofesionales;
     }
 
     public TipoCarrera getIdTipoCarrera() {
@@ -648,69 +624,12 @@ public class Matricula implements Serializable {
         this.idTipoCarrera = idTipoCarrera;
     }
 
-    public Paralelo getIdParalelo() {
-        return idParalelo;
-    }
-
-    public void setIdParalelo(Paralelo idParalelo) {
-        this.idParalelo = idParalelo;
-    }
-
-    public PResidencia getIdProvinciaResidencia() {
-        return idProvinciaResidencia;
-    }
-
-    public void setIdProvinciaResidencia(PResidencia idProvinciaResidencia) {
-        this.idProvinciaResidencia = idProvinciaResidencia;
-    }
-    
-
-    public TipoInstitucionPracticas getIdtipoinstitucionpracticasPreprofesionales() {
-        return idtipoinstitucionpracticasPreprofesionales;
-    }
-
-    public void setIdtipoinstitucionpracticasPreprofesionales(TipoInstitucionPracticas idtipoinstitucionpracticasPreprofesionales) {
-        this.idtipoinstitucionpracticasPreprofesionales = idtipoinstitucionpracticasPreprofesionales;
-    }
-
     public Canton getIdCantonNacimiento() {
         return idCantonNacimiento;
     }
 
     public void setIdCantonNacimiento(Canton idCantonNacimiento) {
         this.idCantonNacimiento = idCantonNacimiento;
-    }
-
-    public DatosPersonales getIdDatosPersonales() {
-        return idDatosPersonales;
-    }
-
-    public void setIdDatosPersonales(DatosPersonales idDatosPersonales) {
-        this.idDatosPersonales = idDatosPersonales;
-    }
-
-    public EstadoCivil getIdEstadoCivil() {
-        return idEstadoCivil;
-    }
-
-    public void setIdEstadoCivil(EstadoCivil idEstadoCivil) {
-        this.idEstadoCivil = idEstadoCivil;
-    }
-
-    public TipoSangre getIdTipoSangre() {
-        return idTipoSangre;
-    }
-
-    public void setIdTipoSangre(TipoSangre idTipoSangre) {
-        this.idTipoSangre = idTipoSangre;
-    }
-
-    public Etnia getIdEtnia() {
-        return idEtnia;
-    }
-
-    public void setIdEtnia(Etnia idEtnia) {
-        this.idEtnia = idEtnia;
     }
 
     public Residencia getIdResidencia() {
@@ -721,12 +640,12 @@ public class Matricula implements Serializable {
         this.idResidencia = idResidencia;
     }
 
-    public FormacionAcademica getIdFormacionPadre() {
-        return idFormacionPadre;
+    public TipoDiscapacidad getIdTipoDiscapacidad() {
+        return idTipoDiscapacidad;
     }
 
-    public void setIdFormacionPadre(FormacionAcademica idFormacionPadre) {
-        this.idFormacionPadre = idFormacionPadre;
+    public void setIdTipoDiscapacidad(TipoDiscapacidad idTipoDiscapacidad) {
+        this.idTipoDiscapacidad = idTipoDiscapacidad;
     }
 
     public TipoMatricula getIdTipoMatricula() {
@@ -737,12 +656,20 @@ public class Matricula implements Serializable {
         this.idTipoMatricula = idTipoMatricula;
     }
 
-    public JornadaAcademica getIdJornadaAcademica() {
-        return idJornadaAcademica;
+    public SectorEconomicoEmpresa getIdSectorEconomicoEmpresa() {
+        return idSectorEconomicoEmpresa;
     }
 
-    public void setIdJornadaAcademica(JornadaAcademica idJornadaAcademica) {
-        this.idJornadaAcademica = idJornadaAcademica;
+    public void setIdSectorEconomicoEmpresa(SectorEconomicoEmpresa idSectorEconomicoEmpresa) {
+        this.idSectorEconomicoEmpresa = idSectorEconomicoEmpresa;
+    }
+
+    public TipoBachillerato getIdTipoBachillerato() {
+        return idTipoBachillerato;
+    }
+
+    public void setIdTipoBachillerato(TipoBachillerato idTipoBachillerato) {
+        this.idTipoBachillerato = idTipoBachillerato;
     }
 
     public TipoColegio getIdTipoColegio() {
@@ -753,70 +680,12 @@ public class Matricula implements Serializable {
         this.idTipoColegio = idTipoColegio;
     }
 
-    public Materia getIdMateria() {
-        return idMateria;
+    public TipoSangre getIdTipoSangre() {
+        return idTipoSangre;
     }
 
-    public void setIdMateria(Materia idMateria) {
-        this.idMateria = idMateria;
-    }
-
-    public Nacionalidad getIdNacionalidad() {
-        return idNacionalidad;
-    }
-
-    public void setIdNacionalidad(Nacionalidad idNacionalidad) {
-        this.idNacionalidad = idNacionalidad;
-    }
-
-    public TipoDiscapacidad getIdTipoDiscapacidad() {
-        return idTipoDiscapacidad;
-    }
-
-    public void setIdTipoDiscapacidad(TipoDiscapacidad idTipoDiscapacidad) {
-        this.idTipoDiscapacidad = idTipoDiscapacidad;
-    }
-
-  
-
-    public TipoIdentificacion getIdTipoIdentificacion() {
-        return idTipoIdentificacion;
-    }
-
-    public void setIdTipoIdentificacion(TipoIdentificacion idTipoIdentificacion) {
-        this.idTipoIdentificacion = idTipoIdentificacion;
-    }
-
-    public TipoOperador getIdTipoOperador() {
-        return idTipoOperador;
-    }
-
-    public void setIdTipoOperador(TipoOperador idTipoOperador) {
-        this.idTipoOperador = idTipoOperador;
-    }
-
-    public Provincia getIdProvinciaNacimiento() {
-        return idProvinciaNacimiento;
-    }
-
-    public void setIdProvinciaNacimiento(Provincia idProvinciaNacimiento) {
-        this.idProvinciaNacimiento = idProvinciaNacimiento;
-    }
-
-    public NivelAcademico getIdNivelAcademico() {
-        return idNivelAcademico;
-    }
-
-    public void setIdNivelAcademico(NivelAcademico idNivelAcademico) {
-        this.idNivelAcademico = idNivelAcademico;
-    }
-
-    public TituloCarrera getIdTituloCarrera() {
-        return idTituloCarrera;
-    }
-
-    public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
-        this.idTituloCarrera = idTituloCarrera;
+    public void setIdTipoSangre(TipoSangre idTipoSangre) {
+        this.idTipoSangre = idTipoSangre;
     }
 
     public PeriodoAcademico getIdPeriodoAcademico() {
@@ -827,6 +696,102 @@ public class Matricula implements Serializable {
         this.idPeriodoAcademico = idPeriodoAcademico;
     }
 
+    public TipoIdentificacion getIdTipoIdentificacion() {
+        return idTipoIdentificacion;
+    }
+
+    public void setIdTipoIdentificacion(TipoIdentificacion idTipoIdentificacion) {
+        this.idTipoIdentificacion = idTipoIdentificacion;
+    }
+
+    public TituloCarrera getIdTituloCarrera() {
+        return idTituloCarrera;
+    }
+
+    public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
+        this.idTituloCarrera = idTituloCarrera;
+    }
+
+    public DatosPersonales getIdDatosPersonales() {
+        return idDatosPersonales;
+    }
+
+    public void setIdDatosPersonales(DatosPersonales idDatosPersonales) {
+        this.idDatosPersonales = idDatosPersonales;
+    }
+
+    public Etnia getIdEtnia() {
+        return idEtnia;
+    }
+
+    public void setIdEtnia(Etnia idEtnia) {
+        this.idEtnia = idEtnia;
+    }
+
+    public FormacionAcademicaMadre getIdFormacionMadre() {
+        return idFormacionMadre;
+    }
+
+    public void setIdFormacionMadre(FormacionAcademicaMadre idFormacionMadre) {
+        this.idFormacionMadre = idFormacionMadre;
+    }
+
+    public FormacionAcademica getIdFormacionPadre() {
+        return idFormacionPadre;
+    }
+
+    public void setIdFormacionPadre(FormacionAcademica idFormacionPadre) {
+        this.idFormacionPadre = idFormacionPadre;
+    }
+
+    public JornadaAcademica getIdJornadaAcademica() {
+        return idJornadaAcademica;
+    }
+
+    public void setIdJornadaAcademica(JornadaAcademica idJornadaAcademica) {
+        this.idJornadaAcademica = idJornadaAcademica;
+    }
+
+    public NivelAcademico getIdNivelAcademico() {
+        return idNivelAcademico;
+    }
+
+    public void setIdNivelAcademico(NivelAcademico idNivelAcademico) {
+        this.idNivelAcademico = idNivelAcademico;
+    }
+
+    public Materia getIdMateria() {
+        return idMateria;
+    }
+
+    public void setIdMateria(Materia idMateria) {
+        this.idMateria = idMateria;
+    }
+
+    public Matricula getIdMatricula() {
+        return idMatricula;
+    }
+
+    public void setIdMatricula(Matricula idMatricula) {
+        this.idMatricula = idMatricula;
+    }
+
+    public TipoOperador getIdTipoOperador() {
+        return idTipoOperador;
+    }
+
+    public void setIdTipoOperador(TipoOperador idTipoOperador) {
+        this.idTipoOperador = idTipoOperador;
+    }
+
+    public PResidencia getIdProvinciaResidencia() {
+        return idProvinciaResidencia;
+    }
+
+    public void setIdProvinciaResidencia(PResidencia idProvinciaResidencia) {
+        this.idProvinciaResidencia = idProvinciaResidencia;
+    }
+
     public SectorEconomicoEmpresa getIdsectorpracticasPreprofesionales() {
         return idsectorpracticasPreprofesionales;
     }
@@ -835,23 +800,45 @@ public class Matricula implements Serializable {
         this.idsectorpracticasPreprofesionales = idsectorpracticasPreprofesionales;
     }
 
-   
-   
+    public Provincia getIdProvinciaNacimiento() {
+        return idProvinciaNacimiento;
+    }
+
+    public void setIdProvinciaNacimiento(Provincia idProvinciaNacimiento) {
+        this.idProvinciaNacimiento = idProvinciaNacimiento;
+    }
+
+    public Nacionalidad getIdNacionalidad() {
+        return idNacionalidad;
+    }
+
+    public void setIdNacionalidad(Nacionalidad idNacionalidad) {
+        this.idNacionalidad = idNacionalidad;
+    }
+
+    public Paralelo getIdParalelo() {
+        return idParalelo;
+    }
+
+    public void setIdParalelo(Paralelo idParalelo) {
+        this.idParalelo = idParalelo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idMatricula != null ? idMatricula.hashCode() : 0);
+        hash += (idMatriculaHistorial != null ? idMatriculaHistorial.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Matricula)) {
+        if (!(object instanceof MatriculaHistorial)) {
             return false;
         }
-        Matricula other = (Matricula) object;
-        if ((this.idMatricula == null && other.idMatricula != null) || (this.idMatricula != null && !this.idMatricula.equals(other.idMatricula))) {
+        MatriculaHistorial other = (MatriculaHistorial) object;
+        if ((this.idMatriculaHistorial == null && other.idMatriculaHistorial != null) || (this.idMatriculaHistorial != null && !this.idMatriculaHistorial.equals(other.idMatriculaHistorial))) {
             return false;
         }
         return true;
@@ -859,9 +846,7 @@ public class Matricula implements Serializable {
 
     @Override
     public String toString() {
-        String datos=idDatosPersonales.getApellidos()+" "+idDatosPersonales.getNombres();
-        return "Matriculado: "+datos;
-
+        return "modelo.MatriculaHistorial[ idMatriculaHistorial=" + idMatriculaHistorial + " ]";
     }
     
 }

@@ -57,6 +57,8 @@ public class Paralelo implements Serializable {
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idParalelo")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idParalelo")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public Paralelo() {
     }
@@ -96,7 +98,14 @@ public class Paralelo implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
     @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;

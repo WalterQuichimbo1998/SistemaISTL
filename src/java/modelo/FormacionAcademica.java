@@ -55,6 +55,8 @@ public class FormacionAcademica implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idFormacionPadre")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idFormacionPadre")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public FormacionAcademica() {
     }
@@ -96,6 +98,15 @@ public class FormacionAcademica implements Serializable {
     }
 
     @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
+
+    @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
@@ -128,5 +139,5 @@ public class FormacionAcademica implements Serializable {
     public String toString() {
         return nivel;
     }
-    
+
 }

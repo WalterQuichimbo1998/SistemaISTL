@@ -59,6 +59,8 @@ public class TipoColegio implements Serializable {
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoColegio")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idTipoColegio")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoColegio() {
     }
@@ -106,7 +108,14 @@ public class TipoColegio implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
     @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;

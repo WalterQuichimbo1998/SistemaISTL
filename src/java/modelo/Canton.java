@@ -58,6 +58,8 @@ public class Canton implements Serializable {
     @OneToMany(mappedBy = "idCantonNacimiento")
     private List<Persona> personaList;
     @OneToMany(mappedBy = "idCantonNacimiento")
+    private List<MatriculaHistorial> matriculaHistorialList;
+    @OneToMany(mappedBy = "idCantonNacimiento")
     private List<Matricula> matriculaList;
      @JoinColumn(name = "id_provincia", referencedColumnName = "id_provincia")
     @ManyToOne
@@ -111,6 +113,14 @@ public class Canton implements Serializable {
 
     public void setPersonaList(List<Persona> personaList) {
         this.personaList = personaList;
+    }
+      @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
     }
 
     @XmlTransient

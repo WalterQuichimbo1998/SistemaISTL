@@ -544,6 +544,119 @@ margin: 4px;
     -webkit-box-shadow: 0px 0px 1px 1px #454545;
     cursor: pointer;
 }
+.title_modulos{
+    width: 100%;
+    padding: 10px 0px;
+    font-family: Arial;
+    font-size: 28px !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+/*ESTILOS TABLA ------------------>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.ui-panel{
+    border-radius: 0px;
+    background: none;
+    border: none;
+    margin-bottom: 100px;
+
+}
+.ui-datatable-header{
+    background-color: #e8e7e7;
+    border:1px solid #e8e7e7;
+    box-shadow:none;
+
+}
+
+.ui-datatable .ui-column-filter{
+    background:none;
+    width:0px;
+    height:0px;
+    padding: 0;
+    margin: 0;
+    box-shadow:none;
+    border:none;
+    outline: none;
+    display: none;
+}
+.ui-datatable .ui-sortable-column{
+    background:  #5fcaf2;
+    color: #000;
+    box-shadow:none !important;
+    font-weight: normal;
+    outline: none !important;
+    text-decoration: none !important;
+    border: none;
+}
+
+.ui-datatable thead tr {
+    height: 30px;   
+    font-size: 13px !important;
+    font-weight: normal;
+    box-shadow:none;
+    outline: none;
+    border:none;
+    color: #000;
+
+}
+.ui-datatable tbody tr {
+    height: 40px;   
+    background: white;
+    font-size: 14px;
+    border: 1px solid #E3E5E6;
+}
+.tabla.ui-datatable .ui-datatable-data tr.ui-state-hover{
+    box-shadow: none;
+    border:none;
+    outline: none;
+    border: 1px solid #E3E5E6; 
+    background: #F0FFFF;
+    color: #000;
+}
+
+.tabla.ui-datatable tr.ui-state-highlight{
+
+    background: #fbfbd3;
+    border:none;
+    outline: none;
+    border: 1px solid #E3E5E6;
+    color: black;
+    text-shadow:none;
+}
+.ui-datatable .ui-datatable,.ui-datatable .ui-paginator{
+    background: none;
+    margin-top: 5px;
+    border:none;
+    background: none;
+}
+
+
+.ui-datatable .ui-datatable-footer{
+    border: none;
+    border-radius: 0px;
+    background: none;
+
+}
+.ver.ui-button{
+    background: silver; 
+    height: 30px; 
+    font-size: 13px !important; 
+    border-radius: 3px;
+    border:none;
+    box-shadow: none;
+    text-shadow:none;
+    outline: none;
+    margin-right: 5px;  
+    margin-top: 4px; 
+    margin-bottom: 5px;
+    transition: all .3s ease;
+}
+.ver:hover{
+    color: #000;
+    box-shadow: 0px 0px 1px 1px #454545; 
+    -webkit-box-shadow: 0px 0px 1px 1px #454545;
+    cursor: pointer;
+}
 /* MATRICULA ---------------->>>>>>>>>>>>>>>>>><*/
 
 .ui-selectonemenu{

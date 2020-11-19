@@ -88,6 +88,8 @@ public class Materia implements Serializable {
     @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
     @ManyToOne
     private TituloCarrera idTituloCarrera;
+    @OneToMany(mappedBy = "idMateria")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public Materia() {
     }
@@ -199,7 +201,14 @@ public class Materia implements Serializable {
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }

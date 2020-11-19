@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/Estudiante/templateEstudiante.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="Historial de Matrículas"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <p:panel>
+                <h:form id="MatriculaHistorialListForm">
+
+                    <p class="title_modulos">Matrícula Historial</p>
+                    <p:dataTable id="datalist" value="#{matriculaHistorialController.items}" var="item" styleClass="tabla"
+                                 selectionMode="single" selection="#{matriculaHistorialController.selected}"
+                                 paginator="false"
+                                 rowKey="#{item.idMatriculaHistorial}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados, actualiza tu informacioón de matrícula."
+                                 sortOrder="descending"
+                                 >
+                        <p:column sortBy="#{item.numeroFormulario}">
+                            <f:facet name="header">
+                                <h:outputText value="N. Formulario"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroFormulario}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.codigoMatricula}">
+                            <f:facet name="header">
+                                <h:outputText value="cód. Matrícula"/>
+                            </f:facet>
+                            <h:outputText value="#{item.codigoMatricula}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.idTipoMatricula.tipo}">
+                            <f:facet name="header">
+                                <h:outputText value="Tipo Matrícula"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoMatricula.tipo}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.idPeriodoAcademico.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="Período Académico"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodoAcademico.nombre}"/>
+                        </p:column>
+
+                        <p:column sortBy="#{item.modalidad}">
+                            <f:facet name="header">
+                                <h:outputText value="Modalidad"/>
+                            </f:facet>
+                            <h:outputText value="#{item.modalidad==1?'Presencial':item.modalidad==2?'Semipresencial':'Dual'}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.idTipoCarrera.nombre}">
+                            <f:facet name="header">
+                                <h:outputText value="Carrera"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoCarrera.nombre}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.fechaMatricula}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha Matrícula"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaMatricula}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.idMatriculaHistorial}" headerText="Info">
+                            <p:commandButton value="Ver" styleClass="ver" actionListener="#{matriculaHistorialController.setSelected(item)}" action="/Estudiante/matriculaHistorial/MatriculaHistorial?faces-redirect=true"/>
+
+                        </p:column>
+
+                    </p:dataTable>
+
+                </h:form>
+            </p:panel>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

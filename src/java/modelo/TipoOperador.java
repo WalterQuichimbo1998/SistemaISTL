@@ -59,6 +59,8 @@ public class TipoOperador implements Serializable {
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idTipoOperador")
     private List<Usuario> usuarioList;
+    @OneToMany(mappedBy = "idTipoOperador")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoOperador() {
     }
@@ -97,6 +99,14 @@ public class TipoOperador implements Serializable {
 
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
+    }
+     @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
     }
 
     @XmlTransient

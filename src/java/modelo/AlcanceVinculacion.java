@@ -56,6 +56,8 @@ public class AlcanceVinculacion implements Serializable {
     @OneToMany(mappedBy = "idAlcanceVinculacion")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idAlcanceVinculacion")
+    private List<MatriculaHistorial> matriculaHistorialList;
+    @OneToMany(mappedBy = "idAlcanceVinculacion")
     private List<PracticaspreprofesionalesVinculacion> practicaspreprofesionalesVinculacionList;
 
     public AlcanceVinculacion() {
@@ -96,7 +98,14 @@ public class AlcanceVinculacion implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+ @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
     @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;

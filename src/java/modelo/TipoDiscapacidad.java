@@ -64,6 +64,8 @@ public class TipoDiscapacidad implements Serializable {
     private List<Discapacidad> discapacidadList;
     @OneToMany(mappedBy = "idTipoDiscapacidad")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idTipoDiscapacidad")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoDiscapacidad() {
     }
@@ -116,9 +118,16 @@ public class TipoDiscapacidad implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
 
      @XmlTransient
-
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }

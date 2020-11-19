@@ -181,6 +181,7 @@ public class ExportarNotasMaterias implements Serializable {
             parametros.put("ciclo", nivelAcademicoSelected.getIdNivelAcademico());
             parametros.put("materia", materiaSelected.getIdMateria());
             parametros.put("titulo_carrera", tiCarreraSelected.getIdTituloCarrera());
+            parametros.put("periodo", periodoSelected.getIdPeriodoAcademico());
             //Compilamos el archivo XML y lo cargamos en memoria
 
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());

@@ -153,6 +153,8 @@ public class MatriculaController implements Serializable {
         if (selected.getIdProvinciaNacimiento() == null) {
             this.selected.setIdCantonNacimiento(null);
         }
+//        MatriculaHistorialController mmc=new MatriculaHistorialController();
+//        mmc.crearMH(selected); 
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
     }
 

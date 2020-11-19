@@ -57,6 +57,8 @@ public class JornadaAcademica implements Serializable {
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idJornadaAcademica")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idJornadaAcademica")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public JornadaAcademica() {
     }
@@ -96,7 +98,14 @@ public class JornadaAcademica implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
     @XmlTransient
     public List<Distributivo> getDistributivoList() {
         return distributivoList;

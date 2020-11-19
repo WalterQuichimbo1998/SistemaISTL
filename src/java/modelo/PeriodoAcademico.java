@@ -68,6 +68,8 @@ public class PeriodoAcademico implements Serializable {
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idPeriodoAcademico")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idPeriodoAcademico")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public PeriodoAcademico() {
     }
@@ -130,6 +132,14 @@ public class PeriodoAcademico implements Serializable {
 
     public void setAñoPeriodoAcademico(String añoPeriodoAcademico) {
         this.añoPeriodoAcademico = añoPeriodoAcademico;
+    }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
     }
 
     @XmlTransient

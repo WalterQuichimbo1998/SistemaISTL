@@ -62,6 +62,8 @@ public class Provincia implements Serializable {
     private List<Matricula> matriculaList;
      @OneToMany(mappedBy = "idProvincia")
     private List<Canton> cantonList;
+     @OneToMany(mappedBy = "idProvinciaNacimiento")
+    private List<MatriculaHistorial> matriculaHistorialList;
      
      @JoinColumn(name = "id_nacionalidad", referencedColumnName = "id_nacionalidad")
     @ManyToOne
@@ -106,7 +108,14 @@ public class Provincia implements Serializable {
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
     }
+      @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
 
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
  
 
     @XmlTransient

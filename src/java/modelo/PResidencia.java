@@ -54,6 +54,8 @@ public class PResidencia implements Serializable {
     private List<Persona> personaList;
     @OneToMany(mappedBy = "idProvinciaResidencia")
     private List<Matricula> matriculaList; 
+    @OneToMany(mappedBy = "idProvinciaResidencia")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public PResidencia() {
     } 
@@ -102,6 +104,14 @@ public class PResidencia implements Serializable {
 
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
+    }
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
     }
 
     @Override

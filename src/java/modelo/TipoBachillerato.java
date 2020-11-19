@@ -58,6 +58,8 @@ public class TipoBachillerato implements Serializable {
     private Date fechaDeRegistro;   
     @OneToMany(mappedBy = "idTipoBachillerato")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idTipoBachillerato")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoBachillerato() {
     }
@@ -112,7 +114,14 @@ public class TipoBachillerato implements Serializable {
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }
-   
+    @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
+    }
 
     @Override
     public int hashCode() {

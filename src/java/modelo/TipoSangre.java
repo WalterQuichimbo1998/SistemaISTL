@@ -60,6 +60,8 @@ public class TipoSangre implements Serializable {
     private List<Persona> personaList;
     @OneToMany(mappedBy = "idTipoSangre")
     private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idTipoSangre")
+    private List<MatriculaHistorial> matriculaHistorialList;
 
     public TipoSangre() {
     }
@@ -103,6 +105,14 @@ public class TipoSangre implements Serializable {
 
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
+    }
+     @XmlTransient
+    public List<MatriculaHistorial> getMatriculaHistorialList() {
+        return matriculaHistorialList;
+    }
+
+    public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
+        this.matriculaHistorialList = matriculaHistorialList;
     }
 
     @XmlTransient
