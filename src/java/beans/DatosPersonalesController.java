@@ -28,6 +28,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.servlet.ServletContext;
+import modelo.Matricula;
 import org.primefaces.event.FileUploadEvent;
 
 
@@ -86,6 +87,8 @@ public class DatosPersonalesController implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+
+ 
     
 
     public DatosPersonales prepareCreate() {
@@ -182,6 +185,17 @@ public class DatosPersonalesController implements Serializable {
     public List<DatosPersonales> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
+    
+    public List<DatosPersonales> getItemsMatriculados() {
+        return getFacade().findAll();
+    }
+    public List<DatosPersonales> getItemsEstudiantes() {
+        return ejbFacade.listaEstudiantes();
+    }
+    public List<DatosPersonales> getItemsDocentes() {
+        return getFacade().listaDocentes();
+    }
+    
 
     @FacesConverter(forClass = DatosPersonales.class)
     public static class DatosPersonalesControllerConverter implements Converter {

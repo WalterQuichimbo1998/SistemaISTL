@@ -80,6 +80,7 @@ public class PeriodoAcademicoController implements Serializable {
         }
         return items;
     }
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -119,8 +120,11 @@ public class PeriodoAcademicoController implements Serializable {
 
     public List<PeriodoAcademico> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+       
     }
-
+ public List<PeriodoAcademico> getLista() {
+         return getFacade().lista();
+    }
     @FacesConverter(forClass = PeriodoAcademico.class)
     public static class PeriodoAcademicoControllerConverter implements Converter {
 

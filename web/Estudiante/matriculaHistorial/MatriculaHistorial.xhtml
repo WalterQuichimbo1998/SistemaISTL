@@ -334,7 +334,21 @@
                                                itemValue="#{idTipoMatriculaItem}"/>
                             </p:selectOneMenu>
                         </div>
+                       
+                        <div class="botones21">
+                            <p:outputLabel class="labelDatos" value="Nombre de la carrera" for="idTituloCarrera" />
+                            <p:selectOneMenu id="idTituloCarrera" value="#{matriculaHistorialController.selected.idTituloCarrera}" effect="fade">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                               var="idTituloCarreraItem"
+                                               itemValue="#{idTituloCarreraItem}"/>
+                            </p:selectOneMenu>
+                        </div>
                         <div class="botones22">
+                            <p:outputLabel class="labelDatos" value="Nivel Académico" for="nivel" />
+                            <p:inputText id="nivel" styleClass="camposDeDatos2" value="#{matriculaHistorialController.selected.idNivelAcademico.nivelAcademico}"  maxlength="20"/>
+                        </div>
+                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Período/Ciclo académico" for="idPeriodoAcademico" />
                             <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaHistorialController.selected.idPeriodoAcademico}" panelStyle="width:260px"
                                              effect="fade" filter="true" filterMatchMode="contains" height="100" required="true" requiredMessage="Seleccione un periodo">
@@ -342,16 +356,6 @@
                                 <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
                                                var="idPeriodoAcademicoItem"
                                                itemValue="#{idPeriodoAcademicoItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                       
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Nivel Académico" for="idNivelAcademico" />
-                            <p:selectOneMenu id="idNivelAcademico" value="#{matriculaHistorialController.selected.idNivelAcademico}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
-                                               var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem}"/>
                             </p:selectOneMenu>
                         </div>
                         <div class="botones22">
@@ -363,15 +367,7 @@
                                                itemValue="#{idParaleloItem}"/>
                             </p:selectOneMenu>
                         </div>
-                        <div class="botones21">
-                            <p:outputLabel class="labelDatos" value="Nombre de la carrera" for="idTituloCarrera" />
-                            <p:selectOneMenu id="idTituloCarrera" value="#{matriculaHistorialController.selected.idTituloCarrera}" effect="fade">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                               var="idTituloCarreraItem"
-                                               itemValue="#{idTituloCarreraItem}"/>
-                            </p:selectOneMenu>
-                        </div>
+                       
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="Título que otorgada la carrera" for="tituloOtorgado" />
                             <p:inputText id="tituloOtorgado" styleClass="camposDeDatos2" value="#{matriculaHistorialController.selected.tituloOtorgado}"  maxlength="60"

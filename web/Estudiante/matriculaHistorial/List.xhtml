@@ -60,11 +60,11 @@
                             </f:facet>
                             <h:outputText value="#{item.modalidad==1?'Presencial':item.modalidad==2?'Semipresencial':'Dual'}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idTipoCarrera.nombre}">
+                        <p:column sortBy="#{item.idTituloCarrera.nombreTitulo}">
                             <f:facet name="header">
                                 <h:outputText value="Carrera"/>
                             </f:facet>
-                            <h:outputText value="#{item.idTipoCarrera.nombre}"/>
+                            <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
                         <p:column sortBy="#{item.fechaMatricula}">
                             <f:facet name="header">

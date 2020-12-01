@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/vista/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNotasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <center>
+                <h:outputLabel rendered="#{notasController.selectedN==null}" value="No se a seleccionado un ciclo"
+                               style="font-size: 22px;margin: auto;color: #454545;"/>
+            </center>
+            <p:panel>
+                <h:form id="NotasListForm" rendered="#{notasController.selectedN!=null}">
+                    <br/>
+                    <h3 style="font-family: Arial;color: #024959;">#{notasController.selectedN.idTituloCarrera.nombreTitulo}</h3>
+                    <br/>
+                    <h3 style="font-family: Arial;color: #454545;font-weight: normal;"><strong>Ciclo: </strong> #{notasController.selectedN.nivelAcademico}</h3>
+                    
+                    <p class="title_modulos">#{bundle.ListNotasTitle}</p>
+                    
+                    <ui:repeat value="#{tituloCarreraController.items}" var="item">
+                        <ui:repeat value="#{item.nivelAcademicoList}" var="car" rendered="#{item.idTituloCarrera == notasController.selectedN.idTituloCarrera.idTituloCarrera}">
+                            <p:commandLink style="text-decoration: none;color:#454545;display: inline-block;margin: 2px 4px; padding: 2px 2px;" value="#{car.nivelAcademico}"
+                                             actionListener="#{notasController.setSelectedN(car)}" action="/vista/notas/Lista?faces-redirect=true"/>
+                        </ui:repeat>
+                    </ui:repeat><br/><br/>
+                    <p:dataTable id="datalist" value="#{notasController.listaN}" var="item" styleClass="tabla"
+                                 selectionMode="single" selection="#{notasController.selected}"
+                                 paginator="true" widgetVar="notas"
+                                 rowKey="#{item.idNotas}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 sortBy="#{item.idNotas}"
+                                 sortOrder="descending"
+                                 filteredValue="#{notasController.lista}">
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+                        <f:facet name="header">
+                            <p:inputText id="globalFilter"
+                                         placeholder="Buscar" 
+                                         onkeyup="PF('notas').filter()" 
+                                         style="font-size: 18px !important;margin: 10px; text-align: center;border-radius: 20px;
+                                         padding: 7px 0px;width: 500px; "  /> 
+                        </f:facet> 
+                        <p:column filterBy="#{item.idDatosPersonales.nombres}" sortBy="#{item.idDatosPersonales.nombres}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_idPersona}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDatosPersonales.nombres}"/>
+                        </p:column>
+
+                        <p:column filterBy="#{item.idPeriodoAcademico.nombre}" sortBy="#{item.idPeriodoAcademico.nombre}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Período académico"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodoAcademico.nombre}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.idNivelAcademico.nivelAcademico}" sortBy="#{item.idNivelAcademico.nivelAcademico}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Nivel académico"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.idMateria.materia}" sortBy="#{item.idMateria.materia}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_idMateria}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateria.materia}"/>
+                        </p:column>
+
+
+                        <p:column style="width: 100px;" filterBy="#{item.parcialUno}" sortBy="#{item.parcialUno}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_parcialUno}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parcialUno}"/>
+                        </p:column>
+                        <p:column style="width: 100px;" filterBy="#{item.parcialDos}" sortBy="#{item.parcialDos}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_parcialDos}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.parcialDos}"/>
+                        </p:column>
+                        <p:column style="width: 100px;" filterBy="#{item.notaSupletorio}" sortBy="#{item.notaSupletorio}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_notaSupletorio}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaSupletorio}"/>
+                        </p:column>
+                     
+                        <p:column style="width: 100px;" filterBy="#{item.notaFinal}" sortBy="#{item.notaFinal}" filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListNotasTitle_notaFinal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notaFinal}"/>
+                        </p:column>
+
+
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{notasController.prepareCreate}" update=":NotasCreateForm" oncomplete="PF('NotasCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":NotasViewForm" oncomplete="PF('NotasViewDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" disabled="#{empty notasController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{notasController.destroy}" update=":growl,datalist" disabled="#{empty notasController.selected}">
+                                <p:confirm message="Eliminar Nota" header="Aviso" icon="ui-icon-alert"   > </p:confirm>                                
+                            </p:commandButton>                      
+                            <p:confirmDialog global="true" showEffect="clip" hideEffect="clip" style="background: #bbede3;font-size: 16px !important;font-weight: bold" id="iinfo">                             
+                                <p:commandButton style="width: 70px;margin-left: 17px;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                <p:commandButton style="width: 70px;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>
+                            </p:confirmDialog>
+
+                        </f:facet>
+                    </p:dataTable>
+                </h:form>
+            </p:panel>
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

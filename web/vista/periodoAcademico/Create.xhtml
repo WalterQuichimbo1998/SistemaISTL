@@ -15,7 +15,8 @@
                     <p:panelGrid columns="2" rendered="#{periodoAcademicoController.selected != null}">
 
                         <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_nombre}" for="nombre" />
-                        <p:inputText id="nombre" value="#{periodoAcademicoController.selected.nombre}" title="#{bundle.CreatePeriodoAcademicoTitle_nombre}" required="true" requiredMessage="Complete"/>
+                        <p:inputText id="nombre" value="#{periodoAcademicoController.selected.nombre}" title="#{bundle.CreatePeriodoAcademicoTitle_nombre}" required="true" requiredMessage="Complete"
+                                     style="width: 250px;"/>
                         <p:outputLabel value="#{bundle.CreatePeriodoAcademicoLabel_descripcion}" for="descripcion" />
                         <p:inputText id="descripcion" value="#{periodoAcademicoController.selected.descripcion}" title="#{bundle.CreatePeriodoAcademicoTitle_descripcion}" />
                         <p:outputLabel value="Modalidad" />
@@ -27,6 +28,9 @@
                         </p:selectOneMenu> 
                         <p:outputLabel value="Año Periodo Académico" for="añoPeriodoAcademico" />
                         <p:inputText id="añoPeriodoAcademico" value="#{periodoAcademicoController.selected.añoPeriodoAcademico}" title="#{bundle.CreatePeriodoAcademicoTitle_añoPeriodoAcademico}" />
+                        <p:outputLabel value="Estado" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{periodoAcademicoController.selected.estado}">
+                        </p:selectBooleanCheckbox>                    
                     </p:panelGrid>
                     <p:commandButton styleClass="btn_g" actionListener="#{periodoAcademicoController.create}" value="#{bundle.Save}" update="display,:PeriodoAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PeriodoAcademicoCreateDialog');"/>
                     <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}"  immediate="true" oncomplete="PF('PeriodoAcademicoCreateDialog').hide();"/>

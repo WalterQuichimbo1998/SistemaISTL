@@ -29,4 +29,5 @@ public class DistributivoFacade extends AbstractFacade<Distributivo> {
         super(Distributivo.class);
     }
     
+    
 }

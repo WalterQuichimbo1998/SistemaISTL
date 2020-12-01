@@ -14,6 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -54,15 +56,23 @@ public class NivelAcademico implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idNivelAcademico")
+    private List<Notas> notasList;
+    @OneToMany(mappedBy = "idNivelAcademico")
     private List<Distributivo> distributivoList;
+    @JoinColumn(name = "id_periodo_academico", referencedColumnName = "id_periodo_academico")
+    @ManyToOne
+    private PeriodoAcademico idPeriodoAcademico;
     @OneToMany(mappedBy = "idNivelAcademico")
     private List<Persona> personaList;
+    @OneToMany(mappedBy = "idNivelAcademico")
+    private List<MatriculaHistorial> matriculaHistorialList;
     @OneToMany(mappedBy = "idNivelAcademico")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idNivelAcademico")
     private List<Materia> materiaList;
-    @OneToMany(mappedBy = "idNivelAcademico")
-    private List<MatriculaHistorial> matriculaHistorialList;
+    @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
+    @ManyToOne
+    private TituloCarrera idTituloCarrera;
 
     public NivelAcademico() {
     }
@@ -145,6 +155,30 @@ public class NivelAcademico implements Serializable {
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
     }
+    @XmlTransient
+    public List<Notas> getNotasList() {
+        return notasList;
+    }
+
+    public void setNotasList(List<Notas> notasList) {
+        this.notasList = notasList;
+    }
+
+    public PeriodoAcademico getIdPeriodoAcademico() {
+        return idPeriodoAcademico;
+    }
+
+    public void setIdPeriodoAcademico(PeriodoAcademico idPeriodoAcademico) {
+        this.idPeriodoAcademico = idPeriodoAcademico;
+    }
+    public TituloCarrera getIdTituloCarrera() {
+        return idTituloCarrera;
+    }
+
+    public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
+        this.idTituloCarrera = idTituloCarrera;
+    }
+    
 
     @Override
     public int hashCode() {

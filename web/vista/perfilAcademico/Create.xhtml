@@ -13,21 +13,24 @@
             <h:form id="PerfilAcademicoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{perfilAcademicoController.selected != null}">
-                        
-                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_tituloContrato}" for="tituloContrato" />
-                        <p:inputText id="tituloContrato" value="#{perfilAcademicoController.selected.tituloContrato}" title="#{bundle.CreatePerfilAcademicoTitle_tituloContrato}" />
-                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_otrosTitulos}" for="otrosTitulos" />
-                        <p:inputText id="otrosTitulos" value="#{perfilAcademicoController.selected.otrosTitulos}" title="#{bundle.CreatePerfilAcademicoTitle_otrosTitulos}" />
-                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_gradoOcupacional}" for="gradoOcupacional" />
-                        <p:inputText id="gradoOcupacional" value="#{perfilAcademicoController.selected.gradoOcupacional}" title="#{bundle.CreatePerfilAcademicoTitle_gradoOcupacional}" />
-                        
                         <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_idDatosPersonales}" for="idDatosPersonales" />
                         <p:selectOneMenu id="idDatosPersonales" value="#{perfilAcademicoController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione">
-                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" required="true" requiredMessage="Seleccione">
+                            <f:selectItems value="#{datosPersonalesController.itemsDocentes}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_tituloContrato}" for="tituloContrato" />
+                        <p:inputText id="tituloContrato" value="#{perfilAcademicoController.selected.tituloContrato}" title="#{bundle.CreatePerfilAcademicoTitle_tituloContrato}" 
+                                     style="width: 270px !important;"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_otrosTitulos}" for="otrosTitulos" />
+                        <p:inputText id="otrosTitulos" value="#{perfilAcademicoController.selected.otrosTitulos}" title="#{bundle.CreatePerfilAcademicoTitle_otrosTitulos}" 
+                                     style="width: 270px !important;"/>
+                        <p:outputLabel value="#{bundle.CreatePerfilAcademicoLabel_gradoOcupacional}" for="gradoOcupacional" />
+                        <p:inputText id="gradoOcupacional" value="#{perfilAcademicoController.selected.gradoOcupacional}" title="#{bundle.CreatePerfilAcademicoTitle_gradoOcupacional}" 
+                                     style="width: 270px !important;"/>
+                        
+                        
                     </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{perfilAcademicoController.create}" value="#{bundle.Save}" update="display,:PerfilAcademicoListForm:datalist,:growl" oncomplete="handleSubmit(args,'PerfilAcademicoCreateDialog');"/>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('PerfilAcademicoCreateDialog').hide();"/>

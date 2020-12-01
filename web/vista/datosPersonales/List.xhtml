@@ -105,13 +105,7 @@
                             </f:facet>
                             <h:outputText value="#{item.convencional}"/>
                         </p:column>
-                        <p:column sortBy="#{item.codPostal}" filterBy="#{item.codPostal}"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDatosPersonalesTitle_codPostal}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codPostal}"/>
-                        </p:column>
-
+                  
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{datosPersonalesController.prepareCreate}" update=":DatosPersonalesCreateForm" oncomplete="PF('DatosPersonalesCreateDialog').show()"/>
                             <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":DatosPersonalesViewForm" oncomplete="PF('DatosPersonalesViewDialog').show()" disabled="#{empty datosPersonalesController.selected}"/>

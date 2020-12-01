@@ -16,7 +16,7 @@
         <ui:define name="body">
             <p:panel>
             <h:form id="TituloCarreraListForm">
-                <p class="title_modulos">#{bundle.ListTituloCarreraTitle}</p>
+                <p class="title_modulos">Carreras Académicas</p>
                     <p:dataTable id="datalist" value="#{tituloCarreraController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tituloCarreraController.selected}"
                                  paginator="true"
@@ -33,9 +33,10 @@
                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListTituloCarreraTitle_nombreTitulo}"/>
+                                <h:outputText value="Carrera"/>
                             </f:facet>
-                            <h:outputText value="#{item.nombreTitulo}"/>
+                            <h:outputText value="#{item.nombreTitulo}"/><br/>
+                            <p:commandButton style="text-decoration: none;color:#000;" styleClass="ver" icon="ui-icon-plus" value="Ver o Registrar Ciclos" actionListener="#{nivelAcademicoController.setSelectedT(item)}" action="/vista/nivelAcademico/List?faces-redirect=true"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

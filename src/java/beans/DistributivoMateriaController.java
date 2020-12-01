@@ -1,13 +1,12 @@
 package beans;
 
-import modelo.Materia;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
+import dao.DistributivoMateriaFacade;
 import dao.MateriaFacade;
 import dao.NivelAcademicoFacade;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -20,65 +19,45 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.Distributivo;
+import modelo.DistributivoMateria;
+import modelo.Materia;
 import modelo.NivelAcademico;
 
-@Named("materiaController")
+@Named("distributivoMateriaController")
 @SessionScoped
-public class MateriaController implements Serializable {
+public class DistributivoMateriaController implements Serializable {
 
     @EJB
-    private dao.MateriaFacade ejbFacade;
-    private List<Materia> items = null;
-    private List<Materia> lista = null;
-    private List<Materia> lista2 = null;
+    private dao.DistributivoMateriaFacade ejbFacade;
+    private List<DistributivoMateria> items = null;
+    private DistributivoMateria selected;
+    private Distributivo selectedD;
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
     private List<NivelAcademico> itemsNivelAcademico = null;
-    private Materia selected;
-    private NivelAcademico selectedN;
-    
+    @EJB
+    private MateriaFacade ejbFacadeMateria;
+    private List<Materia> itemsMateria = null;
 
-    public MateriaController() {
+    public DistributivoMateriaController() {
     }
 
-    public Materia getSelected() {
+    public DistributivoMateria getSelected() {
         return selected;
     }
 
-    public NivelAcademico getSelectedN() {
-        return selectedN;
-    }
-
-    public void setSelectedN(NivelAcademico selectedN) {
-        this.selectedN = selectedN;
-        lista2=null;
-    }
-    
-
-    public void setSelected(Materia selected) {
+    public void setSelected(DistributivoMateria selected) {
         this.selected = selected;
-        lista2=null;
     }
 
-    public List<Materia> getLista() {
-        return lista;
+    public Distributivo getSelectedD() {
+        return selectedD;
     }
 
-    public void setLista(List<Materia> lista) {
-        this.lista = lista;
-    }
-
-    public List<NivelAcademico> getItemsNivelAcademico() {
-         if (selected.getIdPeriodoAcademico() != null) {
-            return itemsNivelAcademico=ejbFacadeNivel.listaNiveles(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
-            
-        } else {
-            return null;
-        }
-    }
-
-    public void setItemsNivelAcademico(List<NivelAcademico> itemsNivelAcademico) {
-        this.itemsNivelAcademico = itemsNivelAcademico;
+    public void setSelectedD(Distributivo selectedD) {
+        this.selectedD = selectedD;
+        items=null;
     }
     
 
@@ -88,61 +67,73 @@ public class MateriaController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private MateriaFacade getFacade() {
+    private DistributivoMateriaFacade getFacade() {
         return ejbFacade;
     }
 
-    public Materia prepareCreate() {
-        selected = new Materia();
+    public DistributivoMateria prepareCreate() {
+        selected = new DistributivoMateria();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        this.selected.setFechaDeRegistro(new Date());
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MateriaCreated"));
+        this.selected.setIdDistributivo(selectedD);
+        persist(PersistAction.CREATE,"Materia distributivo registrada");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
-            lista2=null;
         }
     }
 
     public void update() {
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MateriaUpdated"));
+        this.selected.setIdDistributivo(selectedD);
+        persist(PersistAction.UPDATE, "Materia distributivo actualizada");
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MateriaDeleted"));
+        persist(PersistAction.DELETE, "Materia distributivo eliminada");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
-            lista2=null;
         }
     }
 
-    public List<Materia> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
-        return items;
-    }
-
-    public List<Materia> getLista2() {
-        
-       if (lista2 == null) {
-           if(selectedN!=null){
-                 lista2 = getFacade().listaMaterias(selectedN.getIdNivelAcademico());
+    public List<DistributivoMateria> getItems() {
+          if (items == null) {
+           if(selectedD!=null){
+                 items = getFacade().listaDistributivoMaterias(selectedD.getIdDistributivo());
            }
         }
-        return lista2;
+        return items;
+        
     }
 
-    public void setLista2(List<Materia> lista2) {
-        this.lista2 = lista2;
+    public List<NivelAcademico> getItemsNivelAcademico() {
+       if (selected.getIdTituloCarrera() != null) {
+            return itemsNivelAcademico = ejbFacadeNivel.listaNiveles(selected.getIdTituloCarrera().getIdTituloCarrera());
+        } else {
+            return null;
+        }
+    }
+
+    public void setItemsNivelAcademico(List<NivelAcademico> itemsNivelAcademico) {
+        this.itemsNivelAcademico = itemsNivelAcademico;
+    }
+
+    public List<Materia> getItemsMateria() {
+         if (selected.getIdTituloCarrera() != null) {
+            if (getItemsNivelAcademico().contains(selected.getIdNivelAcademico()) == true) {
+                return itemsMateria = ejbFacadeMateria.listaMaterias(selected.getIdNivelAcademico().getIdNivelAcademico());
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public void setItemsMateria(List<Materia> itemsMateria) {
+        this.itemsMateria = itemsMateria;
     }
     
 
@@ -174,29 +165,29 @@ public class MateriaController implements Serializable {
         }
     }
 
-    public Materia getMateria(java.lang.Integer id) {
+    public DistributivoMateria getDistributivoMateria(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<Materia> getItemsAvailableSelectMany() {
+    public List<DistributivoMateria> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Materia> getItemsAvailableSelectOne() {
+    public List<DistributivoMateria> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Materia.class)
-    public static class MateriaControllerConverter implements Converter {
+    @FacesConverter(forClass = DistributivoMateria.class)
+    public static class DistributivoMateriaControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            MateriaController controller = (MateriaController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "materiaController");
-            return controller.getMateria(getKey(value));
+            DistributivoMateriaController controller = (DistributivoMateriaController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "distributivoMateriaController");
+            return controller.getDistributivoMateria(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -216,11 +207,11 @@ public class MateriaController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Materia) {
-                Materia o = (Materia) object;
-                return getStringKey(o.getIdMateria());
+            if (object instanceof DistributivoMateria) {
+                DistributivoMateria o = (DistributivoMateria) object;
+                return getStringKey(o.getIdDistributivoMateria());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Materia.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), DistributivoMateria.class.getName()});
                 return null;
             }
         }

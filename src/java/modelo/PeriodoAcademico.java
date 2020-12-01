@@ -56,20 +56,26 @@ public class PeriodoAcademico implements Serializable {
     private String descripcion;
     @Column(name = "modalidad")
     private Integer modalidad;
-    @Column(name = "estado")
-    private Integer estado;
+   @Column(name = "estado")
+    private Boolean estado;
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
     @Size(max = 45)
     @Column(name = "a\u00f1o_periodo_academico")
     private String añoPeriodoAcademico;
+    @OneToMany(mappedBy = "idPeriodoAcademico")
+    private List<Notas> notasList;
     @OneToMany(mappedBy = "idPeriodoAcademicoSemestre")
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idPeriodoAcademico")
-    private List<Matricula> matriculaList;
+    private List<NivelAcademico> nivelAcademicoList;
     @OneToMany(mappedBy = "idPeriodoAcademico")
     private List<MatriculaHistorial> matriculaHistorialList;
+    @OneToMany(mappedBy = "idPeriodoAcademico")
+    private List<Matricula> matriculaList;
+    @OneToMany(mappedBy = "idPeriodoAcademico")
+    private List<Materia> materiaList;
 
     public PeriodoAcademico() {
     }
@@ -110,14 +116,15 @@ public class PeriodoAcademico implements Serializable {
         this.modalidad = modalidad;
     }
 
-    public Integer getEstado() {
+    public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
 
+    
     public Date getFechaDeRegistro() {
         return fechaDeRegistro;
     }
@@ -155,10 +162,36 @@ public class PeriodoAcademico implements Serializable {
     public List<Matricula> getMatriculaList() {
         return matriculaList;
     }
-
+  
     public void setMatriculaList(List<Matricula> matriculaList) {
         this.matriculaList = matriculaList;
     }
+    @XmlTransient
+    public List<NivelAcademico> getNivelAcademicoList() {
+        return nivelAcademicoList;
+    }
+
+    public void setNivelAcademicoList(List<NivelAcademico> nivelAcademicoList) {
+        this.nivelAcademicoList = nivelAcademicoList;
+    }
+    @XmlTransient
+    public List<Notas> getNotasList() {
+        return notasList;
+    }
+
+    public void setNotasList(List<Notas> notasList) {
+        this.notasList = notasList;
+    }
+    @XmlTransient
+    public List<Materia> getMateriaList() {
+        return materiaList;
+    }
+
+    public void setMateriaList(List<Materia> materiaList) {
+        this.materiaList = materiaList;
+    }
+    
+    
 
     @Override
     public int hashCode() {

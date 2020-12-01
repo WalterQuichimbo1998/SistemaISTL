@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.TituloCarrera;
 
 @Named("nivelAcademicoController")
 @SessionScoped
@@ -27,7 +28,11 @@ public class NivelAcademicoController implements Serializable {
     @EJB
     private dao.NivelAcademicoFacade ejbFacade;
     private List<NivelAcademico> items = null;
+    private List<NivelAcademico> lista = null;
+    private List<NivelAcademico> listaD = null;
     private NivelAcademico selected;
+    private TituloCarrera selectedT;
+    private Integer id_persona;
 
     public NivelAcademicoController() {
     }
@@ -50,6 +55,26 @@ public class NivelAcademicoController implements Serializable {
         return ejbFacade;
     }
 
+    public TituloCarrera getSelectedT() {
+        return selectedT;
+    }
+
+    public void setSelectedT(TituloCarrera selectedT) {
+        this.selectedT = selectedT;
+        lista=null;
+        listaD=null;
+    }
+
+    public Integer getId_persona() {
+        return id_persona;
+    }
+
+    public void setId_persona(Integer id_persona) {
+        this.id_persona = id_persona;
+    }
+    
+    
+
     public NivelAcademico prepareCreate() {
         selected = new NivelAcademico();
         initializeEmbeddableKey();
@@ -57,14 +82,17 @@ public class NivelAcademicoController implements Serializable {
     }
 
     public void create() {
+        this.selected.setIdTituloCarrera(selectedT);
          this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NivelAcademicoCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+            lista=null;
         }
     }
 
     public void update() {
+        this.selected.setIdTituloCarrera(selectedT);
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NivelAcademicoUpdated"));
     }
 
@@ -73,15 +101,48 @@ public class NivelAcademicoController implements Serializable {
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
+             lista=null;
         }
     }
 
+    
     public List<NivelAcademico> getItems() {
+        items=null;
         if (items == null) {
-            items = getFacade().findAll();
+//            items = getFacade().findAll();
+            items = getFacade().listaCiclos();
         }
         return items;
     }
+
+    public List<NivelAcademico> getLista() {
+        if (lista == null) {
+           if(selectedT!=null){
+                 lista = getFacade().listaNivelesT(selectedT.getIdTituloCarrera());
+           }
+        }
+        return lista;
+    }
+
+    public void setLista(List<NivelAcademico> lista) {
+        this.lista = lista;
+    }
+
+    public List<NivelAcademico> getListaD() {
+        
+         if (listaD == null) {
+           if(selectedT!=null){
+                 listaD = getFacade().listaNivelesDistributivo(getId_persona(),selectedT.getIdTituloCarrera());
+           }
+        }
+        return listaD;
+    }
+
+    public void setListaD(List<NivelAcademico> listaD) {
+        this.listaD = listaD;
+    }
+    
+
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

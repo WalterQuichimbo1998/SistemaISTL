@@ -66,6 +66,10 @@ public class TituloCarrera implements Serializable {
     @OneToMany(mappedBy = "idTituloCarrera")
     private List<Materia> materiaList;
     @OneToMany(mappedBy = "idTituloCarrera")
+    private List<Notas> notasList;
+    @OneToMany(mappedBy = "idTituloCarrera")
+    private List<NivelAcademico> nivelAcademicoList;
+    @OneToMany(mappedBy = "idTituloCarrera")
     private List<MatriculaHistorial> matriculaHistorialList;
     
     public TituloCarrera() {
@@ -158,6 +162,24 @@ public class TituloCarrera implements Serializable {
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
     }
+    @XmlTransient
+    public List<Notas> getNotasList() {
+        return notasList;
+    }
+
+    public void setNotasList(List<Notas> notasList) {
+        this.notasList = notasList;
+    }
+    @XmlTransient
+    public List<NivelAcademico> getNivelAcademicoList() {
+        return nivelAcademicoList;
+    }
+
+    public void setNivelAcademicoList(List<NivelAcademico> nivelAcademicoList) {
+       
+        this.nivelAcademicoList = nivelAcademicoList;
+    }
+    
 
     @Override
     public int hashCode() {

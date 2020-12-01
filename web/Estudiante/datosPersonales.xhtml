@@ -38,29 +38,29 @@ and open the template in the editor.
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Nombres" for="nombres" />
                                 <p:inputText styleClass="camposDeDatos" id="nombres" value="#{datosPersonalesController.selected.nombres}" title="#{bundle.EditDatosPersonalesTitle_nombres}" 
-                                             maxlength="45" />
+                                             maxlength="20" required="true" requiredMessage="Ingrese su nombre"/>
                               
                                 <br id="espa"/>
                                 <p:outputLabel  class="labelDatosPersonales" value="Apellidos" for="apellidos" />
                                 <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.EditDatosPersonalesTitle_apellidos}" 
-                                             maxlength="45"/>
+                                             maxlength="20" required="true" requiredMessage="Ingrese su apellido"/>
                             </div>
 
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Cédula" for="numIdentificacion" />
                                 <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.EditDatosPersonalesTitle_numIdentificacion}" 
-                                             maxlength="45" required="true" requiredMessage="Ingrese su cédula"/>
+                                             maxlength="10" required="true" requiredMessage="Ingrese su cédula"/>
                             </div>
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Sexo" for="sexo" />
-                                <h:selectOneMenu id="sexo" class="txtC" value = "#{datosPersonalesController.selected.sexo}"> 
+                                <h:selectOneMenu id="sexo" class="txtC" value = "#{datosPersonalesController.selected.sexo}" required="true" requiredMessage="seleccione un sexo"> 
                                     <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                     <f:selectItem itemValue = "Hombre" itemLabel = "Hombre" /> 
                                     <f:selectItem itemValue = "Mujer" itemLabel = "Mujer" />
                                 </h:selectOneMenu>                            </div>
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Género" for="genero" />
-                                <h:selectOneMenu class="txtC" id="genero" value="#{datosPersonalesController.selected.genero}" >
+                                <h:selectOneMenu class="txtC" id="genero" value="#{datosPersonalesController.selected.genero}" required="true" requiredMessage="Seleccione un genero">
                                     <f:selectItem itemLabel="-Seleccione-"/>
                                     <f:selectItem itemLabel="Masculino" itemValue="0"/>
                                     <f:selectItem itemLabel="Femenino" itemValue="1"/>

@@ -4,6 +4,7 @@ import modelo.Matricula;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
 import dao.MatriculaFacade;
+import dao.NivelAcademicoFacade;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -26,6 +27,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import modelo.Canton;
 import modelo.DatosPersonales;
+import modelo.NivelAcademico;
 import modelo.Provincia;
 
 @Named("matriculaController")
@@ -38,7 +40,9 @@ public class MatriculaController implements Serializable {
     private dao.ProvinciaFacade ejbFacadeP;
     @EJB
     private dao.CantonFacade ejbFacadeC;
-
+    @EJB
+    private NivelAcademicoFacade ejbFacadeNivel;
+    private List<NivelAcademico> itemsNivelAcademico = null;
     private List<Matricula> items = null;
     private List<Matricula> listaMatricula = null;
     private Matricula selected;
@@ -72,12 +76,15 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Provincia> getListaProvincias() {
-        if (selected.getIdNacionalidad() != null) {
-            return listaProvincias = ejbFacadeP.listaProvincia(selected.getIdNacionalidad().getIdNacionalidad());
-        } else {
+        if (selected == null) {
             return null;
+        } else {
+            if (selected.getIdNacionalidad() != null) {
+                return listaProvincias = ejbFacadeP.listaProvincia(selected.getIdNacionalidad().getIdNacionalidad());
+            } else {
+                return null;
+            }
         }
-
     }
 
     public void setListaProvincias(List<Provincia> listaProvincias) {
@@ -85,17 +92,19 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Canton> getListaCanton() {
-
-        if (selected.getIdNacionalidad() != null) {
-            if (getListaProvincias().contains(selected.getIdProvinciaNacimiento()) == true) {
-                return listaCanton = ejbFacadeC.listaCanton(selected.getIdProvinciaNacimiento().getIdProvincia());
+        if (selected == null) {
+            return null;
+        } else {
+            if (selected.getIdNacionalidad() != null) {
+                if (getListaProvincias().contains(selected.getIdProvinciaNacimiento()) == true) {
+                    return listaCanton = ejbFacadeC.listaCanton(selected.getIdProvinciaNacimiento().getIdProvincia());
+                } else {
+                    return null;
+                }
             } else {
                 return null;
             }
-        } else {
-            return null;
         }
-
     }
 
     public void setListaCanton(List<Canton> listaCanton) {
@@ -128,6 +137,19 @@ public class MatriculaController implements Serializable {
 
     public void setV(Boolean v) {
         this.v = v;
+    }
+
+    public List<NivelAcademico> getItemsNivelAcademico() {
+        if (selected.getIdTituloCarrera() != null) {
+            return itemsNivelAcademico = ejbFacadeNivel.listaNiveles(selected.getIdTituloCarrera().getIdTituloCarrera());
+
+        } else {
+            return null;
+        }
+    }
+
+    public void setItemsNivelAcademico(List<NivelAcademico> itemsNivelAcademico) {
+        this.itemsNivelAcademico = itemsNivelAcademico;
     }
 
     public Matricula prepareCreate() {
@@ -167,6 +189,7 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Matricula> getItems() {
+        items = null;
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -263,7 +286,6 @@ public class MatriculaController implements Serializable {
 
         }
     }
-
 
     public Connection getConnection() throws Exception {
         final String DATASOURCE_CONTEXT = "java:app/sistema_gestion"; //nombre de tu pool de conexiones

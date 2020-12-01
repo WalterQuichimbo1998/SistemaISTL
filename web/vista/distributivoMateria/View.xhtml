@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DistributivoMateriaViewDlg" widgetVar="DistributivoMateriaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDistributivoMateriaTitle}">
+            <h:form id="DistributivoMateriaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{distributivoMateriaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDistributivoMateriaLabel_idDistributivoMateria}"/>
+                        <h:outputText value="#{distributivoMateriaController.selected.idDistributivoMateria}" title="#{bundle.ViewDistributivoMateriaTitle_idDistributivoMateria}"/>
+                        <h:outputText value="#{bundle.ViewDistributivoMateriaLabel_idDistributivo}"/>
+                        <h:outputText value="#{distributivoMateriaController.selected.idDistributivo}" title="#{bundle.ViewDistributivoMateriaTitle_idDistributivo}"/>
+                        <h:outputText value="#{bundle.ViewDistributivoMateriaLabel_idMateria}"/>
+                        <h:outputText value="#{distributivoMateriaController.selected.idMateria}" title="#{bundle.ViewDistributivoMateriaTitle_idMateria}"/>
+                        <h:outputText value="#{bundle.ViewDistributivoMateriaLabel_idNivelAcademico}"/>
+                        <h:outputText value="#{distributivoMateriaController.selected.idNivelAcademico}" title="#{bundle.ViewDistributivoMateriaTitle_idNivelAcademico}"/>
+                        <h:outputText value="#{bundle.ViewDistributivoMateriaLabel_idTituloCarrera}"/>
+                        <h:outputText value="#{distributivoMateriaController.selected.idTituloCarrera}" title="#{bundle.ViewDistributivoMateriaTitle_idTituloCarrera}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DistributivoMateriaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

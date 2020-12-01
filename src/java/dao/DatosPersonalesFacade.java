@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -55,5 +56,49 @@ public class DatosPersonalesFacade extends AbstractFacade<DatosPersonales> {
         } catch (Exception e) {
         }
         return datosPersonales;
+    }
+      public List<DatosPersonales> listaEstudiantes() {
+        List<DatosPersonales> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT datos_personales.id_datos_personales,datos_personales.nombres,datos_personales.apellidos,matricula.id_matricula FROM matricula\n"
+                    + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales= matricula.id_datos_personales \n", DatosPersonales.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+      public List<DatosPersonales> listaEstudiantesNotas(Integer id) {
+        List<DatosPersonales> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT datos_personales.id_datos_personales,datos_personales.nombres,datos_personales.apellidos,matricula.id_matricula FROM matricula\n"
+                    + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales= matricula.id_datos_personales \n"
+                    +"WHERE matricula.id_nivel_academico='" + id + "';", DatosPersonales.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+      public List<DatosPersonales> listaDocentes() {
+        List<DatosPersonales> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT datos_personales.id_datos_personales,datos_personales.nombres,datos_personales.apellidos FROM datos_personales\n"
+                    + "LEFT JOIN usuario ON usuario.id_datos_personales= datos_personales.id_datos_personales \n"
+                    + "LEFT JOIN tipo_operador ON tipo_operador.id_tipo_operador= usuario.id_tipo_operador \n"
+                    +"WHERE tipo_operador.id_tipo_operador='" + 3 + "';", DatosPersonales.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+        public List<DatosPersonales> listaEstudiantesCiclos(Integer id) {
+        List<DatosPersonales> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT datos_personales.id_datos_personales,datos_personales.nombres,datos_personales.apellidos,matricula.id_matricula FROM datos_personales\n"
+                    + " LEFT JOIN matricula ON matricula.id_datos_personales = datos_personales.id_datos_personales \n"
+                    +"WHERE matricula.id_nivel_academico='" + id + "';", DatosPersonales.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
     }
 }

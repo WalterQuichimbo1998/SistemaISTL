@@ -15,30 +15,25 @@
                     <p:panelGrid columns="2" rendered="#{materiaController.selected != null}">
                         <p:outputLabel value="#{bundle.EditMateriaLabel_codMateria}" for="codMateria" />
                         <p:inputText id="codMateria" value="#{materiaController.selected.codMateria}" title="#{bundle.EditMateriaTitle_codMateria}" />
-                        <p:outputLabel value="#{bundle.EditMateriaLabel_descripcion}" for="descripcion" />
-                        <p:inputText id="descripcion" value="#{materiaController.selected.descripcion}" title="#{bundle.EditMateriaTitle_descripcion}" />
                         <p:outputLabel value="#{bundle.EditMateriaLabel_materia}" for="materia" />
                         <p:inputText id="materia" value="#{materiaController.selected.materia}" title="#{bundle.EditMateriaTitle_materia}" required="true" requiredMessage="Complete"/>
+                        <p:outputLabel value="#{bundle.EditMateriaLabel_descripcion}" for="descripcion" />
+                        <p:inputText id="descripcion" value="#{materiaController.selected.descripcion}" title="#{bundle.EditMateriaTitle_descripcion}" />
+                        
                         <p:outputLabel value="#{bundle.EditMateriaLabel_creditos}" for="creditos" />
                         <p:inputText id="creditos" value="#{materiaController.selected.creditos}" title="#{bundle.EditMateriaTitle_creditos}" />
                         <p:outputLabel value="#{bundle.EditMateriaLabel_numHoras}" for="numHoras" />
                         <p:inputText id="numHoras" value="#{materiaController.selected.numHoras}" title="#{bundle.EditMateriaTitle_numHoras}" />
                         <p:outputLabel value="#{bundle.EditMateriaLabel_numHorasSemanales}" for="numHorasSemanales" />
                         <p:inputText id="numHorasSemanales" value="#{materiaController.selected.numHorasSemanales}" title="#{bundle.EditMateriaTitle_numHorasSemanales}" />
-                        <p:outputLabel value="Nivel académico:" for="idNivelAcademico" />
-                        <p:selectOneMenu id="idNivelAcademico" value="#{materiaController.selected.idNivelAcademico}" required="true" requiredMessage="Seleccione un nivel">
+                          <p:outputLabel value="Período académico: " for="idPeriodo" />
+                        <p:selectOneMenu id="idPeriodo" value="#{materiaController.selected.idPeriodoAcademico}" required="true" requiredMessage="Seleccione un periodo">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
-                                           var="idNivelAcademicoItem"
-                                           itemValue="#{idNivelAcademicoItem}"/>
+                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                           var="idPeriodoAcademicoItem"
+                                           itemValue="#{idPeriodoAcademicoItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="Carrera:" for="idTituloCarrera" />
-                        <p:selectOneMenu id="idTituloCarrera" value="#{materiaController.selected.idTituloCarrera}" required="true" requiredMessage="Seleccione una carrera">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                           var="idTituloCarreraItem"
-                                           itemValue="#{idTituloCarreraItem}"/>
-                        </p:selectOneMenu>
+                       
                     </p:panelGrid>
                     <p:commandButton styleClass="btn_g" actionListener="#{materiaController.update}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MateriaEditDialog');"/>
                     <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MateriaEditDialog').hide();"/>

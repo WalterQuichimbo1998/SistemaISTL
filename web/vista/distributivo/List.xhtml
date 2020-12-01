@@ -20,7 +20,6 @@
                     <p:dataTable id="datalist" value="#{distributivoController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{distributivoController.selected}"
                                  paginator="true"
-                                 scrollable="true" 
                                  rowKey="#{item.idDistributivo}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
@@ -35,10 +34,10 @@
                         
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_fechaVinculacion}"/>
+                                <h:outputText value="Fecha vinculación"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaVinculacion}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                                <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
                         <p:column>
@@ -53,18 +52,7 @@
                             </f:facet>
                             <h:outputText value="#{item.nroHorasSemanalGestionAcademica}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_detalleHorasGestionAcademica}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.detalleHorasGestionAcademica}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_totalHorasSemanalFuncionario}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.totalHorasSemanalFuncionario}"/>
-                        </p:column>
+                        
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDistributivoTitle_numeroDeSemanas}"/>
@@ -75,7 +63,7 @@
                        
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idDatosPersonales}"/>
+                                <h:outputText value="Docente"/>
                             </f:facet>
                             <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
                         </p:column>
@@ -85,54 +73,23 @@
                             </f:facet>
                             <h:outputText value="#{item.idJornadaAcademica.tipoJornada}"/>
                         </p:column>
+                                              
+                      
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idMateria}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idMateria.materia}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Nivel Académico"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idParalelo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idParalelo.nombreParalelo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idPerfilAcademico}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idPerfilAcademico.tituloContrato}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="Periodo Académico Semestre"/>
+                                <h:outputText value="Periodo Académico"/>
                             </f:facet>
                             <h:outputText value="#{item.idPeriodoAcademicoSemestre.nombre}"/>
                         </p:column>
+                     
+               
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idTablaInvestigacion}"/>
+                                <h:outputText value="Materias"/>
                             </f:facet>
-                            <h:outputText value="#{item.idTablaInvestigacion}"/>
+                            <p:commandButton style="text-decoration: none;color:#000;" styleClass="ver" icon="ui-icon-plus" value="Ir" actionListener="#{distributivoMateriaController.setSelectedD(item)}" action="/vista/distributivoMateria/List?faces-redirect=true"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idTipoTiempo}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTipoTiempo}"/>
-                        </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListDistributivoTitle_idTituloCarrera}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
-                        </p:column>
+                     
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{distributivoController.prepareCreate}" update=":DistributivoCreateForm" oncomplete="PF('DistributivoCreateDialog').show()"/>
                             <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":DistributivoViewForm" oncomplete="PF('DistributivoViewDialog').show()" disabled="#{empty distributivoController.selected}"/>

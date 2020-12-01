@@ -79,12 +79,7 @@
                             </f:facet>
                             <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idParalelo.nombreParalelo}" filterBy="#{item.idParalelo.nombreParalelo}"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Paralelo"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idParalelo.nombreParalelo}"/>
-                        </p:column>
+                       
                         <p:column sortBy="#{item.idPeriodoAcademico.nombre}" filterBy="#{item.idPeriodoAcademico.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Periódo Académico"/>

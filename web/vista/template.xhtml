@@ -31,8 +31,9 @@
                     </p:submenu>
 
                     <p:submenu label="Datos Generales" styleClass="item" icon="ui-icon-person">
+                        <p:menuitem value="Carreras Académicas" styleClass="item_2" outcome="/vista/tituloCarrera/List.xhtml"/>
+                        <p:menuitem value="Período Académico" styleClass="item_2" outcome="/vista/periodoAcademico/List.xhtml"/> 
                         <p:menuitem value="Perfil Academico" styleClass="item_2" outcome="/vista/perfilAcademico/List.xhtml"/>  
-                        <p:menuitem value="Periodo Académico" styleClass="item_2" outcome="/vista/periodoAcademico/List.xhtml"/> 
                         <p:menuitem value="País Nacionalidad" styleClass="item_2" outcome="/vista/nacionalidad/List.xhtml"/>
                         <p:menuitem value="Provincia/Cantón" styleClass="item_2" outcome="/vista/provincia/List.xhtml"/>
 
@@ -40,12 +41,10 @@
 
                     <p:submenu label="Notas" styleClass="item" icon="ui-icon-bookmark"> 
                         <p:menuitem value="Notas" styleClass="item_2" outcome="/vista/notas/List.xhtml"/>
-                        <p:menuitem value="Materia" styleClass="item_2" outcome="/vista/materia/List.xhtml"/>
                         <p:menuitem value="Reporte Notas por Materia" styleClass="item_2" outcome="/vista/reporteImprimirMaterias.xhtml"/>
                     </p:submenu>
                     <p:submenu label="Datos Complementarios" styleClass="item" icon="ui-icon-suitcase">   
                         <p:menuitem value="Jornada Académica" styleClass="item_2" outcome="/vista/jornadaAcademica/List.xhtml"/>
-                        <p:menuitem value="Ciclo Académico" styleClass="item_2" outcome="/vista/nivelAcademico/List.xhtml"/>
                         <p:menuitem value="Tipo Identificacion" styleClass="item_2" outcome="/vista/tipoIdentificacion/List.xhtml"/>
                         <p:menuitem value="Estado Civil" styleClass="item_2" outcome="/vista/estadoCivil/List.xhtml"/>
                         <p:menuitem value="Tipo Discapacidad" styleClass="item_2" outcome="/vista/tipoDiscapacidad/List.xhtml"/>
@@ -60,7 +59,6 @@
                         <p:menuitem value="Etnia" styleClass="item_2" outcome="/vista/etnia/List.xhtml"/>
                         <p:menuitem value="Paralelo" styleClass="item_2" outcome="/vista/paralelo/List.xhtml"/>
                         <p:menuitem value="Sector Económico" styleClass="item_2" outcome="/vista/sectorEconomico/List.xhtml"/>
-                        <p:menuitem value="TituloCarrera" styleClass="item_2" outcome="/vista/tituloCarrera/List.xhtml"/>
                         <p:menuitem value="Materia Carrera" styleClass="item_2" outcome="/vista/materiaCarrera/List.xhtml"/>
                         <p:menuitem value="Alcance Vinculación" styleClass="item_2" outcome="/vista/alcanceVinculacion/List.xhtml"/>
                         <p:menuitem value="Tabla Investigacion" styleClass="item_2" outcome="/vista/tablaInvestigacion/List.xhtml"/>
@@ -109,6 +107,14 @@
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="formulario.png" />
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.parametroFicha}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
+                                 <p:outputLabel value="Periódo Académico"  />
+                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom:10px !important;" 
+                                                 effect="fade" filter="true" filterMatchMode="contains" height="140" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idPeriodoAcademicoItem"
+                                                   itemValue="#{idPeriodoAcademicoItem}"/>
+                                </p:selectOneMenu>
                                 <h:commandButton class="ob btn_form" action="#{bean.doImprimirFicha}" value="DESCARGAR FICHA" title="Descargar"/>
                             </div>
                         </h:form>
@@ -120,6 +126,7 @@
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.parametro}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
+                                
                                 <h:commandButton class="ob btn_form" action="#{bean.imprimirNotas()}" value="DESCARGAR NOTAS" title="Descargar"/>
                             </div>
                         </h:form>

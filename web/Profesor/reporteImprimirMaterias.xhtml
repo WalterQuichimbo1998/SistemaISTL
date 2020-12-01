@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="./templateProfesor.xhtml">
+    <ui:composition template="/Profesor/templateProfesor.xhtml">
 
         <ui:define name="body">
 
@@ -15,33 +15,43 @@
                 <h:form id="MateriaEditForm">
                     <h:panelGroup id="display" >
                         <div class="data_campos_filto">
-                            <div style="text-align: center"><p class="title_reporte">REPORTES</p></div>
-                            <p:outputLabel class="labelLateral" value="Carrera" />
-                            <p:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tiCarreraSelected.idTituloCarrera}">
+                            <div style="text-align: center"><p class="title_reporte">REPORTES DE NOTAS</p></div>
+                            <p:outputLabel class="labelLateral" value="Carrera" for="idTituloCarrera"/>
+                            <p:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tituloCarreraSelected}" required="true"  requiredMessage="Seleccione una carrera">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{exportarNotasMaterias.itemsTituloCarrera}"
+                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
                                                var="idTituloCarreraItem"
-                                               itemValue="#{idTituloCarreraItem.idTituloCarrera}"
-                                               />
-                                <p:ajax process="@this" update="idMateria" />
+                                               itemValue="#{idTituloCarreraItem}"/>
+                                <f:ajax execute="idTituloCarrera" render="idNivelAcademico"/>
+                                <f:ajax render="idMateria"/>
                             </p:selectOneMenu> 
-
+                           
+                            
                             <p:outputLabel class="labelLateral" value="Ciclo" for="idNivelAcademico" />
-                            <p:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected.idNivelAcademico}" >
+                            <p:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected}" required="true"  requiredMessage="Seleccione un nivel">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{exportarNotasMaterias.itemsNivelAcademico}"
                                                var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem.idNivelAcademico}"/>
-                             <p:ajax process="@this" update="idMateria" />
+                                               itemValue="#{idNivelAcademicoItem}"/>
+                               <f:ajax execute="idNivelAcademico" render="idMateria" />
                             </p:selectOneMenu>
                             
-                            <p:outputLabel class="labelLateral" value="Materia" />
-                            <p:selectOneMenu  id="idMateria" value="#{exportarNotasMaterias.materiaSelected.idMateria}" 
-                                         effect="fade" filter="true" filterMatchMode="contains" height="160">
+                            <p:outputLabel class="labelLateral" value="Materia" for="idMateria" />
+                            <p:selectOneMenu  id="idMateria" value="#{exportarNotasMaterias.materiaSelected}" required="true"  requiredMessage="Seleccione una materia"
+                                              effect="fade" filter="true" filterMatchMode="contains" height="160">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{exportarNotasMaterias.itemsMateria}"
                                                var="idMateriaItem"
-                                               itemValue="#{idMateriaItem.idMateria}"/>
+                                               itemValue="#{idMateriaItem}"/>
+                                
+                            </p:selectOneMenu>
+                             <p:outputLabel class="labelLateral" value="Período Académico" for="idPeriodo" />
+                            <p:selectOneMenu id="idPeriodo" value="#{exportarNotasMaterias.periodoSelected}" required="true"  requiredMessage="Seleccione un periodo">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{periodoAcademicoController.lista}"
+                                               var="idPeriodoAcademicoItem"
+                                               itemValue="#{idPeriodoAcademicoItem}"/>
+                                
                             </p:selectOneMenu>
                             <br/>
                             <br/>

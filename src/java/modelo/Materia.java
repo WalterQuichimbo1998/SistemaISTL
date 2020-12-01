@@ -81,15 +81,18 @@ public class Materia implements Serializable {
     @OneToMany(mappedBy = "idMateria")
     private List<MateriaCarrera> materiaCarreraList;
     @OneToMany(mappedBy = "idMateria")
+    private List<MatriculaHistorial> matriculaHistorialList;
+    @OneToMany(mappedBy = "idMateria")
     private List<Matricula> matriculaList;
     @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
     @ManyToOne
     private NivelAcademico idNivelAcademico;
+    @JoinColumn(name = "id_periodo_academico", referencedColumnName = "id_periodo_academico")
+    @ManyToOne
+    private PeriodoAcademico idPeriodoAcademico;
     @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
     @ManyToOne
     private TituloCarrera idTituloCarrera;
-    @OneToMany(mappedBy = "idMateria")
-    private List<MatriculaHistorial> matriculaHistorialList;
 
     public Materia() {
     }
@@ -228,6 +231,15 @@ public class Materia implements Serializable {
     public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
         this.idTituloCarrera = idTituloCarrera;
     }
+
+    public PeriodoAcademico getIdPeriodoAcademico() {
+        return idPeriodoAcademico;
+    }
+
+    public void setIdPeriodoAcademico(PeriodoAcademico idPeriodoAcademico) {
+        this.idPeriodoAcademico = idPeriodoAcademico;
+    }
+    
 
     @Override
     public int hashCode() {

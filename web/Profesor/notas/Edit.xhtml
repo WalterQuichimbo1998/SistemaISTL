@@ -13,34 +13,28 @@
             <h:form id="NotasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
-                        
-                        <p:outputLabel value="#{bundle.EditNotasLabel_idPersona}" for="idDato" />
-                        <p:selectOneMenu id="idDato" value="#{notasController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione un estudiante">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
-                                           var="idDatosPersonalesItem"
-                                           itemValue="#{idDatosPersonalesItem}"/>
-                        </p:selectOneMenu>
-                         <p:outputLabel value="#{bundle.EditNotasLabel_idMateria}" for="idMateria" />
+                        <p:outputLabel value="#{bundle.CreateNotasLabel_idMateria}" for="idMateria" />
                         <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
                                          effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione una materia">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
+                            <f:selectItem itemLabel="-Seleccione-"/>
+                            <f:selectItems value="#{notasController.itemsMateria}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
-                        <p:inputText id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" />
-                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}" for="parcialDos" />
-                        <p:inputText id="parcialDos" value="#{notasController.selected.parcialDos}" title="#{bundle.EditNotasTitle_parcialDos}" />
-                        <p:outputLabel value="#{bundle.EditNotasLabel_notaSupletorio}" for="notaSupletorio" />
-                        <p:inputText id="notaSupletorio" value="#{notasController.selected.notaSupletorio}" title="#{bundle.EditNotasTitle_notaSupletorio}" />
-                        <p:outputLabel value="#{bundle.EditNotasLabel_notaRemedial}" for="notaRemedial" />
-                        <p:inputText id="notaRemedial" value="#{notasController.selected.notaRemedial}" title="#{bundle.EditNotasTitle_notaRemedial}" />
-                        <p:outputLabel value="#{bundle.EditNotasLabel_notaFinal}" for="notaFinal" />
-                        <p:inputText id="notaFinal" value="#{notasController.selected.notaFinal}" title="#{bundle.EditNotasTitle_notaFinal}" />
                         
+                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
+                        <p:inputText type="number" id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" />
+                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}" for="parcialDos" />
+                        <p:inputText type="number" id="parcialDos" value="#{notasController.selected.parcialDos}" title="#{bundle.EditNotasTitle_parcialDos}" />
+                        <p:outputLabel value="#{bundle.EditNotasLabel_notaSupletorio}" for="notaSupletorio" />
+                        <p:inputText type="number" id="notaSupletorio" value="#{notasController.selected.notaSupletorio}" title="#{bundle.EditNotasTitle_notaSupletorio}" />
+                         <p:outputLabel  value="Período Académico:" for="idPeriodo" />
+                         <p:selectOneMenu id="idPeriodo" value="#{notasController.selected.idPeriodoAcademico}" required="true"  requiredMessage="Seleccione un periodo">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{periodoAcademicoController.lista}"
+                                               var="idPeriodoAcademicoItem"
+                                               itemValue="#{idPeriodoAcademicoItem}"/>
+                            </p:selectOneMenu>
                        
                     </p:panelGrid>
                     <div class="boxBtnCrud">

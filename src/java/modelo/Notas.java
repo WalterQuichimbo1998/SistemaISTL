@@ -69,6 +69,15 @@ public class Notas implements Serializable {
     @JoinColumn(name = "id_materia", referencedColumnName = "id_materia")
     @ManyToOne
     private Materia idMateria;
+    @JoinColumn(name = "id_nivel_academico", referencedColumnName = "id_nivel_academico")
+    @ManyToOne
+    private NivelAcademico idNivelAcademico;
+    @JoinColumn(name = "id_periodo_academico", referencedColumnName = "id_periodo_academico")
+    @ManyToOne
+    private PeriodoAcademico idPeriodoAcademico;
+    @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
+    @ManyToOne
+    private TituloCarrera idTituloCarrera;
 
     public Notas() {
     }
@@ -156,6 +165,30 @@ public class Notas implements Serializable {
     public void setIdMateria(Materia idMateria) {
         this.idMateria = idMateria;
     }
+
+    public NivelAcademico getIdNivelAcademico() {
+        return idNivelAcademico;
+    }
+
+    public void setIdNivelAcademico(NivelAcademico idNivelAcademico) {
+        this.idNivelAcademico = idNivelAcademico;
+    }
+
+    public PeriodoAcademico getIdPeriodoAcademico() {
+        return idPeriodoAcademico;
+    }
+
+    public void setIdPeriodoAcademico(PeriodoAcademico idPeriodoAcademico) {
+        this.idPeriodoAcademico = idPeriodoAcademico;
+    }
+    public TituloCarrera getIdTituloCarrera() {
+        return idTituloCarrera;
+    }
+
+    public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
+        this.idTituloCarrera = idTituloCarrera;
+    }
+    
 
     @Override
     public int hashCode() {

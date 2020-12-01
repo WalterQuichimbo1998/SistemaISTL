@@ -5,9 +5,11 @@
  */
 package dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.PeriodoAcademico;
 
 /**
@@ -27,6 +29,15 @@ public class PeriodoAcademicoFacade extends AbstractFacade<PeriodoAcademico> {
 
     public PeriodoAcademicoFacade() {
         super(PeriodoAcademico.class);
+    }
+    public List<PeriodoAcademico> lista() {
+        List<PeriodoAcademico> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT * FROM periodo_academico WHERE estado =true;", PeriodoAcademico.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
     }
     
 }

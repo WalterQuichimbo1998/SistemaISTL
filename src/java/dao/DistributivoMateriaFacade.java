@@ -10,16 +10,16 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import modelo.Materia;
+import modelo.DistributivoMateria;
 
 /**
  *
- * @author TOSHIBA
+ * @author CyberMás
  */
 @Stateless
-public class MateriaFacade extends AbstractFacade<Materia> {
+public class DistributivoMateriaFacade extends AbstractFacade<DistributivoMateria> {
 
-    @PersistenceContext(unitName = "SistemaGestion3PU")
+   @PersistenceContext(unitName = "SistemaGestion3PU")
     private EntityManager em;
 
     @Override
@@ -27,14 +27,13 @@ public class MateriaFacade extends AbstractFacade<Materia> {
         return em;
     }
 
-    public MateriaFacade() {
-        super(Materia.class);
+    public DistributivoMateriaFacade() {
+        super(DistributivoMateria.class);
     }
-
-    public List<Materia> listaMaterias(Integer id) {
-        Query q = em.createNativeQuery("SELECT * FROM materia WHERE id_nivel_academico =" + id + ";", Materia.class);
-        List<Materia> lista = q.getResultList();
+    public List<DistributivoMateria> listaDistributivoMaterias(Integer id) {
+        Query q = em.createNativeQuery("SELECT * FROM distributivo_materia WHERE id_distributivo =" + id + ";", DistributivoMateria.class);
+        List<DistributivoMateria> lista = q.getResultList();
         return lista;
     }
-
+    
 }

@@ -177,9 +177,6 @@ public class Bean implements Serializable {
         this.periodoAcademicoSelected = periodoAcademicoSelected;
     }
 
-    
-  
-
 //    public PeriodoAcademicoFacade getEjbFacadePeriodo() {
 //        return ejbFacadePeriodo;
 //    }
@@ -187,7 +184,6 @@ public class Bean implements Serializable {
 //    public void setEjbFacadePeriodo(PeriodoAcademicoFacade ejbFacadePeriodo) {
 //        this.ejbFacadePeriodo = ejbFacadePeriodo;
 //    }
-
 //
 //    public void recibir(){
 //    String param1 = getParametro() ;
@@ -311,39 +307,78 @@ public class Bean implements Serializable {
     }
 
     public void doImprimirFicha() throws Exception {
-        reportPdf = null;
-        if (ejbFacadeMa.obtenerMatricula2(parametroFicha) == null) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
+        if (getPeriodoAcademicoSelected() != null) {
+            reportPdf = null;
+            if (ejbFacadeMa.obtenerMatricula2(parametroFicha) == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
 
-        } else {
+            } else {
 
-            File fichero = new File(getClass().getResource("/reportes/FormularioMatricula.jasper").toURI());
-            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+                File fichero = new File(getClass().getResource("/reportes/FormularioMatriculaPeriodo.jasper").toURI());
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
 
-            if (jasperReport != null) {
-                Map parametros = new HashMap();
-                //parametros que enviamos al report.
-                parametros.put("num_identificacion", getParametroFicha());
-                parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
-                parametros.put("logo1", this.getClass().getResourceAsStream(logotipo1));
-                parametros.put("logoA", this.getClass().getResourceAsStream(logotipo));
-                parametros.put("logoB", this.getClass().getResourceAsStream(logotipo1));
+                if (jasperReport != null) {
+                    Map parametros = new HashMap();
+                    //parametros que enviamos al report.
+                    parametros.put("num_identificacion", getParametroFicha());
+                    parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
+                    parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+                    parametros.put("logo1", this.getClass().getResourceAsStream(logotipo1));
+                    parametros.put("logoA", this.getClass().getResourceAsStream(logotipo));
+                    parametros.put("logoB", this.getClass().getResourceAsStream(logotipo1));
 
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
-                //Exportamos el reporte a pdf y lo guardamos en disco
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+                    //Exportamos el reporte a pdf y lo guardamos en disco
 
-                reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
-                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                    reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+                    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
-                response.addHeader("Content-disposition", "attachment; filename=formularioMatricula.pdf");
+                    response.addHeader("Content-disposition", "attachment; filename=formularioMatricula.pdf");
 
-                ServletOutputStream stream = response.getOutputStream();
-                JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-                stream.flush();
-                stream.close();
-                FacesContext.getCurrentInstance().responseComplete();
+                    ServletOutputStream stream = response.getOutputStream();
+                    JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+                    stream.flush();
+                    stream.close();
+                    FacesContext.getCurrentInstance().responseComplete();
 
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
+                }
+            }
+        } else {
+            reportPdf = null;
+            if (ejbFacadeMa.obtenerMatricula2(parametroFicha) == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante no matriculado.", ""));
+
+            } else {
+
+                File fichero = new File(getClass().getResource("/reportes/FormularioMatricula.jasper").toURI());
+                JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+
+                if (jasperReport != null) {
+                    Map parametros = new HashMap();
+                    //parametros que enviamos al report.
+                    parametros.put("num_identificacion", getParametroFicha());
+                    parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+                    parametros.put("logo1", this.getClass().getResourceAsStream(logotipo1));
+                    parametros.put("logoA", this.getClass().getResourceAsStream(logotipo));
+                    parametros.put("logoB", this.getClass().getResourceAsStream(logotipo1));
+
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+                    //Exportamos el reporte a pdf y lo guardamos en disco
+
+                    reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+                    HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+
+                    response.addHeader("Content-disposition", "attachment; filename=formularioMatricula.pdf");
+
+                    ServletOutputStream stream = response.getOutputStream();
+                    JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+                    stream.flush();
+                    stream.close();
+                    FacesContext.getCurrentInstance().responseComplete();
+
+//         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
+                }
             }
         }
     }
@@ -373,54 +408,55 @@ public class Bean implements Serializable {
     }
 
     public void imprimirfichaFoto() throws Exception {
-        if(ejbFacadeDP.verificarCedula(parametroFicha2)!=null){
-        String relativePath = "";
-        datosPersonales = null;
-        datosPersonales = ejbFacadeDP.obtenerFoto(parametroFicha2);
-        if (datosPersonales != null) {
-            if (datosPersonales.getFoto().equals("foto/0000000000.png")) {
-                relativePath = "/resources/foto/0000000000.png";
+        if (ejbFacadeDP.verificarCedula(parametroFicha2) != null) {
+            String relativePath = "";
+            datosPersonales = null;
+            datosPersonales = ejbFacadeDP.obtenerFoto(parametroFicha2);
+            if (datosPersonales != null) {
+                if (datosPersonales.getFoto().equals("foto/0000000000.png")) {
+                    relativePath = "/resources/foto/0000000000.png";
+                } else {
+                    relativePath = "/resources/" + datosPersonales.getFoto();
+                }
             } else {
-                relativePath = "/resources/" + datosPersonales.getFoto();
+                relativePath = "/resources/foto/0000000000.png";
             }
-        } else {
-            relativePath = "/resources/foto/0000000000.png";
-        }
 
-        String absolutePath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(relativePath);
-        InputStream in = new FileInputStream(absolutePath);
-        reportPdf = null;
+            String absolutePath = FacesContext.getCurrentInstance().getExternalContext().getRealPath(relativePath);
+            InputStream in = new FileInputStream(absolutePath);
+            reportPdf = null;
 
-        File fichero = new File(getClass().getResource("/reportes/Fichafoto2.jasper").toURI());
-        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+            File fichero = new File(getClass().getResource("/reportes/Fichafoto2.jasper").toURI());
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
 
-        if (jasperReport != null) {
-            System.out.println("Reporte:  " + fichero);
-            Map parametros = new HashMap();
-            //parametros que enviamos al report.
-            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
-            parametros.put("num_identificacion", getParametroFicha2());
-            parametros.put("foto", in);
-            parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
+            if (jasperReport != null) {
+                System.out.println("Reporte:  " + fichero);
+                Map parametros = new HashMap();
+                //parametros que enviamos al report.
+                parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+                parametros.put("num_identificacion", getParametroFicha2());
+                parametros.put("foto", in);
+                parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
 
-            //Compilamos el archivo XML y lo cargamos en memoria
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
-            //Exportamos el reporte a pdf y lo guardamos en disco
+                //Compilamos el archivo XML y lo cargamos en memoria
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+                //Exportamos el reporte a pdf y lo guardamos en disco
 
-            reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
-            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+                reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
 
-            response.addHeader("Content-disposition", "attachment; filename=fichafoto.pdf");
+                response.addHeader("Content-disposition", "attachment; filename=fichafoto.pdf");
 
-            ServletOutputStream stream = response.getOutputStream();
-            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
-            stream.flush();
-            stream.close();
-            FacesContext.getCurrentInstance().responseComplete();
+                ServletOutputStream stream = response.getOutputStream();
+                JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+                stream.flush();
+                stream.close();
+                FacesContext.getCurrentInstance().responseComplete();
 
 //         JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
-        }}else{
-     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Número de cédula no ragistrada.", ""));
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Número de cédula no ragistrada.", ""));
 
         }
     }

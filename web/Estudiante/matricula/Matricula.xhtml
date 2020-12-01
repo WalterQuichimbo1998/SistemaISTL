@@ -94,7 +94,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Tipo de Identificación" for="idTipoIdentificacion" />
-                            <p:selectOneMenu id="idTipoIdentificacion" value="#{matriculaController.selected.idTipoIdentificacion}" >
+                            <p:selectOneMenu id="idTipoIdentificacion" value="#{matriculaController.selected.idTipoIdentificacion}" required="true" requiredMessage="Seleccione un tipo de identificación">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{tipoIdentificacionController.itemsAvailableSelectOne}"
                                                var="idTipoIdentificacionItem"
@@ -103,7 +103,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Estado civil" for="idEstadoCivil" />
-                            <p:selectOneMenu id="idEstadoCivil" value="#{matriculaController.selected.idEstadoCivil}" >
+                            <p:selectOneMenu id="idEstadoCivil" value="#{matriculaController.selected.idEstadoCivil}" required="true" requiredMessage="Seleccione un estado civil">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{estadoCivilController.itemsAvailableSelectOne}"
                                                var="idEstadoCivilItem"
@@ -153,7 +153,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Etnia" for="idEtnia" />
-                            <p:selectOneMenu id="idEtnia" value="#{matriculaController.selected.idEtnia}" >
+                            <p:selectOneMenu id="idEtnia" value="#{matriculaController.selected.idEtnia}" required="true" requiredMessage="Seleccione una etnia">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{etniaController.itemsAvailableSelectOne}"
                                                var="idEtniaItem"
@@ -186,7 +186,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="País de Nacionalidad" for="pais" />
-                            <p:selectOneMenu id="pais" value="#{matriculaController.selected.idNacionalidad}" panelStyle="width:260px" effect="fade">
+                            <p:selectOneMenu id="pais" value="#{matriculaController.selected.idNacionalidad}" panelStyle="width:260px" effect="fade" required="true" requiredMessage="Seleccione un país">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{nacionalidadController.itemsAvailableSelectOne}"
                                                var="idNacionalidadItem"
@@ -198,7 +198,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Provincia de Nacimiento" for="idProvinciaNacimiento" />
-                            <p:selectOneMenu id="idProvinciaNacimiento" value="#{matriculaController.selected.idProvinciaNacimiento}" panelStyle="width:260px"
+                            <p:selectOneMenu id="idProvinciaNacimiento" value="#{matriculaController.selected.idProvinciaNacimiento}" panelStyle="width:260px" required="true" requiredMessage="Seleccione una provincia"
                                              effect="fade" filter="true" filterMatchMode="contains" height="160">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{matriculaController.listaProvincias}"
@@ -211,7 +211,7 @@
 
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Cantón de Nacimiento" for="idCantonNacimiento" />
-                            <p:selectOneMenu id="idCantonNacimiento" value="#{matriculaController.selected.idCantonNacimiento}" panelStyle="width:260px"
+                            <p:selectOneMenu id="idCantonNacimiento" value="#{matriculaController.selected.idCantonNacimiento}" panelStyle="width:260px" required="true" requiredMessage="Seleccione un cantón"
                                              effect="fade" filter="true" filterMatchMode="contains" height="160">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{matriculaController.listaCanton}"
@@ -286,7 +286,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Tipo de Colegio" for="idTipoColegio" />
-                            <p:selectOneMenu id="idTipoColegio" value="#{matriculaController.selected.idTipoColegio}" >
+                            <p:selectOneMenu id="idTipoColegio" value="#{matriculaController.selected.idTipoColegio}" required="true" requiredMessage="Seleccione el tipo de colegio">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{tipoColegioController.itemsAvailableSelectOne}"
                                                var="idTipoColegioItem"
@@ -295,7 +295,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Tipo de Bachillerato" for="idTipoBachillerato" />
-                            <p:selectOneMenu id="idTipoBachillerato" value="#{matriculaController.selected.idTipoBachillerato}" >
+                            <p:selectOneMenu id="idTipoBachillerato" value="#{matriculaController.selected.idTipoBachillerato}" required="true" requiredMessage="Seleccione el tipo de bachillerato">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{tipoBachilleratoController.itemsAvailableSelectOne}"
                                                var="idTipoBachilleratoItem"
@@ -325,11 +325,11 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Fecha de Inicio de la Carrera" for="fechaInicioCarrera" />
-                            <p:calendar id="fechaInicioCarrera" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaInicioCarrera}" mask="true" navigator="true"/>
+                            <p:calendar id="fechaInicioCarrera" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaInicioCarrera}" mask="true" navigator="true" required="true" requiredMessage="Ingrese la fecha de inicio de la carrera"/>
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Fecha de Matricula" for="fechaMatricula" />
-                            <p:calendar id="fechaMatricula" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaMatricula}"  mask="true" navigator="true"/>
+                            <p:calendar id="fechaMatricula" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaMatricula}"  mask="true" navigator="true" required="true" requiredMessage="Ingrese la fecha de matricula"/>
                         </div>
 
                         <div class="botones22">
@@ -341,26 +341,37 @@
                                                itemValue="#{idTipoMatriculaItem}"/>
                             </p:selectOneMenu>
                         </div>
+                          <div class="botones21">
+                            <p:outputLabel class="labelDatos" value="Nombre de la carrera" for="idTituloCarrera" />
+                            <p:selectOneMenu id="idTituloCarrera" value="#{matriculaController.selected.idTituloCarrera}" effect="fade">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
+                                               var="idTituloCarreraItem"
+                                               itemValue="#{idTituloCarreraItem}"/>
+                                 <f:ajax execute="idTituloCarrera" render="idNivelAcademico" />
+                            </p:selectOneMenu>
+                            </div>
+                        <div class="botones22">
+                            <p:outputLabel class="labelDatos" value="Nivel Académico" for="idNivelAcademico" />
+                            <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" >
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{matriculaController.itemsNivelAcademico}"
+                                               var="idNivelAcademicoItem"
+                                               itemValue="#{idNivelAcademicoItem}"/>
+                            </p:selectOneMenu>
+                        </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Período/Ciclo académico" for="idPeriodoAcademico" />
                             <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" panelStyle="width:260px"
                                              effect="fade" filter="true" filterMatchMode="contains" height="100" required="true" requiredMessage="Seleccione un periodo">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                <f:selectItems value="#{periodoAcademicoController.lista}"
                                                var="idPeriodoAcademicoItem"
                                                itemValue="#{idPeriodoAcademicoItem}"/>
+    
                             </p:selectOneMenu>
                         </div>
                        
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Nivel Académico" for="idNivelAcademico" />
-                            <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
-                                               var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem}"/>
-                            </p:selectOneMenu>
-                        </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Parelelo" for="idParalelo" />
                             <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" >
@@ -370,15 +381,7 @@
                                                itemValue="#{idParaleloItem}"/>
                             </p:selectOneMenu>
                         </div>
-                        <div class="botones21">
-                            <p:outputLabel class="labelDatos" value="Nombre de la carrera" for="idTituloCarrera" />
-                            <p:selectOneMenu id="idTituloCarrera" value="#{matriculaController.selected.idTituloCarrera}" effect="fade">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                               var="idTituloCarreraItem"
-                                               itemValue="#{idTituloCarreraItem}"/>
-                            </p:selectOneMenu>
-                        </div>
+                      
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="Título que otorgada la carrera" for="tituloOtorgado" />
                             <p:inputText id="tituloOtorgado" styleClass="camposDeDatos2" value="#{matriculaController.selected.tituloOtorgado}"  maxlength="60"
@@ -395,7 +398,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Modalidad de la carrera" for="modalidad" />
-                            <p:selectOneMenu id="modalidad" value="#{matriculaController.selected.modalidad}" >
+                            <p:selectOneMenu id="modalidad" value="#{matriculaController.selected.modalidad}" required="true" requiredMessage="Ingrese una modalidad">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="1" itemLabel="Presencial"/>
                                 <f:selectItem itemValue="2" itemLabel="Semipresencial"/>
@@ -405,7 +408,7 @@
 
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Jornada en la que estudia" for="idJornadaAcademica" />
-                            <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" >
+                            <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" required="true" requiredMessage="Seleccione la jornada académica">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
                                                var="idJornadaAcademicaItem"
@@ -414,7 +417,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="¿Ha repetido almenos una materia?" for="materiaRepetida" />
-                            <p:selectOneMenu id="materiaRepetida" value="#{matriculaController.selected.materiaRepetida}" >
+                            <p:selectOneMenu id="materiaRepetida" value="#{matriculaController.selected.materiaRepetida}" required="true" requiredMessage="Seleccione el item">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="1" itemLabel="Si"/>
                                 <f:selectItem itemValue="2" itemLabel="No"/>
@@ -422,7 +425,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="Ha perdido la gratuidad" for="materiaPerdida2" />
-                            <p:selectOneMenu id="materiaPerdida2" value="#{matriculaController.selected.materiaPerdida}" >
+                            <p:selectOneMenu id="materiaPerdida2" value="#{matriculaController.selected.materiaPerdida}" required="true" requiredMessage="Seleccione el item">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="1" itemLabel="Si"/>
                                 <f:selectItem itemValue="2" itemLabel="No"/>
@@ -435,7 +438,7 @@
                         </div>
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="¿Ha realizado Práctias Preprofesionales?" for="participacionPracticas" />
-                            <p:selectOneMenu id="participacionPracticas" value="#{matriculaController.selected.participacionPracticas}" >
+                            <p:selectOneMenu id="participacionPracticas" value="#{matriculaController.selected.participacionPracticas}" required="true" requiredMessage="Seleccione si ha realizado prácticas">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="Si" itemLabel="Si"/>
                                 <f:selectItem itemValue="No" itemLabel="No"/>    
@@ -472,7 +475,7 @@
 
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="¿Ha Participado en algún proyecto de Vinculación?" for="participacionVinculacion" />
-                            <p:selectOneMenu id="participacionVinculacion" value="#{matriculaController.selected.participacionVinculacion}" >
+                            <p:selectOneMenu id="participacionVinculacion" value="#{matriculaController.selected.participacionVinculacion}" required="true" requiredMessage="Seleccione si ha ralizado vinculacón">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="Si" itemLabel="Si"/>
                                 <f:selectItem itemValue="No" itemLabel="No"/>    
@@ -493,7 +496,7 @@
                         </div>
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="El estudiante se dedica a" for="ocupacionEstudiante" />
-                            <p:selectOneMenu id="ocupacionEstudiante"  value = "#{matriculaController.selected.ocupacionEstudiante}"> 
+                            <p:selectOneMenu id="ocupacionEstudiante"  value = "#{matriculaController.selected.ocupacionEstudiante}" required="true" requiredMessage="Seleccione a que se dedica"> 
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue = "1" itemLabel = "Solamente al estudio" /> 
                                 <f:selectItem itemValue = "2" itemLabel = "Trabaja y estudia" />   
@@ -531,7 +534,7 @@
                         </div>
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="¿Usted o algún miembro de la familia recibe el Bono de desarrollo humano?" for="bonoDesarrolloHumano" />
-                            <p:selectOneMenu id="bonoDesarrolloHumano" value="#{matriculaController.selected.bonoDesarrolloHumano}" >
+                            <p:selectOneMenu id="bonoDesarrolloHumano" value="#{matriculaController.selected.bonoDesarrolloHumano}" required="true" requiredMessage="Seleccione si recibe bono de desarrollo">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItem itemValue="1" itemLabel="Si"/>
                                 <f:selectItem itemValue="2" itemLabel="No"/>

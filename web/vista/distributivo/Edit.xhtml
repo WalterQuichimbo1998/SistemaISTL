@@ -9,103 +9,77 @@
     <ui:composition>
 
         <p:dialog id="DistributivoEditDlg" widgetVar="DistributivoEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDistributivoTitle}"
-                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <div class="scroll">
-            <h:form id="DistributivoEditForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{distributivoController.selected != null}">
-                        
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_fechaVinculacion}" for="fechaVinculacion" />
-                        <p:calendar id="fechaVinculacion" pattern="MM/dd/yyyy" value="#{distributivoController.selected.fechaVinculacion}" title="#{bundle.EditDistributivoTitle_fechaVinculacion}"  mask="true" navigator="true"/>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_nroHorasActividasdesDocencia}" for="nroHorasActividasdesDocencia" />
-                        <p:inputText id="nroHorasActividasdesDocencia" value="#{distributivoController.selected.nroHorasActividasdesDocencia}" title="#{bundle.EditDistributivoTitle_nroHorasActividasdesDocencia}" />
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_nroHorasSemanalGestionAcademica}" for="nroHorasSemanalGestionAcademica" />
-                        <p:inputText id="nroHorasSemanalGestionAcademica" value="#{distributivoController.selected.nroHorasSemanalGestionAcademica}" title="#{bundle.EditDistributivoTitle_nroHorasSemanalGestionAcademica}" />
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_detalleHorasGestionAcademica}" for="detalleHorasGestionAcademica" />
-                        <p:inputText id="detalleHorasGestionAcademica" value="#{distributivoController.selected.detalleHorasGestionAcademica}" title="#{bundle.EditDistributivoTitle_detalleHorasGestionAcademica}" />
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_totalHorasSemanalFuncionario}" for="totalHorasSemanalFuncionario" />
-                        <p:inputText id="totalHorasSemanalFuncionario" value="#{distributivoController.selected.totalHorasSemanalFuncionario}" title="#{bundle.EditDistributivoTitle_totalHorasSemanalFuncionario}" />
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_numeroDeSemanas}" for="numeroDeSemanas" />
-                        <p:inputText id="numeroDeSemanas" value="#{distributivoController.selected.numeroDeSemanas}" title="#{bundle.EditDistributivoTitle_numeroDeSemanas}" />
-                        
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idDatosPersonales}" for="idDatosPersonales" />
-                        <p:selectOneMenu id="idDatosPersonales" value="#{distributivoController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
-                                           var="idDatosPersonalesItem"
-                                           itemValue="#{idDatosPersonalesItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idJornadaAcademica}" for="idJornadaAcademica" />
-                        <p:selectOneMenu id="idJornadaAcademica" value="#{distributivoController.selected.idJornadaAcademica}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
-                                           var="idJornadaAcademicaItem"
-                                           itemValue="#{idJornadaAcademicaItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idMateria}" for="idMateria" />
-                        <p:selectOneMenu id="idMateria" value="#{distributivoController.selected.idMateria}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{materiaController.itemsAvailableSelectOne}"
-                                           var="idMateriaItem"
-                                           itemValue="#{idMateriaItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Nivel Académico" for="idNivelAcademico" />
-                        <p:selectOneMenu id="idNivelAcademico" value="#{distributivoController.selected.idNivelAcademico}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{nivelAcademicoController.itemsAvailableSelectOne}"
-                                           var="idNivelAcademicoItem"
-                                           itemValue="#{idNivelAcademicoItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idParalelo}" for="idParalelo" />
-                        <p:selectOneMenu id="idParalelo" value="#{distributivoController.selected.idParalelo}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
-                                           var="idParaleloItem"
-                                           itemValue="#{idParaleloItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idPerfilAcademico}" for="idPerfilAcademico" />
-                        <p:selectOneMenu id="idPerfilAcademico" value="#{distributivoController.selected.idPerfilAcademico}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{perfilAcademicoController.itemsAvailableSelectOne}"
-                                           var="idPerfilAcademicoItem"
-                                           itemValue="#{idPerfilAcademicoItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="Periodo Académico Semestre" for="idPeriodoAcademicoSemestre" />
-                        <p:selectOneMenu id="idPeriodoAcademicoSemestre" value="#{distributivoController.selected.idPeriodoAcademicoSemestre}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
-                                           var="idPeriodoAcademicoSemestreItem"
-                                           itemValue="#{idPeriodoAcademicoSemestreItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idTablaInvestigacion}" for="idTablaInvestigacion" />
-                        <p:selectOneMenu id="idTablaInvestigacion" value="#{distributivoController.selected.idTablaInvestigacion}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tablaInvestigacionController.itemsAvailableSelectOne}"
-                                           var="idTablaInvestigacionItem"
-                                           itemValue="#{idTablaInvestigacionItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idTipoTiempo}" for="idTipoTiempo" />
-                        <p:selectOneMenu id="idTipoTiempo" value="#{distributivoController.selected.idTipoTiempo}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tipoTiempoController.itemsAvailableSelectOne}"
-                                           var="idTipoTiempoItem"
-                                           itemValue="#{idTipoTiempoItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.EditDistributivoLabel_idTituloCarrera}" for="idTituloCarrera" />
-                        <p:selectOneMenu id="idTituloCarrera" value="#{distributivoController.selected.idTituloCarrera}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                           var="idTituloCarreraItem"
-                                           itemValue="#{idTituloCarreraItem}"/>
-                        </p:selectOneMenu>
-                    </p:panelGrid>
+                <h:form id="DistributivoEditForm">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" rendered="#{distributivoController.selected != null}">
+
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_fechaVinculacion}" for="fechaVinculacion" />
+                            <p:calendar id="fechaVinculacion" pattern="MM/dd/yyyy" value="#{distributivoController.selected.fechaVinculacion}" title="#{bundle.EditDistributivoTitle_fechaVinculacion}"  mask="true" navigator="true"/>
+                            <p:outputLabel value="Nro.Horas Actividades Docencia: " for="nroHorasActividasdesDocencia" />
+                            <p:inputText id="nroHorasActividasdesDocencia" value="#{distributivoController.selected.nroHorasActividasdesDocencia}" title="#{bundle.CreateDistributivoTitle_nroHorasActividasdesDocencia}" 
+                                         required="true" requiredMessage="Ingrese Nro. Actividades Docencia"/>
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_nroHorasSemanalGestionAcademica}" for="nroHorasSemanalGestionAcademica" />
+                            <p:inputText id="nroHorasSemanalGestionAcademica" value="#{distributivoController.selected.nroHorasSemanalGestionAcademica}" title="#{bundle.CreateDistributivoTitle_nroHorasSemanalGestionAcademica}" />
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_detalleHorasGestionAcademica}" for="detalleHorasGestionAcademica" />
+                            <p:inputText id="detalleHorasGestionAcademica" value="#{distributivoController.selected.detalleHorasGestionAcademica}" title="#{bundle.CreateDistributivoTitle_detalleHorasGestionAcademica}" />
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_totalHorasSemanalFuncionario}" for="totalHorasSemanalFuncionario" />
+                            <p:inputText id="totalHorasSemanalFuncionario" value="#{distributivoController.selected.totalHorasSemanalFuncionario}" title="#{bundle.CreateDistributivoTitle_totalHorasSemanalFuncionario}" />
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_numeroDeSemanas}" for="numeroDeSemanas" />
+                            <p:inputText id="numeroDeSemanas" value="#{distributivoController.selected.numeroDeSemanas}" title="#{bundle.CreateDistributivoTitle_numeroDeSemanas}" />
+
+                            <p:outputLabel value="Docente: " for="idDatosPersonales" />
+                            <p:selectOneMenu id="idDatosPersonales" value="#{distributivoController.selected.idDatosPersonales}" panelStyle="width:280px"
+                                             effect="fade" style="width:260px" filter="true" filterMatchMode="contains" required="true" requiredMessage="Seleccione un Docente">
+                                <f:selectItems value="#{datosPersonalesController.itemsDocentes}"
+                                               var="idDatosPersonalesItem"
+                                               itemValue="#{idDatosPersonalesItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_idJornadaAcademica}" for="idJornadaAcademica" />
+                            <p:selectOneMenu id="idJornadaAcademica" value="#{distributivoController.selected.idJornadaAcademica}" required="true" requiredMessage="Seleccione la Jornada Académica">
+                                <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
+                                               var="idJornadaAcademicaItem"
+                                               itemValue="#{idJornadaAcademicaItem}"/>
+                            </p:selectOneMenu>
+
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_idParalelo}" for="idParalelo" />
+                            <p:selectOneMenu id="idParalelo" value="#{distributivoController.selected.idParalelo}" >
+                                <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
+                                               var="idParaleloItem"
+                                               itemValue="#{idParaleloItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_idPerfilAcademico}" for="idPerfilAcademico" />
+                            <p:selectOneMenu id="idPerfilAcademico" value="#{distributivoController.selected.idPerfilAcademico}" required="true" requiredMessage="Seleccione el Perfil Académico">
+                                <f:selectItems value="#{perfilAcademicoController.itemsAvailableSelectOne}"
+                                               var="idPerfilAcademicoItem"
+                                               itemValue="#{idPerfilAcademicoItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="Periodo Académico" for="idPeriodoAcademicoSemestre" />
+                            <p:selectOneMenu id="idPeriodoAcademicoSemestre" value="#{distributivoController.selected.idPeriodoAcademicoSemestre}" required="true" requiredMessage="Seleccione el Período Académico">
+                                <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                               var="idPeriodoAcademicoSemestreItem"
+                                               itemValue="#{idPeriodoAcademicoSemestreItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_idTablaInvestigacion}" for="idTablaInvestigacion" />
+                            <p:selectOneMenu id="idTablaInvestigacion" value="#{distributivoController.selected.idTablaInvestigacion}" >
+                                <f:selectItems value="#{tablaInvestigacionController.itemsAvailableSelectOne}"
+                                               var="idTablaInvestigacionItem"
+                                               itemValue="#{idTablaInvestigacionItem}"/>
+                            </p:selectOneMenu>
+                            <p:outputLabel value="#{bundle.CreateDistributivoLabel_idTipoTiempo}" for="idTipoTiempo" />
+                            <p:selectOneMenu id="idTipoTiempo" value="#{distributivoController.selected.idTipoTiempo}" >
+                                <f:selectItems value="#{tipoTiempoController.itemsAvailableSelectOne}"
+                                               var="idTipoTiempoItem"
+                                               itemValue="#{idTipoTiempoItem}"/>
+                            </p:selectOneMenu>
+
+                        </p:panelGrid>
                         <p:commandButton styleClass="btn_g" actionListener="#{distributivoController.update}" value="#{bundle.Save}" update="display,:DistributivoListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DistributivoEditDialog');"/>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('DistributivoEditDialog').hide();"/>
-                </h:panelGroup>
-            </h:form>
-                </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
         </p:dialog>
 
     </ui:composition>
