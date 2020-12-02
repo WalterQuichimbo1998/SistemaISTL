@@ -15,7 +15,7 @@
                 <h:form id="MateriaEditForm">
                     <h:panelGroup id="display" >
                         <div class="data_campos_filto">
-                            <div style="text-align: center"><p class="title_reporte">REPORTES DE NOTAS</p></div>
+                            <div style="text-align: center"><p class="title_reporte">REPORTES DE NOTAS POR MATERIAS</p></div>
                             <p:outputLabel class="labelLateral" value="Carrera" for="idTituloCarrera"/>
                             <p:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tituloCarreraSelected}" required="true"  requiredMessage="Seleccione una carrera">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -56,8 +56,10 @@
                             <br/>
                             <br/>
                             <div style="text-align: center">
-                                <p:commandButton ajax="false" class="btn_impReporte" action="#{exportarNotasMaterias.imprimirMateriasdoc()}" value="DESCARGAR" >
-                                </p:commandButton></div>
+                                <p:commandButton ajax="false" class="btn_impReporte" actionListener="#{exportarNotasMaterias.imprimirMateriasdoc()}" value="DESCARGAR" >
+                                </p:commandButton>
+                              
+                            </div>
                         </div>
                     </h:panelGroup>
                 </h:form>
