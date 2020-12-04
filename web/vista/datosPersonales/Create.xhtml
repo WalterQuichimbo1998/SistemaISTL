@@ -13,17 +13,17 @@
                 <p:panel style="margin: 0;margin: auto;padding: 0;">
                     <h:panelGrid  columns="4" rendered="#{datosPersonalesController.selected != null}" >
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_nombres}" for="nombres" />
-                        <p:inputText styleClass="camposDeDatos" id="nombres" value="#{datosPersonalesController.selected.nombres}" title="#{bundle.CreateDatosPersonalesTitle_nombres}" />
+                        <p:inputText styleClass="camposDeDatos" id="nombres" value="#{datosPersonalesController.selected.nombres}" title="#{bundle.CreateDatosPersonalesTitle_nombres}" maxlength="20"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_apellidos}" for="apellidos" />
-                        <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.CreateDatosPersonalesTitle_apellidos}" />
+                        <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.CreateDatosPersonalesTitle_apellidos}" maxlength="20"/>
                         <p:outputLabel class="labelDatosPersonales"  value="#{bundle.CreateDatosPersonalesLabel_correoElectronico}" for="correoElectronico" />
-                        <p:inputText styleClass="camposDeDatos" id="correoElectronico" value="#{datosPersonalesController.selected.correoElectronico}" title="#{bundle.CreateDatosPersonalesTitle_correoElectronico}" />
+                        <p:inputText styleClass="camposDeDatos" id="correoElectronico" value="#{datosPersonalesController.selected.correoElectronico}" title="#{bundle.CreateDatosPersonalesTitle_correoElectronico}" maxlength="25"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_direccion}" for="direccion" />
-                        <p:inputText styleClass="camposDeDatos" id="direccion" value="#{datosPersonalesController.selected.direccion}" title="#{bundle.CreateDatosPersonalesTitle_direccion}" />
+                        <p:inputText styleClass="camposDeDatos" id="direccion" value="#{datosPersonalesController.selected.direccion}" title="#{bundle.CreateDatosPersonalesTitle_direccion}" maxlength="20"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_fechaNacimiento}" for="fechaNacimiento" />
                         <p:calendar  styleClass="camposDeDatos" id="fechaNacimiento" pattern="dd/MM/yyyy" value="#{datosPersonalesController.selected.fechaNacimiento}" title="#{bundle.EditDatosPersonalesTitle_fechaNacimiento}"  mask="true" navigator="true"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_numIdentificacion}" for="numIdentificacion" />
-                        <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.CreateDatosPersonalesTitle_numIdentificacion}" />  
+                        <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.CreateDatosPersonalesTitle_numIdentificacion}" maxlength="10"/>  
                         <p:outputLabel class="labelDatosPersonales" value="Sexo" />
                         <p:selectOneMenu class="labelDatosPersonales" value = "#{datosPersonalesController.selected.sexo}">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
@@ -37,13 +37,13 @@
                             <f:selectItem class="labelDatosPersonales" itemValue = "1" itemLabel = "Femenino" />
                         </p:selectOneMenu> 
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_celular}" for="celular" />
-                        <p:inputText styleClass="camposDeDatos"  id="celular" value="#{datosPersonalesController.selected.celular}" title="#{bundle.CreateDatosPersonalesTitle_celular}" />
+                        <p:inputText type="number" styleClass="camposDeDatos"  id="celular" value="#{datosPersonalesController.selected.celular}" title="#{bundle.CreateDatosPersonalesTitle_celular}" maxlength="10"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_convencional}" for="convencional" />
-                        <p:inputText styleClass="camposDeDatos" id="convencional" value="#{datosPersonalesController.selected.convencional}" title="#{bundle.CreateDatosPersonalesTitle_convencional}" />
+                        <p:inputText styleClass="camposDeDatos" id="convencional" value="#{datosPersonalesController.selected.convencional}" title="#{bundle.CreateDatosPersonalesTitle_convencional}" maxlength="10"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_codPostal}" for="codPostal" />
-                        <p:inputText styleClass="camposDeDatos" id="codPostal" value="#{datosPersonalesController.selected.codPostal}" title="#{bundle.CreateDatosPersonalesTitle_codPostal}" />
+                        <p:inputText styleClass="camposDeDatos" id="codPostal" value="#{datosPersonalesController.selected.codPostal}" title="#{bundle.CreateDatosPersonalesTitle_codPostal}" maxlength="10"/>
                         <p:outputLabel class="labelDatosPersonales" value="#{bundle.CreateDatosPersonalesLabel_edad}" for="edad" />
-                        <p:inputText styleClass="camposDeDatos" id="edad" value="#{datosPersonalesController.selected.edad}" title="#{bundle.CreateDatosPersonalesTitle_edad}" /> 
+                        <p:inputText type="number" styleClass="camposDeDatos" id="edad" value="#{datosPersonalesController.selected.edad}" title="#{bundle.CreateDatosPersonalesTitle_edad}" maxlength="2"/> 
                     </h:panelGrid>
                         <p:commandButton ajax="false" icon="ui-icon-plus" styleClass="btn_g"  actionListener="#{datosPersonalesController.create}" value="#{bundle.Save}" update="display,:DatosPersonalesListForm:datalist,:growl" oncomplete="handleSubmit(args,'DatosPersonalesCreateDialog');"/>
                             <p:commandButton  styleClass="btn_s"  icon="ui-icon-close" value="#{bundle.Cancel}" oncomplete="PF('DatosPersonalesCreateDialog').hide()"/>

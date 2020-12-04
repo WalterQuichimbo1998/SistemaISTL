@@ -55,7 +55,7 @@ public class NivelAcademicoFacade extends AbstractFacade<NivelAcademico> {
      public List<NivelAcademico> listaNivelesDistributivo(Integer persona,Integer carrera) {
         List<NivelAcademico> lista = null;
         try {
-            Query q = em.createNativeQuery("SELECT nivel_academico.id_nivel_academico,nivel_academico.nivel_academico,distributivo_materia.id_distributivo,datos_personales.id_datos_personales,titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo FROM nivel_academico\n"
+            Query q = em.createNativeQuery("SELECT DISTINCT nivel_academico.id_nivel_academico,nivel_academico.nivel_academico,distributivo_materia.id_distributivo,datos_personales.id_datos_personales,titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo FROM nivel_academico\n"
                     + " LEFT JOIN distributivo_materia ON distributivo_materia.id_nivel_academico= nivel_academico.id_nivel_academico \n"
                     + " LEFT JOIN distributivo ON distributivo.id_distributivo = distributivo_materia.id_distributivo \n"
                     + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales= distributivo.id_datos_personales \n"

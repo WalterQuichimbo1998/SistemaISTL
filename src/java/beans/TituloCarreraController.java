@@ -26,6 +26,7 @@ public class TituloCarreraController implements Serializable {
     @EJB
     private dao.TituloCarreraFacade ejbFacade;
     private List<TituloCarrera> items = null;
+    private List<TituloCarrera> lista = null;
     private TituloCarrera selected;
 
     public TituloCarreraController() {
@@ -80,6 +81,15 @@ public class TituloCarreraController implements Serializable {
         }
         return items;
     }
+
+    public List<TituloCarrera> getLista() {
+        if (lista == null) {
+            lista = getFacade().listaTitulos(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales());
+        }
+        return lista;
+    }
+    
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

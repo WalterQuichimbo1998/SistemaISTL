@@ -127,7 +127,14 @@
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
                                 <h:outputText class="ob label_txt" value="Número de cédula" />
                                 <h:inputText class="ob campo_txt" rendered="true" value="#{bean.parametro}" maxlength="10" required="true" requiredMessage="Ingrese el número de cédula"/>
-                                
+                                  <p:outputLabel value="Periódo Académico"  />
+                                <p:selectOneMenu id="idPeriodoAcademico" value="#{bean.periodoAcademicoSelected}" style="width: 96% !important;margin-bottom:10px !important;" 
+                                                 effect="fade" filter="true" filterMatchMode="contains" height="140" >
+                                    <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                    <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                                   var="idPeriodoAcademicoItem"
+                                                   itemValue="#{idPeriodoAcademicoItem}"/>
+                                </p:selectOneMenu>
                                 <h:commandButton class="ob btn_form" action="#{bean.imprimirNotas()}" value="DESCARGAR NOTAS" title="Descargar"/>
                             </div>
                         </h:form>

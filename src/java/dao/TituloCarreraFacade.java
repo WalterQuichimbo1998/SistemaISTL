@@ -5,9 +5,11 @@
  */
 package dao;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import modelo.TituloCarrera;
 
 /**
@@ -28,5 +30,16 @@ public class TituloCarreraFacade extends AbstractFacade<TituloCarrera> {
     public TituloCarreraFacade() {
         super(TituloCarrera.class);
     }
-    
+    public List<TituloCarrera> listaTitulos(Integer id) {
+        List<TituloCarrera> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT DISTINCT titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo,distributivo_materia.id_distributivo FROM titulo_carrera \n"
+                    + " LEFT JOIN distributivo_materia ON distributivo_materia.id_titulo_carrera= titulo_carrera.id_titulo_carrera \n"
+                    + " LEFT JOIN distributivo ON distributivo.id_distributivo= distributivo_materia.id_distributivo \n"
+                    +" WHERE distributivo.id_datos_personales='" + id + "';", TituloCarrera.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
 }

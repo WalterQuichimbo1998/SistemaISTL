@@ -3,44 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
 
-        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditNotasTitle}"
+        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Ingresar Nota"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NotasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateNotasLabel_idMateria}" for="idMateria" />
-                        <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
-                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione una materia">
-                            <f:selectItem itemLabel="-Seleccione-"/>
-                            <f:selectItems value="#{notasController.itemsMateria}"
-                                           var="idMateriaItem"
-                                           itemValue="#{idMateriaItem}"/>
-                        </p:selectOneMenu>
-                        
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
-                        <p:inputText type="number" id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" />
+                        <p:inputText type="number" id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" required="true"  requiredMessage="Ingrese una nota"
+                                     style="width: 150px;"/>
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}" for="parcialDos" />
-                        <p:inputText type="number" id="parcialDos" value="#{notasController.selected.parcialDos}" title="#{bundle.EditNotasTitle_parcialDos}" />
+                        <p:inputText type="number" id="parcialDos" value="#{notasController.selected.parcialDos}" title="#{bundle.EditNotasTitle_parcialDos}" style="width: 150px;"/>
                         <p:outputLabel value="#{bundle.EditNotasLabel_notaSupletorio}" for="notaSupletorio" />
-                        <p:inputText type="number" id="notaSupletorio" value="#{notasController.selected.notaSupletorio}" title="#{bundle.EditNotasTitle_notaSupletorio}" />
-                         <p:outputLabel  value="Período Académico:" for="idPeriodo" />
-                         <p:selectOneMenu id="idPeriodo" value="#{notasController.selected.idPeriodoAcademico}" required="true"  requiredMessage="Seleccione un periodo">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{periodoAcademicoController.lista}"
-                                               var="idPeriodoAcademicoItem"
-                                               itemValue="#{idPeriodoAcademicoItem}"/>
-                            </p:selectOneMenu>
-                       
-                    </p:panelGrid>
-                    <div class="boxBtnCrud">
+                        <p:inputText type="number" id="notaSupletorio" value="#{notasController.selected.notaSupletorio}" title="#{bundle.EditNotasTitle_notaSupletorio}" style="width: 150px;"/>
+                        <p:column/>
+                        <p:column>
                         <p:commandButton styleClass="btn_g" actionListener="#{notasController.update}" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('NotasEditDialog').hide();"/>
-                    </div>
+                    
+                        </p:column>
+                    </p:panelGrid>
+                   
                 </h:panelGroup>
             </h:form>
         </p:dialog>

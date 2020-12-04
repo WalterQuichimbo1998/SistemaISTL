@@ -10,6 +10,7 @@ import dao.MatriculaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.URISyntaxException;
@@ -18,6 +19,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -42,24 +45,23 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
+
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.CellUtil;
 
 /**
  *
- * @author Lenovo
+ * @author Walter Quichimbo
  */
 @Named(value = "exportarNotasMaterias")
 @SessionScoped
@@ -206,19 +208,19 @@ public class ExportarNotasMaterias implements Serializable {
     public void reporteExcel() {
         if (getNivelAcademicoSelected() != null) {
             listaM = ejbFacade.listaMaterias(getNivelAcademicoSelected().getIdNivelAcademico());
-            listaEstu=null;
+            listaEstu = null;
             listaEstu = eFacadeMa.obtenerMatriculaEstu(getNivelAcademicoSelected().getIdNivelAcademico());
-            if (listaEstu.size()>0) {
+            if (listaEstu.size() > 0) {
 
-                HSSFWorkbook wb = new HSSFWorkbook();
-                HSSFSheet sheet = wb.createSheet();
+                Workbook wb = new XSSFWorkbook();
+                Sheet sheet = wb.createSheet(getNivelAcademicoSelected().getNivelAcademico());
                 CellStyle style = wb.createCellStyle();
 
-                HSSFCellStyle csv = wb.createCellStyle();
+                CellStyle csv = wb.createCellStyle();
                 csv.setRotation((short) 90);
                 csv.setAlignment(CellStyle.ALIGN_CENTER);
                 csv.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-             
+
                 Font font = wb.createFont();
                 font.setFontName("Arial");
 
@@ -244,54 +246,54 @@ public class ExportarNotasMaterias implements Serializable {
                 cellFont2.setFontHeightInPoints((short) 10);
                 cellFont2.setFontName("Arial");
 
-                HSSFCellStyle cst = wb.createCellStyle();
+                CellStyle cst = wb.createCellStyle();
                 cst.setAlignment(CellStyle.ALIGN_CENTER);
                 cst.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
                 cst.setFont(cellFont);
 
-                HSSFCellStyle cst2 = wb.createCellStyle();
+                CellStyle cst2 = wb.createCellStyle();
                 cst2.setAlignment(CellStyle.ALIGN_CENTER);
                 cst2.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
                 cst2.setFont(cellFont2);
 
-                HSSFCellStyle cs = wb.createCellStyle();
+                CellStyle cs = wb.createCellStyle();
                 cs.setAlignment(CellStyle.ALIGN_CENTER);
                 cs.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 
-                HSSFRow filaTitulo = sheet.createRow(0);
+                Row filaTitulo = sheet.createRow(0);
 
-                filaTitulo.createCell(0).setCellValue("ISNTITUTO SUPERIOR TECNOLOGÍCO LIMÓN");
+                filaTitulo.createCell(0).setCellValue("INSTITUTO SUPERIOR TECNOLÓGICO LIMÓN");
                 filaTitulo.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(0, 1, 0, (listaM.size() * 4) + 4));
                 filaTitulo.getCell(0).setCellStyle(cst);
 
-                HSSFRow filaTitulo2 = sheet.createRow(2);
-                filaTitulo2.createCell(0).setCellValue("PERÍODO - " + getPeriodoSelected().getNombre());
+                Row filaTitulo2 = sheet.createRow(2);
+                filaTitulo2.createCell(0).setCellValue("PERÍODO " + getPeriodoSelected().getNombre());
                 filaTitulo2.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(2, 2, 0, (listaM.size() * 4) + 4));
                 filaTitulo2.getCell(0).setCellStyle(cst2);
 
-                HSSFRow filaTitulo3 = sheet.createRow(3);
+                Row filaTitulo3 = sheet.createRow(3);
                 filaTitulo3.createCell(0).setCellValue("");
                 filaTitulo3.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(3, 3, 0, (listaM.size() * 4) + 4));
 
-                HSSFRow filaTitulo4 = sheet.createRow(4);
+                Row filaTitulo4 = sheet.createRow(4);
                 filaTitulo4.createCell(0).setCellValue(getNivelAcademicoSelected().getNivelAcademico() + " CICLO - " + getTituloCarreraSelected().getNombreTitulo());
                 filaTitulo4.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(4, 4, 0, (listaM.size() * 4) + 4));
                 filaTitulo4.getCell(0).setCellStyle(cst2);
 
-                HSSFRow filaTitulo5 = sheet.createRow(5);
+                Row filaTitulo5 = sheet.createRow(5);
                 filaTitulo5.createCell(0).setCellValue("");
                 filaTitulo5.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(5, 5, 0, (listaM.size() * 4) + 4));
 
-                HSSFRow filaTitulo6 = sheet.createRow(6);
+                Row filaTitulo6 = sheet.createRow(6);
                 filaTitulo6.createCell(0).setCellValue("CUADRO DE NOTAS FINALES");
                 filaTitulo6.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(6, 6, 0, (listaM.size() * 4) + 4));
                 filaTitulo6.getCell(0).setCellStyle(cst2);
 
-                HSSFRow filaTitulo7 = sheet.createRow(7);
+                Row filaTitulo7 = sheet.createRow(7);
                 filaTitulo7.createCell(0).setCellValue("");
                 filaTitulo7.getCell(0).getSheet().addMergedRegion(new CellRangeAddress(7, 7, 0, (listaM.size() * 4) + 4));
 
-                HSSFRow row = sheet.createRow(8);
+                Row row = sheet.createRow(8);
 
                 HSSFCell cell;
                 row.createCell(0).setCellValue("N");
@@ -315,7 +317,11 @@ public class ExportarNotasMaterias implements Serializable {
                     c = c + 4;
                     r = r + 4;
                 }
-                HSSFRow row2 = sheet.createRow(10);
+                row.createCell(c).setCellValue("Promedio Global");
+                row.getCell(c).setCellStyle(csv);
+                row.getCell(c).getSheet().addMergedRegion(new CellRangeAddress(8, 10, c, c));
+
+                Row row2 = sheet.createRow(10);
                 int c2 = 4;
                 int r2 = 7;
 
@@ -337,33 +343,38 @@ public class ExportarNotasMaterias implements Serializable {
 
                 int f = 11;
                 for (int j = 0; j < listaEstu.size(); j++) {
-                    HSSFRow fila = sheet.createRow(f);
+                    Row fila = sheet.createRow(f);
                     fila.createCell(0).setCellValue(j + 1);//fila 5 coluna 0
                     fila.getCell(0).setCellStyle(cs);
                     fila.createCell(1).setCellValue(listaEstu.get(j).getIdDatosPersonales().getNumIdentificacion());//fila 5 coluna 1
                     fila.getCell(1).getSheet().addMergedRegion(new CellRangeAddress(f, f, 2, 3));
                     fila.getCell(1).setCellStyle(cs);
-                    fila.createCell(2).setCellValue(listaEstu.get(j).getIdDatosPersonales().getNombres()+" "+listaEstu.get(j).getIdDatosPersonales().getApellidos());//fila 5 coluna 2
+                    fila.createCell(2).setCellValue(listaEstu.get(j).getIdDatosPersonales().getNombres() + " " + listaEstu.get(j).getIdDatosPersonales().getApellidos());//fila 5 coluna 2
                     fila.getCell(2).setCellStyle(cs);
                     int c4 = 4;
                     double p = 0;
                     for (int i = 0; i < listaM.size(); i++) {
                         listaN = null;
-                        listaN = ejbFacadeNotas.notaEstudiante(listaEstu.get(j).getIdNivelAcademico().getIdNivelAcademico(), listaM.get(i).getIdMateria(), listaEstu.get(j).getIdDatosPersonales().getIdDatosPersonales());
+                        listaN = ejbFacadeNotas.notaEstudiante(listaEstu.get(j).getIdNivelAcademico().getIdNivelAcademico(), listaM.get(i).getIdMateria(), listaEstu.get(j).getIdDatosPersonales().getIdDatosPersonales(),getPeriodoSelected().getIdPeriodoAcademico());
                         if (listaN.size() > 0) {
                             for (int j2 = 0; j2 < listaN.size(); j2++) {
-                                fila.createCell(c4).setCellValue(listaN.get(j2).getParcialUno());
+                                fila.createCell(c4).setCellValue(listaN.get(j2).getParcialUno() == null ? 0 : listaN.get(j2).getParcialUno());
                                 fila.getCell(c4).setCellStyle(cs);
                                 c4++;
-                                fila.createCell(c4).setCellValue(listaN.get(j2).getParcialDos());
+                                fila.createCell(c4).setCellValue(listaN.get(j2).getParcialDos() == null ? 0 : listaN.get(j2).getParcialDos());
                                 fila.getCell(c4).setCellStyle(cs);
                                 c4++;
                                 fila.createCell(c4).setCellValue(listaN.get(j2).getNotaSupletorio() == null ? 0 : listaN.get(j2).getNotaSupletorio());
                                 fila.getCell(c4).setCellStyle(cs);
                                 c4++;
-                                fila.createCell(c4).setCellValue(listaN.get(j2).getNotaFinal());
+                                fila.createCell(c4).setCellValue(listaN.get(j2).getNotaFinal() == null ? 0 : listaN.get(j2).getNotaFinal());
                                 fila.getCell(c4).setCellStyle(cs);
-                                p = p + listaN.get(j2).getNotaFinal();
+                                if(listaN.get(j2).getNotaFinal()==null || Objects.equals(listaN.get(j2).getNotaFinal(), "")){
+                                    p = p + 0;
+                                }else{
+                                    p = p + listaN.get(j2).getNotaFinal();
+                                }
+                                
                                 c4++;
 
                             }
@@ -386,21 +397,22 @@ public class ExportarNotasMaterias implements Serializable {
                     fila.createCell(c4).setCellValue(fijarNumero((p / listaM.size()), 2));
                     fila.getCell(c4).setCellStyle(cs);
                     f++;
-                    row.createCell(c4).setCellValue("Promedio Global");
-                    row.getCell(c4).setCellStyle(csv);
-                    row.getCell(c4).getSheet().addMergedRegion(new CellRangeAddress(8, 10, c4, c4));
+
                 }
                 try {
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     ExternalContext externalContext = facesContext.getExternalContext();
                     externalContext.setResponseContentType("application/vnd.ms-excel");
-                    externalContext.setResponseHeader("Content-Disposition", "attachment; filename=\"reporte_Notas.xls\"");
+                    externalContext.setResponseHeader("Content-Disposition", "attachment; filename=\"reporte_Notas.xlsx\"");
                     wb.write(externalContext.getResponseOutputStream());
+
                     facesContext.responseComplete();
 
-                } catch (IOException e) {
-                    System.out.println(e);
+                } catch (FileNotFoundException e) {
+                  Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, e);
 
+                } catch (IOException ex) {
+                    Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiantes no matriculados en este ciclo.", ""));

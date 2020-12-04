@@ -238,8 +238,12 @@ border: 1px solid #ccc;
     text-align: left;
     font-size: 16px !important;
     color:#4f8ff4;
- 
 }
+.camposDeDatos.ui-inputfield{
+    margin-bottom: 3px !important;
+}
+
+
 
 .calendarClass2 .ui-inputfield{
     width: 97%;

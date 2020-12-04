@@ -3,6 +3,7 @@ package beans;
 import modelo.Notas;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
+import dao.DistributivoMateriaFacade;
 import dao.MateriaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
@@ -23,6 +24,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import modelo.DatosPersonales;
+import modelo.DistributivoMateria;
 import modelo.Materia;
 import modelo.NivelAcademico;
 
@@ -36,6 +38,7 @@ public class NotasController implements Serializable {
     private List<Notas> lista = null;
     private List<Notas> listaN = null;
     private List<Notas> listaNotasEstu = null;
+    private List<Notas> listaNotasEstudiantesCiclo = null;
 
     @EJB
     private dao.DatosPersonalesFacade ejbFacadePer;
@@ -46,14 +49,19 @@ public class NotasController implements Serializable {
     @EJB
     private MateriaFacade ejbFacadeMa;
     private List<Materia> itemsMateria = null;
+    
     @EJB
     private dao.MatriculaFacade ejbFacadeMatricula;
+    
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
+    @EJB
+    private DistributivoMateriaFacade ejbFacadeD;
+    private List<DistributivoMateria> itemsMateriaDistributivo = null;
 
     private NivelAcademico selectedN;
+    private Materia selectedMa;
     private Boolean v;
-    
 
     public NotasController() {
     }
@@ -83,14 +91,23 @@ public class NotasController implements Serializable {
     public void setV(Boolean v) {
         this.v = v;
     }
+
+    public Materia getSelectedMa() {
+        return selectedMa;
+    }
+
+    public void setSelectedMa(Materia selectedMa) {
+        this.selectedMa = selectedMa;
+        listaNotasEstudiantesCiclo=null;
+    }
     
 
-    public void setSelectedP(DatosPersonales selectedP) {   
-        if(v==true){
+    public void setSelectedP(DatosPersonales selectedP) {
+        if (v == true) {
             this.selectedP = selectedP;
             this.setV(false);
         }
-       
+
         listaEstu = null;
     }
 
@@ -98,6 +115,8 @@ public class NotasController implements Serializable {
         this.selectedN = selectedN;
         listaN = null;
         listaEstu = null;
+        selectedMa=null;
+        listaNotasEstudiantesCiclo=null;
 
     }
 
@@ -125,9 +144,26 @@ public class NotasController implements Serializable {
         itemsMateria = null;
         if (itemsMateria == null) {
             itemsMateria = ejbFacadeMa.listaMaterias(selectedN.getIdNivelAcademico());
+            if (itemsMateria.isEmpty()) {
+                System.out.println("nuull");
+            }
         }
         return itemsMateria;
     }
+
+    public List<DistributivoMateria> getItemsMateriaDistributivo() {
+        itemsMateriaDistributivo = null;
+        if (itemsMateriaDistributivo == null) {
+            itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico());
+    
+        }
+        return itemsMateriaDistributivo;
+    }
+
+    public void setItemsMateriaDistributivo(List<DistributivoMateria> itemsMateriaDistributivo) {
+        this.itemsMateriaDistributivo = itemsMateriaDistributivo;
+    }
+    
 
     public void setItemsMateria(List<Materia> itemsMateria) {
         this.itemsMateria = itemsMateria;
@@ -149,142 +185,182 @@ public class NotasController implements Serializable {
         return selected;
     }
 
-    public void create(){
-        if(getFacade().verificarNota(selected.getIdMateria().getIdMateria(),selectedN.getIdNivelAcademico(),selectedP.getIdDatosPersonales())==null){
-        this.selected.setIdDatosPersonales(selectedP);
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        this.selected.setFechaDeRegistro(new Date());
-        Double nota = 0.0;
-        Double nota_suple = 0.0;
-        if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-            nota = selected.getParcialUno();
-          
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = fijarNumero(nota, 2);
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = (nota * 0.40);
-            nota_suple = (selected.getNotaSupletorio() * 0.60);
-            nota = (nota + nota_suple);
-            nota = fijarNumero(nota, 2);
-        }
-        this.selected.setNotaFinal(nota);
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NotasCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
-            listaN = null;
-        }
-        }else{
+    public void create() {
+        if (getFacade().verificarNota(selected.getIdMateria().getIdMateria(), selectedN.getIdNivelAcademico(), selectedP.getIdDatosPersonales()) == null) {
+            this.selected.setIdDatosPersonales(selectedP);
+            this.selected.setIdNivelAcademico(selectedN);
+            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+            this.selected.setFechaDeRegistro(new Date());
+            Double nota = 0.0;
+            Double nota_suple = 0.0;
+            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+                nota = selected.getParcialUno();
+                nota = (nota / 2);
+                nota = fijarNumero(nota, 2);
+
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota = fijarNumero(nota, 2);
+                }
+
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota_suple = (selected.getNotaSupletorio() * 0.60);
+                    nota = (nota + nota_suple);
+                    nota = fijarNumero(nota, 2);
+                } else {
+                    this.selected.setNotaSupletorio(null);
+                }
+
+            }
+            this.selected.setNotaFinal(nota);
+            persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NotasCreated"));
+            if (!JsfUtil.isValidationFailed()) {
+                items = null;    // Invalidate list of items to trigger re-query.
+                listaN = null;
+            }
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
         }
     }
 
     public void update() {
-       if(getFacade().verificarNota2(selected.getIdMateria().getIdMateria(),selectedN.getIdNivelAcademico(),selectedP.getIdDatosPersonales(),selected.getIdNotas())==null){
-        this.selected.setIdDatosPersonales(selectedP);
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        Double nota = 0.0;
-        Double nota_suple = 0.0;
-         if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-            nota = selected.getParcialUno();
-          
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = fijarNumero(nota, 2);
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = (nota * 0.40);
-            nota_suple = (selected.getNotaSupletorio() * 0.60);
-            nota = (nota + nota_suple);
-            nota = fijarNumero(nota, 2);
-        }
-        this.selected.setNotaFinal(nota);
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
-        listaN = null;
-        }else{
+        if (getFacade().verificarNota2(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedP.getIdDatosPersonales(), selected.getIdNotas()) == null) {
+            this.selected.setIdDatosPersonales(selectedP);
+            this.selected.setIdNivelAcademico(selectedN);
+            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+            this.selected.setIdMateria(selectedMa);
+            Double nota = 0.0;
+            Double nota_suple = 0.0;
+            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+                nota = selected.getParcialUno();
+                nota = (nota / 2);
+                nota = fijarNumero(nota, 2);
+
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota = fijarNumero(nota, 2);
+                }
+
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota_suple = (selected.getNotaSupletorio() * 0.60);
+                    nota = (nota + nota_suple);
+                    nota = fijarNumero(nota, 2);
+                } else {
+                    this.selected.setNotaSupletorio(null);
+                }
+            }
+            this.selected.setNotaFinal(nota);
+            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
+            listaN = null;
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
         }
     }
 
-      public void createAdmin(){
-        if(getFacade().verificarNota(selected.getIdMateria().getIdMateria(),selectedN.getIdNivelAcademico(),selected.getIdDatosPersonales().getIdDatosPersonales())==null){
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        this.selected.setFechaDeRegistro(new Date());
-        Double nota = 0.0;
-        Double nota_suple = 0.0;
-        if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-            nota = selected.getParcialUno();
-          
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = fijarNumero(nota, 2);
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = (nota * 0.40);
-            nota_suple = (selected.getNotaSupletorio() * 0.60);
-            nota = (nota + nota_suple);
-            nota = fijarNumero(nota, 2);
-        }
-        this.selected.setNotaFinal(nota);
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NotasCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
-            listaN = null;
-             listaEstu = null;
-        }
-        }else{
+    public void createAdmin() {
+        if (getFacade().verificarNota(selected.getIdMateria().getIdMateria(), selectedN.getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales()) == null) {
+            this.selected.setIdNivelAcademico(selectedN);
+            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+            this.selected.setFechaDeRegistro(new Date());
+            Double nota = 0.0;
+            Double nota_suple = 0.0;
+            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+                nota = selected.getParcialUno();
+                nota = (nota / 2);
+                nota = fijarNumero(nota, 2);
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota = fijarNumero(nota, 2);
+                }
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota_suple = (selected.getNotaSupletorio() * 0.60);
+                    nota = (nota + nota_suple);
+                    nota = fijarNumero(nota, 2);
+                } else {
+                    this.selected.setNotaSupletorio(null);
+                }
+
+            }
+            this.selected.setNotaFinal(nota);
+            persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("NotasCreated"));
+            if (!JsfUtil.isValidationFailed()) {
+                items = null;    // Invalidate list of items to trigger re-query.
+                listaN = null;
+                listaEstu = null;
+            }
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
         }
     }
 
     public void updateAdmin() {
-       if(getFacade().verificarNota2(selected.getIdMateria().getIdMateria(),selectedN.getIdNivelAcademico(),selected.getIdDatosPersonales().getIdDatosPersonales(),selected.getIdNotas())==null){
-        this.selected.setIdNivelAcademico(selectedN);
-        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-        Double nota = 0.0;
-        Double nota_suple = 0.0;
-         if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-            nota = selected.getParcialUno();
-          
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = fijarNumero(nota, 2);
-        }
-        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-            nota = (selected.getParcialUno() + selected.getParcialDos());
-            nota = (nota / 2);
-            nota = (nota * 0.40);
-            nota_suple = (selected.getNotaSupletorio() * 0.60);
-            nota = (nota + nota_suple);
-            nota = fijarNumero(nota, 2);
-        }
-        this.selected.setNotaFinal(nota);
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
-        listaN = null;
-         listaEstu = null;
-        }else{
+        if (getFacade().verificarNota2(selected.getIdMateria().getIdMateria(), selectedN.getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNotas()) == null) {
+            this.selected.setIdNivelAcademico(selectedN);
+            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+            Double nota = 0.0;
+            Double nota_suple = 0.0;
+            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+                nota = selected.getParcialUno();
+                nota = (nota / 2);
+                nota = fijarNumero(nota, 2);
+
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota = fijarNumero(nota, 2);
+                }
+            }
+            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+                nota = (selected.getParcialUno() + selected.getParcialDos());
+                nota = (nota / 2);
+                if (nota < 7) {
+                    nota = (nota * 0.40);
+                    nota_suple = (selected.getNotaSupletorio() * 0.60);
+                    nota = (nota + nota_suple);
+                    nota = fijarNumero(nota, 2);
+                } else {
+                    this.selected.setNotaSupletorio(null);
+                }
+            }
+            this.selected.setNotaFinal(nota);
+            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
+            listaN = null;
+            listaEstu = null;
+        } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
         }
     }
-    
+
     public double fijarNumero(double numero, int digitos) {
         double resultado;
         resultado = numero * Math.pow(10, digitos);
@@ -310,6 +386,7 @@ public class NotasController implements Serializable {
     }
 
     public List<Notas> getListaN() {
+        listaN = null;
         if (listaN == null) {
             if (selectedN != null) {
                 listaN = getFacade().verificarNotas(selectedN.getIdNivelAcademico(), selectedN.getIdTituloCarrera().getIdTituloCarrera());
@@ -319,7 +396,7 @@ public class NotasController implements Serializable {
     }
 
     public List<DatosPersonales> getListaEstu() {
-       
+
         if (listaEstu == null) {
             if (selectedN != null) {
                 listaEstu = ejbFacadePer.listaEstudiantesCiclos(selectedN.getIdNivelAcademico());
@@ -327,6 +404,25 @@ public class NotasController implements Serializable {
         }
         return listaEstu;
     }
+
+    public List<Notas> getListaNotasEstudiantesCiclo() {
+        
+        
+        if (listaNotasEstudiantesCiclo == null) {
+            if (selectedN != null) {
+            if (selectedMa != null) {
+             listaNotasEstudiantesCiclo = ejbFacade.listaNotasCiclo(selectedN.getIdNivelAcademico(), selectedMa.getIdMateria());
+            }
+            }
+        }
+        return listaNotasEstudiantesCiclo;
+    }
+
+    public void setListaNotasEstudiantesCiclo(List<Notas> listaNotasEstudiantesCiclo) {
+        this.listaNotasEstudiantesCiclo = listaNotasEstudiantesCiclo;
+    }
+    
+    
 
     public List<Notas> listaNotasEstudiante(Integer id) {
         return listaNotasEstu = ejbFacade.verificarNotas2(selectedN.getIdNivelAcademico(), id);

@@ -265,6 +265,7 @@ public class Bean implements Serializable {
             parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
             //parametros que enviamos al report.
             parametros.put("num_identificacion", getParametro());
+            parametros.put("periodo", getPeriodoAcademicoSelected().getIdPeriodoAcademico());
 
             //Compilamos el archivo XML y lo cargamos en memoria
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());

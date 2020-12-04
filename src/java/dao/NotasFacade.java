@@ -106,22 +106,35 @@ public class NotasFacade extends AbstractFacade<Notas> {
         }
         return lista;
     }
-//       
-//       public Notas notaEstudiante(Integer id1,Integer id2) {
-//        Notas nota = null;
-//        try {
-//            Query q = em.createNativeQuery("SELECT * FROM notas\n"
-//                    +" WHERE id_nivel_academico='" + id1 + "' AND id_datos_personales='" + id2 +"';", Notas.class);
-//            nota = (Notas) q.getSingleResult();
-//        } catch (Exception e) {
-//        }
-//        return nota;
-//    }
-        public List<Notas> notaEstudiante(Integer id1,Integer id2,Integer id3) {
+ public List<Notas> listaNotasCiclo(Integer id1,Integer id2) {
+        List<Notas> lista2 = null;
+        try {
+            Query q = em.createNativeQuery("SELECT * FROM notas\n"
+                    + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales = notas.id_datos_personales\n"
+                     +"WHERE id_nivel_academico='" + id1 + "' AND id_materia='" + id2 + "' ORDER BY datos_personales.apellidos ASC;", Notas.class);
+            lista2 = q.getResultList();
+            if(lista2==null){
+                System.out.println("se cargo null");
+            }
+        } catch (Exception e) {
+        }
+        return lista2;
+    }
+        public List<Notas> notaEstudiante(Integer id1,Integer id2,Integer id3,Integer id4) {
         List<Notas> lista = null;
         try {
             Query q = em.createNativeQuery("SELECT * FROM notas\n"
-                    +" WHERE id_nivel_academico='" + id1 + "' AND notas.id_materia='" + id2 +"' AND id_datos_personales='" + id3 +"';", Notas.class);
+                    +" WHERE id_nivel_academico='" + id1 + "' AND id_materia='" + id2 +"' AND id_datos_personales='" + id3 +"' AND id_periodo_academico='" + id4 +"';", Notas.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
+        public List<Notas> verificarNotasEstudiante(Integer id1,Integer id2,Integer id3) {
+        List<Notas> lista = null;
+        try {
+            Query q = em.createNativeQuery("SELECT * FROM notas\n"
+                    +" WHERE id_datos_personales='" + id1 + "' AND id_nivel_academico='" + id2 +"' AND id_periodo_academico='" + id3 +"';", Notas.class);
             lista = q.getResultList();
         } catch (Exception e) {
         }

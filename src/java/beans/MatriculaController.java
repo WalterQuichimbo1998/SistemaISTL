@@ -27,7 +27,9 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import modelo.Canton;
 import modelo.DatosPersonales;
+import modelo.Materia;
 import modelo.NivelAcademico;
+import modelo.Notas;
 import modelo.Provincia;
 
 @Named("matriculaController")
@@ -41,6 +43,8 @@ public class MatriculaController implements Serializable {
     @EJB
     private dao.CantonFacade ejbFacadeC;
     @EJB
+    private dao.NotasFacade ejbFacadeNotas;
+    @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
     private List<NivelAcademico> itemsNivelAcademico = null;
     private List<Matricula> items = null;
@@ -50,6 +54,7 @@ public class MatriculaController implements Serializable {
     private List<Canton> listaCanton = null;
     private Matricula ms = null;
     private Boolean v = false;
+    private List<Notas> listaNotas = null;
 
     public MatriculaController() {
 
@@ -163,6 +168,12 @@ public class MatriculaController implements Serializable {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+            listaNotas = ejbFacadeNotas.verificarNotasEstudiante(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNivelAcademico().getIdNivelAcademico(), selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
+            if (listaNotas.isEmpty()) {
+                for (Materia materiaList : selected.getIdNivelAcademico().getMateriaList()) {
+                    crearNotasEstudiante(materiaList.getIdMateria());
+                }
+            }
         }
         items = null;
     }
@@ -175,9 +186,13 @@ public class MatriculaController implements Serializable {
         if (selected.getIdProvinciaNacimiento() == null) {
             this.selected.setIdCantonNacimiento(null);
         }
-//        MatriculaHistorialController mmc=new MatriculaHistorialController();
-//        mmc.crearMH(selected); 
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
+        listaNotas = ejbFacadeNotas.verificarNotasEstudiante(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNivelAcademico().getIdNivelAcademico(), selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
+        if (listaNotas.isEmpty()) {
+            for (Materia materiaList : selected.getIdNivelAcademico().getMateriaList()) {
+                crearNotasEstudiante(materiaList.getIdMateria());
+            }
+        }
     }
 
     public void destroy() {
@@ -280,7 +295,9 @@ public class MatriculaController implements Serializable {
     public void verificarCrear() {
         Matricula ma = ejbFacade.virificarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales());
         if (ma == null) {
+
             create();
+
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiante ya está matriculado.", ""));
 
@@ -310,6 +327,29 @@ public class MatriculaController implements Serializable {
             }
         } else {
             System.out.println("error");
+        }
+
+    }
+
+    public void crearNotasEstudiante(Integer id4) {
+        Integer id1 = selected.getIdDatosPersonales().getIdDatosPersonales();
+        Integer id2 = selected.getIdNivelAcademico().getIdNivelAcademico();
+        Integer id3 = selected.getIdPeriodoAcademico().getIdPeriodoAcademico();
+        Integer id5 = selected.getIdTituloCarrera().getIdTituloCarrera();
+        PreparedStatement ps;
+        try {
+            ps = getConnection().prepareStatement("INSERT INTO notas (id_datos_personales,id_nivel_academico,id_periodo_academico,id_materia,id_titulo_carrera) VALUES(?,?,?,?,?)");
+            ps.setInt(1, id1);
+            ps.setInt(2, id2);
+            ps.setInt(3, id3);
+            ps.setInt(4, id4);
+            ps.setInt(5, id5);
+            ps.execute();
+            getConnection().close();
+        } catch (SQLException ex) {
+            System.out.println("mensaje: " + ex.getMessage());
+        } catch (Exception ex) {
+            Logger.getLogger(MatriculaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

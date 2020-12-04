@@ -95,26 +95,26 @@ WHERE
 	<title>
 		<band height="103" splitType="Stretch">
 			<staticText>
-				<reportElement x="159" y="38" width="290" height="19" uuid="c26f906c-60b2-42f3-8ca0-66f7f2803eaa"/>
-				<textElement>
+				<reportElement x="132" y="38" width="290" height="19" uuid="c26f906c-60b2-42f3-8ca0-66f7f2803eaa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO "LIMÓN"]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="228" y="71" width="145" height="17" uuid="3dacb9a8-2007-42a4-8ee4-d4f83e23de8d"/>
-				<textElement>
+				<reportElement x="205" y="71" width="145" height="17" uuid="3dacb9a8-2007-42a4-8ee4-d4f83e23de8d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<text><![CDATA[r.limon@institutos.gob.ec]]></text>
 			</staticText>
 			<image hAlign="Center" vAlign="Middle">
-				<reportElement x="56" y="13" width="82" height="75" uuid="d742655a-128a-4a64-9097-eefd8db149d5"/>
+				<reportElement x="24" y="12" width="82" height="75" uuid="d742655a-128a-4a64-9097-eefd8db149d5"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="185" y="54" width="244" height="17" uuid="fe8a3a3e-61ee-4c4e-a07c-d9968130de32"/>
-				<textElement>
+				<reportElement x="155" y="54" width="244" height="17" uuid="fe8a3a3e-61ee-4c4e-a07c-d9968130de32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font isItalic="true"/>
 				</textElement>
 				<text><![CDATA[Av. 12 de diciembre N/S. Teléfono: 2771-303]]></text>
@@ -124,25 +124,18 @@ WHERE
 	<pageHeader>
 		<band height="76" splitType="Stretch">
 			<staticText>
-				<reportElement x="181" y="33" width="57" height="20" uuid="72201b60-bfcc-47ae-b672-3618733d2487"/>
-				<textElement>
-					<font size="12"/>
-				</textElement>
-				<text><![CDATA[PERÍODO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="169" y="12" width="204" height="20" uuid="c6355706-b3f5-4c84-9f67-0b88636c7608"/>
-				<textElement>
-					<font size="12" isBold="true"/>
+				<reportElement x="136" y="12" width="283" height="20" uuid="c6355706-b3f5-4c84-9f67-0b88636c7608"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CERTIFICADO DE MATRÍCULA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="242" y="33" width="223" height="20" uuid="0b13babb-3ddf-4dc9-90af-a635e20cd944"/>
-				<textElement>
+				<reportElement x="101" y="36" width="353" height="20" uuid="0b13babb-3ddf-4dc9-90af-a635e20cd944"/>
+				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{periodo_academico_nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["PERÍODO "+$F{periodo_academico_nombre}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -156,7 +149,7 @@ WHERE
 				<text><![CDATA[Así consta en el archivo que reposa en la institución.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="64" y="14" width="147" height="20" uuid="0bc031f8-6346-4448-85b9-11e6ab699205"/>
+				<reportElement x="64" y="14" width="170" height="20" uuid="0bc031f8-6346-4448-85b9-11e6ab699205"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -240,7 +233,7 @@ WHERE
 				<text><![CDATA[2880]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="221" y="14" width="305" height="20" uuid="7607d43f-e11b-4fa6-a841-1fef81bd9ef7"/>
+				<reportElement x="234" y="14" width="277" height="20" uuid="7607d43f-e11b-4fa6-a841-1fef81bd9ef7"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -275,7 +268,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{datos_personales_num_identificacion}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="421" y="218" width="113" height="20" uuid="c26322da-c862-4504-8576-d7714dbbbf8e"/>
+				<reportElement x="421" y="217" width="113" height="20" uuid="c26322da-c862-4504-8576-d7714dbbbf8e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12"/>
 				</textElement>
@@ -292,14 +285,14 @@ WHERE
 				<textFieldExpression><![CDATA[$F{matricula_codigo_matricula}+"."]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="146" y="492" width="250" height="1" uuid="3e3e6ef9-0934-4555-8fac-b2f01fea7f4a"/>
+				<reportElement x="152" y="492" width="250" height="1" uuid="3e3e6ef9-0934-4555-8fac-b2f01fea7f4a"/>
 			</line>
 			<staticText>
-				<reportElement x="188" y="494" width="167" height="20" uuid="74eaa3f3-e995-4d21-980d-a5a608294c72"/>
-				<textElement verticalAlignment="Middle">
+				<reportElement x="194" y="494" width="167" height="20" uuid="74eaa3f3-e995-4d21-980d-a5a608294c72"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[SECRETARIA (E) DEL IST LIMÓN]]></text>
+				<text><![CDATA[SECRETARIA(O) DEL IST LIMÓN]]></text>
 			</staticText>
 		</band>
 	</columnHeader>

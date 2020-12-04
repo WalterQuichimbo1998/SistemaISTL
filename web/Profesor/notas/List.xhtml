@@ -14,7 +14,7 @@
             <p:panel>
                 <h:form id="TituloCarreraListForm">
                     <p class="title_modulos">Seleccione una carrera</p>
-                    <ui:repeat value="#{tituloCarreraController.items}" var="item">          
+                    <ui:repeat value="#{tituloCarreraController.lista}" var="item">          
                         <p:commandButton styleClass="botonCar" id="carrera" value="#{item.nombreTitulo}" actionListener="#{nivelAcademicoController.setSelectedT(item)}" 
                                          action="/Profesor/notas/List?faces-redirect=true" process="@form" update=":TituloCarreraListForm:listaNiveles" >
                             <p:ajax listener="#{nivelAcademicoController.setId_persona(datosPersonalesController.selected.idDatosPersonales)}"/>

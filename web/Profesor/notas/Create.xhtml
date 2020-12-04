@@ -19,11 +19,12 @@
 
                         <p:outputLabel value="#{bundle.CreateNotasLabel_idMateria}" for="idMateria" />
                         <p:selectOneMenu id="idMateria" value="#{notasController.selected.idMateria}" panelStyle="width:280px"
-                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione una materia">
+                                         effect="fade" style="width:300px" filter="true" filterMatchMode="contains" required="true" requiredMessage="Seleccione una materia">
                             <f:selectItem itemLabel="-Seleccione-"/>
-                            <f:selectItems value="#{notasController.itemsMateria}"
+                            <f:selectItems value="#{notasController.itemsMateriaDistributivo}"
                                            var="idMateriaItem"
-                                           itemValue="#{idMateriaItem}"/>
+                                           itemValue="#{idMateriaItem.idMateria}"
+                                           itemLabel="#{idMateriaItem.idMateria.materia}"/>
                         </p:selectOneMenu>
 
                         <p:outputLabel value="#{bundle.CreateNotasLabel_parcialUno}" for="parcialUno" />

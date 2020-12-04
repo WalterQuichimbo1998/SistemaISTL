@@ -129,7 +129,7 @@ public class NivelAcademicoController implements Serializable {
     }
 
     public List<NivelAcademico> getListaD() {
-        
+        listaD=null;
          if (listaD == null) {
            if(selectedT!=null){
                  listaD = getFacade().listaNivelesDistributivo(getId_persona(),selectedT.getIdTituloCarrera());
