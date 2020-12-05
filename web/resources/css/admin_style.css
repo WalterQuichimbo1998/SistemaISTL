@@ -820,6 +820,10 @@ margin: 4px;
     cursor: pointer;
 }
 
+.btn-link:hover{
+    color: #000 !important;
+    background: #bbede3 !important;
+}
 /* ESTILOS LOGOUT*/
 .logout.ui-dialog{
     border: none;

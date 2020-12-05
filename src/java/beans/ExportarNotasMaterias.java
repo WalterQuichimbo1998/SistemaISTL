@@ -209,7 +209,7 @@ public class ExportarNotasMaterias implements Serializable {
         if (getNivelAcademicoSelected() != null) {
             listaM = ejbFacade.listaMaterias(getNivelAcademicoSelected().getIdNivelAcademico());
             listaEstu = null;
-            listaEstu = eFacadeMa.obtenerMatriculaEstu(getNivelAcademicoSelected().getIdNivelAcademico());
+            listaEstu = eFacadeMa.obtenerMatriculaEstu(getNivelAcademicoSelected().getIdNivelAcademico(),getPeriodoSelected().getIdPeriodoAcademico());
             if (listaEstu.size() > 0) {
 
                 Workbook wb = new XSSFWorkbook();
@@ -415,7 +415,7 @@ public class ExportarNotasMaterias implements Serializable {
                     Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiantes no matriculados en este ciclo.", ""));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiantes no matriculados en este ciclo o período", ""));
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Selecccione un ciclo.", ""));

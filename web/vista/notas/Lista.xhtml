@@ -23,20 +23,21 @@
                     <br/>
                     <h1 style="font-family: Arial;color: #024959;">#{notasController.selectedN.idTituloCarrera.nombreTitulo}</h1>
                     <br/>
-                    
-                  
+
+
                     <ui:repeat value="#{tituloCarreraController.items}" var="item">
                         <ui:repeat value="#{item.nivelAcademicoList}" var="car" rendered="#{item.idTituloCarrera == notasController.selectedN.idTituloCarrera.idTituloCarrera}">
-                            <p:commandLink style="text-decoration: none;color:#454545;display: inline-block;margin: 2px 4px; padding: 2px 2px;" value="#{car.nivelAcademico}"
+                            <p:commandLink style="text-decoration: none;color:#454545;display: inline-block;margin: 2px 4px; padding: 2px 2px;" class="btn-link" value="#{car.nivelAcademico}"
                                            actionListener="#{notasController.setSelectedN(car)}" action="/vista/notas/Lista?faces-redirect=true">
-                            <f:ajax execute="@this" render="@all"/>
+                                <f:ajax execute="@this" render="@all"/>
                             </p:commandLink>
                         </ui:repeat>
                     </ui:repeat><br/><br/>
-                     <h2 style="font-family: Arial;color: #1976d3;font-weight: normal;"><strong style="color: #454545;">Ciclo: </strong> #{notasController.selectedN.nivelAcademico}</h2>
+                    <h2 style="font-family: Arial;color: #1976d3;font-weight: normal;"><strong style="color: #454545;">Ciclo: </strong> #{notasController.selectedN.nivelAcademico}</h2>
                     <br/>
 
                     <center>
+                        <h2 style="color: #454545;font-family: Arial;margin-bottom: 10px;">Notas</h2>
                         <div style="width: 330px;margin: auto;"> 
                             <p:outputLabel value="Seleccione la materia" for="idMateria" style="font-size: 15px !important;"/>
                             <p:selectOneMenu id="idMateria" value="#{notasController.selectedMa}" effect="fade">
@@ -53,7 +54,7 @@
                         <h2>#{notasController.selectedMa.materia}</h2>
                         <br/>
                     </c:if>
-                      <p:dataTable id="datalist" value="#{notasController.listaNotasEstudiantesCiclo}" var="item" styleClass="tabla" style="width: 900px;margin: auto;"
+                    <p:dataTable id="datalist" value="#{notasController.listaNotasEstudiantesCiclo}" var="item" styleClass="tabla" style="width: 900px;margin: auto;"
                                  selectionMode="single" selection="#{notasController.selected}"
                                  rowKey="#{item.idNotas}"
                                  paginator="true" 
@@ -62,7 +63,7 @@
                                  paginatorPosition="bottom"
                                  emptyMessage="No se encontraron datos."
                                  sortBy="#{item.idNotas}"
-                                 sortOrder="descending"
+                                 sortOrder="ascending"
                                  >
 
                         <p:column sortBy="#{item.idDatosPersonales.apellidos}" headerText="Estudiantes">
@@ -81,13 +82,13 @@
                             <p:outputLabel value="#{item.notaFinal}" style="display: block; color: #{item.notaFinal lt 7 ? 'red' : null}" />
                         </p:column>
 
-                       
+
 
                     </p:dataTable>
-                   
+
                 </h:form>
             </p:panel>
-           
+
         </ui:define>
     </ui:composition>
 

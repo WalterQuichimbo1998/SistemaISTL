@@ -66,10 +66,10 @@ public class MatriculaFacade extends AbstractFacade<Matricula> {
         return ma;
     }
     
-      public List<Matricula> obtenerMatriculaEstu(Integer id) {
+      public List<Matricula> obtenerMatriculaEstu(Integer id,Integer id2) {
             Query q = em.createNativeQuery("SELECT matricula.id_matricula,matricula.id_datos_personales,matricula.id_nivel_academico,datos_personales.apellidos FROM matricula \n"
                     + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales = matricula.id_datos_personales\n"
-                    +" WHERE id_nivel_academico='" + id + "' ORDER BY datos_personales.apellidos ASC;", Matricula.class);
+                    +" WHERE id_nivel_academico='" + id + "' AND id_periodo_academico='" + id2 + "' ORDER BY datos_personales.apellidos ASC;", Matricula.class);
         List<Matricula> lista = q.getResultList();
         return lista;
     }

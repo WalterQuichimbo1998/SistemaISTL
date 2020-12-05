@@ -72,6 +72,7 @@ public class NotasController implements Serializable {
 
     public void setSelected(Notas selected) {
         this.selected = selected;
+   
         listaN = null;
 
     }
@@ -233,8 +234,8 @@ public class NotasController implements Serializable {
     }
 
     public void update() {
-        if (getFacade().verificarNota2(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedP.getIdDatosPersonales(), selected.getIdNotas()) == null) {
-            this.selected.setIdDatosPersonales(selectedP);
+        if (getFacade().verificarNota2(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNotas()) == null) {
+            this.selected.setIdDatosPersonales(selected.getIdDatosPersonales());
             this.selected.setIdNivelAcademico(selectedN);
             this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
             this.selected.setIdMateria(selectedMa);

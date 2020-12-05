@@ -36,6 +36,7 @@
                     <br/>
 
                     <center>
+                        <h2 style="color: #454545;font-family: Arial;margin-bottom: 10px;">Notas</h2>
                         <div style="width: 260px;margin: auto;"> 
                             <p:outputLabel value="Seleccione la materia" for="idMateria" style="font-size: 15px !important;"/>
                             <p:selectOneMenu id="idMateria" value="#{notasController.selectedMa}" effect="fade">
@@ -54,15 +55,14 @@
                         <br/>
                     </c:if>
                     <p:dataTable id="datalist" value="#{notasController.listaNotasEstudiantesCiclo}" var="item" styleClass="tabla" style="width: 900px;margin: auto;"
-                                 selectionMode="single" selection="#{notasController.selected}"
-                                 rowKey="#{item.idNotas}"
+                                
                                  paginator="true" 
                                  rows="15"
                                  rowsPerPageTemplate="15,20,25"
                                  paginatorPosition="bottom"
-                                 emptyMessage="No se encontraron datos."
+                                 emptyMessage="No se encontraron datos. Seleccione la materia."
                                  sortBy="#{item.idNotas}"
-                                 sortOrder="descending"
+                                 sortOrder="ascending"
                                  >
 
                         <p:column sortBy="#{item.idDatosPersonales.apellidos}" headerText="Estudiantes">
@@ -88,7 +88,6 @@
                             <p:commandButton id="editButton"  styleClass="btn-editar" icon="ui-icon-pencil" actionListener="#{notasController.setSelected(item)}" 
                                              update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" title="Editar nota">
                                 <f:actionListener binding="#{notasController.setV(true)}"/>
-                                <f:actionListener binding="#{notasController.setSelectedP(item.idDatosPersonales)}"/>
                             </p:commandButton>
 
                         </p:column>

@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -57,9 +58,8 @@ public class DistributivoMateriaController implements Serializable {
 
     public void setSelectedD(Distributivo selectedD) {
         this.selectedD = selectedD;
-        items=null;
+        items = null;
     }
-    
 
     protected void setEmbeddableKeys() {
     }
@@ -78,16 +78,27 @@ public class DistributivoMateriaController implements Serializable {
     }
 
     public void create() {
-        this.selected.setIdDistributivo(selectedD);
-        persist(PersistAction.CREATE,"Materia distributivo registrada");
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+        if (ejbFacade.verificarMateriaDistributivo(selectedD.getIdDistributivo(), selected.getIdNivelAcademico().getIdNivelAcademico(), selected.getIdMateria().getIdMateria()) == null) {
+            this.selected.setIdDistributivo(selectedD);
+            persist(PersistAction.CREATE, "Materia distributivo registrada");
+            if (!JsfUtil.isValidationFailed()) {
+                items = null;    // Invalidate list of items to trigger re-query.
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Materia ya registrada.", ""));
+            items = null; 
         }
+
     }
 
     public void update() {
-        this.selected.setIdDistributivo(selectedD);
-        persist(PersistAction.UPDATE, "Materia distributivo actualizada");
+        if (ejbFacade.verificarMateriaDistributivo2(selectedD.getIdDistributivo(), selected.getIdNivelAcademico().getIdNivelAcademico(), selected.getIdMateria().getIdMateria(), selected.getIdDistributivoMateria()) == null) {
+            this.selected.setIdDistributivo(selectedD);
+            persist(PersistAction.UPDATE, "Materia distributivo actualizada");
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Materia ya registrada.", ""));
+            items = null; 
+        }
     }
 
     public void destroy() {
@@ -99,17 +110,17 @@ public class DistributivoMateriaController implements Serializable {
     }
 
     public List<DistributivoMateria> getItems() {
-          if (items == null) {
-           if(selectedD!=null){
-                 items = getFacade().listaDistributivoMaterias(selectedD.getIdDistributivo());
-           }
+        if (items == null) {
+            if (selectedD != null) {
+                items = getFacade().listaDistributivoMaterias(selectedD.getIdDistributivo());
+            }
         }
         return items;
-        
+
     }
 
     public List<NivelAcademico> getItemsNivelAcademico() {
-       if (selected.getIdTituloCarrera() != null) {
+        if (selected.getIdTituloCarrera() != null) {
             return itemsNivelAcademico = ejbFacadeNivel.listaNiveles(selected.getIdTituloCarrera().getIdTituloCarrera());
         } else {
             return null;
@@ -121,7 +132,7 @@ public class DistributivoMateriaController implements Serializable {
     }
 
     public List<Materia> getItemsMateria() {
-         if (selected.getIdTituloCarrera() != null) {
+        if (selected.getIdTituloCarrera() != null) {
             if (getItemsNivelAcademico().contains(selected.getIdNivelAcademico()) == true) {
                 return itemsMateria = ejbFacadeMateria.listaMaterias(selected.getIdNivelAcademico().getIdNivelAcademico());
             } else {
@@ -135,7 +146,6 @@ public class DistributivoMateriaController implements Serializable {
     public void setItemsMateria(List<Materia> itemsMateria) {
         this.itemsMateria = itemsMateria;
     }
-    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
