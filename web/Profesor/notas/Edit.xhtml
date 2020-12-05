@@ -12,6 +12,9 @@
             <h:form id="NotasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
+                        <p:outputLabel value="Estudiante: "/>
+                        <p:outputLabel value="#{notasController.selected.idDatosPersonales.nombres} #{notasController.selected.idDatosPersonales.nombres}"
+                                       style="font-family: Arial;font-size: 14px !important;"/>
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
                         <p:inputText type="number" id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" required="true"  requiredMessage="Ingrese una nota"
                                      style="width: 150px;"/>

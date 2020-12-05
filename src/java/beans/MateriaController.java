@@ -5,6 +5,7 @@ import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
 import dao.MateriaFacade;
 import dao.NivelAcademicoFacade;
+import dao.PreRequisitosMateriaFacade;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,6 +22,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import modelo.NivelAcademico;
+import modelo.PreRequisitosMateria;
 
 @Named("materiaController")
 @SessionScoped
@@ -31,8 +33,11 @@ public class MateriaController implements Serializable {
     private List<Materia> items = null;
     private List<Materia> lista = null;
     private List<Materia> lista2 = null;
+    private List<PreRequisitosMateria> listaPre = null;
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
+    @EJB
+    private PreRequisitosMateriaFacade ejbFacadePre;
     private List<NivelAcademico> itemsNivelAcademico = null;
     private Materia selected;
     private NivelAcademico selectedN;
@@ -144,6 +149,28 @@ public class MateriaController implements Serializable {
     public void setLista2(List<Materia> lista2) {
         this.lista2 = lista2;
     }
+
+    public List<PreRequisitosMateria> listaPre(Integer id) {
+        listaPre=null;
+         if (listaPre == null) {
+           if(selectedN!=null){
+                 listaPre = ejbFacadePre.listaMateriasPreLista(id);
+           }
+        }
+        return listaPre;
+    }
+    public Boolean verificar(Integer id){
+        
+       boolean r=false;
+        listaPre = ejbFacadePre.listaMateriasPreLista(id);
+        if (!listaPre.isEmpty()) {     
+             r=true;    
+        }else{
+            r=false;
+        }
+        return r;
+    }
+   
     
 
     private void persist(PersistAction persistAction, String successMessage) {

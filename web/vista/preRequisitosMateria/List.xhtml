@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPreRequisitosMateriaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="PreRequisitosMateriaListForm">
+                <p:panel>
+                    <p class="title_modulos">Pre-Requisitos Materia</p>
+                    <h1 style="margin-bottom: 10px;">#{preRequisitosMateriaController.selectedM.toString()}</h1>
+                    <p>#{preRequisitosMateriaController.selectedM.idNivelAcademico.nivelAcademico}</p>  <br/>
+                    <p:dataTable id="datalist" value="#{preRequisitosMateriaController.items}" var="item" styleClass="tabla" style="width: 460px;margin: auto;"
+                                 selectionMode="single" selection="#{preRequisitosMateriaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idPreRequisitosMateria}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+
+                        <p:column sortBy="#{item.idMateria}">
+                            <f:facet name="header">
+                                <h:outputText value="Materia Pre-requisito"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateria}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{preRequisitosMateriaController.prepareCreate}" update=":PreRequisitosMateriaCreateForm" oncomplete="PF('PreRequisitosMateriaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":PreRequisitosMateriaViewForm" oncomplete="PF('PreRequisitosMateriaViewDialog').show()" disabled="#{empty preRequisitosMateriaController.selected}"/>
+                            <p:commandButton id="editButton" styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":PreRequisitosMateriaEditForm" oncomplete="PF('PreRequisitosMateriaEditDialog').show()" disabled="#{empty preRequisitosMateriaController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{preRequisitosMateriaController.destroy}" update=":growl,datalist" disabled="#{empty preRequisitosMateriaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -30,6 +30,7 @@ import modelo.DatosPersonales;
 import modelo.Materia;
 import modelo.NivelAcademico;
 import modelo.Notas;
+import modelo.PreRequisitosMateria;
 import modelo.Provincia;
 
 @Named("matriculaController")
@@ -44,6 +45,8 @@ public class MatriculaController implements Serializable {
     private dao.CantonFacade ejbFacadeC;
     @EJB
     private dao.NotasFacade ejbFacadeNotas;
+    @EJB
+    private dao.PreRequisitosMateriaFacade ejbFacadePre;
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
     private List<NivelAcademico> itemsNivelAcademico = null;
@@ -178,7 +181,28 @@ public class MatriculaController implements Serializable {
         items = null;
     }
 
+    public void actualizarMatricula() {
+        Boolean r = true;
+        for (int i = 0; i < selected.getIdNivelAcademico().getMateriaList().size(); i++) {
+            if (ejbFacadePre.verificarPre_requisitos(selected.getIdNivelAcademico().getMateriaList().get(i).getIdMateria()) != null) {
+                PreRequisitosMateria p = ejbFacadePre.verificarPre_requisitos(selected.getIdNivelAcademico().getMateriaList().get(i).getIdMateria());
+                Notas n = ejbFacadeNotas.verificarNota(p.getIdMateriaPre().getIdMateria(), p.getIdMateriaPre().getIdNivelAcademico().getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales());
+                double num = n.getNotaFinal() == null ? 0 : n.getNotaFinal();
+                if (num < 7) {
+                    r = false;
+                } else {
+                }
+            }
+        }
+        if (r) {
+            update();
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usted no cumple con los requisitos para matricularse en este ciclo.", ""));
+        }
+    }
+
     public void update() {
+
         if (selected.getIdNacionalidad() == null) {
             this.selected.setIdProvinciaNacimiento(null);
             this.selected.setIdCantonNacimiento(null);

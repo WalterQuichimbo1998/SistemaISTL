@@ -93,6 +93,10 @@ public class Materia implements Serializable {
     @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
     @ManyToOne
     private TituloCarrera idTituloCarrera;
+    @OneToMany(mappedBy = "idMateria")
+    private List<CoRequisitosMateria> coRequisitosMateriaList;
+    @OneToMany(mappedBy = "idMateria")
+    private List<PreRequisitosMateria> preRequisitosMateriaList;
 
     public Materia() {
     }
@@ -238,6 +242,22 @@ public class Materia implements Serializable {
 
     public void setIdPeriodoAcademico(PeriodoAcademico idPeriodoAcademico) {
         this.idPeriodoAcademico = idPeriodoAcademico;
+    }
+      @XmlTransient
+    public List<CoRequisitosMateria> getCoRequisitosMateriaList() {
+        return coRequisitosMateriaList;
+    }
+
+    public void setCoRequisitosMateriaList(List<CoRequisitosMateria> coRequisitosMateriaList) {
+        this.coRequisitosMateriaList = coRequisitosMateriaList;
+    }
+    @XmlTransient
+    public List<PreRequisitosMateria> getPreRequisitosMateriaList() {
+        return preRequisitosMateriaList;
+    }
+
+    public void setPreRequisitosMateriaList(List<PreRequisitosMateria> preRequisitosMateriaList) {
+        this.preRequisitosMateriaList = preRequisitosMateriaList;
     }
     
 

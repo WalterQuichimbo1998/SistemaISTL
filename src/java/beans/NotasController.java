@@ -234,7 +234,6 @@ public class NotasController implements Serializable {
     }
 
     public void update() {
-        if (getFacade().verificarNota2(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNotas()) == null) {
             this.selected.setIdDatosPersonales(selected.getIdDatosPersonales());
             this.selected.setIdNivelAcademico(selectedN);
             this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
@@ -271,9 +270,6 @@ public class NotasController implements Serializable {
             this.selected.setNotaFinal(nota);
             persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
             listaN = null;
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
-        }
     }
 
     public void createAdmin() {

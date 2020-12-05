@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+     <ui:composition template="/vista/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCoRequisitosMateriaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="CoRequisitosMateriaListForm">
+                <p:panel>
+                    <p class="title_modulos">Co-Requisitos Materia</p>
+                    <h1 style="margin-bottom: 10px;">#{coRequisitosMateriaController.selectedM.toString()}</h1>
+                    <p>#{coRequisitosMateriaController.selectedM.idNivelAcademico.nivelAcademico}</p>  <br/>
+                    <p:dataTable id="datalist" value="#{coRequisitosMateriaController.items}" var="item" styleClass="tabla" style="width: 460px;margin: auto;"
+                                 selectionMode="single" selection="#{coRequisitosMateriaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idCoRequisitosMateria}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                  paginatorPosition="bottom"
+                                 emptyMessage="No se encontraron resultados."
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column sortBy="#{item.idMateria}">
+                            <f:facet name="header">
+                                <h:outputText value="Materia Co-requisito"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMateria}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{coRequisitosMateriaController.prepareCreate}" update=":CoRequisitosMateriaCreateForm" oncomplete="PF('CoRequisitosMateriaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":CoRequisitosMateriaViewForm" oncomplete="PF('CoRequisitosMateriaViewDialog').show()" disabled="#{empty coRequisitosMateriaController.selected}"/>
+                            <p:commandButton id="editButton" styleClass="editar"  icon="ui-icon-pencil" value="#{bundle.Edit}" update=":CoRequisitosMateriaEditForm" oncomplete="PF('CoRequisitosMateriaEditDialog').show()" disabled="#{empty coRequisitosMateriaController.selected}"/>
+                            <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{coRequisitosMateriaController.destroy}" update=":growl,datalist" disabled="#{empty coRequisitosMateriaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

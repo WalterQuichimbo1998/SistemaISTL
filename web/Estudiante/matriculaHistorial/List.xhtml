@@ -28,17 +28,12 @@
                                  emptyMessage="No se encontraron resultados, actualiza tu informacioón de matrícula."
                                  sortOrder="descending"
                                  >
-                        <p:column sortBy="#{item.numeroFormulario}">
-                            <f:facet name="header">
-                                <h:outputText value="N. Formulario"/>
-                            </f:facet>
-                            <h:outputText value="#{item.numeroFormulario}"/>
-                        </p:column>
+                       
                         <p:column sortBy="#{item.codigoMatricula}">
                             <f:facet name="header">
-                                <h:outputText value="cód. Matrícula"/>
+                                <h:outputText value="Nivel Académico"/>
                             </f:facet>
-                            <h:outputText value="#{item.codigoMatricula}"/>
+                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
                         </p:column>
                         <p:column sortBy="#{item.idTipoMatricula.tipo}">
                             <f:facet name="header">
