@@ -4,8 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/vista/template.xhtml">
 
@@ -16,29 +15,41 @@
         <ui:define name="body">
             <p:panel>
 
-               
+
                 <h:form id="TituloCarreraListForm">
-                    <p class="title_modulos">Seleccione una carrera</p>
-                    <ui:repeat value="#{tituloCarreraController.items}" var="item">          
-                        <p:commandButton styleClass="botonCar" id="carrera" value="#{item.nombreTitulo}" actionListener="#{nivelAcademicoController.setSelectedT(item)}" 
-                                         action="/vista/notas/List?faces-redirect=true" process="@form" update=":TituloCarreraListForm:listaNiveles" >
-                        </p:commandButton>
-                    </ui:repeat>
-                    <br/><br/><br/><br/>
-                    <h:panelGroup id="listaNiveles">
-                        <c:if test="#{nivelAcademicoController.lista !=null}">
-                            <h2 style="font-family: Arial;margin-bottom: 5px;">Carrera seleccionada</h2>
-                            <h2 style="font-family: Arial;font-weight: normal;">#{nivelAcademicoController.selectedT.nombreTitulo}</h2>
-                        </c:if>
-                        <ui:repeat value="#{nivelAcademicoController.lista}" var="car">
-                            <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
-                                             actionListener="#{notasController.setSelectedN(car)}" action="/vista/notas/Lista?faces-redirect=true"/>
-                        </ui:repeat> 
+                    <div style="width: 300px;margin: auto;">
+                        <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
+                        <p:selectOneMenu id="idPeriodo" value="#{notasController.selectedPeriodo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
+                                           var="idPeriodoAcademicoItem"
+                                           itemValue="#{idPeriodoAcademicoItem}"/>
+                            <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <br/>
+                    <h:panelGroup id="lista">
+                        <p:dataTable id="datalist" value="#{notasController.listaTitulo}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
+                                     paginator="true"
+                                     rows="10"
+                                     rowsPerPageTemplate="10,20,30,40,50"
+                                     paginatorPosition="bottom"
+                                     emptyMessage="No se encontraron resultados.">
+                            <f:facet name="header">
+                                <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{notasController.selectedPeriodo.nombre}</h2>
+                            </f:facet>
+                            <p:column sortBy="#{item.nombreTitulo}">
+                                <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
+
+                                <ui:repeat value="#{notasController.listaNiveles(item.idTituloCarrera)}" var="car">
+                                    <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
+                                                     actionListener="#{notasController.setSelectedN(car)}" action="/vista/notas/Lista?faces-redirect=true"/>
+                                </ui:repeat> 
+                                <br/><br/>
+                            </p:column>
+                        </p:dataTable>
+
                     </h:panelGroup> 
-
-
-
-              
                 </h:form>
             </p:panel>
 

@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="EtniaListForm">
-                <p class="title_modulos">#{bundle.ListEtniaTitle}</p>
+                <p class="title_modulos">ÉTNIA</p>
                 <p:dataTable id="datalist" value="#{etniaController.items}" var="item" styleClass="tabla"
                              selectionMode="single" selection="#{etniaController.selected}"
                              paginator="true"
@@ -32,7 +32,7 @@
                     <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
 
-                    <p:column>
+                    <p:column sortBy="#{item.tipoEtnia}">
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListEtniaTitle_tipoEtnia}"/>
                         </f:facet>

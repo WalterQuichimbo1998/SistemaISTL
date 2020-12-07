@@ -64,6 +64,8 @@ public class TablaInvestigacion implements Serializable {
     private DatosPersonales idDatosPersonales;
     @OneToMany(mappedBy = "idTablaInvestigacion")
     private List<Distributivo> distributivoList;
+    @OneToMany(mappedBy = "idTablaInvestigacion")
+    private List<TablaColaborador> tablaColaboradorList;
 
     public TablaInvestigacion() {
     }
@@ -127,6 +129,14 @@ public class TablaInvestigacion implements Serializable {
 
     public void setDistributivoList(List<Distributivo> distributivoList) {
         this.distributivoList = distributivoList;
+    }
+     @XmlTransient
+    public List<TablaColaborador> getTablaColaboradorList() {
+        return tablaColaboradorList;
+    }
+
+    public void setTablaColaboradorList(List<TablaColaborador> tablaColaboradorList) {
+        this.tablaColaboradorList = tablaColaboradorList;
     }
 
     @Override

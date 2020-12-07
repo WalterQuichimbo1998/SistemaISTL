@@ -13,8 +13,10 @@
         <script src="resources/js/all.js"></script>
     </h:head>
     <h:body>
-        <div style="text-align: center">
+
+        <div class="contenedor">
             <div class="container_login">
+
                 <h:form>
                     <label class="title_sistema">SISTEMA DE GESTIÓN ACADÉMICA</label><br/>
                     <p:graphicImage class="iconLogin" alt="icono" library="img" name="intimidad.png" />
@@ -25,7 +27,7 @@
                         <div class="caja">
                             <i class="icon fas fa-user"></i>
                             <h:inputText  class="txt" id="inputId" required="true" maxlength="60" autocomplete="off" value="#{accesoBean.selected.usuario}"/>
-                        <p:focus for="inputId"/>
+                            <p:focus for="inputId"/>
                         </div>
                         <label class="txt_titles">Contraseña</label>
                         <div class="caja">
@@ -39,13 +41,13 @@
                             <br/>
                             <br/>
                             <h:outputText class="mesage" value="#{accesoBean.message}" id="message"></h:outputText> 
-                            </center>
-                        </div>
+                        </center>
+                    </div>
 
                 </h:form>
             </div>
         </div>
-     
+
     </h:body>
 
 

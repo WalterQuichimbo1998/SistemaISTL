@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-     <ui:composition template="/vista/template.xhtml">
+    <ui:composition template="/vista/template.xhtml">
 
 
         <ui:define name="title">
@@ -15,56 +15,94 @@
 
         <ui:define name="body">
             <p:panel>
-            <h:form id="TablaInvestigacionListForm">
-                <p class="title_modulos">#{bundle.ListTablaInvestigacionTitle}</p>
-                    <p:dataTable id="datalist" value="#{tablaInvestigacionController.items}" var="item" styleClass="tabla" 
+                <h:form id="TablaInvestigacionListForm">
+                    <p class="title_modulos">Temas de Investigación</p>
+                    <p:dataTable id="datalist" value="#{tablaInvestigacionController.items}" var="item" styleClass="tabla" style="width: 1100px;margin:auto;"
                                  selectionMode="single" selection="#{tablaInvestigacionController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idTablaInvestigacion}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                  paginatorPosition="bottom"
+                                 paginatorPosition="bottom"
                                  emptyMessage="No se encontraron resultados.">
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        
-                        <p:column>
+                        <p:column sortBy="#{item.idDatosPersonales.nombres}">
+                            <f:facet name="header">
+                                <h:outputText value="Docente"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.horaSemanaInvestigacion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTablaInvestigacionTitle_horaSemanaInvestigacion}"/>
                             </f:facet>
                             <h:outputText value="#{item.horaSemanaInvestigacion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombreProyectoInvestigacion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTablaInvestigacionTitle_nombreProyectoInvestigacion}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreProyectoInvestigacion}"/>
                         </p:column>
-                        
-                        <p:column>
+                        <p:column sortBy="#{item.idTablaInvestigacion}">
                             <f:facet name="header">
-                                <h:outputText value="Datos Personales"/>
+                                <h:outputText value="Colaboradores"/>
                             </f:facet>
-                            <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
+                              <br/>
+                              <ui:repeat value="#{tablaInvestigacionController.listaCo(item.idTablaInvestigacion)}" var="item2">
+                                  <div style="display: block;">
+                                      <h:outputText value="#{item2.idDatosPersonales.nombres} #{item2.idDatosPersonales.apellidos}" style="margin-bottom: 5px !important;color: #007882;"/>
+                                
+                                  <p:commandLink value="x" style="color: #cc0000;padding: 4px 4px !important;font-size: 15px !important;text-decoration: none;" actionListener="#{tablaColaboradorController.setSelected(item2)}"
+                                                   oncomplete="PF('delete_colaborador').show()" update=":DeleteColaborador"/>
+                                  </div>
+                            </ui:repeat>
+                            <p:commandLink styleClass="crear" value="Agregar" 
+                                           actionListener="#{tablaColaboradorController.prepareCreate}" 
+                                           action="#{tablaColaboradorController.setSelectedT(item)}" 
+                                           update=":TablaColaboradorCreateForm" oncomplete="PF('TablaColaboradorCreateDialog').show()"
+                                           style="color: #007bff;padding: 2px 2px !important;"> 
+
+                            </p:commandLink>
                         </p:column>
+
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{tablaInvestigacionController.prepareCreate}" update=":TablaInvestigacionCreateForm" oncomplete="PF('TablaInvestigacionCreateDialog').show()"/>
                             <p:commandButton id="viewButton" styleClass="ver"  icon="ui-icon-search" value="#{bundle.View}" update=":TablaInvestigacionViewForm" oncomplete="PF('TablaInvestigacionViewDialog').show()" disabled="#{empty tablaInvestigacionController.selected}"/>
                             <p:commandButton id="editButton"  styleClass="editar" icon="ui-icon-pencil" value="#{bundle.Edit}" update=":TablaInvestigacionEditForm" oncomplete="PF('TablaInvestigacionEditDialog').show()" disabled="#{empty tablaInvestigacionController.selected}"/>
                             <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{tablaInvestigacionController.destroy}" update=":growl,datalist" disabled="#{empty tablaInvestigacionController.selected}">
                                 <p:confirm message="Eliminar Registro" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
-                                </p:commandButton>                      
-                                <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
-                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
-                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
-                                </p:confirmDialog>
+                            </p:commandButton>                      
+                            <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
+                                <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
+                            </p:confirmDialog>
                         </f:facet>
                     </p:dataTable>
-            </h:form>
-                </p:panel>
+                </h:form>
+            </p:panel>
+              <p:dialog id="delete_colaborador" widgetVar="delete_colaborador" modal="false" resizable="false" closeOnEscape="true"
+                      appendTo="@(body)"  showEffect="clip" hideEffect="clip" header="Aviso"
+                      style="background: #f2f2f2;box-shadow: none;box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.75) !important;" >
+                <h:form id="DeleteColaborador">
+
+                    <h3 style="text-align: center; font-family: Arial;">Eliminar Colaborador</h3>
+                    <p style="text-align: center; font-family: Arial;margin-bottom: 10px;">#{tablaColaboradorController.selected.idDatosPersonales.nombres} #{tablaColaboradorController.selected.idDatosPersonales.apellidos}</p>
+
+                    <center>
+                        <p:commandButton styleClass="eliminar" actionListener="#{tablaColaboradorController.destroy}" 
+                                         update=":growl,:TablaInvestigacionListForm:datalist" value="Si"  oncomplete="PF('delete_colaborador').hide()"/>
+                        <p:commandButton styleClass="ver" value="No" oncomplete="PF('delete_colaborador').hide()"/>
+                    </center>
+                </h:form>
+            </p:dialog>
+
             <ui:include src="Create.xhtml"/>
+            <ui:include src="CreateCo.xhtml"/>
             <ui:include src="Edit.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>

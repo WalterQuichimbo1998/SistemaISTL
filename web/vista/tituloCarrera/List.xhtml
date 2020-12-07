@@ -17,7 +17,7 @@
             <p:panel>
             <h:form id="TituloCarreraListForm">
                 <p class="title_modulos">Carreras Académicas</p>
-                    <p:dataTable id="datalist" value="#{tituloCarreraController.items}" var="item" styleClass="tabla"
+                <p:dataTable id="datalist" value="#{tituloCarreraController.items}" var="item" styleClass="tabla" style="width: 900px;margin: auto;"
                                  selectionMode="single" selection="#{tituloCarreraController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idTituloCarrera}"
@@ -31,18 +31,23 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                        
-                        <p:column>
+                        <p:column sortBy="#{item.idTituloCarrera}">
                             <f:facet name="header">
                                 <h:outputText value="Carrera"/>
                             </f:facet>
                             <h:outputText value="#{item.nombreTitulo}"/><br/>
-                            <p:commandButton style="text-decoration: none;color:#000;" styleClass="ver" icon="ui-icon-plus" value="Ver o Registrar Ciclos" actionListener="#{nivelAcademicoController.setSelectedT(item)}" action="/vista/nivelAcademico/List?faces-redirect=true"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nombreTitulo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTituloCarreraTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.idTituloCarrera}" style="width: 140px;">
+                            <f:facet name="header">
+                                <h:outputText value="Ciclos Académicos"/>
+                            </f:facet>
+                             <p:commandButton style="text-decoration: none;color:#000;font-weight: normal;background: #fbfb9f;" styleClass="crear" icon="ui-icon-search" value="Agregar/Ver" actionListener="#{nivelAcademicoController.setSelectedT(item)}" action="/vista/nivelAcademico/List?faces-redirect=true"/>
                         </p:column>
                         
                         <f:facet name="footer">

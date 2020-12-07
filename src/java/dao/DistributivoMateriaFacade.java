@@ -73,5 +73,17 @@ public class DistributivoMateriaFacade extends AbstractFacade<DistributivoMateri
         }
         return lista;
     }
+//       public List<DistributivoMateria> listaTitulos(Integer id,Integer id2) {
+//        List<DistributivoMateria> lista = null;
+//        try {
+//            Query q = em.createNativeQuery("SELECT DISTINCT titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo,distributivo_materia.id_distributivo_materia,distributivo_materia.id_distributivo,distributivo.id_periodo_academico_semestre FROM distributivo_materia \n"
+//                    + " LEFT JOIN distributivo ON distributivo.id_distributivo= distributivo_materia.id_distributivo  \n"
+//                    + " LEFT JOIN titulo_carrera ON titulo_carrera.id_titulo_carrera= distributivo_materia.id_titulo_carrera \n"
+//                    +" WHERE distributivo.id_datos_personales='" + id +"' AND distributivo.id_periodo_academico_semestre='" + id2 + "';", DistributivoMateria.class);
+//            lista = q.getResultList();
+//        } catch (Exception e) {
+//        }
+//        return lista;
+//    }
     
 }

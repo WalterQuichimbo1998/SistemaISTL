@@ -43,6 +43,14 @@ public class MateriaFacade extends AbstractFacade<Materia> {
         List<Materia> lista = q.getResultList();
         return lista;
     }
+    public List<Materia> listaMateriasCo(Integer id1,Integer id2 ) {
+        Query q = em.createNativeQuery("SELECT materia.id_materia,materia.materia,nivel_academico.id_nivel_academico,nivel_academico.nivel_academico FROM materia \n"
+                +" LEFT JOIN nivel_academico ON nivel_academico.id_nivel_academico=materia.id_nivel_academico\n"
+                +" WHERE nivel_academico.id_titulo_carrera='" + id1 +"' AND nivel_academico.id_nivel_academico='" + id2 + "';", Materia.class);
+        List<Materia> lista = q.getResultList();
+        return lista;
+    }
+    
 //    public List<Materia> listaMateriasPreLista(Integer id1) {
 //        Query q = em.createNativeQuery("SELECT materia.id_materia,materia.materia,pre_requisitos_materia.id_pre_requisitos_materia,pre_requisitos_materia.id_materia_pre FROM materia \n"
 //                +" LEFT JOIN pre_requisitos_materia ON pre_requisitos_materia.id_materia_pre=materia.id_materia\n"

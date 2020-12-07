@@ -19,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import modelo.TablaColaborador;
 
 @Named("tablaInvestigacionController")
 @SessionScoped
@@ -26,7 +27,10 @@ public class TablaInvestigacionController implements Serializable {
 
     @EJB
     private dao.TablaInvestigacionFacade ejbFacade;
+    @EJB
+    private dao.TablaColaboradorFacade ejbFacadeCo;
     private List<TablaInvestigacion> items = null;
+    private List<TablaColaborador> listaCo = null;
     private TablaInvestigacion selected;
 
     public TablaInvestigacionController() {
@@ -81,6 +85,13 @@ public class TablaInvestigacionController implements Serializable {
             items = getFacade().findAll();
         }
         return items;
+    }
+     public List<TablaColaborador> listaCo(Integer id) {
+        listaCo=null;
+         if (listaCo == null) {
+                 listaCo = ejbFacadeCo.listaColaboradores(id);
+        }
+        return listaCo;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {

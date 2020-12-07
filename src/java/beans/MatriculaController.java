@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -182,27 +183,31 @@ public class MatriculaController implements Serializable {
     }
 
     public void actualizarMatricula() {
-        Boolean r = true;
+        List lista4 = new ArrayList();
         for (int i = 0; i < selected.getIdNivelAcademico().getMateriaList().size(); i++) {
             if (ejbFacadePre.verificarPre_requisitos(selected.getIdNivelAcademico().getMateriaList().get(i).getIdMateria()) != null) {
                 PreRequisitosMateria p = ejbFacadePre.verificarPre_requisitos(selected.getIdNivelAcademico().getMateriaList().get(i).getIdMateria());
                 Notas n = ejbFacadeNotas.verificarNota(p.getIdMateriaPre().getIdMateria(), p.getIdMateriaPre().getIdNivelAcademico().getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales());
                 double num = n.getNotaFinal() == null ? 0 : n.getNotaFinal();
-                if (num < 7) {
-                    r = false;
-                } else {
+                if (num >= 7) {
+                    lista4.add(selected.getIdNivelAcademico().getMateriaList().get(i).getIdMateria());
                 }
             }
         }
-        if (r) {
-            update();
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Usted no cumple con los requisitos para matricularse en este ciclo.", ""));
+        for (int a = 0; a < lista4.size(); a++) {
+            PreRequisitosMateria p2 = ejbFacadePre.verificarPre_requisitos((Integer) lista4.get(a));
+            if (p2 != null) {
+                if (p2.getIdMateriaCo() != null) {
+                    if (!lista4.contains(p2.getIdMateriaCo().getIdMateria())) {
+                        lista4.remove(lista4.get(a));
+                    }
+                }
+            }
         }
+            update(lista4);
     }
 
-    public void update() {
-
+    public void update(List listaM) {
         if (selected.getIdNacionalidad() == null) {
             this.selected.setIdProvinciaNacimiento(null);
             this.selected.setIdCantonNacimiento(null);
@@ -211,14 +216,16 @@ public class MatriculaController implements Serializable {
             this.selected.setIdCantonNacimiento(null);
         }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
-        listaNotas = ejbFacadeNotas.verificarNotasEstudiante(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNivelAcademico().getIdNivelAcademico(), selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
-        if (listaNotas.isEmpty()) {
-            for (Materia materiaList : selected.getIdNivelAcademico().getMateriaList()) {
-                crearNotasEstudiante(materiaList.getIdMateria());
+        listaNotas=null;
+            for (int i = 0; i < listaM.size(); i++) {
+              listaNotas = ejbFacadeNotas.verificarNotasEstudiante2(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNivelAcademico().getIdNivelAcademico(),(Integer) listaM.get(i)); 
+              if(listaNotas.isEmpty()){
+                  crearNotasEstudiante((Integer) listaM.get(i));  
+              }else{
+                  System.out.println("Nota ya registrada.");
+              }
             }
-        }
     }
-
     public void destroy() {
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("MatriculaDeleted"));
         if (!JsfUtil.isValidationFailed()) {

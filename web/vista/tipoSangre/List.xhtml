@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TipoSangreListForm">
-                <p class="title_modulos">#{bundle.ListTipoSangreTitle}</p>
+                <p class="title_modulos">TIPOS DE SANGRE</p>
                     <p:dataTable id="datalist" value="#{tipoSangreController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tipoSangreController.selected}"
                                  paginator="true"
@@ -30,7 +30,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                        
-                        <p:column>
+                        <p:column sortBy="#{item.tipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoSangreTitle_tipo}"/>
                             </f:facet>

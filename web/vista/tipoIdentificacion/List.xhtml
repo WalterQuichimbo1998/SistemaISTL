@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TipoIdentificacionListForm">
-                <p class="title_modulos">#{bundle.ListTipoIdentificacionTitle}</p>
+                <p class="title_modulos">TIPOS DE IDENTIFICACIÓN</p>
                     <p:dataTable id="datalist" value="#{tipoIdentificacionController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tipoIdentificacionController.selected}"
                                  paginator="true"
@@ -30,13 +30,13 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.tipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoIdentificacionTitle_tipo}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.descripcion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoIdentificacionTitle_descripcion}"/>
                             </f:facet>

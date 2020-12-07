@@ -19,19 +19,18 @@ and open the template in the editor.
                     <h:panelGrid columns="1" style="margin: auto; ">
                         <h:panelGroup style="display: inline-block; text-align: center; "> 
 
-                            <p class="title_datosPersonales">DATOS PERSONALES</p>
-
+                            <h2 style="color: #454545;padding: 10px 20px;margin-bottom: 20px;font-family: Arial;">MIS DATOS PERSONALES</h2>
+                            <br/>
                             <div class="botones2">
-                                <div style="width: 140px;height: 140px;margin: auto;" id="imagen">
+                                <div style="width: 150px;height: 180px;margin: auto;" id="imagen">
                                     <p:graphicImage name="#{datosPersonalesController.selected.foto}" 
-                                                    style="width: 140px;height: 140px; border-radius: 136px;object-fit:cover;object-position:center center;margin: auto;box-shadow: 0px 0px 1px 1px #1976d3;position:relative;" >
-                                        <p:commandLink styleClass="foto" title="Cambiar Foto"
-                                                       oncomplete="PF('form_imagen').show()"
-                                                       update=":datos,:datos2">
-                                            <img src="#{request.contextPath}/resources/images/camara.png" 
-                                                 style="width: 28px;height: 28px;background: #fff;padding: 6px 6px;border-radius: 20px;"/>
-                                        </p:commandLink>
+                                                    style="width: 150px;height: 180px; border-radius: 10px;object-fit:cover;object-position:center center;margin: auto;box-shadow: 0px 0px 1px 1px #1976d3;position:relative;" >
+
                                     </p:graphicImage>
+                                    <p:commandLink title="Cambiar Foto" value="Cambiar Foto" style="text-decoration: none;color: #186bbe;"
+                                                   oncomplete="PF('form_imagen').show()"
+                                                   update=":datos,:datos2">
+                                    </p:commandLink>
                                 </div>
                             </div>
                             <div class="botones2">
@@ -43,13 +42,12 @@ and open the template in the editor.
                                 <p:outputLabel  class="labelDatosPersonales" value="Apellidos" for="apellidos" />
                                 <p:inputText styleClass="camposDeDatos" id="apellidos" value="#{datosPersonalesController.selected.apellidos}" title="#{bundle.EditDatosPersonalesTitle_apellidos}" 
                                              maxlength="20" required="true" requiredMessage="Ingrese su apellido"/>
-                            </div>
-
-                            <div class="botones2">
+                                <br id="espa"/>
                                 <p:outputLabel class="labelDatosPersonales" value="Cédula" for="numIdentificacion" />
                                 <p:inputText styleClass="camposDeDatos" id="numIdentificacion" value="#{datosPersonalesController.selected.numIdentificacion}" title="#{bundle.EditDatosPersonalesTitle_numIdentificacion}" 
                                              maxlength="10" required="true" requiredMessage="Ingrese su cédula"/>
                             </div>
+
                             <div class="botones2">
                                 <p:outputLabel class="labelDatosPersonales" value="Sexo" for="sexo" />
                                 <h:selectOneMenu id="sexo" class="txtC" value = "#{datosPersonalesController.selected.sexo}" required="true" requiredMessage="seleccione un sexo"> 

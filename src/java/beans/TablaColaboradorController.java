@@ -1,9 +1,9 @@
 package beans;
 
-import modelo.TituloCarrera;
+import modelo.TablaColaborador;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
-import dao.TituloCarreraFacade;
+import dao.TablaColaboradorFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -14,43 +14,40 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import modelo.PeriodoAcademico;
+import modelo.TablaInvestigacion;
 
-@Named("tituloCarreraController")
+@Named("tablaColaboradorController")
 @SessionScoped
-public class TituloCarreraController implements Serializable {
+public class TablaColaboradorController implements Serializable {
 
     @EJB
-    private dao.TituloCarreraFacade ejbFacade;
-  
-    private List<TituloCarrera> items = null;
-    private List<TituloCarrera> lista = null;
-    private TituloCarrera selected;
-    private PeriodoAcademico selectedP;
+    private dao.TablaColaboradorFacade ejbFacade;
+    private List<TablaColaborador> items = null;
+    private TablaColaborador selected;
+    private TablaInvestigacion selectedT;
 
-    public TituloCarreraController() {
+    public TablaColaboradorController() {
     }
 
-    public TituloCarrera getSelected() {
+    public TablaColaborador getSelected() {
         return selected;
     }
 
-    public void setSelected(TituloCarrera selected) {
+    public void setSelected(TablaColaborador selected) {
         this.selected = selected;
     }
 
-    public PeriodoAcademico getSelectedP() {
-        return selectedP;
+    public TablaInvestigacion getSelectedT() {
+        return selectedT;
     }
 
-    public void setSelectedP(PeriodoAcademico selectedP) {
-        this.selectedP = selectedP;
-        System.out.println("llego: " +this.selectedP.getIdPeriodoAcademico());
-        lista=null;
+    public void setSelectedT(TablaInvestigacion selectedT) {
+        this.selectedT = selectedT;
     }
     
 
@@ -60,52 +57,47 @@ public class TituloCarreraController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private TituloCarreraFacade getFacade() {
+    private TablaColaboradorFacade getFacade() {
         return ejbFacade;
     }
 
-    public TituloCarrera prepareCreate() {
-        selected = new TituloCarrera();
+    public TablaColaborador prepareCreate() {
+        selected = new TablaColaborador();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("TituloCarreraCreated"));
+        if(ejbFacade.verificarColaborador(selectedT.getIdTablaInvestigacion(), selected.getIdDatosPersonales().getIdDatosPersonales())==null){
+        this.selected.setIdTablaInvestigacion(selectedT);
+        persist(PersistAction.CREATE, "Colaborador Agregado con éxito.");
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
+        }
+        }else{
+               FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Colaborador ya está agregado.", ""));
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("TituloCarreraUpdated"));
+        persist(PersistAction.UPDATE, "Colaborador Actualizado con éxito.");
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("TituloCarreraDeleted"));
+        persist(PersistAction.DELETE, "Colaborador Eliminado con éxito.");
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<TituloCarrera> getItems() {
+    public List<TablaColaborador> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
         return items;
     }
 
-    public List<TituloCarrera> getLista() {
-        lista=null;
-        if (lista == null) {
-            if(selectedP!=null){
-            lista = getFacade().listaTitulos(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(),selectedP.getIdPeriodoAcademico());
-        }}
-        return lista;
-    }
-    
-    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -135,29 +127,29 @@ public class TituloCarreraController implements Serializable {
         }
     }
 
-    public TituloCarrera getTituloCarrera(java.lang.Integer id) {
+    public TablaColaborador getTablaColaborador(java.lang.Integer id) {
         return getFacade().find(id);
     }
 
-    public List<TituloCarrera> getItemsAvailableSelectMany() {
+    public List<TablaColaborador> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<TituloCarrera> getItemsAvailableSelectOne() {
+    public List<TablaColaborador> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = TituloCarrera.class)
-    public static class TituloCarreraControllerConverter implements Converter {
+    @FacesConverter(forClass = TablaColaborador.class)
+    public static class TablaColaboradorControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            TituloCarreraController controller = (TituloCarreraController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "tituloCarreraController");
-            return controller.getTituloCarrera(getKey(value));
+            TablaColaboradorController controller = (TablaColaboradorController) facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "tablaColaboradorController");
+            return controller.getTablaColaborador(getKey(value));
         }
 
         java.lang.Integer getKey(String value) {
@@ -177,11 +169,11 @@ public class TituloCarreraController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof TituloCarrera) {
-                TituloCarrera o = (TituloCarrera) object;
-                return getStringKey(o.getIdTituloCarrera());
+            if (object instanceof TablaColaborador) {
+                TablaColaborador o = (TablaColaborador) object;
+                return getStringKey(o.getIdTablaColaborador());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TituloCarrera.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), TablaColaborador.class.getName()});
                 return null;
             }
         }

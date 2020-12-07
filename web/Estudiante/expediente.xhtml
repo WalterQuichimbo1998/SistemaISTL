@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./templateEstudiante.xhtml">
+
+        <ui:define name="body">
+            <div class="boxContainerData" style="width: 900px;padding: 3px 10px;">
+                <h:form id="MateriaEditForm">
+                    <h:panelGrid columns="1" style="margin: auto; ">
+                        <h:panelGroup style="display: inline-block; text-align: center; "> 
+                            <h2 style="color: #454545;padding: 10px 20px;margin-bottom: 20px;font-family: Arial;">MI EXPEDIENTE DE NOTAS</h2>
+                            <ui:repeat value="#{datosPersonalesController.selected.matriculaList}" var="item">
+
+                                <p:column>
+                                    <h3 style="font-family: Arial;">#{item.idTituloCarrera.nombreTitulo}</h3>
+                                    <ui:repeat value="#{item.idTituloCarrera.nivelAcademicoList}" var="item2">
+                                        <p:column>
+                                            <br/>
+                                            <p:dataTable value="#{notasController.listaNotasExpediente(item2.idNivelAcademico)}" var="item3" 
+                                                         rows="10"
+                                                         emptyMessage="No se encontraron resultados."
+                                                         sortOrder="descending"
+                                                         >
+                                                <f:facet name="header">
+                                                    <h3 style="padding: 8px 2px;">#{item2.nivelAcademico}</h3>
+                                                    
+                                                </f:facet>
+                                                <p:column headerText="Materia" sortBy="#{item3.idMateria.materia}">
+                                                    <p:outputLabel value="#{item3.idMateria.materia}"/>
+                                                    
+                                                </p:column>
+                                                <p:column headerText="Parcial 1" sortBy="#{item3.parcialUno}" style="width: 90px;">
+                                                    <p:outputLabel value="#{item3.parcialUno}"/>
+                                                </p:column>
+                                                <p:column headerText="Parcial 2" sortBy="#{item3.parcialDos}" style="width: 90px;">
+                                                    <p:outputLabel value="#{item3.parcialDos}"/>
+                                                </p:column>
+                                                <p:column headerText="Nota Supletorio" sortBy="#{item3.notaSupletorio}" style="width: 90px;">
+                                                    <p:outputLabel value="#{item3.notaSupletorio}"/>
+                                                </p:column>
+                                                <p:column headerText="Nota Final" sortBy="#{item3.notaFinal}" style="width: 90px;">
+                                                    <p:outputLabel value="#{item3.notaFinal}"/>
+                                                </p:column>
+                                                <p:column headerText="Estado" sortBy="#{item3.idMateria.materia}" style="width: 90px;">
+                                                    <p:outputLabel value="#{item3.notaFinal==null?'No Aprobado':item3.notaFinal lt 7 ? 'No Aprobado' : 'Aprobado'}"
+                                                                   style="display: block; color: #{item3.notaFinal==null? 'red':item3.notaFinal lt 7 ? 'red' : 'green'}" />
+                                                </p:column>
+                                            </p:dataTable>
+                                        </p:column>
+                                    </ui:repeat>
+                                </p:column>
+                            </ui:repeat>
+
+
+
+                        </h:panelGroup>
+                    </h:panelGrid>
+
+                </h:form>
+
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+</html>

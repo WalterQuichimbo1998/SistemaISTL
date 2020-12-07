@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="TablaColaboradorCreateDlg" widgetVar="TablaColaboradorCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Colaborador"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="TablaColaboradorCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{tablaColaboradorController.selected != null}">
+                        <p:outputLabel value="Persona: " for="idDatosPersonales" />
+                        <p:selectOneMenu id="idDatosPersonales" value="#{tablaColaboradorController.selected.idDatosPersonales}" required="true" requiredMessage="Selecione una persona"
+                                         style="width: 240px !important;" effect="fade" height="160" filter="true" filterMatchMode="contains">
+                            <f:selectItem itemLabel="-Seleccione-"/>
+                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                                           var="idDatosPersonalesItem"
+                                           itemValue="#{idDatosPersonalesItem}"/>
+                        </p:selectOneMenu>
+                       
+                    </p:panelGrid> 
+                    <p:commandButton styleClass="btn_g" actionListener="#{tablaColaboradorController.create}" value="#{bundle.Save}" update="display,:TablaInvestigacionListForm:datalist,:growl" oncomplete="handleSubmit(args,'TablaColaboradorCreateDialog');"/>
+                    <p:commandButton styleClass="btn_s" immediate="true" value="#{bundle.Cancel}" oncomplete="PF('TablaColaboradorCreateDialog').hide();"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

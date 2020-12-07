@@ -5,7 +5,6 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/Profesor/templateProfesor.xhtml">
@@ -22,77 +21,70 @@
             <p:panel>
                 <h:form id="NotasListForm" rendered="#{notasController.selectedN!=null}">
                     <br/>
-                    <h2 style="font-family: Arial;color: #024959;">#{notasController.selectedN.idTituloCarrera.nombreTitulo}</h2>
-                    <br/>
-
-
-                    <ui:repeat value="#{nivelAcademicoController.listaD}" var="car" >
-                        <h:commandLink style="text-decoration: none;color:#454545;display: inline-block;margin: 2px 4px; padding: 2px 4px;font-size: 16px !important;" class="btn-link" value="#{car.nivelAcademico}"
-                                       actionListener="#{notasController.setSelectedN(car)}" action="/Profesor/notas/ListaEstudiantes?faces-redirect=true">
-                            <f:ajax execute="@this" render="@all"/>
-                        </h:commandLink>
-                    </ui:repeat><br/><br/>
-                    <h2 style="font-family: Arial;color: #1976d3;font-weight: normal;"><strong style="color: #454545;">Ciclo: </strong> #{notasController.selectedN.nivelAcademico}</h2>
-                    <br/>
-
-                    <center>
-                        <h2 style="color: #454545;font-family: Arial;margin-bottom: 10px;">Notas</h2>
-                        <div style="width: 260px;margin: auto;"> 
-                            <p:outputLabel value="Seleccione la materia" for="idMateria" style="font-size: 15px !important;"/>
-                            <p:selectOneMenu id="idMateria" value="#{notasController.selectedMa}" effect="fade">
-                                <f:selectItem itemLabel="-Seleccione-"/>
-                                <f:selectItems value="#{notasController.itemsMateriaDistributivo}"
-                                               var="idMateriaItem"
-                                               itemValue="#{idMateriaItem.idMateria}"
-                                               itemLabel="#{idMateriaItem.idMateria.materia}"/>
-                                <f:ajax execute="@this" render="@all"/>
-                            </p:selectOneMenu>
-                        </div>
-                    </center>
-                    <br/>
-                    <c:if test="#{notasController.selectedMa!=null}">
-                        <h2>#{notasController.selectedMa.materia}</h2>
+                    <div style="width: 900px;margin: auto;background: #f9f9f9;padding: 5px 20px;">
                         <br/>
-                    </c:if>
-                    <p:dataTable id="datalist" value="#{notasController.listaNotasEstudiantesCiclo}" var="item" styleClass="tabla" style="width: 900px;margin: auto;"
-                                
-                                 paginator="true" 
-                                 rows="15"
-                                 rowsPerPageTemplate="15,20,25"
-                                 paginatorPosition="bottom"
-                                 emptyMessage="No se encontraron datos. Seleccione la materia."
-                                 sortBy="#{item.idNotas}"
-                                 sortOrder="ascending"
-                                 >
+                        <h1 style="font-family: Arial;color: #024959;">#{notasController.selectedN.idTituloCarrera.nombreTitulo}</h1>
+                        <br/>
+                        <h2 style="font-family: Arial;color: #1976d3;font-weight: normal;"><strong style="color: #454545;">Notas de: </strong> #{notasController.selectedN.nivelAcademico}<a style="margin-left: 7px;margin-right: 7px;">-</a><strong style="color: #454545;">Período: </strong>#{notasController.selectedPeriodo.nombre}</h2>
+                        <br/>
+                        <center>
 
-                        <p:column sortBy="#{item.idDatosPersonales.apellidos}" headerText="Estudiantes">
-                            <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
-                        </p:column> 
-                        <p:column headerText="Parcial 1" style="width: 80px;" sortBy="#{item.parcialUno}">
-                            <p:outputLabel value="#{item.parcialUno}"/>
-                        </p:column>
-                        <p:column headerText="Parcial 2" style="width: 80px;" sortBy="#{item.parcialDos}">
-                            <p:outputLabel value="#{item.parcialDos}"/>
-                        </p:column>
-                        <p:column headerText="Supletorio" style="width: 80px;" sortBy="#{item.notaSupletorio}">
-                            <p:outputLabel value="#{item.notaSupletorio}" style="display: block; color: #{item.notaSupletorio !=null ? '#A1B573' : null}" />
-                        </p:column>
-                        <p:column headerText="Nota Final" style="width: 80px;" sortBy="#{item.notaFinal}">
-                            <p:outputLabel value="#{item.notaFinal}" style="display: block; color: #{item.notaFinal lt 7 ? 'red' : null}" />
-                        </p:column>
+                            <div style="width: 260px;margin: auto;"> 
+                                <p:outputLabel value="Seleccione la materia" for="idMateria" style="font-size: 15px !important;"/>
+                                <p:selectOneMenu id="idMateria" value="#{notasController.selectedMa}" effect="fade">
+                                    <f:selectItem itemLabel="-Seleccione-"/>
+                                    <f:selectItems value="#{notasController.itemsMateriaDistributivo}"
+                                                   var="idMateriaItem"
+                                                   itemValue="#{idMateriaItem.idMateria}"
+                                                   itemLabel="#{idMateriaItem.idMateria.materia}"/>
+                                    <f:ajax execute="@this" render="@all"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </center>
+                        <br/>
+                        <c:if test="#{notasController.selectedMa!=null}">
+                            <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Materia: </strong>#{notasController.selectedMa.materia}</h2>
+                        </c:if>
+                        <p:dataTable id="datalist" value="#{notasController.listaNotasEstudiantesCiclo}" var="item" styleClass="tabla"
 
-                        <p:column style="width: 100px;" sortBy="#{item.idNotas}">
-                            <f:facet name="header">
-                                <h:outputText value="Calificar"/>
-                            </f:facet>
-                            <p:commandButton id="editButton"  styleClass="btn-editar" icon="ui-icon-pencil" actionListener="#{notasController.setSelected(item)}" 
-                                             update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" title="Editar nota">
-                                <f:actionListener binding="#{notasController.setV(true)}"/>
-                            </p:commandButton>
+                                     paginator="true" 
+                                     rows="15"
+                                     rowsPerPageTemplate="15,20,25"
+                                     paginatorPosition="bottom"
+                                     emptyMessage="No se encontraron datos. Seleccione la materia."
+                                     sortBy="#{item.idNotas}"
+                                     sortOrder="ascending"
+                                     >
 
-                        </p:column>
+                            <p:column sortBy="#{item.idDatosPersonales.apellidos}" headerText="Estudiantes">
+                                <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
+                            </p:column> 
+                            <p:column headerText="Parcial 1" style="width: 80px;" sortBy="#{item.parcialUno}">
+                                <p:outputLabel value="#{item.parcialUno}"/>
+                            </p:column>
+                            <p:column headerText="Parcial 2" style="width: 80px;" sortBy="#{item.parcialDos}">
+                                <p:outputLabel value="#{item.parcialDos}"/>
+                            </p:column>
+                            <p:column headerText="Supletorio" style="width: 80px;" sortBy="#{item.notaSupletorio}">
+                                <p:outputLabel value="#{item.notaSupletorio}" style="display: block; color: #{item.notaSupletorio !=null ? '#A1B573' : null}" />
+                            </p:column>
+                            <p:column headerText="Nota Final" style="width: 80px;" sortBy="#{item.notaFinal}">
+                                <p:outputLabel value="#{item.notaFinal}" style="display: block; color: #{item.notaFinal lt 7 ? 'red' : null}" />
+                            </p:column>
 
-                    </p:dataTable>
+                            <p:column style="width: 100px;" sortBy="#{item.idNotas}">
+                                <f:facet name="header">
+                                    <h:outputText value="Calificar"/>
+                                </f:facet>
+                                <p:commandButton id="editButton"  styleClass="btn-editar" icon="ui-icon-pencil" actionListener="#{notasController.setSelected(item)}" 
+                                                 update=":NotasEditForm" oncomplete="PF('NotasEditDialog').show()" title="Editar nota">
+                                    <f:actionListener binding="#{notasController.setV(true)}"/>
+                                </p:commandButton>
+
+                            </p:column>
+
+                        </p:dataTable>
+                    </div>
                 </h:form>
             </p:panel>
             <ui:include src="Create.xhtml"/>

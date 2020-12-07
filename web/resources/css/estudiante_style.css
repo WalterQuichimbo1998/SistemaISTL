@@ -60,6 +60,20 @@ body{
     color:#007bff !important; 
     box-shadow:none;
 }
+.salir.ui-button{
+    background:#e25555 !important; 
+    color:#fff !important;
+    box-shadow: none;
+    text-shadow:none;
+    outline: none;
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
+}
+.salir:hover{
+      box-shadow: 0px 0px 1px 1px #454545;
+    -webkit-box-shadow: 0px 0px 1px 1px #454545;
+}
+
 .box_data_panel{
     text-align: center;
 }
@@ -169,8 +183,8 @@ body{
     background: #fff;
     margin: auto;
     transition: all .3s ease;
-    box-shadow: 0px 0px 1px 1px #ccc;
-    -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+/*    box-shadow: 0px 0px 1px 1px #ccc;
+    -webkit-box-shadow: 0px 0px 1px 1px #ccc;*/
     padding: 10px 5px;
 
 }
@@ -273,6 +287,7 @@ margin: 4px;
     font-family: Arial;
     text-align: left;
 }
+
 .camposDeDatos.ui-inputfield{
     width: 90%;
     margin: auto; 
@@ -283,17 +298,17 @@ margin: 4px;
     font-size: 17px !important;
     box-shadow: none;
     border:none;
-    border-bottom: 2px solid #eee;
     border-radius: 0px;
-    color:#4f8ff4;
+    color:#186bbe;
     transition: all .3s ease;
+    background: #f2f2f2;
 }
 .camposDeDatos:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .camposDeDatos:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 }
 .txtC{
     width: 94%;
@@ -302,19 +317,19 @@ margin: 4px;
     font-size: 18px;  
     outline: none;
     border:none;
-    color:#4f8ff4;
+    color:#186bbe;
     border-radius: 0px;
     margin-bottom: 10px;
-    border-bottom: 2px solid #eee;
+    background: #f2f2f2;
     transition: all .3s ease;
 }
 
 .txtC:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .txtC:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 }
 .calendarClass .ui-inputfield{
     width: 90%;
@@ -323,16 +338,16 @@ margin: 4px;
     box-shadow: none;
     font-size: 18px !important;
     border:none;
-    color:#4f8ff4;
-    border-bottom: 2px solid #eee;
+    color:#186bbe;
+    background: #f2f2f2;
     transition: all .3s ease;
 }
 .calendarClass .ui-inputfield:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .calendarClass .ui-inputfield:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 
 }
 .ui-fileupload-buttonbar {
@@ -350,7 +365,7 @@ margin: 4px;
     width:140px;
     height: 36px;
     margin: auto;
-    background: #57a3f4; 
+    background: #64cdad; 
     color:#454545;
     font-size: 16px !important;
     font-weight: bold;
@@ -580,14 +595,16 @@ margin: 4px;
     display: none;
 }
 .ui-datatable .ui-sortable-column{
-    background:  #5fcaf2;
-    color: #000;
-    box-shadow:none !important;
+    background:  #0f96d9;
+    border:1px solid #0f96d9;
+    box-shadow:none;
     font-weight: normal;
-    outline: none !important;
-    text-decoration: none !important;
+    outline: none;
     border: none;
+    border-radius: 0px 0px !important;
+    color: #000;
 }
+
 
 .ui-datatable thead tr {
     height: 30px;   

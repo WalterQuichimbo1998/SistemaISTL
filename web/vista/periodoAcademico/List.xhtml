@@ -30,32 +30,32 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
 
 
-                        <p:column>
+                        <p:column sortBy="#{item.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoAcademicoTitle_nombre}"/>
                             </f:facet>
                             <h:outputText value="#{item.nombre}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.descripcion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoAcademicoTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.modalidad}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPeriodoAcademicoTitle_modalidad}"/>
                             </f:facet>
                             <h:outputText value="#{item.modalidad==1?'Presencial':item.modalidad==2?'Semipresencial':'Dual'}"/>
                         </p:column>
 
-                        <p:column>
+                        <p:column sortBy="#{item.añoPeriodoAcademico}">
                             <f:facet name="header">
                                 <h:outputText value="Periodo Academico"/>
                             </f:facet>
                             <h:outputText value="#{item.añoPeriodoAcademico}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.idPeriodoAcademico}">
                             <f:facet name="header">
                                 <h:outputText value="Estado"/>
                             </f:facet>

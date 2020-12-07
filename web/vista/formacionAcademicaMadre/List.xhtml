@@ -30,7 +30,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.nivel}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListFormacionAcademicaMadreTitle_nivel}"/>
                             </f:facet>

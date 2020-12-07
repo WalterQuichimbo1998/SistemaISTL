@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TipoTiempoListForm">
-                <p class="title_modulos">#{bundle.ListTipoTiempoTitle}</p>
+                <p class="title_modulos">TIPOS DE TIEMPO</p>
                     <p:dataTable id="datalist" value="#{tipoTiempoController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tipoTiempoController.selected}"
                                  paginator="true"
@@ -30,7 +30,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.tipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoTiempoTitle_tipo}"/>
                             </f:facet>

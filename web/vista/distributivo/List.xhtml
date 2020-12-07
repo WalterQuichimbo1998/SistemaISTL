@@ -32,7 +32,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
 
-                        <p:column>
+                        <p:column sortBy="#{item.fechaVinculacion}">
                             <f:facet name="header">
                                 <h:outputText value="Fecha vinculación"/>
                             </f:facet>
@@ -40,35 +40,32 @@
                                 <f:convertDateTime pattern="dd/MM/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.idDatosPersonales.nombres}">
                             <f:facet name="header">
                                 <h:outputText value="Docente"/>
                             </f:facet>
                             <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nroHorasActividasdesDocencia}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDistributivoTitle_nroHorasActividasdesDocencia}"/>
                             </f:facet>
                             <h:outputText value="#{item.nroHorasActividasdesDocencia}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.nroHorasSemanalGestionAcademica}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDistributivoTitle_nroHorasSemanalGestionAcademica}"/>
                             </f:facet>
                             <h:outputText value="#{item.nroHorasSemanalGestionAcademica}"/>
                         </p:column>
 
-                        <p:column>
+                        <p:column sortBy="#{item.numeroDeSemanas}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDistributivoTitle_numeroDeSemanas}"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroDeSemanas}"/>
                         </p:column>
-
-
-
-                        <p:column>
+                        <p:column sortBy="#{item.idJornadaAcademica.idJornadaAcademica}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDistributivoTitle_idJornadaAcademica}"/>
                             </f:facet>
@@ -76,7 +73,7 @@
                         </p:column>
 
 
-                        <p:column>
+                        <p:column sortBy="#{item.idPeriodoAcademicoSemestre.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="Periodo Académico"/>
                             </f:facet>
@@ -84,7 +81,7 @@
                         </p:column>
 
 
-                        <p:column>
+                        <p:column sortBy="#{item.idDistributivo}">
                             <f:facet name="header">
                                 <h:outputText value="Materias"/>
                             </f:facet>

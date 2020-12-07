@@ -53,7 +53,7 @@
                         <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" 
                                          required="true" requiredMessage="Seleccione el periódo académico">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{periodoAcademicoController.lista}"
+                            <f:selectItems value="#{periodoAcademicoController.items}"
                                            var="idPeriodoAcademicoItem"
                                            itemValue="#{idPeriodoAcademicoItem}"/>
 

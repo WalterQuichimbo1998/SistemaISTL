@@ -20,7 +20,7 @@
                     <h2 style="font-family: Arial;font-weight: normal;color:#0099a5; ">#{distributivoMateriaController.selectedD.idDatosPersonales.nombres} #{distributivoMateriaController.selectedD.idDatosPersonales.apellidos}</h2>
                     <br/>
                     <p:dataTable id="datalist" value="#{distributivoMateriaController.items}" var="item"
-                                 selectionMode="single" selection="#{distributivoMateriaController.selected}" styleClass="tabla"
+                                 selectionMode="single" selection="#{distributivoMateriaController.selected}" styleClass="tabla" style="width: 1100px;margin: auto;"
                                  paginator="true"
                                  rowKey="#{item.idDistributivoMateria}"
                                  rows="10"
@@ -40,13 +40,13 @@
                             </f:facet>
                             <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idNivelAcademico.nivelAcademico}">
+                        <p:column sortBy="#{item.idNivelAcademico.nivelAcademico}" style="width: 140px;">
                             <f:facet name="header">
                                 <h:outputText value="Ciclo"/>
                             </f:facet>
                             <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idMateria.materia}">
+                        <p:column sortBy="#{item.idMateria.materia}" style="width: 340px;">
                             <f:facet name="header">
                                 <h:outputText value="Materia"/>
                             </f:facet>

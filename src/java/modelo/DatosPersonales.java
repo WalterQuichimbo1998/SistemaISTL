@@ -117,6 +117,8 @@ public class DatosPersonales implements Serializable {
     private List<PerfilAcademico> perfilAcademicoList;
      @OneToMany(mappedBy = "idDatosPersonales")
     private List<MatriculaHistorial> matriculaHistorialList;
+     @OneToMany(mappedBy = "idDatosPersonales")
+    private List<TablaColaborador> tablaColaboradorList;
 
     public DatosPersonales() {
     }
@@ -331,7 +333,14 @@ public class DatosPersonales implements Serializable {
     public void setPerfilAcademicoList(List<PerfilAcademico> perfilAcademicoList) {
         this.perfilAcademicoList = perfilAcademicoList;
     }
-    
+     @XmlTransient
+    public List<TablaColaborador> getTablaColaboradorList() {
+        return tablaColaboradorList;
+    }
+
+    public void setTablaColaboradorList(List<TablaColaborador> tablaColaboradorList) {
+        this.tablaColaboradorList = tablaColaboradorList;
+    }
 
     @Override
     public int hashCode() {

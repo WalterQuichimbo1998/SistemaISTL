@@ -13,7 +13,9 @@ and open the template in the editor.
 }
 body{
     background-color: #E8F0F2;
+    height: 100%;
 }
+
 .cabecera-barra{
     width: 100%;
     background-color: #e7e7e7;
@@ -61,6 +63,20 @@ body{
     color:#007bff !important; 
     box-shadow:none;
 }
+.salir.ui-button{
+    background:#e25555 !important; 
+    color:#fff !important;
+    box-shadow: none;
+    text-shadow:none;
+    outline: none;
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
+}
+.salir:hover{
+      box-shadow: 0px 0px 1px 1px #454545;
+    -webkit-box-shadow: 0px 0px 1px 1px #454545;
+}
+
 .box_data_panel{
     text-align: center;
 }
@@ -237,17 +253,17 @@ body{
     font-size: 17px !important;
     box-shadow: none;
     border:none;
-    border-bottom: 2px solid #eee;
     border-radius: 0px;
-    color:#4f8ff4;
+    color:#186bbe;
     transition: all .3s ease;
+    background: #f2f2f2;
 }
 .camposDeDatos:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .camposDeDatos:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 }
 .txtC{
     width: 94%;
@@ -256,19 +272,19 @@ body{
     font-size: 18px;  
     outline: none;
     border:none;
-    color:#4f8ff4;
+    color:#186bbe;
     border-radius: 0px;
     margin-bottom: 10px;
-    border-bottom: 2px solid #eee;
+    background: #f2f2f2;
     transition: all .3s ease;
 }
 
 .txtC:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .txtC:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 }
 .calendarClass .ui-inputfield{
     width: 90%;
@@ -277,16 +293,16 @@ body{
     box-shadow: none;
     font-size: 18px !important;
     border:none;
-    color:#4f8ff4;
-    border-bottom: 2px solid #eee;
+    color:#186bbe;
+    background: #f2f2f2;
     transition: all .3s ease;
 }
 .calendarClass .ui-inputfield:hover{
-    border-bottom: 2px solid #4f8ff4;
+    background: #ffffcc;
     transform: translateY(-3px);
 }
 .calendarClass .ui-inputfield:focus{
-    border-bottom: 2px solid #1976d3;
+    background: #ffffcc;
 
 }
 .ui-fileupload-buttonbar {
@@ -304,7 +320,7 @@ body{
     width:140px;
     height: 36px;
     margin: auto;
-    background: #57a3f4; 
+    background: #64cdad; 
     color:#454545;
     font-size: 16px !important;
     font-weight: bold;
@@ -322,6 +338,7 @@ body{
     -webkit-box-shadow: 0px 0px 1px 1px #454545;
     cursor: pointer;
 }
+
 
 .mesageEs{
     color: #1976D3;
@@ -484,8 +501,8 @@ body{
     display: none;
 }
 .ui-datatable .ui-sortable-column{
-    background:  #9ecdfb;
-    border:1px solid #9ecdfb;
+    background:  #0f96d9;
+    border:1px solid #0f96d9;
     box-shadow:none;
     font-weight: normal;
     outline: none;

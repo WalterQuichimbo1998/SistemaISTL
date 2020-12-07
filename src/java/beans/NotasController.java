@@ -7,6 +7,7 @@ import dao.DistributivoMateriaFacade;
 import dao.MateriaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
+import dao.TituloCarreraFacade;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -27,6 +28,8 @@ import modelo.DatosPersonales;
 import modelo.DistributivoMateria;
 import modelo.Materia;
 import modelo.NivelAcademico;
+import modelo.PeriodoAcademico;
+import modelo.TituloCarrera;
 
 @Named("notasController")
 @SessionScoped
@@ -38,29 +41,37 @@ public class NotasController implements Serializable {
     private List<Notas> lista = null;
     private List<Notas> listaN = null;
     private List<Notas> listaNotasEstu = null;
+    private List<Notas> listaExpedienteNotas = null;
     private List<Notas> listaNotasEstudiantesCiclo = null;
+    private List<TituloCarrera> listaTitulo = null;
+    private List<TituloCarrera> listaTituloDocente = null;
 
     @EJB
     private dao.DatosPersonalesFacade ejbFacadePer;
     private List<DatosPersonales> itemsEstudiantes = null;
     private List<DatosPersonales> listaEstu = null;
+    private List<NivelAcademico> listaNiveles = null;
+    private List<NivelAcademico> listaNivelesDocente = null;
     private Notas selected;
     private DatosPersonales selectedP;
     @EJB
     private MateriaFacade ejbFacadeMa;
     private List<Materia> itemsMateria = null;
-    
+
     @EJB
     private dao.MatriculaFacade ejbFacadeMatricula;
-    
+
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
+    @EJB
+    private TituloCarreraFacade ejbFacadeTitulo;
     @EJB
     private DistributivoMateriaFacade ejbFacadeD;
     private List<DistributivoMateria> itemsMateriaDistributivo = null;
 
     private NivelAcademico selectedN;
     private Materia selectedMa;
+    private PeriodoAcademico selectedPeriodo;
     private Boolean v;
 
     public NotasController() {
@@ -72,7 +83,7 @@ public class NotasController implements Serializable {
 
     public void setSelected(Notas selected) {
         this.selected = selected;
-   
+
         listaN = null;
 
     }
@@ -93,15 +104,24 @@ public class NotasController implements Serializable {
         this.v = v;
     }
 
+    public PeriodoAcademico getSelectedPeriodo() {
+        return selectedPeriodo;
+    }
+
+    public void setSelectedPeriodo(PeriodoAcademico selectedPeriodo) {
+        this.selectedPeriodo = selectedPeriodo;
+        listaTitulo=null;
+        
+    }
+
     public Materia getSelectedMa() {
         return selectedMa;
     }
 
     public void setSelectedMa(Materia selectedMa) {
         this.selectedMa = selectedMa;
-        listaNotasEstudiantesCiclo=null;
+        listaNotasEstudiantesCiclo = null;
     }
-    
 
     public void setSelectedP(DatosPersonales selectedP) {
         if (v == true) {
@@ -116,8 +136,8 @@ public class NotasController implements Serializable {
         this.selectedN = selectedN;
         listaN = null;
         listaEstu = null;
-        selectedMa=null;
-        listaNotasEstudiantesCiclo=null;
+        selectedMa = null;
+        listaNotasEstudiantesCiclo = null;
 
     }
 
@@ -156,7 +176,7 @@ public class NotasController implements Serializable {
         itemsMateriaDistributivo = null;
         if (itemsMateriaDistributivo == null) {
             itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico());
-    
+
         }
         return itemsMateriaDistributivo;
     }
@@ -164,7 +184,6 @@ public class NotasController implements Serializable {
     public void setItemsMateriaDistributivo(List<DistributivoMateria> itemsMateriaDistributivo) {
         this.itemsMateriaDistributivo = itemsMateriaDistributivo;
     }
-    
 
     public void setItemsMateria(List<Materia> itemsMateria) {
         this.itemsMateria = itemsMateria;
@@ -234,42 +253,42 @@ public class NotasController implements Serializable {
     }
 
     public void update() {
-            this.selected.setIdDatosPersonales(selected.getIdDatosPersonales());
-            this.selected.setIdNivelAcademico(selectedN);
-            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-            this.selected.setIdMateria(selectedMa);
-            Double nota = 0.0;
-            Double nota_suple = 0.0;
-            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-                nota = selected.getParcialUno();
-                nota = (nota / 2);
+        this.selected.setIdDatosPersonales(selected.getIdDatosPersonales());
+        this.selected.setIdNivelAcademico(selectedN);
+        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+        this.selected.setIdMateria(selectedMa);
+        Double nota = 0.0;
+        Double nota_suple = 0.0;
+        if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+            nota = selected.getParcialUno();
+            nota = (nota / 2);
+            nota = fijarNumero(nota, 2);
+
+        }
+        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+            nota = (selected.getParcialUno() + selected.getParcialDos());
+            nota = (nota / 2);
+            if (nota < 7) {
+                nota = (nota * 0.40);
                 nota = fijarNumero(nota, 2);
+            }
 
+        }
+        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+            nota = (selected.getParcialUno() + selected.getParcialDos());
+            nota = (nota / 2);
+            if (nota < 7) {
+                nota = (nota * 0.40);
+                nota_suple = (selected.getNotaSupletorio() * 0.60);
+                nota = (nota + nota_suple);
+                nota = fijarNumero(nota, 2);
+            } else {
+                this.selected.setNotaSupletorio(null);
             }
-            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-                nota = (selected.getParcialUno() + selected.getParcialDos());
-                nota = (nota / 2);
-                if (nota < 7) {
-                    nota = (nota * 0.40);
-                    nota = fijarNumero(nota, 2);
-                }
-
-            }
-            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-                nota = (selected.getParcialUno() + selected.getParcialDos());
-                nota = (nota / 2);
-                if (nota < 7) {
-                    nota = (nota * 0.40);
-                    nota_suple = (selected.getNotaSupletorio() * 0.60);
-                    nota = (nota + nota_suple);
-                    nota = fijarNumero(nota, 2);
-                } else {
-                    this.selected.setNotaSupletorio(null);
-                }
-            }
-            this.selected.setNotaFinal(nota);
-            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
-            listaN = null;
+        }
+        this.selected.setNotaFinal(nota);
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
+        listaN = null;
     }
 
     public void createAdmin() {
@@ -318,44 +337,41 @@ public class NotasController implements Serializable {
     }
 
     public void updateAdmin() {
-        if (getFacade().verificarNota2(selected.getIdMateria().getIdMateria(), selectedN.getIdNivelAcademico(), selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdNotas()) == null) {
-            this.selected.setIdNivelAcademico(selectedN);
-            this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
-            Double nota = 0.0;
-            Double nota_suple = 0.0;
-            if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
-                nota = selected.getParcialUno();
-                nota = (nota / 2);
-                nota = fijarNumero(nota, 2);
+        this.selected.setIdNivelAcademico(selectedN);
+        this.selected.setIdTituloCarrera(selectedN.getIdTituloCarrera());
+        Double nota = 0.0;
+        Double nota_suple = 0.0;
+        if (selected.getParcialUno() != null && selected.getParcialDos() == null && selected.getNotaSupletorio() == null) {
+            nota = selected.getParcialUno();
+            nota = (nota / 2);
+            nota = fijarNumero(nota, 2);
 
-            }
-            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
-                nota = (selected.getParcialUno() + selected.getParcialDos());
-                nota = (nota / 2);
-                if (nota < 7) {
-                    nota = (nota * 0.40);
-                    nota = fijarNumero(nota, 2);
-                }
-            }
-            if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
-                nota = (selected.getParcialUno() + selected.getParcialDos());
-                nota = (nota / 2);
-                if (nota < 7) {
-                    nota = (nota * 0.40);
-                    nota_suple = (selected.getNotaSupletorio() * 0.60);
-                    nota = (nota + nota_suple);
-                    nota = fijarNumero(nota, 2);
-                } else {
-                    this.selected.setNotaSupletorio(null);
-                }
-            }
-            this.selected.setNotaFinal(nota);
-            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
-            listaN = null;
-            listaEstu = null;
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe la nota.", ""));
         }
+        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() == null) {
+            nota = (selected.getParcialUno() + selected.getParcialDos());
+            nota = (nota / 2);
+            if (nota < 7) {
+                nota = (nota * 0.40);
+                nota = fijarNumero(nota, 2);
+            }
+        }
+        if (selected.getParcialUno() != null && selected.getParcialDos() != null && selected.getNotaSupletorio() != null) {
+            nota = (selected.getParcialUno() + selected.getParcialDos());
+            nota = (nota / 2);
+            if (nota < 7) {
+                nota = (nota * 0.40);
+                nota_suple = (selected.getNotaSupletorio() * 0.60);
+                nota = (nota + nota_suple);
+                nota = fijarNumero(nota, 2);
+            } else {
+                this.selected.setNotaSupletorio(null);
+            }
+        }
+        this.selected.setNotaFinal(nota);
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("NotasUpdated"));
+        listaN = null;
+        listaEstu = null;
+
     }
 
     public double fijarNumero(double numero, int digitos) {
@@ -382,6 +398,55 @@ public class NotasController implements Serializable {
         return items;
     }
 
+    public List<TituloCarrera> getListaTitulo() {
+        listaTitulo=null;
+        if (listaTitulo == null) {
+            if(selectedPeriodo!=null){
+            listaTitulo = ejbFacadeTitulo.findAll();
+            }
+        }
+        return listaTitulo;
+    }
+
+    public void setListaTitulo(List<TituloCarrera> listaTitulo) {
+        this.listaTitulo = listaTitulo;
+    }
+
+    public List<TituloCarrera> getListaTituloDocente() {
+        listaTituloDocente=null;
+        if (listaTituloDocente == null) {
+            if(selectedPeriodo!=null){
+            listaTituloDocente = ejbFacadeTitulo.listaTitulos(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(),selectedPeriodo.getIdPeriodoAcademico());
+        }}
+        return listaTituloDocente;
+    }
+
+    public void setListaTituloDocente(List<TituloCarrera> listaTituloDocente) {
+        this.listaTituloDocente = listaTituloDocente;
+    }
+    
+    
+     public List<NivelAcademico> listaNiveles(Integer id) {
+        listaNiveles=null;
+         if (listaNiveles == null) {
+                 listaNiveles = ejbFacadeNivel.listaNiveles(id);
+           }
+        return listaNiveles;
+    }
+
+    public List<NivelAcademico> listaNivelesDocente(Integer id) {
+        listaNivelesDocente=null;
+         if (listaNivelesDocente == null) {
+           if(selectedPeriodo!=null){
+                 listaNivelesDocente = ejbFacadeNivel.listaNivelesDistributivo(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(),id);
+           }
+        }
+        return listaNivelesDocente;
+    }
+
+    
+     
+
     public List<Notas> getListaN() {
         listaN = null;
         if (listaN == null) {
@@ -403,13 +468,14 @@ public class NotasController implements Serializable {
     }
 
     public List<Notas> getListaNotasEstudiantesCiclo() {
-        
-        
+
         if (listaNotasEstudiantesCiclo == null) {
-            if (selectedN != null) {
-            if (selectedMa != null) {
-             listaNotasEstudiantesCiclo = ejbFacade.listaNotasCiclo(selectedN.getIdNivelAcademico(), selectedMa.getIdMateria());
-            }
+            if (selectedPeriodo != null) {
+                if (selectedN != null) {
+                    if (selectedMa != null) {
+                        listaNotasEstudiantesCiclo = ejbFacade.listaNotasCiclo(selectedN.getIdNivelAcademico(), selectedMa.getIdMateria(), selectedPeriodo.getIdPeriodoAcademico()); 
+                    }
+                }
             }
         }
         return listaNotasEstudiantesCiclo;
@@ -418,12 +484,14 @@ public class NotasController implements Serializable {
     public void setListaNotasEstudiantesCiclo(List<Notas> listaNotasEstudiantesCiclo) {
         this.listaNotasEstudiantesCiclo = listaNotasEstudiantesCiclo;
     }
-    
-    
 
     public List<Notas> listaNotasEstudiante(Integer id) {
         return listaNotasEstu = ejbFacade.verificarNotas2(selectedN.getIdNivelAcademico(), id);
     }
+    public List<Notas> listaNotasExpediente(Integer id) {
+        return listaExpedienteNotas = ejbFacade.verificarNotas2(id,AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales());
+    }
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -505,5 +573,6 @@ public class NotasController implements Serializable {
         }
 
     }
+ 
 
 }

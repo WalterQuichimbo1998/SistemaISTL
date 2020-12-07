@@ -32,7 +32,7 @@ public class PreRequisitosMateriaFacade extends AbstractFacade<PreRequisitosMate
     }
 
     public List<PreRequisitosMateria> listaMateriasPreLista(Integer id1) {
-        Query q = em.createNativeQuery("SELECT pre_requisitos_materia.id_pre_requisitos_materia,pre_requisitos_materia.id_materia_pre,materia.id_materia,materia.materia FROM pre_requisitos_materia \n"
+        Query q = em.createNativeQuery("SELECT pre_requisitos_materia.id_pre_requisitos_materia,pre_requisitos_materia.id_materia_pre,pre_requisitos_materia.id_materia_co,materia.id_materia,materia.materia FROM pre_requisitos_materia \n"
                 + " LEFT JOIN materia ON materia.id_materia=pre_requisitos_materia.id_materia_pre\n"
                 + " WHERE pre_requisitos_materia.id_materia='" + id1 + "';", PreRequisitosMateria.class);
         List<PreRequisitosMateria> lista = q.getResultList();
@@ -48,5 +48,11 @@ public class PreRequisitosMateriaFacade extends AbstractFacade<PreRequisitosMate
         } catch (Exception e) {
         }
         return preRequisitosMateria;
+    }
+    public List<PreRequisitosMateria> verificarCo_requisitos(Integer id1) {
+        Query q = em.createNativeQuery("SELECT * FROM pre_requisitos_materia\n"
+                + " WHERE id_materia_co='" + id1 + "';", PreRequisitosMateria.class);
+        List<PreRequisitosMateria> lista = q.getResultList();
+        return lista;
     }
 }

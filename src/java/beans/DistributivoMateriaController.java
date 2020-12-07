@@ -24,6 +24,7 @@ import modelo.Distributivo;
 import modelo.DistributivoMateria;
 import modelo.Materia;
 import modelo.NivelAcademico;
+//import modelo.PeriodoAcademico;
 
 @Named("distributivoMateriaController")
 @SessionScoped
@@ -146,6 +147,7 @@ public class DistributivoMateriaController implements Serializable {
     public void setItemsMateria(List<Materia> itemsMateria) {
         this.itemsMateria = itemsMateria;
     }
+
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

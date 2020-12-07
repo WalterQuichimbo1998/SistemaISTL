@@ -23,13 +23,12 @@
                 <h2 style="font-family: Arial;color: #024959;">#{nivelAcademicoController.selectedT.nombreTitulo}</h2>
                 <p:panel>
                     <p class="title_modulos">Ciclos Académicos</p>
-                    <p:dataTable id="datalist" value="#{nivelAcademicoController.lista}" var="item" styleClass="tabla"
+                    <p:dataTable id="datalist" value="#{nivelAcademicoController.lista}" var="item" styleClass="tabla" style="width: 700px;margin: auto;"
                                  selectionMode="single" selection="#{nivelAcademicoController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idNivelAcademico}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
-                                 style="width: 500px;display: inline-block"
                                  paginatorPosition="bottom"
                                  emptyMessage="No se encontraron resultados."
                                  >
@@ -38,19 +37,25 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
 
-                        <p:column>
+                        <p:column sortBy="#{item.idNivelAcademico}">
                             <f:facet name="header">
                                 <h:outputText value="Ciclo"/>
                             </f:facet>
-                            <p:commandLink style="text-decoration: none;color:#000;font-size: 14px ! important;padding: 5px 7px !important;" value="#{item.nivelAcademico}" actionListener="#{materiaController.setSelectedN(item)}" action="/vista/materia/List?faces-redirect=true"/>
+                            <h:outputLabel value="#{item.nivelAcademico}"/>
                         </p:column>         
-                        <p:column>
+                        <p:column sortBy="#{item.nivelAcademico}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNivelAcademicoTitle_fechaDeRegistro}"/>
                             </f:facet>
                             <h:outputText value="#{item.fechaDeRegistro}">
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item.idNivelAcademico}" style="width: 140px;">
+                            <f:facet name="header">
+                                <h:outputText value="Materias"/>
+                            </f:facet>
+                            <p:commandButton style="text-decoration: none;color:#000;font-weight: normal;background: #fbfb9f;" styleClass="crear" icon="ui-icon-search" value="Agregar/Ver" actionListener="#{materiaController.setSelectedN(item)}" action="/vista/materia/List?faces-redirect=true"/>
                         </p:column>
                         <f:facet name="footer">
                             <p style="color:#007882;">Seleccione un ciclo para Ver o Registrar materias</p>

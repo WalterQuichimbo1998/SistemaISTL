@@ -51,6 +51,7 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateDistributivoLabel_idPerfilAcademico}" for="idPerfilAcademico" />
                         <p:selectOneMenu id="idPerfilAcademico" value="#{distributivoController.selected.idPerfilAcademico}" required="true" requiredMessage="Seleccione el Perfil Académico">
+                            <f:selectItem itemLabel="-Seleccione-"/>
                             <f:selectItems value="#{perfilAcademicoController.itemsAvailableSelectOne}"
                                            var="idPerfilAcademicoItem"
                                            itemValue="#{idPerfilAcademicoItem}"/>
@@ -61,8 +62,9 @@
                                            var="idPeriodoAcademicoSemestreItem"
                                            itemValue="#{idPeriodoAcademicoSemestreItem}"/>
                         </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateDistributivoLabel_idTablaInvestigacion}" for="idTablaInvestigacion" />
+                        <p:outputLabel value="Tema de investigación: " for="idTablaInvestigacion" />
                         <p:selectOneMenu id="idTablaInvestigacion" value="#{distributivoController.selected.idTablaInvestigacion}" >
+                            <f:selectItem itemLabel="-Seleccione-"/>
                             <f:selectItems value="#{tablaInvestigacionController.itemsAvailableSelectOne}"
                                            var="idTablaInvestigacionItem"
                                            itemValue="#{idTablaInvestigacionItem}"/>

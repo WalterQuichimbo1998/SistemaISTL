@@ -16,7 +16,7 @@
         <ui:define name="body">
             <p:panel>
             <h:form id="PracticaspreprofesionalesVinculacionListForm">
-                <p class="title_modulos">#{bundle.ListPracticaspreprofesionalesVinculacionTitle}</p>
+                <p class="title_modulos">PRÁCTICAS DE VINCULACIÓN</p>
                     <p:dataTable id="datalist" value="#{practicaspreprofesionalesVinculacionController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{practicaspreprofesionalesVinculacionController.selected}"
                                  paginator="true"
@@ -31,35 +31,35 @@
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
-                        
-                        <p:column>
+                         <p:column sortBy="#{item.idDatosPersonales.nombres}">
+                            <f:facet name="header">
+                                <h:outputText value="Estudiante"/>
+                            </f:facet>
+                             <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.nrohoraspracticasPreprosionales}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPracticaspreprofesionalesVinculacionTitle_nrohoraspracticasPreprosionales}"/>
                             </f:facet>
                             <h:outputText value="#{item.nrohoraspracticasPreprosionales}"/>
                         </p:column>
                         
-                        <p:column>
+                        <p:column sortBy="#{item.idAlcanceVinculacion.alcance}">
                             <f:facet name="header">
-                                <h:outputText value="Alcance Vinculacion"/>
+                                <h:outputText value="Alcance Vinculación"/>
                             </f:facet>
                             <h:outputText value="#{item.idAlcanceVinculacion.alcance}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListPracticaspreprofesionalesVinculacionTitle_idDatosPersonales}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDatosPersonales.nombres}"/>
-                        </p:column>
-                        <p:column>
+                       
+                        <p:column sortBy="#{item.idsectorpracticasPreprofesionales.sectorEconomico}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListPracticaspreprofesionalesVinculacionTitle_idsectorpracticasPreprofesionales}"/>
                             </f:facet>
                             <h:outputText value="#{item.idsectorpracticasPreprofesionales.sectorEconomico}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.idtipoinstitucionpracticasPreprofesionales.nombreTipo}">
                             <f:facet name="header">
-                                <h:outputText value="Institucion Practicas"/>
+                                <h:outputText value="Institución Prácticas"/>
                             </f:facet>
                             <h:outputText value="#{item.idtipoinstitucionpracticasPreprofesionales.nombreTipo}"/>
                         </p:column>

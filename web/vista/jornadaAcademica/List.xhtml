@@ -17,7 +17,7 @@
             <p:panel>
             <h:form id="JornadaAcademicaListForm">
                 <p class="title_modulos">JORNADA ACADÉMICA</p>
-                    <p:dataTable id="datalist" value="#{jornadaAcademicaController.items}" var="item" styleClass="tabla" 
+                <p:dataTable id="datalist" value="#{jornadaAcademicaController.items}" var="item" styleClass="tabla" style="width: 500px;margin: auto;"
                                  selectionMode="single" selection="#{jornadaAcademicaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idJornadaAcademica}"
@@ -31,14 +31,14 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                      
-                        <p:column>
+                        <p:column sortBy="#{item.tipoJornada}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListJornadaAcademicaTitle_tipoJornada}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipoJornada}"/>
                         </p:column>
                       
-                        <p:column>
+                        <p:column sortBy="#{item.fechaDeRegistro}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListJornadaAcademicaTitle_fechaDeRegistro}"/>
                             </f:facet>

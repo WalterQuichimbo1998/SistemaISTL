@@ -7,30 +7,47 @@ and open the template in the editor.
     Created on : 23-dic-2019, 16:36:29
     Author     : Dario
 */
-*{
-    margin: 0px;
-    padding: 0px;
-}
-body{
-    background-color: #E8F0F2;
+body, html {
+  height: 100%;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #E8F0F2;
+}
 
+.contenedor {
+  background: #EEE;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
 
+.container_login {
+  width: 300px;
+  text-align: center;
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 4px;
+  box-shadow: 0px 0px 1px 0px #BABABA;
+}
 
-.container_login{
+/*.container_login{
     width: 280px;
     margin: auto;
     background: #fff;
     padding: 0px 35px;
-    /*box-shadow: 0px 0px 1px 0px #BABABA;*/
+    box-shadow: 0px 0px 1px 0px #BABABA;
     border: 1px solid #e1e1e1;
     padding-top: 30px;
     display: inline-block;
     margin-top: 60px;
     padding-bottom: 15px;
     border-radius: 4px;
-}
+}*/
 .title_sistema{
     font-family: Arial;
     color: #1976d3;
@@ -50,13 +67,13 @@ body{
     font-weight: bold;
     display: block;
     font-family: sans-serif;
-    color: #A4A4A4;
+    color: #4F4F4F;
 }
 .container_login .txt_titles{
     display: block;
     font-family: sans-serif;
     font-size: 15px;
-    color: #ccc;
+    color: #8f9191;
 }
 .cont_cajas{
     text-align: left;
@@ -103,10 +120,6 @@ body{
     border-bottom: 2px solid #007bff;
 }
 
-
-/*.container_login .caja:hover{
-     border: 1px solid #57a3f4;
-}*/
 .container_login .caja:hover .icon{
     color:#007bff;
 }
@@ -118,28 +131,6 @@ body{
     font-size: 12px;
     margin-top: 10px;
 }
-/*.container_login .btn_login{
-    border: none;
-    outline: none;
-    width: 120px;
-    height: 40px;
-    background: #1976D3;
-    color: #fff;
-    font-size: 14px;
-    border-radius:7px;
-    font-family: Arial;
-    font-weight: bold;
-    box-shadow: 0px 0px 2px 0px #0099a5;
-    border-bottom: 7px solid #186bbe;
-    padding: 0px 7px;
-    display: inline-block;
-    transition: all 0.2s;
-}
-.container_login .btn_login:hover{
-    box-shadow: 0px 0px 7px 0px #0099a5;
-    transition: all 0.2s;
-    cursor: pointer;
-}*/
 .container_login .btn_login{
     width:140px;
     height: 40px;
@@ -178,7 +169,7 @@ body{
         height: 100%;
         margin: 0px;
         padding: 0px;
-        padding-top: 25px;
+        padding-top: 35px;
         border: none;
         box-shadow: none;
     }

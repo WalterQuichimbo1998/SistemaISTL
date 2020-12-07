@@ -43,16 +43,15 @@
                             <f:facet name="header">
                                 <h:outputText value="Foto"/>
                             </f:facet>
-                
-                                 <div class="imagen">
-                                    <p:graphicImage  alt="image" name="#{item.foto}" style=" width: 60px;height: 66px; align-content: center;object-fit:cover;object-position:center center;position:relative;">
-                                        <p:commandLink styleClass="foto" title="Cambiar Foto"
-                                                       actionListener="#{datosPersonalesController.setSelected(item)}"
-                                                       oncomplete="PF('form_imagen').show()"
-                                                       update=":datos,:datos2">
-                                            <img src="#{request.contextPath}/resources/images/camara.png" style="width: 24px;height: 24px;"/>
-                                        </p:commandLink>
-                                    </p:graphicImage>
+
+                            <div class="imagen">
+                                <p:graphicImage  alt="image" name="#{item.foto}" style=" width: 60px;height: 66px; align-content: center;object-fit:cover;object-position:center center;position:relative;">
+
+                                </p:graphicImage>
+                                <p:commandLink title="Cambiar" value="Cambiar" style="text-decoration: none;color: #186bbe;"
+                                               actionListener="#{datosPersonalesController.setSelected(item)}"
+                                               oncomplete="PF('form_imagen').show()"
+                                               update=":datos,:datos2"/>
                             </div>
                         </p:column>
                         <p:column sortBy="#{item.numIdentificacion}" filterBy="#{item.numIdentificacion}"  filterMatchMode="contains">
@@ -105,7 +104,7 @@
                             </f:facet>
                             <h:outputText value="#{item.convencional}"/>
                         </p:column>
-                  
+
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{datosPersonalesController.prepareCreate}" update=":DatosPersonalesCreateForm" oncomplete="PF('DatosPersonalesCreateDialog').show()"/>
                             <p:commandButton id="viewButton"  styleClass="ver" icon="ui-icon-search" value="#{bundle.View}" update=":DatosPersonalesViewForm" oncomplete="PF('DatosPersonalesViewDialog').show()" disabled="#{empty datosPersonalesController.selected}"/>

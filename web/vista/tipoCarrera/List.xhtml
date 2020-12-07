@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TipoCarreraListForm">
-                <p class="title_modulos">#{bundle.ListTipoCarreraTitle}</p>
+                <p class="title_modulos">TIPO DE CARRERA</p>
                     <p:dataTable id="datalist" value="#{tipoCarreraController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tipoCarreraController.selected}"
                                  paginator="true"
@@ -30,7 +30,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoCarreraTitle_nombre}"/>
                             </f:facet>

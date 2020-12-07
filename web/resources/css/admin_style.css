@@ -60,11 +60,19 @@ body{
     color:#007bff !important; 
     box-shadow:none;
 }
-/*.item_2:hover{
-    width:100%; 
-    background:#29a0c7 !important; 
+.salir.ui-button{
+    background:#e25555 !important; 
     color:#fff !important;
-}*/
+    box-shadow: none;
+    text-shadow:none;
+    outline: none;
+    padding: 0px 0px !important;
+    margin: 0px 0px !important;
+}
+.salir:hover{
+      box-shadow: 0px 0px 1px 1px #454545;
+    -webkit-box-shadow: 0px 0px 1px 1px #454545;
+}
 
 
 .box_data_panel{

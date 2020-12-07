@@ -17,7 +17,7 @@
                         <p:selectOneMenu id="idDatosPersonales" value="#{practicaspreprofesionalesVinculacionController.selected.idDatosPersonales}" panelStyle="width:280px"
                                          effect="fade" style="width:300px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione un estudiante">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{datosPersonalesController.itemsEstudiantes}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
                         </p:selectOneMenu>

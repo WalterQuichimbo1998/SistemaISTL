@@ -168,7 +168,7 @@ public class PerfilAcademico implements Serializable {
 
     @Override
     public String toString() {
-        return "modelo.PerfilAcademico[ idPerfilAcademico=" + idPerfilAcademico + " ]";
+        return idDatosPersonales.getNombres()+" -> "+tituloContrato;
     }
     
 }

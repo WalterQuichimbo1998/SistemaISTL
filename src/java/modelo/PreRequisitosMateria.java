@@ -43,6 +43,9 @@ public class PreRequisitosMateria implements Serializable {
     @JoinColumn(name = "id_materia_pre", referencedColumnName = "id_materia")
     @ManyToOne
     private Materia idMateriaPre;
+    @JoinColumn(name = "id_materia_co", referencedColumnName = "id_materia")
+    @ManyToOne
+    private Materia idMateriaCo;
 
     public PreRequisitosMateria() {
     }
@@ -74,6 +77,15 @@ public class PreRequisitosMateria implements Serializable {
     public void setIdMateriaPre(Materia idMateriaPre) {
         this.idMateriaPre = idMateriaPre;
     }
+
+    public Materia getIdMateriaCo() {
+        return idMateriaCo;
+    }
+
+    public void setIdMateriaCo(Materia idMateriaCo) {
+        this.idMateriaCo = idMateriaCo;
+    }
+    
     
 
     @Override

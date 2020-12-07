@@ -14,7 +14,7 @@
 
         <ui:define name="body">
             <h:form id="TipoBachilleratoListForm">
-                <p class="title_modulos">#{bundle.ListTipoBachilleratoTitle}</p>
+                <p class="title_modulos">TIPOS DE BACHILLERATO</p>
                     <p:dataTable id="datalist" value="#{tipoBachilleratoController.items}" var="item" styleClass="tabla" 
                                  selectionMode="single" selection="#{tipoBachilleratoController.selected}"
                                  paginator="true"
@@ -29,7 +29,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                        
-                        <p:column>
+                        <p:column sortBy="#{item.tipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoBachilleratoTitle_tipo}"/>
                             </f:facet>

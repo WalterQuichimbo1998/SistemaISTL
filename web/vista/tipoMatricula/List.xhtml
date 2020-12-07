@@ -15,8 +15,8 @@
         <ui:define name="body">
             <p:panel>
             <h:form id="TipoMatriculaListForm">
-                <p class="title_modulos">#{bundle.ListTipoMatriculaTitle}</p>
-                    <p:dataTable id="datalist" value="#{tipoMatriculaController.items}" var="item" styleClass="tabla"
+                <p class="title_modulos">TIPOS DE MATRÍCULA</p>
+                <p:dataTable id="datalist" value="#{tipoMatriculaController.items}" var="item" styleClass="tabla" style="width: 1000px;margin: auto;"
                                  selectionMode="single" selection="#{tipoMatriculaController.selected}"
                                  paginator="true"
                                  rowKey="#{item.idTipoMatricula}"
@@ -29,20 +29,20 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                     
-                        <p:column>
+                        <p:column sortBy="#{item.tipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoMatriculaTitle_tipo}"/>
                             </f:facet>
                             <h:outputText value="#{item.tipo}"/>
                         </p:column>
-                        <p:column>
+                        <p:column sortBy="#{item.descripcion}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoMatriculaTitle_descripcion}"/>
                             </f:facet>
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
                        
-                        <p:column>
+                        <p:column sortBy="#{item.fechaDeRegistro}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoMatriculaTitle_fechaDeRegistro}"/>
                             </f:facet>

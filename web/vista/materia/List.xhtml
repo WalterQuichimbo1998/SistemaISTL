@@ -4,8 +4,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/vista/template.xhtml">
 
@@ -27,7 +26,7 @@
 
                 <p:panel>
                     <p class="title_modulos">Materias</p>
-                    <p:dataTable id="datalist" value="#{materiaController.lista2}" var="item" styleClass="tabla"
+                    <p:dataTable id="datalist" value="#{materiaController.lista2}" var="item" styleClass="tabla" style="width: 1260px;margin: auto;"
                                  selectionMode="single" selection="#{materiaController.selected}"
                                  paginator="true" widgetVar="materias"
                                  rowKey="#{item.idMateria}"
@@ -37,8 +36,8 @@
                                  emptyMessage="No se encontraron resultados."
                                  filteredValue="#{materiaController.lista}">
 
-                        <p:ajax event="rowSelect"   update="createButton viewButton editButton"/>
-                        <p:ajax event="rowUnselect" update="createButton viewButton editButton"/>
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
                         <f:facet name="header">
                             <p:inputText id="globalFilter"
                                          placeholder="Buscar" 
@@ -66,36 +65,46 @@
                             <h:outputText value="#{item.descripcion}"/>
                         </p:column>
 
-                        <p:column filterBy="#{item.creditos}" sortBy="#{item.creditos}" filterMatchMode="contains" style="width: 100px;">
+                        <p:column filterBy="#{item.creditos}" sortBy="#{item.creditos}" filterMatchMode="contains" style="width: 90px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMateriaTitle_creditos}"/>
                             </f:facet>
                             <h:outputText value="#{item.creditos}"/>
                         </p:column>
-                        <p:column filterBy="#{item.numHoras}" sortBy="#{item.numHoras}" filterMatchMode="contains" style="width: 100px;">
+                        <p:column filterBy="#{item.numHoras}" sortBy="#{item.numHoras}" filterMatchMode="contains" style="width: 90px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMateriaTitle_numHoras}"/>
                             </f:facet>
                             <h:outputText value="#{item.numHoras}"/>
                         </p:column>
-                        <p:column filterBy="#{item.numHorasSemanales}" sortBy="#{item.numHorasSemanales}" filterMatchMode="contains" style="width: 100px;">
+                        <p:column filterBy="#{item.numHorasSemanales}" sortBy="#{item.numHorasSemanales}" filterMatchMode="contains" style="width: 90px;">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListMateriaTitle_numHorasSemanales}"/>
                             </f:facet>
                             <h:outputText value="#{item.numHorasSemanales}"/>
                         </p:column>
-                        <p:column headerText="Pre-requisitos" sortBy="#{item.idMateria}" style="width: 200px;">
+                        <p:column headerText="Pre-requisitos/Co-requisitos" sortBy="#{item.idMateria}" style="width: 240px;">
                             <br/>
 
                             <ui:repeat value="#{materiaController.listaPre(item.idMateria)}" var="item2">
-                                <div style="display: block;">
-                                    <h:outputText value="#{item2.idMateria.materia}"/>
-                                    <p:commandLink value="x" style="color: #cc0000;padding: 4px 4px !important;font-size: 17px !important;text-decoration: none;" actionListener="#{preRequisitosMateriaController.setSelected(item2)}"
+
+                                <h:outputText rendered="#{item2.idMateriaPre!=null}" value="Pre -> #{item2.idMateriaPre.materia}" style="margin-bottom: 5px !important;color: #007882;"/>
+                                <p:separator rendered="#{item2.idMateriaCo!=null}" style="margin-top: 5px !important;margin-bottom: 5px !important;border-color: #fff;"/>
+                                <h:outputText rendered="#{item2.idMateriaCo!=null}" value="Co -> #{item2.idMateriaCo.materia}" style="margin-bottom: 5px !important;color: #1976D3;"/>
+                                <br/>
+                                <center>
+                                    <p:commandLink value="Editar" style="color: #454545;padding: 4px 4px !important;font-size: 15px !important;text-decoration: none;" 
+                                                   actionListener="#{preRequisitosMateriaController.setSelected(item2)}"
+                                                   oncomplete="PF('PreRequisitosMateriaEditDialog').show()"
+                                                   update=":PreRequisitosMateriaEditForm">
+                                        <f:actionListener binding="#{preRequisitosMateriaController.setSelectedM(item)}"/>
+                                    </p:commandLink>
+                                    <p:commandLink value="Eliminar" style="color: #cc0000;padding: 4px 4px !important;font-size: 15px !important;text-decoration: none;" actionListener="#{preRequisitosMateriaController.setSelected(item2)}"
                                                    oncomplete="PF('delete_requisito').show()" update=":DeleteRequisito"/>
-                                </div>
+                                </center>
 
                             </ui:repeat>
-                           
+
                             <p:commandLink styleClass="crear" value="Agregar" rendered="#{materiaController.verificar(item.idMateria)==false}"
                                            actionListener="#{preRequisitosMateriaController.prepareCreate}" 
                                            action="#{preRequisitosMateriaController.setSelectedM(item)}"
@@ -142,6 +151,7 @@
             <ui:include src="Create.xhtml"/>
             <ui:include src="CreatePre.xhtml"/>
             <ui:include src="Edit.xhtml"/>
+            <ui:include src="EditPre.xhtml"/>
             <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>

@@ -15,7 +15,7 @@
 
         <ui:define name="body">
             <h:form id="TipoInstitucionPracticasListForm">
-                <p class="title_modulos">#{bundle.ListTipoInstitucionPracticasTitle}</p>
+                <p class="title_modulos">TIPOS DE INSTITUCIONES PRÁCTICAS</p>
                     <p:dataTable id="datalist" value="#{tipoInstitucionPracticasController.items}" var="item" styleClass="tabla"
                                  selectionMode="single" selection="#{tipoInstitucionPracticasController.selected}"
                                  paginator="true"
@@ -30,7 +30,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.nombreTipo}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListTipoInstitucionPracticasTitle_nombreTipo}"/>
                             </f:facet>

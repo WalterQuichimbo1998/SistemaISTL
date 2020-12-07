@@ -30,6 +30,7 @@ public class PreRequisitosMateriaController implements Serializable {
     private dao.MateriaFacade ejbFacadeMa;
     private List<PreRequisitosMateria> items = null;
     private List<Materia> lista = null;
+    private List<Materia> lista2 = null;
     private PreRequisitosMateria selected;
     private Materia selectedM;
 
@@ -51,6 +52,7 @@ public class PreRequisitosMateriaController implements Serializable {
     public void setSelectedM(Materia selectedM) {
         this.selectedM = selectedM;
         lista=null;
+        lista2=null;
     }
 
     protected void setEmbeddableKeys() {
@@ -100,22 +102,16 @@ public class PreRequisitosMateriaController implements Serializable {
     public List<Materia> getLista() {
         if (lista == null) {
             if (selectedM != null) {
-                System.out.println("entro");
-        
                 if(selectedM.getIdNivelAcademico().getNivelAcademico().contains("SEG")){
-                    System.out.println("s");
                   lista = ejbFacadeMa.listaMateriasPre(selectedM.getIdTituloCarrera().getIdTituloCarrera(), "PRI%");
                 }
                 if(selectedM.getIdNivelAcademico().getNivelAcademico().contains("TER")){
-                    System.out.println("t");
                   lista = ejbFacadeMa.listaMateriasPre(selectedM.getIdTituloCarrera().getIdTituloCarrera(), "SEG%");
                 }
                 if(selectedM.getIdNivelAcademico().getNivelAcademico().contains("CUAR")){
-                    System.out.println("c");
                   lista = ejbFacadeMa.listaMateriasPre(selectedM.getIdTituloCarrera().getIdTituloCarrera(), "TER%");
                 }
                 if(selectedM.getIdNivelAcademico().getNivelAcademico().contains("QUIN")){
-                    System.out.println("q");
                   lista = ejbFacadeMa.listaMateriasPre(selectedM.getIdTituloCarrera().getIdTituloCarrera(), "CUAR%");
                 }
                 
@@ -127,6 +123,21 @@ public class PreRequisitosMateriaController implements Serializable {
     public void setLista(List<Materia> lista) {
         this.lista = lista;
     }
+
+    public List<Materia> getLista2() {
+        
+        if (lista2 == null) {
+            if (selectedM != null) {
+               lista2 = ejbFacadeMa.listaMateriasCo(selectedM.getIdTituloCarrera().getIdTituloCarrera(),selectedM.getIdNivelAcademico().getIdNivelAcademico());
+            }
+        }
+        return lista2;
+    }
+
+    public void setLista2(List<Materia> lista2) {
+        this.lista2 = lista2;
+    }
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {

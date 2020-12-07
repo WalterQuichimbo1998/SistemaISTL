@@ -363,7 +363,7 @@
                             <p:outputLabel class="labelDatos" value="Período/Ciclo académico" for="idPeriodoAcademico" />
                             <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" effect="fade">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{periodoAcademicoController.lista}"
+                                <f:selectItems value="#{periodoAcademicoController.items}"
                                                var="idPeriodoAcademicoItem"
                                                itemValue="#{idPeriodoAcademicoItem}"/>
                             </p:selectOneMenu>

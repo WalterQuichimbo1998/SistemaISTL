@@ -26,14 +26,7 @@
                         <p:inputText id="numHoras" value="#{materiaController.selected.numHoras}" title="#{bundle.EditMateriaTitle_numHoras}" />
                         <p:outputLabel value="#{bundle.EditMateriaLabel_numHorasSemanales}" for="numHorasSemanales" />
                         <p:inputText id="numHorasSemanales" value="#{materiaController.selected.numHorasSemanales}" title="#{bundle.EditMateriaTitle_numHorasSemanales}" />
-                          <p:outputLabel value="Período académico: " for="idPeriodo" />
-                        <p:selectOneMenu id="idPeriodo" value="#{materiaController.selected.idPeriodoAcademico}" required="true" requiredMessage="Seleccione un periodo">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{periodoAcademicoController.itemsAvailableSelectOne}"
-                                           var="idPeriodoAcademicoItem"
-                                           itemValue="#{idPeriodoAcademicoItem}"/>
-                        </p:selectOneMenu>
-                       
+   
                     </p:panelGrid>
                     <p:commandButton styleClass="btn_g" actionListener="#{materiaController.update}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'MateriaEditDialog');"/>
                     <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MateriaEditDialog').hide();"/>

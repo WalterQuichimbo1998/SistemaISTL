@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -47,35 +48,48 @@ public class AccesoBean implements Serializable {
         selected = new Usuario();
     }
 
-    public void doLogin() throws IOException {
+    public void doLogin(){
         Usuario us = getEjbFacade().validarUsuario(selected.getUsuario(), selected.getClave());
         message = "bien";
         if (us != null) {
-            switch (us.getIdTipoOperador().getIdTipoOperador()) {
-                case 1:
-                    asignarRecursoWeb("/vista/template.xhtml", us);
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                    break;
-                case 2:
-                    asignarRecursoWeb("/Estudiante/templateEstudiante.xhtml", us);
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                    Matricula ma = null;
+            if (us.getUsuario().equals(selected.getUsuario())) {
+                if (us.getClave().equals(selected.getClave())) {
                     try {
-                        ma = ejbFacadeMa.obtenerMatricula(us.getIdDatosPersonales().getIdDatosPersonales());
-                    } catch (Exception ex) {
+                        switch (us.getIdTipoOperador().getIdTipoOperador()) {
+                        case 1:
+                            asignarRecursoWeb("/vista/template.xhtml", us);
+                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                            break;
+                        case 2:
+                            asignarRecursoWeb("/Estudiante/templateEstudiante.xhtml", us);
+                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                            Matricula ma = null;
+                            try {
+                                ma = ejbFacadeMa.obtenerMatricula(us.getIdDatosPersonales().getIdDatosPersonales());
+                            } catch (Exception ex) {
+                            }
+                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("matricula", ma);
+                            break;
+                        case 3:
+                            asignarRecursoWeb("/Profesor/templateProfesor.xhtml", us);
+                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                            break;
+                        default:
+                            break;
                     }
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("matricula", ma);
-                    break;
-                case 3:
-                    asignarRecursoWeb("/Profesor/templateProfesor.xhtml", us);
-                    FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                    break;
-                default:
-                    break;
+                    message = "";
+                        
+                    } catch (IOException e) {
+                    }
+                } else {
+                    message = "Clave incorrecta";
+                }
+
+            } else {
+                message = "Usuario ínválido";
             }
-            message = "";
         } else {
-            message = "Usuario y/o clave incorrecto";
+            message = "Usuario o clave incorrecto";
         }
     }
 
@@ -223,6 +237,7 @@ public class AccesoBean implements Serializable {
         }
         return ma;
     }
+
     public Matricula obtenerMatricula1() {
         Matricula ma = null;
         try {

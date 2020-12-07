@@ -8,34 +8,34 @@
 
     <ui:composition>
 
-        <p:dialog id="PreRequisitosMateriaCreateDlg" widgetVar="PreRequisitosMateriaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Pre y Co Requisitos"
+        <p:dialog id="PreRequisitosMateriaEditDlg" widgetVar="PreRequisitosMateriaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Pre y Co Requisitos"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
-            <h:form id="PreRequisitosMateriaCreateForm">
+            <h:form id="PreRequisitosMateriaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{preRequisitosMateriaController.selected != null}">
                         <p:outputLabel value="Materia: "/>
                         <p:outputLabel value="#{preRequisitosMateriaController.selectedM.materia}" style="font-size: 15px !important;"/>
                         <p:column/>
                         <p:column><br/></p:column>
-                         <p:outputLabel value="Materia Pre-requisito: " for="idMateria" />
-                         <p:selectOneMenu id="idMateria" value="#{preRequisitosMateriaController.selected.idMateriaPre}" style="width: 260px !important;">
-                             <f:selectItem itemLabel="-Seleccione-"/>
-                             <f:selectItems value="#{preRequisitosMateriaController.lista}"
+                        <p:outputLabel value="Materia Pre-requisito: " for="idMateria" />
+                        <p:selectOneMenu id="idMateria" value="#{preRequisitosMateriaController.selected.idMateriaPre}" style="width: 260px !important;">
+                            <f:selectItem itemLabel="-Seleccione-"/>
+                            <f:selectItems value="#{preRequisitosMateriaController.lista}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"
                                            itemLabel="#{idMateriaItem.materia}"/>
                         </p:selectOneMenu>
-                         <p:outputLabel value="Materia Co-requisito: " for="idMateria2" />
-                         <p:selectOneMenu id="idMateria2" value="#{preRequisitosMateriaController.selected.idMateriaCo}" style="width: 260px !important;">
-                             <f:selectItem itemLabel="-Seleccione-"/>
-                             <f:selectItems value="#{preRequisitosMateriaController.lista2}"
+                        <p:outputLabel value="Materia Co-requisito: " for="idMateria2" />
+                        <p:selectOneMenu id="idMateria2" value="#{preRequisitosMateriaController.selected.idMateriaCo}" style="width: 260px !important;">
+                            <f:selectItem itemLabel="-Seleccione-"/>
+                            <f:selectItems value="#{preRequisitosMateriaController.lista2}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"
                                            itemLabel="#{idMateriaItem.materia}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton styleClass="btn_g" actionListener="#{preRequisitosMateriaController.create}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args,'PreRequisitosMateriaCreateDialog');"/>
-                    <p:commandButton styleClass="btn_s" immediate="true" value="#{bundle.Cancel}" oncomplete="PF('PreRequisitosMateriaCreateDialog').hide();"/>
+                    <p:commandButton styleClass="btn_g" actionListener="#{preRequisitosMateriaController.update}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PreRequisitosMateriaEditDialog');"/>
+                    <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" oncomplete="PF('PreRequisitosMateriaEditDialog').hide();"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

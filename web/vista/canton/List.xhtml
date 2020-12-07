@@ -31,7 +31,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
                         
-                        <p:column>
+                        <p:column sortBy="#{item.idCanton}">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListCantonTitle_nombre}"/>
                             </f:facet>
