@@ -237,40 +237,6 @@ public class DatosPersonalesController implements Serializable {
         }
 
     }
-//
-//private String nom_foto = "";
-//    public void handleFileUpload(FileUploadEvent event) {
-//        FacesMessage msg = new FacesMessage();
-//        try {
-//            nom_foto = event.getFile().getFileName();
-//            selected.setFoto("foto/" + event.getFile().getFileName());
-//            guardarImagen(event.getFile().getInputstream(), nom_foto);
-//            msg.setSeverity(FacesMessage.SEVERITY_INFO);
-//            msg.setSummary("Imagen subida exitosamente");
-//        } catch (Exception ex) {
-//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//            msg.setSummary("Problemas al subir la imagen");
-//        }
-//        FacesContext.getCurrentInstance().addMessage("Mensaje", msg);
-//    }
-//
-//    public void guardarImagen(InputStream original, String nombreArchivo) {
-//        ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();
-//        String path = servletContext.getRealPath("") + File.separatorChar + "resources" + File.separatorChar + "foto" + File.separatorChar + nombreArchivo;
-//        File f = null;
-//        try {
-//            f = new File(path);
-//            FileOutputStream out = new FileOutputStream(f.getAbsolutePath());
-//            int c = 0;
-//            while ((c = original.read()) >= 0) {
-//                out.write(c);
-//            }
-//            out.flush();
-//            out.close();
-//        } catch (IOException e) {
-//            System.out.println("No se pudo cargar la imagen");
-//        }
-//    }
 
 public void handleFileUpload(FileUploadEvent event) {
         String extension = "";
@@ -302,9 +268,8 @@ public void handleFileUpload(FileUploadEvent event) {
                             nombre = getSelected().getIdDatosPersonales() + "_" + selected.getNombres() + extension;
                         }
                         selected.setFoto("foto/" + nombre);
-                        if (!"requerido/sin_foto_perfil.png".equals(selected.getFoto())) {
+                        if (!"foto/0000000000.png".equals(selected.getFoto())) {
                             cargar(nombre, event.getFile().getInputstream());
-
                             actualizarFoto();
                         } else {
                             cargar(nombre, event.getFile().getInputstream());

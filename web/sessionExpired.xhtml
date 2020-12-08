@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Sesión Cerrada</title>
+        <link rel="shortcut icon" href="resources/images/logoBiblioteca.ico"></link>
+        <h:outputStylesheet name="css/estilos.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div class="boxDenegado">
+                <p class="mensajeZona">La sesión se a terminado</p>
+                <p:graphicImage class="iconoAvd" alt="Advertencia" library="images" name="avd.png" />
+                <p class="mensajeRojo">!! SESIÓN CERRADA ¡¡</p>
+                <p class="mensajeZona">PARA PODER ACCEDER USTED NECESITA INICIAR SESIÓN EN EL SISTEMA</p>
+                <br/>
+                <h:form>
+                    <h:commandButton class="botonIniciar" action="/index?faces-redirect=true" value="INICIAR SESIÓN" />
+                    <br/>
+                </h:form>
+            </div>
+        </h:form>
+    </h:body>
+</html>

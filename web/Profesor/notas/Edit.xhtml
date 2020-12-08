@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
 
     <ui:composition>
 
@@ -15,16 +16,18 @@
                         <p:outputLabel value="Estudiante: "/>
                         <p:outputLabel value="#{notasController.selected.idDatosPersonales.nombres} #{notasController.selected.idDatosPersonales.apellidos}"
                                        style="font-family: Arial;font-size: 14px !important;"/>
-                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" for="parcialUno" />
-                        <p:inputText type="number" id="parcialUno" value="#{notasController.selected.parcialUno}" title="#{bundle.EditNotasTitle_parcialUno}" required="true"  requiredMessage="Ingrese una nota"
-                                     style="width: 150px;"/>
-                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}" for="parcialDos" />
-                        <p:inputText type="number" id="parcialDos" value="#{notasController.selected.parcialDos}" title="#{bundle.EditNotasTitle_parcialDos}" style="width: 150px;"/>
-                        <p:outputLabel value="#{bundle.EditNotasLabel_notaSupletorio}" for="notaSupletorio" />
-                        <p:inputText type="number" id="notaSupletorio" value="#{notasController.selected.notaSupletorio}" title="#{bundle.EditNotasTitle_notaSupletorio}" style="width: 150px;"/>
+                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" />
+                        <input id="parcialUno"  type="number" pattern="^[0-9]" title='Only Number' min="0" max="10" step="1" jsf:value="#{notasController.selected.parcialUno}"
+                               style="width: 160px;padding: 4px 4px;" required="true"  requiredMessage="Ingrese una nota"/>
+                        <p:outputLabel value="#{bundle.EditNotasLabel_parcialDos}"/>
+                         <input id="parcialDos"  type="number" pattern="^[0-9]" title='Only Number' min="0" max="10" step="1" jsf:value="#{notasController.selected.parcialDos}"
+                               style="width: 160px;padding: 4px 4px;"/>
+                        <p:outputLabel value="#{bundle.EditNotasLabel_notaSupletorio}"/>
+                        <input id="notaSupletorio"  type="number" pattern="^[0-9]" title='Only Number' min="0" max="10" step="1" jsf:value="#{notasController.selected.notaSupletorio}"
+                               style="width: 160px;padding: 4px 4px;" />
                         <p:column/>
                         <p:column>
-                        <p:commandButton styleClass="btn_g" actionListener="#{notasController.update}" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
+                            <p:commandButton styleClass="btn_g" actionListener="#{notasController.update}" ajax="true" value="#{bundle.Save}" update="display,:NotasListForm:datalist,:growl" oncomplete="handleSubmit(args, 'NotasEditDialog');"/>
                         <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('NotasEditDialog').hide();"/>
                     
                         </p:column>

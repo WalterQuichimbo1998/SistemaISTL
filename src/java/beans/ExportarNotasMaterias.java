@@ -153,6 +153,12 @@ public class ExportarNotasMaterias implements Serializable {
 
     private byte[] reportPdf;
     private final String logotipo = "/reportes/logo.jpg";
+  public Connection getConnection() throws Exception {
+        final String DATASOURCE_CONTEXT = "java:app/sistema_gestion"; //nombre de tu pool de conexiones
+        Context initialContext = new InitialContext();
+        DataSource datasource = (DataSource) initialContext.lookup(DATASOURCE_CONTEXT);
+        return datasource.getConnection();
+    }
 
     public void imprimirMateriasdoc() throws URISyntaxException, JRException, Exception {
         List<Notas> lista = null;
@@ -198,13 +204,41 @@ public class ExportarNotasMaterias implements Serializable {
         }
     }
 
-    public Connection getConnection() throws Exception {
-        final String DATASOURCE_CONTEXT = "java:app/sistema_gestion"; //nombre de tu pool de conexiones
-        Context initialContext = new InitialContext();
-        DataSource datasource = (DataSource) initialContext.lookup(DATASOURCE_CONTEXT);
-        return datasource.getConnection();
+     public void imprimirNotasMateria(Integer id1,Integer id2,Integer id3,TituloCarrera t) throws URISyntaxException, JRException, Exception {
+   
+            reportPdf = null;
+            File fichero = new File(getClass().getResource("/reportes/MateriaDocente.jasper").toURI());
+            JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+
+            if (jasperReport != null) {
+                Map parametros = new HashMap();
+                //parametros que enviamos al report.
+                parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+                parametros.put("ciclo", id1);
+                parametros.put("materia", id2);
+                parametros.put("periodo", id3);
+                parametros.put("titulo", t.getIdTituloCarrera());
+                parametros.put("titulo_carrera", t.getNombreTitulo());
+
+                //Compilamos el archivo XML y lo cargamos en memoria
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+                //Exportamos el reporte a pdf y lo guardamos en disco
+
+                reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+                HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+
+                response.addHeader("Content-disposition", "attachment; filename=materias.pdf");
+
+                ServletOutputStream stream = response.getOutputStream();
+                JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+                stream.flush();
+                stream.close();
+                FacesContext.getCurrentInstance().responseComplete();
+            }
+      
     }
 
+  
     public void reporteExcel() {
         if (getNivelAcademicoSelected() != null) {
             listaM = ejbFacade.listaMaterias(getNivelAcademicoSelected().getIdNivelAcademico());

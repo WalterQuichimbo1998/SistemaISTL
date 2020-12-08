@@ -33,7 +33,7 @@ public class UsuarioController implements Serializable {
     private List<Usuario> items = null;
     private List<Usuario> lista = null;
     private Usuario selected;
-    private Matricula matricula=null;
+    private Matricula matricula = null;
 
     public UsuarioController() {
     }
@@ -53,7 +53,7 @@ public class UsuarioController implements Serializable {
     public void setLista(List<Usuario> lista) {
         this.lista = lista;
     }
-    
+
     protected void setEmbeddableKeys() {
     }
 
@@ -77,18 +77,49 @@ public class UsuarioController implements Serializable {
 //            mc.crearMA(selected.getIdDatosPersonales()); 
 //        }
 //        }
-        
+
         this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
-        
+
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
+    public void existeUsuario() {
+        Usuario u = getFacade().existeUsuarioRegistradoAdmin(selected.getUsuario().trim());
+        if (u != null) {
+            items = null;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "El usuario ya existe.Ingrese otro.", ""));
+        } else {
+            Usuario u2 = getFacade().existePersonaRegistradoAdmin(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdTipoOperador().getIdTipoOperador());
+            if (u2 != null) {
+                items = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "La Persona y Rol ya existe en otro usuario. Seleccione otro.", ""));
+            } else {
+                create();
+            }
+        }
+    }
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UsuarioUpdated"));
+    }
+
+    public void existeUsuario2() {
+        Usuario u = getFacade().existeUsuarioRegistradoAdmin2(selected.getIdUsuario(), selected.getUsuario().trim());
+        if (u != null) {
+            items = null;
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "El usuario ya existe.Ingrese otro.", ""));
+        } else {
+            Usuario u2 = getFacade().existePersonaRegistradoAdmin2(selected.getIdUsuario(),selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdTipoOperador().getIdTipoOperador());
+            if (u2 != null) {
+                items = null;
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "La Persona y Rol ya existe en otro usuario. Seleccione otro.", ""));
+            } else {
+                update();
+            }
+        }
     }
 
     public void destroy() {
@@ -186,14 +217,14 @@ public class UsuarioController implements Serializable {
         }
 
     }
-    public void verificarCrear(){
-        Usuario us=ejbFacade.virifcarUsuario(selected.getIdDatosPersonales().getIdDatosPersonales());
-        if(us==null){
+
+    public void verificarCrear() {
+        Usuario us = ejbFacade.virifcarUsuario(selected.getIdDatosPersonales().getIdDatosPersonales());
+        if (us == null) {
             create();
-        }else{
-           FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "El estudiante ya tiene un usuario.", ""));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "El estudiante ya tiene un usuario.", ""));
         }
     }
-   
 
 }

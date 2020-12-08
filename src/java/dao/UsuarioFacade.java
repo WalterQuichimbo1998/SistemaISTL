@@ -38,4 +38,41 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
         }
         return us;
     }
+    public Usuario existeUsuarioRegistradoAdmin(String user) {
+        Usuario us = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_usuario FROM usuario WHERE usuario='" + user + "';", Usuario.class);
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return us;
+    }
+    public Usuario existeUsuarioRegistradoAdmin2(Integer id,String user) {
+        Usuario us = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_usuario FROM usuario WHERE id_usuario!='" + id + "' AND usuario='" + user + "';", Usuario.class);
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return us;
+    }
+    
+    public Usuario existePersonaRegistradoAdmin(Integer id1,Integer id2) {
+        Usuario us = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_usuario FROM usuario WHERE id_datos_personales='" + id1 + "' AND id_tipo_operador='" + id2 + "';", Usuario.class);
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return us;
+    }
+    public Usuario existePersonaRegistradoAdmin2(Integer id1,Integer id2,Integer id3) {
+        Usuario us = null;
+        try {
+            Query q = em.createNativeQuery("SELECT id_usuario FROM usuario WHERE id_usuario!='" + id1 + "' AND id_datos_personales='" + id2 + "' AND id_tipo_operador='" + id3 +"';", Usuario.class);
+            us = (Usuario) q.getSingleResult();
+        } catch (Exception e) {
+        }
+        return us;
+    }
 }

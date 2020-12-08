@@ -15,8 +15,10 @@
         <h:outputStylesheet name="css/footer_style.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
         <h:outputScript library="js" name="spanishLocale.js"/>
+        <meta http-equiv="refresh" content="1200;url=#{request.contextPath}/sessionExpired.xhtml" />
     </h:head>
     <h:body>
+       
         <p:growl id="growl" showDetail="false" life="3000" />
         <div class="cabecera-barra">
             <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
@@ -69,7 +71,7 @@
                     <p:menuitem value="Información"  outcome="/vista/info.xhtml" icon="ui-icon-info"/>
                    
                     <f:facet name="options">
-                        <p:outputLabel value="Administrador" style="margin-right: 30px;"/>
+                        <p:outputLabel value="Administrador" style="margin-right: 30px;font-weight: 600;"/>
                         <p:commandButton value="Cerrar Sesión" styleClass="salir" icon="ui-icon-power" oncomplete="PF('form_logout').show()"/>
                     </f:facet>
                 </p:menubar>
@@ -182,20 +184,13 @@
 
         </p:dialog>
         <br/><br/><br/><br/>
-        <div id="bottom">
-            <div class="box_footer">
-                <div class="box_iconos">
-                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-facebook-f"></i></a>
-                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-twitter"></i></a>
-                    <a class="icono_footer" href="#"><i class="icon_footer fab fa-google-plus-g"></i></a>
-                </div>
-                <div class="box_txt">
-                    <p class="uno">Términos y Condiciones</p>
-                    <p class="uno">Política de privacidad</p>
-                </div>
-                <p class="txt_copy" style="margin-bottom: 5px;">Copyright (c) 2020, <b>ISTL</b></p>
+         <footer>
+            <div class="box_txt">
+                <p class="uno">Términos y Condiciones</p>
+                <p class="uno">Política de privacidad</p>
+                <p class="txt_copy">Copyright (c) 2020, <b>ISTL</b></p>
             </div>
-        </div>
+        </footer>
 
     </h:body>
 </html>

@@ -11,6 +11,10 @@ and open the template in the editor.
     margin: 0;
     padding: 0;
 }
+html {
+    min-height: 100%;
+    position: relative;
+}
 body{
     background-color: #E8F0F2;
 }
@@ -31,7 +35,7 @@ body{
     border:1px solid #e7e7e7 !important;
 }
 .menuBarra li a, .link-active, .current-menu-item a{
-        padding-left: 2px !important;
+    padding-left: 2px !important;
     padding-right: 2px !important;
 }
 .menuBarra li:hover a, .link-active, .current-menu-item a{
@@ -70,7 +74,7 @@ body{
     margin: 0px 0px !important;
 }
 .salir:hover{
-      box-shadow: 0px 0px 1px 1px #454545;
+    box-shadow: 0px 0px 1px 1px #454545;
     -webkit-box-shadow: 0px 0px 1px 1px #454545;
 }
 
@@ -93,6 +97,7 @@ body{
     display: inline-block;
     vertical-align: top;
     margin: 10px;
+   
 
 }
 .box_caja_op{
@@ -100,7 +105,7 @@ body{
     background: #fff;
     border-radius: 7px;
     padding: 20px 10px;;
-    box-shadow: 0px 0px 1px 0px #BABABA;
+  box-shadow: 0px 0px 1px 0px #BABABA;
     border: 1px solid #e1e1e1;
     text-align: center;
     font-family: sans-serif;
@@ -142,7 +147,7 @@ body{
     font-size: 15px;
 }
 .campo_txt:focus{
-border: 1px solid #ccc;
+    border: 1px solid #ccc;
 }
 .des_label{
     color: #454545;
@@ -168,7 +173,7 @@ border: 1px solid #ccc;
     outline: none;
     margin-top: 4px; 
     transition: all .3s ease; 
-    
+
 }
 .btn_form:hover{
     color: #000;
@@ -179,14 +184,14 @@ border: 1px solid #ccc;
 
 
 /*----Modulos------*/
-.title_modulos{
+/*.title_modulos{
     font-family: sans-serif;
     font-size: 18px;
     margin-bottom: 10px;
     font-weight: bold;
-    color: #1976D3;
+    color: #454545;
     text-align: center
-}
+}*/
 .panel_continer{
     text-align: center;
     margin: 0;
@@ -228,17 +233,17 @@ border: 1px solid #ccc;
 }
 
 .ui-selectonemenu{
-     width: 98% !important;
-     font-size: 16px !important;
-     box-shadow:none;
-     outline: none;
-     margin: 0;
-     margin-bottom: 0px !important;
-     
+    width: 98% !important;
+    font-size: 16px !important;
+    box-shadow:none;
+    outline: none;
+    margin: 0;
+    margin-bottom: 0px !important;
+
 }
 .ui-selectonemenu-label{
-     width: 96% !important;
-     color:#4f8ff4;
+    width: 96% !important;
+    color:#4f8ff4;
 }  
 .camposDeDatos2.ui-inputfield{
     width: 97%;
@@ -259,7 +264,7 @@ border: 1px solid #ccc;
     padding-left: 5px;
     font-size: 17px !important;
     color:#4f8ff4;
-    
+
 }
 .ui-selectonemenu .ui-selectonemenu-label {
     width: 100%;
@@ -286,8 +291,8 @@ border: 1px solid #ccc;
     display: inline-block;
     border:none;
     transition: all .3s ease;
-vertical-align: top;
-margin: auto;
+    vertical-align: top;
+    margin: auto;
 }
 
 .botones21{
@@ -299,8 +304,8 @@ margin: auto;
     display: inline-block;
     border:none;
     transition: all .3s ease;
-vertical-align: top;
-margin: 4px;
+    vertical-align: top;
+    margin: 4px;
 }
 .botones22{
     width: 32%;
@@ -311,8 +316,8 @@ margin: 4px;
     display: inline-block;
     border:none;
     transition: all .3s ease;
-vertical-align: top;
-margin: 4px;
+    vertical-align: top;
+    margin: 4px;
 
 }
 .botones23{
@@ -324,8 +329,8 @@ margin: 4px;
     display: inline-block;
     border:none;
     transition: all .3s ease;
-vertical-align: top;
-margin: 4px;
+    vertical-align: top;
+    margin: 4px;
 
 }
 .botones24{
@@ -337,8 +342,8 @@ margin: 4px;
     display: inline-block;
     border:none;
     transition: all .3s ease;
-vertical-align: top;
-margin: 4px;
+    vertical-align: top;
+    margin: 4px;
 
 }
 .cancelar.ui-button{
@@ -445,7 +450,7 @@ margin: 4px;
     font-size: 18px;
     margin-bottom: 10px;
     font-weight: bold;
-    color: #1976D3;
+    color: #454545;
     text-align: center
 }
 
@@ -491,7 +496,7 @@ margin: 4px;
     box-shadow: 0px 0px 1px 0px #BABABA;
     border: 1px solid #e1e1e1;
     display:block;
-   
+
 }
 .title_reporte{
     font-family: sans-serif;
@@ -516,7 +521,7 @@ margin: 4px;
 }
 
 .btn_impReporte{
- width:140px;
+    width:140px;
     height: 36px;
     margin: auto;
     background: #57a3f4; 
@@ -584,10 +589,10 @@ margin: 4px;
     font-size: 13px !important; 
 }
 .ui-selectonemenu{
-     width: 99% !important;
+    width: 99% !important;
 }
 .ui-selectonemenu-label{
-     width: 96% !important;
+    width: 96% !important;
 } 
 /*ESTILOS TABLA ------------------>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .ui-panel{
@@ -840,10 +845,10 @@ margin: 4px;
     margin: auto;
     border-radius: 3px;
     background: white;
-     box-shadow: none;
-     box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.75) !important;
-     padding-top: 10px;
-     padding-bottom: 10px;
+    box-shadow: none;
+    box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.75) !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 .textoSalida{
@@ -857,7 +862,7 @@ margin: 4px;
 }
 
 .boton.ui-button{
-     width: 100px;
+    width: 100px;
     height: 40px;
     background: #29a0c7;
     font-size: 18px !important;
@@ -874,7 +879,7 @@ margin: 4px;
 
 }
 .boton:hover{
-     background: #007bff;
+    background: #007bff;
     cursor: pointer;
     color: white;
     box-shadow: 0px 0px 1px 1px #454545; 
@@ -927,7 +932,7 @@ margin: 4px;
 @media(max-width:1024px){
     .boxContainerData2{
         width: 94%;
-         margin: auto;
+        margin: auto;
     }
 }
 @media(max-width:720px){
@@ -939,9 +944,9 @@ margin: 4px;
         width:90%;
         margin: auto;
     }
-     .boxContainerData2{
+    .boxContainerData2{
         width: 96%;
-       
+
     }
     .botones21{
         width:90%;
@@ -965,7 +970,7 @@ margin: 4px;
     #espa{
         display: none;
     }
-    
+
     .btn_actualizarEstudiante{
         font-size: 27px;
         width: 180px;

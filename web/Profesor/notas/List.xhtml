@@ -27,10 +27,7 @@
                     <br/>
                     <h:panelGroup id="lista">
                         <p:dataTable id="datalist" value="#{notasController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
-                                     paginator="true"
                                      rows="10"
-                                     rowsPerPageTemplate="10,20,30,40,50"
-                                     paginatorPosition="bottom"
                                      emptyMessage="No se encontraron resultados.">
                             <f:facet name="header">
                                 <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{notasController.selectedPeriodo.nombre}</h2>

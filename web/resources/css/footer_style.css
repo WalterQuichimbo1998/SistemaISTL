@@ -6,64 +6,27 @@ and open the template in the editor.
 /* 
     Autor: Walter Quichimbo
 */
-.box_footer{
-    background: #1976D3;
+footer {
+   background: #1976D3;
     color: #fff;
-    position: relative;
-    width:100%;
-    font-family: Arial;
-    text-align: center;
-/*    margin-top: 65px;*/
-    padding-top:10px;
-    padding-bottom: 5px;
-    bottom: 0;
-
-
-
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  color: white;
 }
-.box_iconos,.icono_footer,.box_txt,.txt_copy,.uno{
-    display: inline-block;
-    vertical-align: top;
 
-}
-.icono_footer{
-    font-size: 22px;
-    color: #fff;
-    margin-right: 10px;
-}
-box_iconos{
-}
 .box_txt{
-    margin-left: 10px;
-    margin-top: 2px;
+    width: 100%;
+    text-align: center;
     font-size: 14px;
+    font-family: Arial;
+    line-height: 40px;
 }
-.uno{
-    margin-right: 20px;
-    cursor: pointer;
-    vertical-align: middle;
-    /*text-align: left;*/
+.uno,.txt_copy{
+     display: inline-block;
+     margin: 0px 10px;
 }
 .txt_copy{
-    font-size: 14px;
-    cursor: pointer;
-    /*float:right;*/
-    margin-top: 2px;
-}
-
-@media(max-width:720px){
-    .icono_footer{
-        font-size: 35px;
-        margin: 0px 15px;
-    }
-    .uno{
-        font-size: 14px;
-        margin-top: 7px;
-    }
-    .txt_copy{
-        font-size: 11px;
-        display: block;
-        margin: 25px 0px;
-
-    }
+     display: inline-block;
 }

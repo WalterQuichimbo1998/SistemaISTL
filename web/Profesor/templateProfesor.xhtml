@@ -4,7 +4,6 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:head>
@@ -16,90 +15,85 @@
         <h:outputStylesheet name="css/footer_style.css"/>
         <h:outputScript library="js" name="jsfcrud.js"/>
         <h:outputScript library="js" name="spanishLocale.js"/>
+        <meta http-equiv="refresh" content="1200;url=#{request.contextPath}/sessionExpired.xhtml" />
     </h:head>
     <h:body>
-            <div class="cabecera-barra">
-                <p:growl id="growl" life="3000" />
-                <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
-                <h:form>
-                    <p:menubar class="menuBarra" >
-                        <p:menuitem value="#{bundle.Home}" outcome="/Profesor/profeInicio?faces-redirect=true" icon="ui-icon-home"/>
-                        <p:menuitem value="Datos Personales" outcome="/Profesor/datosPersonales?faces-redirect=true" icon="ui-icon-script"/>                    
-                        <p:menuitem value="Notas" outcome="/Profesor/notas/List?faces-redirect=true" icon="ui-icon-script"/>                    
-                    
-                        <p:menuitem value="Reporte Notas por Materia" outcome="/Profesor/reporteImprimirMaterias.xhtml" icon="ui-icon-script"/>
-                        <p:menuitem value="Información" outcome="/Profesor/infoProfesor.xhtml" icon="ui-icon-info"/> 
-                        <f:facet name="options">
-                            <p:outputLabel value="Docente "/>
-                            <p:outputLabel value="#{datosPersonalesController.selected.nombres} #{datosPersonalesController.selected.apellidos}" style="color: #007bff;margin-right: 30px;"/>
-                          <p:commandButton value="Cerrar Sesión" styleClass="salir" icon="ui-icon-power" oncomplete="PF('form_logout').show()"/>
-                        </f:facet>
-                    </p:menubar>
+        <div class="cabecera-barra">
+            <p:growl id="growl" life="3000" />
+            <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
+            <h:form>
+                <p:menubar class="menuBarra" >
+                    <p:menuitem value="#{bundle.Home}" outcome="/Profesor/profeInicio?faces-redirect=true" icon="ui-icon-home"/>
+                    <p:menuitem value="Datos Personales" outcome="/Profesor/datosPersonales?faces-redirect=true" icon="ui-icon-script"/>                    
+                    <p:menuitem value="Notas" outcome="/Profesor/notas/List?faces-redirect=true" icon="ui-icon-script"/>                    
 
-                </h:form>
-            </div>
+                    <p:menuitem value="Reporte Notas por Materia" outcome="/Profesor/reporteImprimirMaterias.xhtml" icon="ui-icon-script"/>
+                    <p:menuitem value="Información" outcome="/Profesor/infoProfesor.xhtml" icon="ui-icon-info"/> 
+                    <f:facet name="options">
+                        <p:outputLabel value="Docente " style="font-weight: 600;"/>
+                        <p:outputLabel value="#{datosPersonalesController.selected.nombres} #{datosPersonalesController.selected.apellidos}" style="color: #007bff;margin-right: 30px;"/>
+                        <p:commandButton value="Cerrar Sesión" styleClass="salir" icon="ui-icon-power" oncomplete="PF('form_logout').show()"/>
+                    </f:facet>
+                </p:menubar>
 
-            <div class="panel_continer">
-                <br/>
-                <div class="centro_panel">
-                    <ui:insert name="body">
-                        <h:form>
-                            <div class="box_campos">
-                                <div class="box_caja_op">
-                                    <p class="ob title_panel_re">NOTAS</p><br/>
-                                    <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
-                                    <h:outputText class="ob des_label" value="Administra las notas de los estudiantes" />
-                                    <h:commandButton class="ob btn_form" action="/Profesor/notas/List.xhtml" value="VER MAS" />
-                                </div>
+            </h:form>
+        </div>
+
+        <div class="panel_continer">
+            <br/>
+            <div class="centro_panel">
+                <ui:insert name="body">
+                    <h:form>
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">NOTAS</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
+                                <h:outputText class="ob des_label" value="Administra las notas de los estudiantes" />
+                                <h:commandButton class="ob btn_form" action="/Profesor/notas/List.xhtml" value="VER MAS" />
                             </div>
-                            <div class="box_campos">
-                                <div class="box_caja_op">
-                                    <p class="ob title_panel_re">REPORTE</p><br/>
-                                    <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
-                                    <h:outputText class="ob des_label" value="Descarga el reporte de notas de los estudiantes" />
-                                    <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias.xhtml" value="VER MAS" />
-                                </div>
+                        </div>
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">REPORTE</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
+                                <h:outputText class="ob des_label" value="Descarga el reporte de notas de los estudiantes" />
+                                <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias.xhtml" value="VER MAS" />
                             </div>
-                        </h:form>
-                    </ui:insert>
-                </div>
+                        </div>
+                    </h:form>
+                </ui:insert>
             </div>
+        </div>
         <br/><br/><br/><br/>
-            <div id="bottom">
-                <div class="box_footer">
-                    <div class="box_iconos">
-                        <a class="icono_footer" href="#"><i class="icon_footer fab fa-facebook-f"></i></a>
-                        <a class="icono_footer" href="#"><i class="icon_footer fab fa-twitter"></i></a>
-                        <a class="icono_footer" href="#"><i class="icon_footer fab fa-google-plus-g"></i></a>
-                    </div>
-                    <div class="box_txt">
-                        <p class="uno">Términos y Condiciones</p>
-                        <p class="uno">Política de privacidad</p>
-                    </div>
-                    <p class="txt_copy">Copyright (c) 2020, <b>ISTL</b></p>
-                </div>
+
+        <footer>
+            <div class="box_txt">
+                <p class="uno">Términos y Condiciones</p>
+                <p class="uno">Política de privacidad</p>
+                <p class="txt_copy">Copyright (c) 2020, <b>ISTL</b></p>
             </div>
+        </footer>
 
-            <p:dialog styleClass="logout" id="form_logout" widgetVar="form_logout" modal="true" resizable="false" appendTo="@(body)" header="Cerrar Sesión" 
-                      closeOnEscape="true" showEffect="clip" hideEffect="clip" showHeader="false" > 
-                <h:form class="session2" >
-                    <br/>
-                    <div style="width: 120px; height: 120px; margin: auto; background: white; ">
-                        <img style="width: 120px; height: 120px;" 
-                             src="#{request.contextPath}/resources/images/logout.png"></img>
-                    </div>
-                    <br/>
+        <p:dialog styleClass="logout" id="form_logout" widgetVar="form_logout" modal="true" resizable="false" appendTo="@(body)" header="Cerrar Sesión" 
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip" showHeader="false" > 
+            <h:form class="session2" >
+                <br/>
+                <div style="width: 120px; height: 120px; margin: auto; background: white; ">
+                    <img style="width: 120px; height: 120px;" 
+                         src="#{request.contextPath}/resources/images/logout.png"></img>
+                </div>
+                <br/>
 
-                    <br/>
-                    <h2 class="textoSalida">Cerrar Sesión</h2>
-                    <br/>
-                    <center>
-                        <p:commandButton styleClass="boton" style="font-size: 18px" value="SI" action="#{accesoBean.logout()}" />           
-                        <p:commandButton styleClass="boton2" style="font-size: 18px" value="NO" oncomplete="PF('form_logout').hide()"/>
-                    </center>
-                </h:form>	
+                <br/>
+                <h2 class="textoSalida">Cerrar Sesión</h2>
+                <br/>
+                <center>
+                    <p:commandButton styleClass="boton" style="font-size: 18px" value="SI" action="#{accesoBean.logout()}" />           
+                    <p:commandButton styleClass="boton2" style="font-size: 18px" value="NO" oncomplete="PF('form_logout').hide()"/>
+                </center>
+            </h:form>	
 
-            </p:dialog>
-       
+        </p:dialog>
+
     </h:body>
 </html>

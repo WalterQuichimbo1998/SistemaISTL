@@ -10,6 +10,10 @@ and open the template in the editor.
     margin: 0;
     padding: 0;
 }
+html {
+  min-height: 100%;
+  position: relative;
+}
 body{
     background-color: #E8F0F2;
 }

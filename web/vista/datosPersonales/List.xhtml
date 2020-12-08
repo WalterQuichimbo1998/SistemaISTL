@@ -84,14 +84,7 @@
                             </f:facet>
                             <h:outputText value="#{item.direccion}"/>
                         </p:column>
-                        <p:column sortBy="#{item.fechaNacimiento}" filterBy="#{item.fechaNacimiento}"  filterMatchMode="contains">
-                            <f:facet name="header" >
-                                <h:outputText value="#{bundle.ListDatosPersonalesTitle_fechaNacimiento}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.fechaNacimiento}">
-                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                            </h:outputText>
-                        </p:column>
+                       
                         <p:column sortBy="#{item.celular}" filterBy="#{item.celular}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListDatosPersonalesTitle_celular}"/>
