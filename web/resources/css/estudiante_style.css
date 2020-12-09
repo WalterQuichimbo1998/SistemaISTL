@@ -730,7 +730,6 @@ margin: 4px;
     background: #57a3f4; 
     height: 30px; 
     font-size: 13px !important; 
-    font-weight: bold;
     border-radius: 3px;
     border:none;
     box-shadow: none;
@@ -741,6 +740,7 @@ margin: 4px;
     margin-top: 4px; 
     margin-bottom: 5px;
     transition: all .3s ease; 
+    font-weight: normal;
 }
 .crear:hover{
     color: #000;

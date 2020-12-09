@@ -25,28 +25,34 @@
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  paginatorPosition="bottom"
-                                 emptyMessage="No se encontraron resultados, actualiza tu informacioón de matrícula."
+                                 emptyMessage="Aún no hay registros."
                                  sortOrder="descending"
                                  >
-                       
-                        <p:column sortBy="#{item.codigoMatricula}">
+                        <p:column sortBy="#{item.idTituloCarrera.nombreTitulo}">
                             <f:facet name="header">
-                                <h:outputText value="Nivel Académico"/>
+                                <h:outputText value="Carrera"/>
                             </f:facet>
-                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
+                            <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idTipoMatricula.tipo}">
-                            <f:facet name="header">
-                                <h:outputText value="Tipo Matrícula"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTipoMatricula.tipo}"/>
-                        </p:column>
-
                         <p:column sortBy="#{item.idPeriodoAcademico.nombre}">
                             <f:facet name="header">
                                 <h:outputText value="Período Académico"/>
                             </f:facet>
                             <h:outputText value="#{item.idPeriodoAcademico.nombre}"/>
+                        </p:column>
+                        
+                        <p:column sortBy="#{item.idNivelAcademico.nivelAcademic}">
+                            <f:facet name="header">
+                                <h:outputText value="Nivel Académico"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
+                        </p:column>
+                        
+                        <p:column sortBy="#{item.idTipoMatricula.tipo}">
+                            <f:facet name="header">
+                                <h:outputText value="Tipo Matrícula"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTipoMatricula.tipo}"/>
                         </p:column>
 
                         <p:column sortBy="#{item.modalidad}">
@@ -55,12 +61,7 @@
                             </f:facet>
                             <h:outputText value="#{item.modalidad==1?'Presencial':item.modalidad==2?'Semipresencial':'Dual'}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idTituloCarrera.nombreTitulo}">
-                            <f:facet name="header">
-                                <h:outputText value="Carrera"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
-                        </p:column>
+                       
                         <p:column sortBy="#{item.fechaMatricula}">
                             <f:facet name="header">
                                 <h:outputText value="Fecha Matrícula"/>

@@ -37,22 +37,35 @@
                                          placeholder="Buscar" 
                                          onkeyup="PF('matricula').filter()" 
                                          style="font-size: 18px !important;margin: 10px; text-align: center;border-radius: 20px;
-                                         padding: 7px 0px;width: 500px; "  /> 
+                                         padding: 7px 0px;width: 400px; "  /> 
                         </f:facet> 
                         
-                        <p:column sortBy="#{item.numeroFormulario}" filterBy="#{item.numeroFormulario}"  filterMatchMode="contains">
+                        <p:column sortBy="#{item.numeroFormulario}" filterBy="#{item.numeroFormulario}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="N. Formulario"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroFormulario}"/>
                         </p:column>
-                        <p:column sortBy="#{item.codigoMatricula}" filterBy="#{item.codigoMatricula}"  filterMatchMode="contains">
+                        <p:column sortBy="#{item.codigoMatricula}" filterBy="#{item.codigoMatricula}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Código Matrícula"/>
                             </f:facet>
                             <h:outputText value="#{item.codigoMatricula}"/>
                         </p:column>
-                         <p:column sortBy="#{item.idDatosPersonales.apellidos}" filterBy="#{item.idDatosPersonales.apellidos}"  filterMatchMode="contains">
+                        <p:column sortBy="#{item.idDatosPersonales.nombres}" filterBy="#{item.idDatosPersonales.nombres}"  filterMatchMode="contains">
+                            <f:facet name="header">
+                                <h:outputText value="Persona"/>
+                            </f:facet>
+                           
+                            <h:commandLink value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"
+                                           actionListener="#{matriculaController.setSelected(item)}" action="/vista/matricula/Matricula?faces-redirect=true" 
+                                           style="font-size: 14px;text-decoration: none;color: #000;padding: 8px 8px;" title="Clic para ver los detalles de la matrícula">
+                                   <f:ajax listener="#{matriculaHistorialController.prepareCreate}"/>
+                            </h:commandLink>
+                        
+                        </p:column>
+                        
+                         <p:column sortBy="#{item.idDatosPersonales.apellidos}" filterBy="#{item.idDatosPersonales.apellidos}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Fecha Matricula"/>
                             </f:facet>
@@ -60,20 +73,15 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                         <p:column sortBy="#{item.idTipoMatricula.tipo}" filterBy="#{item.idTipoMatricula.tipo}"  filterMatchMode="contains">
+                         <p:column sortBy="#{item.idTipoMatricula.tipo}" filterBy="#{item.idTipoMatricula.tipo}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Tipo Matricula"/>
                             </f:facet>
                             <h:outputText value="#{item.idTipoMatricula.tipo}"/>
                         </p:column>
                          
-                        <p:column sortBy="#{item.idDatosPersonales.nombres}" filterBy="#{item.idDatosPersonales.nombres}"  filterMatchMode="contains">
-                            <f:facet name="header">
-                                <h:outputText value="Persona"/>
-                            </f:facet>
-                            <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
-                        </p:column>
-                        <p:column sortBy="#{item.idNivelAcademico.nivelAcademico}" filterBy="#{item.idNivelAcademico.nivelAcademico}"  filterMatchMode="contains">
+                        
+                        <p:column sortBy="#{item.idNivelAcademico.nivelAcademico}" filterBy="#{item.idNivelAcademico.nivelAcademico}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Nivel Académico"/>
                             </f:facet>
@@ -93,17 +101,14 @@
                             </f:facet>
                             <h:outputText value="#{item.idTituloCarrera.nombreTitulo}"/>
                         </p:column>
-                        <p:column sortBy="#{item.idMatricula}" filterBy="#{item.idMatricula}"  filterMatchMode="contains">
+                        <p:column sortBy="#{item.idMatricula}" style="width: 50px;">
                             <f:facet name="header">
-                                <h:outputText value="Ver/Editar"/>
+                                <h:outputText value="Editar"/>
                             </f:facet>
-                            <p:commandButton styleClass="ver" value="Ver" icon="ui-icon-pencil" actionListener="#{matriculaController.setSelected(item)}" action="/vista/matricula/Matricula?faces-redirect=true">
-                                <f:ajax listener="#{matriculaHistorialController.prepareCreate}"/>
-                            </p:commandButton>
+                            <p:commandButton styleClass="editar" icon="ui-icon-pencil" actionListener="#{matriculaController.setSelected(item)}" update=":MatriculaEditForm" oncomplete="PF('MatriculaEditDialog').show()"/>
                         </p:column>
-                        
                         <f:facet name="footer">
-                            <p:commandButton id="createButton" styleClass="crear" icon="ui-icon-plus"   value="Registar Matrícula" actionListener="#{matriculaController.prepareCreate}" update=":MatriculaCreateForm" oncomplete="PF('MatriculaCreateDialog').show()"/>
+                            <p:commandButton id="createButton" styleClass="crear" style="font-weight: normal;" icon="ui-icon-plus"   value="Registar Matrícula" actionListener="#{matriculaController.prepareCreate}" update=":MatriculaCreateForm" oncomplete="PF('MatriculaCreateDialog').show()"/>
                             <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="Eliminar Matrícula" actionListener="#{matriculaController.destroy}" update=":growl,datalist" disabled="#{empty matriculaController.selected}">
                                  <p:confirm message="Eliminar Matrícula" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
                                 </p:commandButton>                      
@@ -117,6 +122,7 @@
             </h:form>
 
             <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
         </ui:define>
     </ui:composition>
 

@@ -52,7 +52,7 @@ public class NivelAcademicoFacade extends AbstractFacade<NivelAcademico> {
         List<NivelAcademico> lista = q.getResultList();
         return lista;
     }
-     public List<NivelAcademico> listaNivelesDistributivo(Integer persona,Integer carrera) {
+     public List<NivelAcademico> listaNivelesDistributivo(Integer persona,Integer carrera,Integer periodo) {
         List<NivelAcademico> lista = null;
         try {
             Query q = em.createNativeQuery("SELECT DISTINCT nivel_academico.id_nivel_academico,nivel_academico.nivel_academico,distributivo_materia.id_distributivo,datos_personales.id_datos_personales,titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo FROM nivel_academico\n"
@@ -60,7 +60,7 @@ public class NivelAcademicoFacade extends AbstractFacade<NivelAcademico> {
                     + " LEFT JOIN distributivo ON distributivo.id_distributivo = distributivo_materia.id_distributivo \n"
                     + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales= distributivo.id_datos_personales \n"
                     + " LEFT JOIN titulo_carrera ON titulo_carrera.id_titulo_carrera= nivel_academico.id_titulo_carrera \n"
-                    + " WHERE datos_personales.id_datos_personales='" + persona + "' AND nivel_academico.id_titulo_carrera='" + carrera + "'", NivelAcademico.class);
+                    + " WHERE datos_personales.id_datos_personales='" + persona + "' AND nivel_academico.id_titulo_carrera='" + carrera +"' AND distributivo.id_periodo_academico_semestre='" + periodo + "'", NivelAcademico.class);
             lista = q.getResultList();
         } catch (Exception e) {
         }

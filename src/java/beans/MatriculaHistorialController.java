@@ -28,6 +28,7 @@ public class MatriculaHistorialController implements Serializable {
     private dao.MatriculaHistorialFacade ejbFacade;
     private List<MatriculaHistorial> items = null;
     private MatriculaHistorial selected;
+    private MatriculaHistorial mh;
 
     public MatriculaHistorialController() {
     }
@@ -38,6 +39,14 @@ public class MatriculaHistorialController implements Serializable {
 
     public void setSelected(MatriculaHistorial selected) {
         this.selected = selected;
+    }
+
+    public MatriculaHistorial getMh() {
+        return mh;
+    }
+
+    public void setMh(MatriculaHistorial mh) {
+        this.mh = mh;
     }
 
     protected void setEmbeddableKeys() {
@@ -72,6 +81,10 @@ public class MatriculaHistorialController implements Serializable {
 
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaHistorialUpdated"));
+    }
+
+    public void update2() {
+        persist3(PersistAction.UPDATE);
     }
 
     public void destroy() {
@@ -149,6 +162,33 @@ public class MatriculaHistorialController implements Serializable {
             }
         }
     }
+    private void persist3(PersistAction persistAction) {
+        if (mh != null) {
+            setEmbeddableKeys();
+            try {
+                if (persistAction != PersistAction.DELETE) {
+                    getFacade().edit(mh);
+                } else {
+                    getFacade().remove(mh);
+                }
+
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+
+                }
+                if (msg.length() > 0) {
+                    JsfUtil.addErrorMessage(msg);
+                } else {
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+            }
+        }
+    }
 
     public MatriculaHistorial getMatriculaHistorial(java.lang.Integer id) {
         return getFacade().find(id);
@@ -205,7 +245,74 @@ public class MatriculaHistorialController implements Serializable {
 
     public void crearMH(Matricula m) {
         if (m.getIdPeriodoAcademico() != null) {
-            if (ejbFacade.virificarMatriculaHistorial(m.getIdPeriodoAcademico().getIdPeriodoAcademico(), m.getIdMatricula()) != null) {
+            mh = ejbFacade.virificarMatriculaHistorial(m.getIdNivelAcademico().getIdNivelAcademico(), m.getIdPeriodoAcademico().getIdPeriodoAcademico(), m.getIdMatricula());
+            if (mh != null) {
+                try {
+                    this.mh.setIdTipoIdentificacion(m.getIdTipoIdentificacion());
+                    this.mh.setIdEtnia(m.getIdEtnia());
+                    this.mh.setIdTipoSangre(m.getIdTipoSangre());
+                    this.mh.setIdNacionalidad(m.getIdNacionalidad());
+                    this.mh.setIdEstadoCivil(m.getIdEstadoCivil());
+                    this.mh.setIdDatosPersonales(m.getIdDatosPersonales());
+                    this.mh.setIdProvinciaResidencia(m.getIdProvinciaResidencia());
+                    this.mh.setIdCantonNacimiento(m.getIdCantonNacimiento());
+                    this.mh.setIdProvinciaNacimiento(m.getIdProvinciaNacimiento());
+                    this.mh.setIdResidencia(m.getIdResidencia());
+                    this.mh.setIdNivelAcademico(m.getIdNivelAcademico());
+                    this.mh.setIdTipoMatricula(m.getIdTipoMatricula());
+                    this.mh.setIdTituloCarrera(m.getIdTituloCarrera());
+                    this.mh.setIdPeriodoAcademico(m.getIdPeriodoAcademico());
+                    this.mh.setIdTipoColegio(m.getIdTipoColegio());
+                    this.mh.setIdTipoBachillerato(m.getIdTipoBachillerato());
+                    this.mh.setIdJornadaAcademica(m.getIdJornadaAcademica());
+                    this.mh.setIdFormacionPadre(m.getIdFormacionPadre());
+                    this.mh.setIdFormacionMadre(m.getIdFormacionMadre());
+                    this.mh.setIdTipoCarrera(m.getIdTipoCarrera());
+                    this.mh.setIdSectorEconomicoEmpresa(m.getIdSectorEconomicoEmpresa());
+                    this.mh.setIdParalelo(m.getIdParalelo());
+                    this.mh.setIdTipoDiscapacidad(m.getIdTipoDiscapacidad());
+                    this.mh.setIdtipoinstitucionpracticasPreprofesionales(m.getIdtipoinstitucionpracticasPreprofesionales());
+                    this.mh.setIdsectorpracticasPreprofesionales(m.getIdsectorpracticasPreprofesionales());
+                    this.mh.setIdAlcanceVinculacion(m.getIdAlcanceVinculacion());
+                    this.mh.setIdMatricula(m);
+                    this.mh.setIdiomaAncestral(m.getIdiomaAncestral());
+                    this.mh.setDescripcionIdiomaAncestral(m.getDescripcionIdiomaAncestral());
+                    this.mh.setPaisNacionalidad(m.getPaisNacionalidad());
+                    this.mh.setPaisResidencia(m.getPaisResidencia());
+                    this.mh.setPoseeDiscapacidad(m.getPoseeDiscapacidad());
+                    this.mh.setParticipacionPracticas(m.getParticipacionPracticas());
+                    this.mh.setParticipacionVinculacion(m.getParticipacionVinculacion());
+                    this.mh.setFechaMatricula(m.getFechaMatricula());
+                    this.mh.setAnioGraduacion(m.getAnioGraduacion());
+                    this.mh.setModalidad(m.getModalidad());
+                    this.mh.setFechaInicioCarrera(m.getFechaInicioCarrera());
+                    this.mh.setTituloEducacionSuperior(m.getTituloEducacionSuperior());
+                    this.mh.setEspecifiqueTitulo(m.getEspecifiqueTitulo());
+                    this.mh.setTituloOtorgado(m.getTituloOtorgado());
+                    this.mh.setOcupacionEstudiante(m.getOcupacionEstudiante());
+                    this.mh.setNombreEmpresa(m.getNombreEmpresa());
+                    this.mh.setEmpleoIngresosEconomicos(m.getEmpleoIngresosEconomicos());
+                    this.mh.setBonoDesarrolloHumano(m.getBonoDesarrolloHumano());
+                    this.mh.setIngresoHogar(m.getIngresoHogar());
+                    this.mh.setNroMiembrosHogar(m.getNroMiembrosHogar());
+                    this.mh.setMateriaRepetida(m.getMateriaRepetida());
+                    this.mh.setMateriaPerdida(m.getMateriaPerdida());
+                    this.mh.setNumeroFormulario(m.getNumeroFormulario());
+                    this.mh.setCodigoMatricula(m.getCodigoMatricula());
+                    this.mh.setNombreContacto(m.getNombreContacto());
+                    this.mh.setApellidoContacto(m.getApellidoContacto());
+                    this.mh.setCelularContacto(m.getCelularContacto());
+                    this.mh.setParentescoContacto(m.getParentescoContacto());
+                    this.mh.setNumCarnetConadis(m.getNumCarnetConadis());
+                    this.mh.setPorcentajeDiscapacidad(m.getPorcentajeDiscapacidad());
+                    this.mh.setDescripcionDiscapacidad(m.getDescripcionDiscapacidad());
+                    this.mh.setNrohoraspracticasPreprosionales(m.getNrohoraspracticasPreprosionales());
+                    this.mh.setCategoriaMigratoria(m.getCategoriaMigratoria());
+                    this.mh.setProvinciaResidencia(m.getProvinciaResidencia());
+                    this.mh.setCantonResidencia(m.getCantonResidencia());
+                    update2();
+                } catch (Exception e) {
+                }
             } else {
                 try {
                     this.selected.setIdTipoIdentificacion(m.getIdTipoIdentificacion());

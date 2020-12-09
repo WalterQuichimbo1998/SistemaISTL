@@ -8,9 +8,9 @@
 
     <ui:composition>
 
-        <p:dialog id="MatriculaCreateDlg" widgetVar="MatriculaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nuevo Registro Matrícula"
+        <p:dialog id="MatriculaEditDialog" widgetVar="MatriculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Registro Matrícula"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
-            <h:form id="MatriculaCreateForm">
+            <h:form id="MatriculaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="3" rendered="#{matriculaController.selected != null}">
                         <p:column>
@@ -66,7 +66,7 @@
                                 <f:ajax execute="idTituloCarrera" render="idNivelAcademico" />
                             </p:selectOneMenu>
                             <br/>
-                            
+
                             <p:outputLabel value="Periódo Académico:" for="idPeriodoAcademico" /><br/>
                             <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" style="width:190px !important;"
                                              required="true" requiredMessage="Seleccione el periódo académico">
@@ -95,7 +95,7 @@
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{matriculaController.itemsNivelAcademico}"
                                                var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem}"/>
+                                               itemValue="#{idNivelAcademicoItem}" itemDisabled="#{matriculaController.verificarNivel(idNivelAcademicoItem)==false}"/>
                             </p:selectOneListbox>
                             <br/>
 
@@ -126,15 +126,28 @@
                             <br/>
                             <br/>
                         </p:column>
-                        <p:column/>
                         <p:column>
                             <center>
-                                <p:commandButton styleClass="btn_g" actionListener="#{matriculaController.verificarCrear()}" value="#{bundle.Save}" update="display,:MatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MatriculaCreateDialog');"/>
-                                <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MatriculaCreateDialog').hide();"/>
+                                <p:commandButton styleClass="btn_g" actionListener="#{matriculaController.actualizarMatricula()}" value="#{bundle.Save}" update="display,:MatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MatriculaEditDialog');"/>
+                                <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MatriculaEditDialog').hide();"/>
+                            </center>
+                        </p:column>
+                        <p:column>
+                            <p:outputLabel value="Estado para actualizar los datos" /><br/>
+                            <p:outputLabel value="de la materícula: " /><br/>
+                        </p:column>
+                        <p:column>
+                            <center>
+                                <p:selectBooleanButton id="estado" class="#{matriculaController.selected.estado==true ? 'estado':'estado2'}" value="#{matriculaController.selected.estado}"
+                                                   onLabel="Habilitado" offLabel="No Habilitado" onIcon="ui-icon-check" offIcon="ui-icon-close">
+                                <p:ajax listener="#{matriculaController.update2}" update="@this,:growl"/>
+                            </p:selectBooleanButton> 
+                            <p:tooltip id="estado2" for="estado" value="Click para cambiar" trackMouse="true" style="box-shadow: none"  />
                             </center>
                         </p:column>
 
                     </p:panelGrid>
+
 
                 </h:panelGroup>
             </h:form>

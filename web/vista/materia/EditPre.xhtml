@@ -13,18 +13,34 @@
             <h:form id="PreRequisitosMateriaEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{preRequisitosMateriaController.selected != null}">
-                        <p:outputLabel value="Materia: "/>
+                        <p:outputLabel value="Materia: " style="font-size: 17px !important;"/>
                         <p:outputLabel value="#{preRequisitosMateriaController.selectedM.materia}" style="font-size: 15px !important;"/>
-                        <p:column/>
-                        <p:column><br/></p:column>
+                        <p:column><br/>
+                            <p:outputLabel value="Nivel Académico: " style="font-size: 15px !important;"/>
+                        </p:column>
+                        <p:column>
+                            <br/>
+
+                            <p:selectOneMenu id="nivel" value="#{materiaController.selectedN2}"  style="width: 260px !important;">
+                                <f:selectItem itemLabel="-Seleccione-"/>
+                                <f:selectItems value="#{nivelAcademicoController.selectedT.nivelAcademicoList}"
+                                               var="idNivel"
+                                               itemValue="#{idNivel}"
+                                               itemLabel="#{idNivel.nivelAcademico}"
+                                               itemDisabled="#{idNivel==materiaController.selectedN}"/>
+                                <f:ajax execute="nivel" render="idMateria"/>
+                            </p:selectOneMenu>
+                        </p:column>
                         <p:outputLabel value="Materia Pre-requisito: " for="idMateria" />
                         <p:selectOneMenu id="idMateria" value="#{preRequisitosMateriaController.selected.idMateriaPre}" style="width: 260px !important;">
                             <f:selectItem itemLabel="-Seleccione-"/>
-                            <f:selectItems value="#{preRequisitosMateriaController.lista}"
+                            <f:selectItems value="#{materiaController.listaP}"
                                            var="idMateriaItem"
                                            itemValue="#{idMateriaItem}"
                                            itemLabel="#{idMateriaItem.materia}"/>
                         </p:selectOneMenu>
+                        <p:column/>
+                        <p:column/>
                         <p:outputLabel value="Materia Co-requisito: " for="idMateria2" />
                         <p:selectOneMenu id="idMateria2" value="#{preRequisitosMateriaController.selected.idMateriaCo}" style="width: 260px !important;">
                             <f:selectItem itemLabel="-Seleccione-"/>
@@ -34,6 +50,7 @@
                                            itemLabel="#{idMateriaItem.materia}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
+
                     <p:commandButton styleClass="btn_g" actionListener="#{preRequisitosMateriaController.update}" value="#{bundle.Save}" update="display,:MateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PreRequisitosMateriaEditDialog');"/>
                     <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" oncomplete="PF('PreRequisitosMateriaEditDialog').hide();"/>
                 </h:panelGroup>

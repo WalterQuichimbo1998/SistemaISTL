@@ -102,8 +102,8 @@ public class Matricula implements Serializable {
     @Size(max = 45)
     @Column(name = "posee_discapacidad")
     private String poseeDiscapacidad;
-    @Column(name = "estado")
-    private Integer estado;
+   @Column(name = "estado")
+    private Boolean estado;
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
@@ -333,13 +333,14 @@ public class Matricula implements Serializable {
         this.poseeDiscapacidad = poseeDiscapacidad;
     }
 
-    public Integer getEstado() {
+  public Boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(Integer estado) {
+    public void setEstado(Boolean estado) {
         this.estado = estado;
     }
+    
 
     public Date getFechaDeRegistro() {
         return fechaDeRegistro;

@@ -321,97 +321,13 @@
                         <div style="width: 100%;">
                             <p:outputLabel class="labelDatos" value="Datos de carrera académica" style="color:#454545;font-weight: bold;" />
                         </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Fecha de Inicio de la Carrera" for="fechaInicioCarrera" />
-                            <p:calendar id="fechaInicioCarrera" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaInicioCarrera}" mask="true" navigator="true"/>
-                        </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Fecha de Matricula" for="fechaMatricula" />
-                            <p:calendar id="fechaMatricula" styleClass="calendarClass2" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaMatricula}"  mask="true" navigator="true"/>
-                        </div>
-
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Tipo de matrícula" for="idTipoMatricula" />
-                            <p:selectOneMenu id="idTipoMatricula" value="#{matriculaController.selected.idTipoMatricula}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tipoMatriculaController.itemsAvailableSelectOne}"
-                                               var="idTipoMatriculaItem"
-                                               itemValue="#{idTipoMatriculaItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        
-                      <div class="botones21">
-                            <p:outputLabel class="labelDatos" value="Nombre de la carrera" for="idTituloCarrera" />
-                            <p:selectOneMenu id="idTituloCarrera" value="#{matriculaController.selected.idTituloCarrera}" effect="fade">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                               var="idTituloCarreraItem"
-                                               itemValue="#{idTituloCarreraItem}"/>
-                                 <f:ajax execute="idTituloCarrera" render="idNivelAcademico" />
-                            </p:selectOneMenu>
-                            </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Nivel Académico" for="idNivelAcademico" />
-                            <p:selectOneMenu id="idNivelAcademico" value="#{matriculaController.selected.idNivelAcademico}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{matriculaController.itemsNivelAcademico}"
-                                               var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                           <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Período/Ciclo académico" for="idPeriodoAcademico" />
-                            <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" effect="fade">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{periodoAcademicoController.items}"
-                                               var="idPeriodoAcademicoItem"
-                                               itemValue="#{idPeriodoAcademicoItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Parelelo" for="idParalelo" />
-                            <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
-                                               var="idParaleloItem"
-                                               itemValue="#{idParaleloItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        
-                        
+                      
                         <div class="botones21">
                             <p:outputLabel class="labelDatos" value="Título que otorgada la carrera" for="tituloOtorgado" />
                             <p:inputText id="tituloOtorgado" styleClass="camposDeDatos2" value="#{matriculaController.selected.tituloOtorgado}"  maxlength="60"
                                          onkeyup="javascript:this.value = this.value.toUpperCase();" />
                         </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Tipo carrera" for="idTipoCarrera" />
-                            <p:selectOneMenu id="idTipoCarrera" value="#{matriculaController.selected.idTipoCarrera}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tipoCarreraController.itemsAvailableSelectOne}"
-                                               var="idTipoCarreraItem"
-                                               itemValue="#{idTipoCarreraItem}"/>
-                            </p:selectOneMenu>
-                        </div>
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Modalidad de la carrera" for="modalidad" />
-                            <p:selectOneMenu id="modalidad" value="#{matriculaController.selected.modalidad}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItem itemValue="1" itemLabel="Presencial"/>
-                                <f:selectItem itemValue="2" itemLabel="Semipresencial"/>
-                                <f:selectItem itemValue="3" itemLabel="Dual"/>
-                            </p:selectOneMenu>   
-                        </div> 
-
-                        <div class="botones22">
-                            <p:outputLabel class="labelDatos" value="Jornada en la que estudia" for="idJornadaAcademica" />
-                            <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" >
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
-                                               var="idJornadaAcademicaItem"
-                                               itemValue="#{idJornadaAcademicaItem}"/>
-                            </p:selectOneMenu>
-                        </div>
+                       
                         <div class="botones22">
                             <p:outputLabel class="labelDatos" value="¿Ha repetido almenos una materia?" for="materiaRepetida" />
                             <p:selectOneMenu id="materiaRepetida" value="#{matriculaController.selected.materiaRepetida}" >
@@ -571,7 +487,7 @@
                         <p:separator style="width: 100%;margin-top:20px;margin-bottom: 20px;border-color: #1976D3;"/>
 
                         <div class="botones2">
-                            <p:commandButton styleClass="crear" ajax="false"  actionListener="#{matriculaController.update}" action="#{matriculaHistorialController.crearMH(matriculaController.selected)}" value="Actualizar Datos Matrícula"
+                            <p:commandButton styleClass="crear" ajax="false"  actionListener="#{matriculaController.actualizarMatricula2()}" action="#{matriculaHistorialController.crearMH(matriculaController.selected)}" value="Actualizar Datos Matrícula"
                                              update="mensaje"/>
                             <br/>
                             <br/>

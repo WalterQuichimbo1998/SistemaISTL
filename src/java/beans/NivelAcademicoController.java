@@ -129,15 +129,15 @@ public class NivelAcademicoController implements Serializable {
         this.lista = lista;
     }
 
-    public List<NivelAcademico> getListaD() {
-        listaD=null;
-         if (listaD == null) {
-           if(selectedT!=null){
-                 listaD = getFacade().listaNivelesDistributivo(getId_persona(),selectedT.getIdTituloCarrera());
-           }
-        }
-        return listaD;
-    }
+//    public List<NivelAcademico> getListaD() {
+//        listaD=null;
+//         if (listaD == null) {
+//           if(selectedT!=null){
+//                 listaD = getFacade().listaNivelesDistributivo(getId_persona(),selectedT.getIdTituloCarrera());
+//           }
+//        }
+//        return listaD;
+//    }
 
     public void setListaD(List<NivelAcademico> listaD) {
         this.listaD = listaD;

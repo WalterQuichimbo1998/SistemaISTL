@@ -14,25 +14,26 @@ and open the template in the editor.
     <ui:composition template="./templateEstudiante.xhtml">
 
         <ui:define name="body">
-            <div class="boxContainerData" style="width: 900px;padding: 3px 10px;">
+            <br/>
+            <div class="boxContainerData" style="width: 900px;padding: 3px 20px;">
                 <h:form id="MateriaEditForm">
                     <h:panelGrid columns="1" style="margin: auto; ">
                         <h:panelGroup style="display: inline-block; text-align: center; "> 
-                            <h2 style="color: #454545;padding: 10px 20px;margin-bottom: 20px;font-family: Arial;">MI EXPEDIENTE DE NOTAS</h2>
+                            <h2 style="color: #000;padding: 10px 20px;margin-bottom: 20px;font-family: Arial;">MI EXPEDIENTE DE NOTAS</h2>
                             <ui:repeat value="#{datosPersonalesController.selected.matriculaList}" var="item">
 
                                 <p:column>
-                                    <h3 style="font-family: Arial;">#{item.idTituloCarrera.nombreTitulo}</h3>
+                                    <h3 style="font-family: Arial;color: #454545;">#{item.idTituloCarrera.nombreTitulo}</h3>
                                     <ui:repeat value="#{item.idTituloCarrera.nivelAcademicoList}" var="item2">
                                         <p:column>
                                             <br/>
                                             <p:dataTable value="#{notasController.listaNotasExpediente(item2.idNivelAcademico)}" var="item3" 
                                                          rows="10"
-                                                         emptyMessage="No se encontraron resultados."
+                                                         emptyMessage="Aún no hay registros."
                                                          sortOrder="descending"
                                                          >
                                                 <f:facet name="header">
-                                                    <h3 style="padding: 8px 2px;">#{item2.nivelAcademico}</h3>
+                                                    <h3 style="padding: 8px 2px;">Notas de #{item2.nivelAcademico}</h3>
                                                     
                                                 </f:facet>
                                                 <p:column headerText="Materia" sortBy="#{item3.idMateria.materia}">
@@ -45,27 +46,24 @@ and open the template in the editor.
                                                 <p:column headerText="Parcial 2" sortBy="#{item3.parcialDos}" style="width: 90px;">
                                                     <p:outputLabel value="#{item3.parcialDos}"/>
                                                 </p:column>
-                                                <p:column headerText="Nota Supletorio" sortBy="#{item3.notaSupletorio}" style="width: 90px;">
+                                                <p:column headerText="Supletorio" sortBy="#{item3.notaSupletorio}" style="width: 90px;">
                                                     <p:outputLabel value="#{item3.notaSupletorio}"/>
                                                 </p:column>
                                                 <p:column headerText="Nota Final" sortBy="#{item3.notaFinal}" style="width: 90px;">
                                                     <p:outputLabel value="#{item3.notaFinal}"/>
                                                 </p:column>
                                                 <p:column headerText="Estado" sortBy="#{item3.idMateria.materia}" style="width: 90px;">
-                                                    <p:outputLabel value="#{item3.notaFinal==null?'No Aprobado':item3.notaFinal lt 7 ? 'No Aprobado' : 'Aprobado'}"
-                                                                   style="display: block; color: #{item3.notaFinal==null? 'red':item3.notaFinal lt 7 ? 'red' : 'green'}" />
+                                                    <p:outputLabel value="#{item3.notaFinal==null?'Sin calificación':item3.notaFinal lt 7 ? 'No Aprobado' : 'Aprobado'}"
+                                                                   style="display: block; color: #{item3.notaFinal==null? 'silver':item3.notaFinal lt 7 ? 'red' : 'green'}" />
                                                 </p:column>
                                             </p:dataTable>
                                         </p:column>
                                     </ui:repeat>
                                 </p:column>
                             </ui:repeat>
-
-
-
                         </h:panelGroup>
                     </h:panelGrid>
-
+                    <br/>
                 </h:form>
 
             </div>

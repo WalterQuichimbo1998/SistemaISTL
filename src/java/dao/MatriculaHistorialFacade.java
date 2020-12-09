@@ -30,10 +30,10 @@ public class MatriculaHistorialFacade extends AbstractFacade<MatriculaHistorial>
     public MatriculaHistorialFacade() {
         super(MatriculaHistorial.class);
     }
-    public MatriculaHistorial virificarMatriculaHistorial(Integer idP,Integer idM) {
+    public MatriculaHistorial virificarMatriculaHistorial(Integer idN,Integer idP,Integer idM) {
         MatriculaHistorial ma = null;
         try {
-            Query q = em.createNativeQuery("SELECT id_matricula_historial,id_periodo_academico FROM matricula_historial WHERE id_matricula='" + idM + "' AND id_periodo_academico ='" + idP + "';", MatriculaHistorial.class);
+            Query q = em.createNativeQuery("SELECT id_matricula_historial,id_nivel_academico,id_periodo_academico FROM matricula_historial WHERE id_matricula='" + idM + "' AND id_nivel_academico ='" + idN + "' AND id_periodo_academico ='" + idP +"';", MatriculaHistorial.class);
             ma = (MatriculaHistorial) q.getSingleResult();
         } catch (Exception e) {
         }

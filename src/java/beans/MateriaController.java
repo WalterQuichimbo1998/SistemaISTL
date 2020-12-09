@@ -33,6 +33,7 @@ public class MateriaController implements Serializable {
     private List<Materia> items = null;
     private List<Materia> lista = null;
     private List<Materia> lista2 = null;
+    private List<Materia> listaP = null;
     private List<PreRequisitosMateria> listaPre = null;
     @EJB
     private NivelAcademicoFacade ejbFacadeNivel;
@@ -41,6 +42,7 @@ public class MateriaController implements Serializable {
     private List<NivelAcademico> itemsNivelAcademico = null;
     private Materia selected;
     private NivelAcademico selectedN;
+    private NivelAcademico selectedN2;
     
 
     public MateriaController() {
@@ -58,6 +60,16 @@ public class MateriaController implements Serializable {
         this.selectedN = selectedN;
         lista2=null;
     }
+
+    public NivelAcademico getSelectedN2() {
+        return selectedN2;
+    }
+
+    public void setSelectedN2(NivelAcademico selectedN2) {
+        this.selectedN2 = selectedN2;
+        listaP=null;
+    }
+    
     
 
     public void setSelected(Materia selected) {
@@ -169,6 +181,21 @@ public class MateriaController implements Serializable {
             r=false;
         }
         return r;
+    }
+
+    public List<Materia> getListaP() {
+       
+         if (listaP == null) {
+             if(selectedN2!=null){
+                  listaP = getFacade().listaMaterias(selectedN2.getIdNivelAcademico());
+             }
+                
+        }
+        return listaP;
+    }
+
+    public void setListaP(List<Materia> listaP) {
+        this.listaP = listaP;
     }
    
     

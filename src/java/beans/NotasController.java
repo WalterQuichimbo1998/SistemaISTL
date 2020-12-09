@@ -439,8 +439,8 @@ public class NotasController implements Serializable {
         listaNivelesDocente = null;
         if (listaNivelesDocente == null) {
             if (selectedPeriodo != null) {
-                listaNivelesDocente = ejbFacadeNivel.listaNivelesDistributivo(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), id);
-            }
+                listaNivelesDocente = ejbFacadeNivel.listaNivelesDistributivo(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), id,selectedPeriodo.getIdPeriodoAcademico());
+            } 
         }
         return listaNivelesDocente;
     }
