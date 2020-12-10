@@ -38,7 +38,8 @@
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{distributivoMateriaController.itemsMateria}"
                                            var="idMateriaItem"
-                                           itemValue="#{idMateriaItem}"/>
+                                           itemValue="#{idMateriaItem}"
+                                           itemLabel="#{idMateriaItem.materia}"/>
                         </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton styleClass="btn_g" actionListener="#{distributivoMateriaController.update}" value="#{bundle.Save}" update="display,:DistributivoMateriaListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DistributivoMateriaEditDialog');"/>

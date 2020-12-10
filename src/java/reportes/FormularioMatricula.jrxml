@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fa4fdfa-129a-4631-9936-96d5c9208d0f">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="1503"/>
 	<parameter name="num_identificacion" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -1048,55 +1048,55 @@ WHERE
 				<reportElement x="353" y="171" width="202" height="25" uuid="67264dec-44c0-4360-b68f-bdf51b06ef3a"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="434" width="554" height="21" uuid="42321350-5889-4183-9048-71acd565fc7d"/>
+				<reportElement x="1" y="454" width="554" height="21" uuid="42321350-5889-4183-9048-71acd565fc7d"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="298" y="250" width="256" height="20" uuid="6449add3-29ed-4765-b9af-308f5110620b"/>
+				<reportElement x="298" y="270" width="256" height="20" uuid="6449add3-29ed-4765-b9af-308f5110620b"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="256" width="554" height="20" uuid="7d8b1697-6f76-49be-abdd-7963b2d3ad90"/>
+				<reportElement x="1" y="276" width="554" height="20" uuid="7d8b1697-6f76-49be-abdd-7963b2d3ad90"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="281" y="236" width="274" height="20" uuid="0196061b-12f4-4bc1-a59b-e691f4dea78f"/>
+				<reportElement x="281" y="256" width="274" height="20" uuid="0196061b-12f4-4bc1-a59b-e691f4dea78f"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="632" width="284" height="20" uuid="291bd0f3-fc08-4801-be6a-083fcae7e7f6"/>
+				<reportElement x="1" y="652" width="284" height="20" uuid="291bd0f3-fc08-4801-be6a-083fcae7e7f6"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="612" width="554" height="20" uuid="a02df0de-d93e-4409-89b9-16377717da48"/>
+				<reportElement x="1" y="632" width="554" height="20" uuid="a02df0de-d93e-4409-89b9-16377717da48"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="593" width="554" height="19" uuid="67aebaa7-499e-4f62-b840-95fbe004b1b7"/>
+				<reportElement x="1" y="613" width="554" height="19" uuid="67aebaa7-499e-4f62-b840-95fbe004b1b7"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="573" width="554" height="20" uuid="86a9a158-4741-4e8a-9e8f-2093fb809ba9"/>
+				<reportElement x="1" y="593" width="554" height="20" uuid="86a9a158-4741-4e8a-9e8f-2093fb809ba9"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="552" width="554" height="21" uuid="e2acd833-0599-46f5-a6d2-e70375e7a43b"/>
+				<reportElement x="1" y="572" width="554" height="21" uuid="e2acd833-0599-46f5-a6d2-e70375e7a43b"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="508" width="554" height="23" uuid="cf1f71e6-e4eb-40fe-814f-043e2ef9996b"/>
+				<reportElement x="1" y="528" width="554" height="23" uuid="cf1f71e6-e4eb-40fe-814f-043e2ef9996b"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="358" width="554" height="32" uuid="b8182f78-1777-461e-9503-3aafbd7794bd"/>
+				<reportElement x="1" y="378" width="554" height="32" uuid="b8182f78-1777-461e-9503-3aafbd7794bd"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="196" width="280" height="40" uuid="94e894d8-f121-4827-a83b-42f33928ea97"/>
+				<reportElement x="1" y="196" width="280" height="60" uuid="94e894d8-f121-4827-a83b-42f33928ea97"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="281" y="196" width="274" height="40" uuid="c5fcd4e9-0387-495d-bdb4-1c9c9e0a691f"/>
+				<reportElement x="281" y="196" width="274" height="60" uuid="c5fcd4e9-0387-495d-bdb4-1c9c9e0a691f"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="389" width="554" height="45" uuid="cb98c5ae-25dd-4143-b9cb-a8615a561358"/>
+				<reportElement x="1" y="409" width="554" height="45" uuid="cb98c5ae-25dd-4143-b9cb-a8615a561358"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="281" y="276" width="274" height="40" uuid="0d0a2bdf-9d4d-4795-ace7-37cb1278daaa"/>
+				<reportElement x="281" y="296" width="274" height="40" uuid="0d0a2bdf-9d4d-4795-ace7-37cb1278daaa"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="316" width="280" height="42" uuid="3d043551-c934-4cfa-b7c4-40c80b75f3b5"/>
+				<reportElement x="1" y="336" width="280" height="42" uuid="3d043551-c934-4cfa-b7c4-40c80b75f3b5"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="276" width="280" height="40" uuid="2759f378-5238-4196-bb9c-04f1c0758258"/>
+				<reportElement x="1" y="296" width="280" height="40" uuid="2759f378-5238-4196-bb9c-04f1c0758258"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="233" y="72" width="96" height="20" uuid="2a3e373c-e3d5-48f6-87c2-da3fdb287115"/>
@@ -1134,59 +1134,59 @@ WHERE
 				<text><![CDATA[LIMÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="365" width="346" height="20" uuid="7d2867ad-9a3f-4c5a-bafc-f4e486b3f431"/>
+				<reportElement x="3" y="385" width="346" height="20" uuid="7d2867ad-9a3f-4c5a-bafc-f4e486b3f431"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[51. Tipo de Institución en el que se realiza Prácticas Pre profesionales:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="283" y="287" width="138" height="20" uuid="479786d5-3d85-4156-982e-b0dc193722f0"/>
+				<reportElement x="283" y="307" width="138" height="20" uuid="479786d5-3d85-4156-982e-b0dc193722f0"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[48. Ha perdido la Gratuidad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="276" width="204" height="20" uuid="09f058a8-d970-4125-8e5c-ba8027f01a2a"/>
+				<reportElement x="3" y="296" width="204" height="20" uuid="09f058a8-d970-4125-8e5c-ba8027f01a2a"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[47. Ha repetido al menos una materia:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="281" y="316" width="274" height="42" uuid="e0e69f42-7864-48a6-9fd9-cebaf0dbb4bd"/>
+				<reportElement x="281" y="336" width="274" height="42" uuid="e0e69f42-7864-48a6-9fd9-cebaf0dbb4bd"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="283" y="316" width="270" height="20" uuid="065460ff-63da-498c-bb80-163a21dfddeb"/>
+				<reportElement x="283" y="336" width="270" height="20" uuid="065460ff-63da-498c-bb80-163a21dfddeb"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[50. Nro. Horas de Prácticas Preprofesionales Realizadas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="391" width="330" height="20" uuid="3a30991f-69fa-46cd-b81d-c6a3a62fd6f0"/>
+				<reportElement x="3" y="411" width="330" height="20" uuid="3a30991f-69fa-46cd-b81d-c6a3a62fd6f0"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[52. Sector Económico en el que realiza Prácticas Pre profesionales:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="316" width="223" height="20" uuid="410e2ad6-ac19-4c3a-b07e-9be91b98e510"/>
+				<reportElement x="3" y="336" width="223" height="20" uuid="410e2ad6-ac19-4c3a-b07e-9be91b98e510"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[49. Ha realizado Prácticas Preprofesionales:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="256" width="150" height="20" uuid="ca11afb9-856f-4fbd-8675-52436fd49d82"/>
+				<reportElement x="3" y="276" width="150" height="20" uuid="ca11afb9-856f-4fbd-8675-52436fd49d82"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[46. Jornada en la que Estudia:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="1" y="236" width="280" height="20" uuid="15fa62d8-0fda-49a0-b14c-736862a54a90"/>
+				<reportElement x="1" y="256" width="280" height="20" uuid="15fa62d8-0fda-49a0-b14c-736862a54a90"/>
 			</rectangle>
 			<staticText>
 				<reportElement x="326" y="197" width="167" height="20" uuid="0f974c33-9714-423d-8d8c-9932fd0b24a7"/>
@@ -1196,14 +1196,14 @@ WHERE
 				<text><![CDATA[43. Título que otorga la Carrrera:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="296" y="237" width="142" height="20" uuid="017ed55b-cd72-4b50-a2c8-1d3ec9db56d9"/>
+				<reportElement x="296" y="257" width="142" height="20" uuid="017ed55b-cd72-4b50-a2c8-1d3ec9db56d9"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[45. Modalidad de la Carrera:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="236" width="100" height="20" uuid="e89c68f6-6fa9-444d-8d2d-3e91981aee26"/>
+				<reportElement x="3" y="256" width="100" height="20" uuid="e89c68f6-6fa9-444d-8d2d-3e91981aee26"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -1217,89 +1217,89 @@ WHERE
 				<text><![CDATA[42. Nombre de la Carrera:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="573" width="380" height="20" uuid="0b293907-c48d-4ad8-b14d-9ec97695b1b7"/>
+				<reportElement x="3" y="593" width="380" height="20" uuid="0b293907-c48d-4ad8-b14d-9ec97695b1b7"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[59. Usted o algún miembro de la familia recibe el bono de desarrollo humano:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="1" y="530" width="554" height="22" uuid="9e5f8e86-6a4b-4561-be75-5ada902c6272"/>
+				<reportElement x="1" y="550" width="554" height="22" uuid="9e5f8e86-6a4b-4561-be75-5ada902c6272"/>
 			</rectangle>
 			<rectangle>
-				<reportElement x="1" y="455" width="554" height="30" uuid="8da6575d-323a-4193-ae00-65f1fc6a98b4"/>
+				<reportElement x="1" y="475" width="554" height="30" uuid="8da6575d-323a-4193-ae00-65f1fc6a98b4"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="3" y="612" width="177" height="20" uuid="cd334f91-cefd-4f5b-b94f-3bc894cc1727"/>
+				<reportElement x="3" y="632" width="177" height="20" uuid="cd334f91-cefd-4f5b-b94f-3bc894cc1727"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[61. Nivel de Formación de la Madre:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="285" y="632" width="270" height="20" uuid="fe0cd4ae-adf9-4086-bba5-cdbc1f91bb94"/>
+				<reportElement x="285" y="652" width="270" height="20" uuid="fe0cd4ae-adf9-4086-bba5-cdbc1f91bb94"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="3" y="592" width="177" height="20" uuid="9c299761-8b5b-4441-83f4-9cb96586f1d2"/>
+				<reportElement x="3" y="612" width="177" height="20" uuid="9c299761-8b5b-4441-83f4-9cb96586f1d2"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[60. Nivel de Formación del Padre:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="532" width="273" height="20" uuid="740f6d43-05ee-49ae-a799-85f2d3074888"/>
+				<reportElement x="3" y="552" width="273" height="20" uuid="740f6d43-05ee-49ae-a799-85f2d3074888"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[57. Indique cuál es el Sector Económico de la empresa:]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement x="1" y="485" width="554" height="23" uuid="34dea3b3-68b3-4b89-a2cc-22fefaae8f60"/>
+				<reportElement x="1" y="505" width="554" height="23" uuid="34dea3b3-68b3-4b89-a2cc-22fefaae8f60"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="3" y="510" width="260" height="20" uuid="0b30e971-9a27-4e69-86ed-d9db5359bacb"/>
+				<reportElement x="3" y="530" width="260" height="20" uuid="0b30e971-9a27-4e69-86ed-d9db5359bacb"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[56. Cúal es el nombre de la empresa donde labora:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="487" width="214" height="20" uuid="3cc4a610-bc46-4745-bef5-145af9390112"/>
+				<reportElement x="3" y="507" width="214" height="20" uuid="3cc4a610-bc46-4745-bef5-145af9390112"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[55. El Estudiante se encuentra dedicado a:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="632" width="119" height="20" uuid="53ea63bd-3cc6-4931-81ad-dc4bb7c93637"/>
+				<reportElement x="3" y="652" width="119" height="20" uuid="53ea63bd-3cc6-4931-81ad-dc4bb7c93637"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[62. Ingresos del hogar: $]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="553" width="296" height="20" uuid="c67a05b6-da69-4dbf-9e9a-44107068bb1b"/>
+				<reportElement x="3" y="573" width="296" height="20" uuid="c67a05b6-da69-4dbf-9e9a-44107068bb1b"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[58. Para que emplea sus ingresos económicos el estudiante:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="461" width="332" height="20" uuid="2606230b-829e-48f4-8974-50e4e869d94b"/>
+				<reportElement x="3" y="481" width="332" height="20" uuid="2606230b-829e-48f4-8974-50e4e869d94b"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[54. Cuál es el alcance del proyecto de Vinculación con la sociedad:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="435" width="411" height="20" uuid="0dfafe77-fe88-4c14-b967-cab7c16f892b"/>
+				<reportElement x="3" y="455" width="411" height="20" uuid="0dfafe77-fe88-4c14-b967-cab7c16f892b"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[53. Ha participado en algún Proyecto de vinculación con la Sociedad en el Instituto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="287" y="632" width="180" height="20" uuid="b4a346b5-3485-44e1-8d02-4cc741860724"/>
+				<reportElement x="287" y="652" width="180" height="20" uuid="b4a346b5-3485-44e1-8d02-4cc741860724"/>
 				<textElement verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
@@ -1375,112 +1375,112 @@ WHERE
 				<textFieldExpression><![CDATA[( $F{paralelo_nombre_paralelo}==null ? "" : $F{paralelo_nombre_paralelo}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="11" y="216" width="252" height="20" uuid="ab8d9ba7-0ffd-48e2-8e5a-da3622ac2b3d"/>
+				<reportElement x="11" y="217" width="252" height="39" uuid="ab8d9ba7-0ffd-48e2-8e5a-da3622ac2b3d"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[($F{titulo_carrera_nombre_titulo}==null ? "":$F{titulo_carrera_nombre_titulo}+"")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="296" y="216" width="242" height="20" uuid="1f1cae7f-d967-410c-80c6-fd99360d50e3"/>
+				<reportElement x="296" y="216" width="242" height="40" uuid="1f1cae7f-d967-410c-80c6-fd99360d50e3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_titulo_otorgado}==null ? "" : $F{matricula_titulo_otorgado}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="104" y="236" width="158" height="20" uuid="66b593ad-f778-438c-b2e6-6412531145c0"/>
+				<reportElement x="104" y="256" width="158" height="20" uuid="66b593ad-f778-438c-b2e6-6412531145c0"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[($F{tipo_carrera_nombre}==null ? "":$F{tipo_carrera_nombre}+"")]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="439" y="237" width="100" height="20" uuid="66fbc235-7bed-4a03-a8f2-b61c920c48d2"/>
+				<reportElement x="439" y="257" width="100" height="20" uuid="66fbc235-7bed-4a03-a8f2-b61c920c48d2"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[($F{matricula_modalidad}==null ? "" : $F{matricula_modalidad} == 1 ? "Presencial":$F{matricula_modalidad} == 2 ? "Semi Presencial":"Dual" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="153" y="256" width="222" height="20" uuid="8d21fa07-d9ed-4745-a83e-f61814084153"/>
+				<reportElement x="153" y="276" width="222" height="20" uuid="8d21fa07-d9ed-4745-a83e-f61814084153"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{jornada_academica_tipo_jornada}==null ? "" : $F{jornada_academica_tipo_jornada}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="53" y="296" width="100" height="20" uuid="9b9fb007-07a8-428a-8a5e-cd5fdf704676"/>
+				<reportElement x="53" y="316" width="100" height="20" uuid="9b9fb007-07a8-428a-8a5e-cd5fdf704676"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_materia_repetida}==null ? "" : ( $F{matricula_materia_repetida}=='1' ? "Si" : "No" ) )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="356" y="336" width="100" height="20" uuid="e192550c-135f-4650-a42b-6340af19a094"/>
+				<reportElement x="356" y="356" width="100" height="20" uuid="e192550c-135f-4650-a42b-6340af19a094"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_nro_horas_practicasPreprosionales}==null ? "" : $F{matricula_nro_horas_practicasPreprosionales}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="420" y="287" width="121" height="20" uuid="74015a56-bbd7-4397-a842-62bbaa6188ca"/>
+				<reportElement x="420" y="307" width="121" height="20" uuid="74015a56-bbd7-4397-a842-62bbaa6188ca"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_materia_perdida}==null ? "" : ( $F{matricula_materia_perdida}=='1' ? "Si" : "No" ))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="67" y="336" width="100" height="20" uuid="c0e812e8-d9b6-45f7-8d97-7a03b7b754f0"/>
+				<reportElement x="67" y="356" width="100" height="20" uuid="c0e812e8-d9b6-45f7-8d97-7a03b7b754f0"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_participacion_practicas}==null ? "" : $F{matricula_participacion_practicas}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="349" y="365" width="163" height="20" uuid="a66b1691-ab1b-4ce1-82fc-c52ae2ed5844"/>
+				<reportElement x="349" y="385" width="163" height="20" uuid="a66b1691-ab1b-4ce1-82fc-c52ae2ed5844"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{tipo_institucion_practicas_nombre_tipo}==null ? "" : $F{tipo_institucion_practicas_nombre_tipo}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="15" y="411" width="301" height="20" uuid="bc414b78-7b22-4dbe-90ad-0d94fa0c545a"/>
+				<reportElement x="15" y="431" width="301" height="20" uuid="bc414b78-7b22-4dbe-90ad-0d94fa0c545a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{sector_economico_empresa_nombre}==null ? "" : $F{sector_economico_empresa_nombre}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="415" y="435" width="134" height="20" uuid="0d3821ec-43ce-45c9-948a-bea11c2a904c"/>
+				<reportElement x="415" y="455" width="134" height="20" uuid="0d3821ec-43ce-45c9-948a-bea11c2a904c"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_participacion_vinculacion}==null ? "" : $F{matricula_participacion_vinculacion}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="217" y="487" width="227" height="20" uuid="5846fa2a-9de4-4a8e-9ab5-bb847eac7ca0"/>
+				<reportElement x="217" y="507" width="227" height="20" uuid="5846fa2a-9de4-4a8e-9ab5-bb847eac7ca0"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_ocupacion_estudiante}==null ? "" : ( $F{matricula_ocupacion_estudiante}=='1'? "Solamente al estudio" : "Trabaja y estudia" ))]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="262" y="510" width="220" height="20" uuid="e942974c-28c1-46c1-bc1e-b20a4de8f876"/>
+				<reportElement x="262" y="530" width="220" height="20" uuid="e942974c-28c1-46c1-bc1e-b20a4de8f876"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_nombre_empresa}==null ? "" : $F{matricula_nombre_empresa}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="275" y="532" width="227" height="20" uuid="b9f31b30-f9ee-4561-b39a-04674fe25048"/>
+				<reportElement x="275" y="552" width="227" height="20" uuid="b9f31b30-f9ee-4561-b39a-04674fe25048"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{sector_economico_empresa_nombre}==null ? "" : $F{sector_economico_empresa_nombre}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="299" y="553" width="231" height="20" uuid="f0b13ffb-0502-49ba-84af-3f5df11f0e29"/>
+				<reportElement x="299" y="573" width="231" height="20" uuid="f0b13ffb-0502-49ba-84af-3f5df11f0e29"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_empleo_ingresos_economicos}==null ? "" : $F{matricula_empleo_ingresos_economicos}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="593" width="234" height="20" uuid="e9a049b2-466c-4c23-9df5-d03f22038487"/>
+				<reportElement x="180" y="613" width="234" height="20" uuid="e9a049b2-466c-4c23-9df5-d03f22038487"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{formacion_academica_nivel}==null ? "" : $F{formacion_academica_nivel}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="180" y="612" width="278" height="20" uuid="127c7986-b627-4bf9-a89a-585a39811359"/>
+				<reportElement x="180" y="632" width="278" height="20" uuid="127c7986-b627-4bf9-a89a-585a39811359"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{formacion_academica_madre_nivel}==null ? "" : $F{formacion_academica_madre_nivel}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="123" y="632" width="100" height="20" uuid="3e5ea13b-8b7a-431b-b41d-927dcfd23739"/>
+				<reportElement x="123" y="652" width="100" height="20" uuid="3e5ea13b-8b7a-431b-b41d-927dcfd23739"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_ingreso_hogar}==null ? "" : $F{matricula_ingreso_hogar}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="467" y="632" width="81" height="20" uuid="ddb7bd80-6897-4450-9c57-776d9e184a99"/>
+				<reportElement x="467" y="652" width="81" height="20" uuid="ddb7bd80-6897-4450-9c57-776d9e184a99"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_nro_miembros_hogar}==null ? "" : $F{matricula_nro_miembros_hogar}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="337" y="461" width="164" height="20" uuid="4cedaa03-2aa9-435a-a1cb-992c074f87e7"/>
+				<reportElement x="337" y="481" width="164" height="20" uuid="4cedaa03-2aa9-435a-a1cb-992c074f87e7"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{alcance_vinculacion_alcance}==null ? "" : $F{alcance_vinculacion_alcance}+"" )]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="573" width="161" height="20" uuid="173d8e7a-a504-4ff7-b49e-6bc490c0dff7"/>
+				<reportElement x="388" y="593" width="161" height="20" uuid="173d8e7a-a504-4ff7-b49e-6bc490c0dff7"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[( $F{matricula_bono_desarrollo_humano}==null ? "" : ( $F{matricula_bono_desarrollo_humano}=='1' ? "Si" : "No" ) )]]></textFieldExpression>
 			</textField>

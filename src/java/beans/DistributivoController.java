@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -57,15 +58,25 @@ public class DistributivoController implements Serializable {
     }
 
     public void create() {
-        this.selected.setFechaDeRegistro(new Date());
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DistributivoCreated"));
-        if (!JsfUtil.isValidationFailed()) {
-            items = null;    // Invalidate list of items to trigger re-query.
+        if (getFacade().verificarDistributivo(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdPeriodoAcademicoSemestre().getIdPeriodoAcademico()) == null) {
+            this.selected.setFechaDeRegistro(new Date());
+            persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DistributivoCreated"));
+            if (!JsfUtil.isValidationFailed()) {
+                items = null;    // Invalidate list of items to trigger re-query.
+            }
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe el distributivo con esté docente y esté período.", ""));
+
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DistributivoUpdated"));
+        if (getFacade().verificarDistributivo2(selected.getIdDatosPersonales().getIdDatosPersonales(), selected.getIdPeriodoAcademicoSemestre().getIdPeriodoAcademico(), selected.getIdDistributivo()) == null) {
+            persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DistributivoUpdated"));
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Ya existe el distributivo con esté docente y esté período.", ""));
+
+        }
     }
 
     public void destroy() {

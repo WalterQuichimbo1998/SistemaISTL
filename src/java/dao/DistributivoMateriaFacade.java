@@ -32,25 +32,25 @@ public class DistributivoMateriaFacade extends AbstractFacade<DistributivoMateri
     }
     
     public DistributivoMateria verificarMateriaDistributivo(Integer id1,Integer id2,Integer id3) {
-        DistributivoMateria nota = null;
+        DistributivoMateria dis = null;
         try {
             Query q = em.createNativeQuery("SELECT * FROM distributivo_materia\n"
                     +" WHERE id_distributivo='" + id1 + "' AND id_nivel_academico='" + id2 + "' AND id_materia='" + id3 +"';", DistributivoMateria.class);
-            nota = (DistributivoMateria) q.getSingleResult();
+            dis = (DistributivoMateria) q.getSingleResult();
         } catch (Exception e) {
         }
-        return nota;
+        return dis;
     }
     
     public DistributivoMateria verificarMateriaDistributivo2(Integer id1,Integer id2,Integer id3,Integer id4) {
-        DistributivoMateria nota = null;
+        DistributivoMateria dis = null;
         try {
             Query q = em.createNativeQuery("SELECT * FROM distributivo_materia\n"
                     +" WHERE id_distributivo='" + id1 + "' AND id_nivel_academico='" + id2 + "' AND id_materia='" + id3 +"' AND id_distributivo_materia!='" + id4 +"';", DistributivoMateria.class);
-            nota = (DistributivoMateria) q.getSingleResult();
+            dis = (DistributivoMateria) q.getSingleResult();
         } catch (Exception e) {
         }
-        return nota;
+        return dis;
     }
     
     public List<DistributivoMateria> listaDistributivoMaterias(Integer id) {
