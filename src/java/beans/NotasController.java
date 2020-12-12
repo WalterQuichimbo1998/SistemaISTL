@@ -176,7 +176,7 @@ public class NotasController implements Serializable {
     public List<DistributivoMateria> getItemsMateriaDistributivo() {
         itemsMateriaDistributivo = null;
         if (itemsMateriaDistributivo == null) {
-            itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico());
+            itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico(),selectedPeriodo.getIdPeriodoAcademico());
 
         }
         return itemsMateriaDistributivo;

@@ -60,14 +60,15 @@ public class DistributivoMateriaFacade extends AbstractFacade<DistributivoMateri
     }
     
     
-     public List<DistributivoMateria> listaMateriasProfersorDistri(Integer id1,Integer id2) {
+     public List<DistributivoMateria> listaMateriasProfersorDistri(Integer id1,Integer id2,Integer id3) {
           List<DistributivoMateria> lista = null;
         try {
         Query q = em.createNativeQuery("SELECT distributivo_materia.id_distributivo_materia,distributivo_materia.id_distributivo, titulo_carrera.id_titulo_carrera,titulo_carrera.nombre_titulo,materia.id_materia,materia.materia FROM distributivo_materia\n"
                 +"LEFT JOIN distributivo ON distributivo.id_distributivo= distributivo_materia.id_distributivo\n"
                 +"LEFT JOIN titulo_carrera ON titulo_carrera.id_titulo_carrera= distributivo_materia.id_titulo_carrera\n"
                 +"LEFT JOIN materia ON materia.id_materia= distributivo_materia.id_materia\n"
-                +"WHERE distributivo.id_datos_personales=" + id1 + " AND distributivo_materia.id_nivel_academico=" + id2 + ";", DistributivoMateria.class);
+                +"LEFT JOIN periodo_academico ON periodo_academico.id_periodo_academico= distributivo.id_periodo_academico_semestre\n"
+                +"WHERE distributivo.id_datos_personales=" + id1 + " AND distributivo_materia.id_nivel_academico=" + id2 +" AND distributivo.id_periodo_academico_semestre=" + id3 + ";", DistributivoMateria.class);
        lista = q.getResultList();
         } catch (Exception e) {
         }
