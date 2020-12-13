@@ -53,10 +53,12 @@ public class MatriculaController implements Serializable {
     private List<NivelAcademico> itemsNivelAcademico = null;
     private List<Matricula> items = null;
     private List<Matricula> listaMatricula = null;
+    private List<Matricula> listaBuscar = null;
     private Matricula selected;
     private List<Provincia> listaProvincias = null;
     private List<Canton> listaCanton = null;
     private Matricula ms = null;
+    private Matricula mt = null;
     private Boolean v = false;
     private List<Notas> listaNotas = null;
 
@@ -168,6 +170,16 @@ public class MatriculaController implements Serializable {
     }
 
     public void create() {
+        mt = null;
+        mt = getFacade().totalMatriculas(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
+        if (mt == null) {
+            this.selected.setNumeroFormulario(1);
+            System.out.println("1");
+        } else {
+            System.out.println("num: " + mt.getNumeroFormulario());
+            this.selected.setNumeroFormulario(mt.getNumeroFormulario() + 1);
+            System.out.println("1++");
+        }
         this.selected.setEstado(true);
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaCreated"));
         if (!JsfUtil.isValidationFailed()) {
@@ -250,7 +262,7 @@ public class MatriculaController implements Serializable {
     }
 
     public void actualizarMatricula2() {
-         this.selected.setEstado(false);
+        this.selected.setEstado(false);
         if (selected.getIdNacionalidad() == null) {
             this.selected.setIdProvinciaNacimiento(null);
             this.selected.setIdCantonNacimiento(null);
@@ -259,9 +271,24 @@ public class MatriculaController implements Serializable {
             this.selected.setIdCantonNacimiento(null);
         }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("MatriculaUpdated"));
-       
+
     }
+
     public void update(List listaM) {
+        mt = null;
+        mt = getFacade().totalMatriculas2(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
+        if (mt == null) {
+            this.selected.setNumeroFormulario(1);
+            System.out.println("1");
+        } else {
+            listaBuscar = getFacade().totalMatriculasBuscar(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
+            if (!listaBuscar.contains(selected)) {
+                System.out.println("num: " + mt.getNumeroFormulario());
+                this.selected.setNumeroFormulario(mt.getNumeroFormulario() + 1);
+                System.out.println("1++");
+            }
+
+        }
         if (selected.getIdNacionalidad() == null) {
             this.selected.setIdProvinciaNacimiento(null);
             this.selected.setIdCantonNacimiento(null);
@@ -294,7 +321,7 @@ public class MatriculaController implements Serializable {
     }
 
     public List<Matricula> getItems() {
-        items = null;
+
         if (items == null) {
             items = getFacade().findAll();
         }

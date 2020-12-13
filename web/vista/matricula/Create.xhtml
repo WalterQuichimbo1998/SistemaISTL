@@ -13,20 +13,11 @@
             <h:form id="MatriculaCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="3" rendered="#{matriculaController.selected != null}">
-                        <p:column>
-                            <p:outputLabel value="N.Formulario:" for="numeroFormulario" /><br/>
-                            <p:inputText id="numeroFormulario" value="#{matriculaController.selected.numeroFormulario}" title="#{bundle.CreateMatriculaTitle_numeroFormulario}" required="true" requiredMessage="Ingrese número de Formmulario"
-                                         style="width:180px;"/>
-                        </p:column>
-                        <p:column>
-                            <p:outputLabel value="Código Matricula:" for="codigoMatricula" /><br/>
-                            <p:inputText id="codigoMatricula" value="#{matriculaController.selected.codigoMatricula}" title="#{bundle.CreateMatriculaTitle_codigoMatricula}" required="true" requiredMessage="Ingrese código de matricula"
-                                         style="width: 180px;"/>
-                        </p:column>
+
                         <p:column>
                             <p:outputLabel value="Persona:" for="idDatosPersonales" /><br/>
                             <p:selectOneMenu id="idDatosPersonales" value="#{matriculaController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                             effect="fade" style="width:180px !important;" filter="true" filterMatchMode="contains" height="160"
+                                             effect="fade" style="width:190px !important;" filter="true" filterMatchMode="contains" height="160"
                                              required="true" requiredMessage="Seleccione una persona">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                                 <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
@@ -45,14 +36,35 @@
                         <p:column  style="width: 170px !important;">
                             <p:outputLabel value="Fecha Matricula:" for="fechaMatricula" /><br/>
                             <p:calendar id="fechaMatricula" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaMatricula}" title="#{bundle.EditMatriculaTitle_fechaMatricula}" mask="true" navigator="true" required="true" requiredMessage="Ingrese fecha matricula"
-                                        style="width: 170px !important;"/>
+                                        style="width: 170px !important;" autocomplete="off" />
                         </p:column>
                         <p:column>
 
                             <p:outputLabel value="Inicio de la Carrera: " for="inicio" /><br/>
                             <p:calendar id="inicio" pattern="dd/MM/yyyy" value="#{matriculaController.selected.fechaInicioCarrera}"  mask="true" navigator="true" required="true" requiredMessage="Ingrese fecha inicio"
-                                        style="width: 170px !important;"/>
+                                        style="width: 170px !important;" autocomplete="off"/>
                             <br/>
+                            <p:outputLabel value="Tipo de Carrera:" for="idTipoCarrera" /><br/>
+                            <p:selectOneMenu id="idTipoCarrera" value="#{matriculaController.selected.idTipoCarrera}" required="true" requiredMessage="Seleccione el tipo de carrera"
+                                             style="width: 190px !important;">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{tipoCarreraController.itemsAvailableSelectOne}"
+                                               var="idTipoCarreraItem"
+                                               itemValue="#{idTipoCarreraItem}"/>
+                            </p:selectOneMenu><br/>
+                            <p:outputLabel value="Jornada Académica: " for="idJornadaAcademica" /><br/>
+                            <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" required="true" requiredMessage="Seleccione el jornada académica" style="width:190px !important;">
+                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                                <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
+                                               var="idJornadaAcademicaItem"
+                                               itemValue="#{idJornadaAcademicaItem}"/>
+                            </p:selectOneMenu><br/>
+                            <p:outputLabel value="Paralelo:" for="idParalelo" /><br/>
+                            <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" style="width:190px !important;"  required="true" requiredMessage="Seleccione el paralelo">
+                                <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
+                                               var="idParaleloItem"
+                                               itemValue="#{idParaleloItem}"/>
+                            </p:selectOneMenu>
                         </p:column>
 
                         <p:column>
@@ -66,7 +78,7 @@
                                 <f:ajax execute="idTituloCarrera" render="idNivelAcademico" />
                             </p:selectOneMenu>
                             <br/>
-                            
+
                             <p:outputLabel value="Periódo Académico:" for="idPeriodoAcademico" /><br/>
                             <p:selectOneMenu id="idPeriodoAcademico" value="#{matriculaController.selected.idPeriodoAcademico}" style="width:190px !important;"
                                              required="true" requiredMessage="Seleccione el periódo académico">
@@ -76,17 +88,17 @@
                                                itemValue="#{idPeriodoAcademicoItem}"/>
                             </p:selectOneMenu>
                             <br/>
-                            <p:outputLabel value="Tipo de Carrera:" for="idTipoCarrera" /><br/>
-                            <p:selectOneMenu id="idTipoCarrera" value="#{matriculaController.selected.idTipoCarrera}" required="true" requiredMessage="Seleccione el tipo de carrera"
-                                             style="width: 190px !important;">
+                            <p:outputLabel value="Modalidad: " for="modalidad" /><br/>
+                            <p:selectOneMenu id="modalidad" value="#{matriculaController.selected.modalidad}" required="true" requiredMessage="Seleccione la modalidad" style="width:190px !important;">
                                 <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tipoCarreraController.itemsAvailableSelectOne}"
-                                               var="idTipoCarreraItem"
-                                               itemValue="#{idTipoCarreraItem}"/>
-                            </p:selectOneMenu>
+                                <f:selectItem itemValue="1" itemLabel="Presencial"/>
+                                <f:selectItem itemValue="2" itemLabel="Semipresencial"/>
+                                <f:selectItem itemValue="3" itemLabel="Dual"/>
+                            </p:selectOneMenu><br/>
                             <br/>
                             <br/>
                             <br/>
+
                         </p:column>
                         <p:column>
                             <p:outputLabel value="Nivel Académico:" for="idNivelAcademico" /><br/>
@@ -101,30 +113,8 @@
 
                         </p:column>
                         <p:column>
-                            <p:outputLabel value="Jornada Académica: " for="idJornadaAcademica" /><br/>
-                            <p:selectOneMenu id="idJornadaAcademica" value="#{matriculaController.selected.idJornadaAcademica}" required="true" requiredMessage="Seleccione el jornada académica" style="width:180px !important;">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{jornadaAcademicaController.itemsAvailableSelectOne}"
-                                               var="idJornadaAcademicaItem"
-                                               itemValue="#{idJornadaAcademicaItem}"/>
-                            </p:selectOneMenu><br/>
 
-                            <p:outputLabel value="Modalidad: " for="modalidad" /><br/>
-                            <p:selectOneMenu id="modalidad" value="#{matriculaController.selected.modalidad}" required="true" requiredMessage="Seleccione la modalidad" style="width:180px !important;">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItem itemValue="1" itemLabel="Presencial"/>
-                                <f:selectItem itemValue="2" itemLabel="Semipresencial"/>
-                                <f:selectItem itemValue="3" itemLabel="Dual"/>
-                            </p:selectOneMenu><br/>
-                            <p:outputLabel value="Paralelo:" for="idParalelo" /><br/>
-                            <p:selectOneMenu id="idParalelo" value="#{matriculaController.selected.idParalelo}" style="width:180px !important;"  required="true" requiredMessage="Seleccione el paralelo">
-                                <f:selectItems value="#{paraleloController.itemsAvailableSelectOne}"
-                                               var="idParaleloItem"
-                                               itemValue="#{idParaleloItem}"/>
-                            </p:selectOneMenu>
-                            <br/>
-                            <br/>
-                            <br/>
+
                         </p:column>
                         <p:column/>
                         <p:column>

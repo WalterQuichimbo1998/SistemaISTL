@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fa4fdfa-129a-4631-9936-96d5c9208d0f">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="1471"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="num_identificacion" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -354,14 +354,14 @@ AND matricula_historial.id_periodo_academico=$P{periodo}]]>
 	<title>
 		<band height="117" splitType="Stretch">
 			<staticText>
-				<reportElement x="267" y="43" width="45" height="20" uuid="6ce93cfa-bbbc-4668-94d1-96ba549b6257"/>
-				<textElement>
+				<reportElement x="259" y="43" width="45" height="20" uuid="6ce93cfa-bbbc-4668-94d1-96ba549b6257"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[LIMÓN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="397" y="89" width="105" height="20" uuid="de51b2b3-4ba0-40ce-a7e6-230f301673ea"/>
+				<reportElement x="397" y="89" width="103" height="20" uuid="de51b2b3-4ba0-40ce-a7e6-230f301673ea"/>
 				<textElement verticalAlignment="Bottom">
 					<font isBold="true"/>
 				</textElement>
@@ -372,25 +372,18 @@ AND matricula_historial.id_periodo_academico=$P{periodo}]]>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[SUBSECRETARÍA DE FORMACÍON TÉCNICA Y TECNOLÓGICA]]></text>
+				<text><![CDATA[SUBSECRETARÍA DE FORMACIÓN TÉCNICA Y TECNOLÓGICA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="198" y="31" width="201" height="20" uuid="521d57a0-b80d-4bb1-a05d-4afe78abbc21"/>
-				<textElement>
+				<reportElement x="188" y="31" width="201" height="20" uuid="521d57a0-b80d-4bb1-a05d-4afe78abbc21"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="244" y="60" width="96" height="20" uuid="88c8c160-ac2d-4f40-a1f7-3d216b9efe7a"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[(CÓDIGO: 2280)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="216" y="82" width="151" height="20" uuid="688d94c5-3054-4278-b6cb-2313e4673406"/>
-				<textElement>
+				<reportElement x="206" y="73" width="151" height="20" uuid="688d94c5-3054-4278-b6cb-2313e4673406"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[FORMULARIO DE MATRÍCULA]]></text>
@@ -404,7 +397,7 @@ AND matricula_historial.id_periodo_academico=$P{periodo}]]>
 				<imageExpression><![CDATA[$P{logo1}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="502" y="89" width="47" height="20" uuid="a8a4801a-af5c-4b3b-92c8-008f969cfe50"/>
+				<reportElement x="500" y="89" width="47" height="20" uuid="a8a4801a-af5c-4b3b-92c8-008f969cfe50"/>
 				<textElement verticalAlignment="Bottom"/>
 				<textFieldExpression><![CDATA[( $F{matricula_numero_formulario}==null ? "" : $F{matricula_numero_formulario}+"" )]]></textFieldExpression>
 			</textField>
@@ -1103,28 +1096,21 @@ AND matricula_historial.id_periodo_academico=$P{periodo}]]>
 				<reportElement x="1" y="296" width="280" height="40" uuid="2759f378-5238-4196-bb9c-04f1c0758258"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="233" y="72" width="96" height="20" uuid="2a3e373c-e3d5-48f6-87c2-da3fdb287115"/>
-				<textElement>
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[(CÓDIGO: 2280)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="202" y="94" width="151" height="20" uuid="564a983f-c652-41e3-8ab2-01d8b92d064b"/>
-				<textElement>
+				<reportElement x="199" y="84" width="151" height="20" uuid="564a983f-c652-41e3-8ab2-01d8b92d064b"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[FORMULARIO DE MATRÍCULA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="183" y="43" width="201" height="20" uuid="4e09b9e8-0823-428c-98e4-956da9914566"/>
-				<textElement>
+				<reportElement x="180" y="43" width="201" height="20" uuid="4e09b9e8-0823-428c-98e4-956da9914566"/>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[INSTITUTO SUPERIOR TECNOLÓGICO ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="120" y="30" width="326" height="20" uuid="e115492b-6133-4395-a6c4-cac3445475cc"/>
+				<reportElement x="126" y="30" width="326" height="20" uuid="e115492b-6133-4395-a6c4-cac3445475cc"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -1132,7 +1118,7 @@ AND matricula_historial.id_periodo_academico=$P{periodo}]]>
 			</staticText>
 			<staticText>
 				<reportElement x="252" y="55" width="45" height="20" uuid="545ff05f-8614-458e-8f9d-50f8c80ae095"/>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[LIMÓN]]></text>

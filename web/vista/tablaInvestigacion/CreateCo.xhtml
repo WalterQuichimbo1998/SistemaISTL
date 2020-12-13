@@ -17,7 +17,7 @@
                         <p:selectOneMenu id="idDatosPersonales" value="#{tablaColaboradorController.selected.idDatosPersonales}" required="true" requiredMessage="Selecione una persona"
                                          style="width: 240px !important;" effect="fade" height="160" filter="true" filterMatchMode="contains">
                             <f:selectItem itemLabel="-Seleccione-"/>
-                            <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
+                            <f:selectItems value="#{datosPersonalesController.listaColaborados}"
                                            var="idDatosPersonalesItem"
                                            itemValue="#{idDatosPersonalesItem}"/>
                         </p:selectOneMenu>

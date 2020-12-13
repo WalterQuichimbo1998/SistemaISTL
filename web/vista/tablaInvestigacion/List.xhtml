@@ -57,7 +57,7 @@
                                       <h:outputText value="#{item2.idDatosPersonales.nombres} #{item2.idDatosPersonales.apellidos}" style="margin-bottom: 5px !important;color: #007882;"/>
                                 
                                   <p:commandLink value="x" style="color: #cc0000;padding: 4px 4px !important;font-size: 15px !important;text-decoration: none;" actionListener="#{tablaColaboradorController.setSelected(item2)}"
-                                                   oncomplete="PF('delete_colaborador').show()" update=":DeleteColaborador"/>
+                                                 oncomplete="PF('delete_colaborador').show()" update=":DeleteColaborador" title="Eliminar colaborador"/>
                                   </div>
                             </ui:repeat>
                             <p:commandLink styleClass="crear" value="Agregar" 
@@ -65,6 +65,7 @@
                                            action="#{tablaColaboradorController.setSelectedT(item)}" 
                                            update=":TablaColaboradorCreateForm" oncomplete="PF('TablaColaboradorCreateDialog').show()"
                                            style="color: #007bff;padding: 2px 2px !important;"> 
+                                <f:actionListener binding="#{datosPersonalesController.setDp(item.idDatosPersonales)}"/>
 
                             </p:commandLink>
                         </p:column>

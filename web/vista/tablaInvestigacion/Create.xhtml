@@ -13,7 +13,7 @@
             <h:form id="TablaInvestigacionCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tablaInvestigacionController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateTablaInvestigacionLabel_idDatosPersonales}" for="idDatosPersonales" />
+                        <p:outputLabel value="Persona: " for="idDatosPersonales" />
                         <p:selectOneMenu id="idDatosPersonales" value="#{tablaInvestigacionController.selected.idDatosPersonales}" panelStyle="width:280px"
                                          effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione">
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"

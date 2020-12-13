@@ -3,7 +3,6 @@ package beans;
 import modelo.DatosPersonales;
 import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
-import beans.util.UtilPath;
 import dao.DatosPersonalesFacade;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -23,12 +22,10 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.servlet.ServletContext;
-import modelo.Matricula;
 import org.primefaces.event.FileUploadEvent;
 
 
@@ -41,7 +38,9 @@ public class DatosPersonalesController implements Serializable {
     private List<DatosPersonales> items = null;
     private DatosPersonales selected;
     private List<DatosPersonales> listaDatos = null;
+    private List<DatosPersonales> listaColaborados = null;
      private String nombre = "";
+     private DatosPersonales dp;
 
     public DatosPersonalesController() {
     }
@@ -80,6 +79,14 @@ public class DatosPersonalesController implements Serializable {
         this.listaDatos = listaDatos;
     }
 
+    public DatosPersonales getDp() {
+        return dp;
+    }
+
+    public void setDp(DatosPersonales dp) {
+        this.dp = dp;
+    }
+    
     public String getNombre() {
         return nombre;
     }
@@ -145,6 +152,18 @@ public class DatosPersonalesController implements Serializable {
         }
         return items;
     }
+
+    public List<DatosPersonales> getListaColaborados() {
+          if (listaColaborados == null) {
+            listaColaborados = getFacade().listaColaboradores(dp.getIdDatosPersonales());
+        }
+        return listaColaborados;
+    }
+
+    public void setListaColaborados(List<DatosPersonales> listaColaborados) {
+        this.listaColaborados = listaColaborados;
+    }
+    
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -289,27 +308,6 @@ public void handleFileUpload(FileUploadEvent event) {
         }
     }
 
-//    public void cargar(String nombre,FileUploadEvent event) {
-//        try {
-//            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-//            String realPath = UtilPath.getPathDefinida(ec.getRealPath("/"));
-//            String pathDefinition = realPath + File.separator + "web" + File.separator + "resources" + File.separator + "foto" + File.separator + nombre;
-//            FileOutputStream out = new FileOutputStream(pathDefinition);
-//            InputStream in = event.getFile().getInputstream();
-//            if ((in != null)) {
-//                int read = 0;
-//                byte[] bytes = new byte[1024];
-//                while ((read = in.read(bytes)) != -1) {
-//                    out.write(bytes, 0, read);
-//                }
-//                in.close();
-//                out.flush();
-//                out.close();
-//
-//            }
-//        } catch (IOException e) {
-//        }
-//    }
      public void cargar(String nombreArchivo, InputStream original) {
         ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext(); 
         String path = servletContext.getRealPath("") + File.separatorChar + "resources" + File.separatorChar + "foto" + File.separatorChar + nombreArchivo;

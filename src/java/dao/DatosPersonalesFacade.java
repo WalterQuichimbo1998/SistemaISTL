@@ -101,4 +101,14 @@ public class DatosPersonalesFacade extends AbstractFacade<DatosPersonales> {
         }
         return lista;
     }
+        public List<DatosPersonales> listaColaboradores(Integer id) {
+        List<DatosPersonales> lista = null;
+        try {
+              Query q = em.createNativeQuery("SELECT * FROM datos_personales\n"
+                    +"WHERE datos_personales.id_datos_personales!='" + id + "';", DatosPersonales.class);
+            lista = q.getResultList();
+        } catch (Exception e) {
+        }
+        return lista;
+    }
 }

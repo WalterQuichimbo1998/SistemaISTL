@@ -25,10 +25,10 @@
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  paginatorPosition="bottom"
                                  emptyMessage="No se encontraron resultados."
-                                 sortBy="#{item.idMatricula}"
+                                 sortBy="#{item.numeroFormulario}"
                                  sortOrder="descending"
                                  filteredValue="#{matriculaController.listaMatricula}"
->
+                                 >
 
                         <p:ajax event="rowSelect"   update="createButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton deleteButton"/>
@@ -39,33 +39,28 @@
                                          style="font-size: 18px !important;margin: 10px; text-align: center;border-radius: 20px;
                                          padding: 7px 0px;width: 400px; "  /> 
                         </f:facet> 
-                        
+
                         <p:column sortBy="#{item.numeroFormulario}" filterBy="#{item.numeroFormulario}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="N. Formulario"/>
                             </f:facet>
                             <h:outputText value="#{item.numeroFormulario}"/>
                         </p:column>
-                        <p:column sortBy="#{item.codigoMatricula}" filterBy="#{item.codigoMatricula}"  filterMatchMode="contains" style="width: 100px;">
-                            <f:facet name="header">
-                                <h:outputText value="Código Matrícula"/>
-                            </f:facet>
-                            <h:outputText value="#{item.codigoMatricula}"/>
-                        </p:column>
+
                         <p:column sortBy="#{item.idDatosPersonales.nombres}" filterBy="#{item.idDatosPersonales.nombres}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Persona"/>
                             </f:facet>
-                           
+
                             <h:commandLink value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"
                                            actionListener="#{matriculaController.setSelected(item)}" action="/vista/matricula/Matricula?faces-redirect=true" 
                                            style="font-size: 14px;text-decoration: none;color: #000;padding: 8px 8px;" title="Clic para ver los detalles de la matrícula">
-                                   <f:ajax listener="#{matriculaHistorialController.prepareCreate}"/>
+                                <f:ajax listener="#{matriculaHistorialController.prepareCreate}"/>
                             </h:commandLink>
-                        
+
                         </p:column>
-                        
-                         <p:column sortBy="#{item.idDatosPersonales.apellidos}" filterBy="#{item.idDatosPersonales.apellidos}"  filterMatchMode="contains" style="width: 100px;">
+
+                        <p:column sortBy="#{item.idDatosPersonales.apellidos}" filterBy="#{item.idDatosPersonales.apellidos}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Fecha Matricula"/>
                             </f:facet>
@@ -73,28 +68,28 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                         <p:column sortBy="#{item.idTipoMatricula.tipo}" filterBy="#{item.idTipoMatricula.tipo}"  filterMatchMode="contains" style="width: 100px;">
+                        <p:column sortBy="#{item.idTipoMatricula.tipo}" filterBy="#{item.idTipoMatricula.tipo}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Tipo Matricula"/>
                             </f:facet>
                             <h:outputText value="#{item.idTipoMatricula.tipo}"/>
                         </p:column>
-                         
-                        
+
+
                         <p:column sortBy="#{item.idNivelAcademico.nivelAcademico}" filterBy="#{item.idNivelAcademico.nivelAcademico}"  filterMatchMode="contains" style="width: 100px;">
                             <f:facet name="header">
                                 <h:outputText value="Nivel Académico"/>
                             </f:facet>
                             <h:outputText value="#{item.idNivelAcademico.nivelAcademico}"/>
                         </p:column>
-                       
+
                         <p:column sortBy="#{item.idPeriodoAcademico.nombre}" filterBy="#{item.idPeriodoAcademico.nombre}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Periódo Académico"/>
                             </f:facet>
                             <h:outputText value="#{item.idPeriodoAcademico.nombre}"/>
                         </p:column>
-                      
+
                         <p:column sortBy="#{item.idTituloCarrera.nombreTitulo}" filterBy="#{item.idTituloCarrera.nombreTitulo}"  filterMatchMode="contains">
                             <f:facet name="header">
                                 <h:outputText value="Carrera"/>
@@ -110,12 +105,12 @@
                         <f:facet name="footer">
                             <p:commandButton id="createButton" styleClass="crear" style="font-weight: normal;" icon="ui-icon-plus"   value="Registar Matrícula" actionListener="#{matriculaController.prepareCreate}" update=":MatriculaCreateForm" oncomplete="PF('MatriculaCreateDialog').show()"/>
                             <p:commandButton id="deleteButton" styleClass="eliminar" icon="ui-icon-trash"  value="Eliminar Matrícula" actionListener="#{matriculaController.destroy}" update=":growl,datalist" disabled="#{empty matriculaController.selected}">
-                                 <p:confirm message="Eliminar Matrícula" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
-                                </p:commandButton>                      
-                                <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
-                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
-                                    <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
-                                </p:confirmDialog>
+                                <p:confirm message="Eliminar Matrícula" header="Aviso" icon="ui-icon-alert" > </p:confirm>                                
+                            </p:commandButton>                      
+                            <p:confirmDialog global="true" showEffect="clip"  hideEffect="clip" style="background: #f2f2f2;font-size: 16px !important;font-weight: bold;padding: 0t;margin: 0;">                                                           
+                                <p:commandButton style="width: 70px;margin:0px !important;margin-left: 10px !important;font-size: 16px !important;background: #29a0c7;outline: none;box-shadow: none" value="Si" type="button"  styleClass="ui-confirmdialog-yes"></p:commandButton>
+                                <p:commandButton style="width: 70px;margin:0px !important;margin-left: 15px !important;font-size: 16px !important;background: #e26c6c;outline: none;box-shadow: none;" value="No" type="button" styleClass="ui-confirmdialog-no" immediate="true"></p:commandButton>                              
+                            </p:confirmDialog>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
