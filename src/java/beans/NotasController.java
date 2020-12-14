@@ -8,10 +8,8 @@ import dao.MateriaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
 import dao.TituloCarreraFacade;
-import static groovy.util.Eval.x;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;

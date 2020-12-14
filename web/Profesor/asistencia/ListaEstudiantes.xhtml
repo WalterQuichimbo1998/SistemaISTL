@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition template="/Profesor/templateProfesor.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListNotasTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+             <p:growl id="growl2" showDetail="false" life="3000" />
+            <center>
+                <h:outputLabel rendered="#{asistenciaController.selectedN==null}" value="No se a seleccionado un ciclo"
+                               style="font-size: 22px;margin: auto;color: #454545;"/>
+            </center>
+            <p:panel>
+                <h:form id="AsistenciaListForm" rendered="#{asistenciaController.selectedN!=null}">
+                    <br/>
+                    <div style="width: 900px;margin: auto;background: #f9f9f9;padding: 5px 20px;box-shadow: 2px 2px 8px 0px rgba(50, 48, 50, 0.49);
+                         -webkit-box-shadow: 2px 2px 8px 0px rgba(50, 48, 50, 0.49);-moz-box-shadow:2px 2px 8px 0px rgba(50, 48, 50, 0.49);">
+                        <br/>
+                        <h1 style="font-family: Arial;color: #024959;">#{asistenciaController.selectedN.idTituloCarrera.nombreTitulo}</h1>
+                        <br/>
+                        <h2 style="font-family: Arial;color: #1976d3;font-weight: normal;"><strong style="color: #454545;">Asistencia de: </strong> #{asistenciaController.selectedN.nivelAcademico}<a style="margin-left: 7px;margin-right: 7px;">-</a><strong style="color: #454545;">Período: </strong>#{asistenciaController.selectedPeriodo.nombre}</h2>
+                        <br/>
+                        <center>
+                            <div style="width: 260px;margin: auto;"> 
+                                <p:outputLabel value="Seleccione la materia" for="idMateria" style="font-size: 15px !important;"/>
+                                <p:selectOneMenu id="idMateria" value="#{asistenciaController.selectedMa}" effect="fade">
+                                    <f:selectItem itemLabel="-Seleccione-"/>
+                                    <f:selectItems value="#{asistenciaController.itemsMateriaDistributivo}"
+                                                   var="idMateriaItem"
+                                                   itemValue="#{idMateriaItem.idMateria}"
+                                                   itemLabel="#{idMateriaItem.idMateria.materia}"/>
+                                    <f:ajax execute="@this" render="@all"/>
+                                </p:selectOneMenu>
+                            </div>
+                        </center>
+                        <br/>
+                        <c:if test="#{asistenciaController.selectedMa!=null}">
+                            <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Materia: </strong>#{asistenciaController.selectedMa.materia}</h2>
+                        </c:if>
+                        <p:dataTable id="datalist" value="#{asistenciaController.listaEstudiantesCiclo}" var="item" styleClass="tabla"
+                                     paginator="true" 
+                                     rows="15"
+                                     rowsPerPageTemplate="15,20,25"
+                                     paginatorPosition="bottom"
+                                     emptyMessage="No se encontraron datos. Seleccione la materia."
+                                     sortBy="#{item.idDatosPersonales.apellidos}"
+                                     sortOrder="ascending"
+                                     >
+                            <p:column style="width: 70px;" sortBy="#{item.idNotas}" headerText="Agregar">
+                                <p:commandButton  styleClass="crear" icon="ui-icon-pencil" actionListener="#{asistenciaController.prepareCreate}" 
+                                                  update=":AsistenciaCreateForm" oncomplete="PF('AsistenciaCreateDialog').show()" title="Agregar Ausencia">
+                                    <f:actionListener binding="#{asistenciaController.setSelectedP(item.idDatosPersonales)}"/>
+                                </p:commandButton>
+                            </p:column>
+                            <p:column sortBy="#{item.idDatosPersonales.apellidos}" headerText="Estudiantes">
+                                <h:outputText value="#{item.idDatosPersonales.nombres} #{item.idDatosPersonales.apellidos}"/>
+                            </p:column> 
+
+                            <p:column style="width: 140px;" sortBy="#{item.idNotas}" headerText="Total Ausencias">
+                                <h:outputText value="#{asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()}" 
+                                              style="#{asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()!=0?'font-size:15px !important;color:red;':''}"/><br/>
+                                
+                                <p:outputLabel value="Última fecha registrada" rendered="#{asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()!=0}"/><br/>
+                                <h:outputText rendered="#{asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()!=0}"
+                                    value="#{asistenciaController.asistencia(asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()-1)}"/>
+                            </p:column>
+                            <p:column style="width: 90px;" sortBy="#{item.idNotas}" headerText="Info">
+                                <p:commandButton icon="ui-icon-search" styleClass="ver" rendered="#{asistenciaController.listaAsistencia(item.idDatosPersonales.idDatosPersonales).size()!=0}"
+                                                 actionListener="#{asistenciaController.setSelectedP2(item.idDatosPersonales)}"
+                                                 update=":detalle_asistencia2" oncomplete="PF('detalle_asistencia').show()"/>
+                            </p:column>
+
+
+                        </p:dataTable>
+                    </div>
+                </h:form>
+                <p:dialog id="detalle_asistencia" widgetVar="detalle_asistencia" modal="true" resizable="false" appendTo="@(body)" header="Detalle de Ausencias"
+                          closeOnEscape="true" showEffect="clip" hideEffect="clip">
+                    <h:form id="detalle_asistencia2">
+                        <h:panelGroup id="display">
+                            <p:panelGrid columns="1" rendered="#{asistenciaController.selectedP2 != null}">
+                                <p:column>
+                                    <h3 style="font-weight: normal;text-align: center;"><strong>Ciclo académico: </strong>#{asistenciaController.selectedN.nivelAcademico} - <strong>Materia: </strong>#{asistenciaController.selectedMa.materia}</h3>
+                                    <h3 style="font-weight: normal;text-align: center;color: #1976d3;padding: 4px 0px;">#{asistenciaController.selectedP2.nombres} #{asistenciaController.selectedP2.apellidos}</h3>
+                                </p:column>
+                                <p:dataTable id="datalist2" value="#{asistenciaController.listaAusencias}" var="item" styleClass="tabla" style="width: 600px;margin: auto;text-align: center;"
+                                             paginator="true" 
+                                             rows="5"
+                                             rowsPerPageTemplate="5,10,15"
+                                             paginatorPosition="bottom"
+                                             emptyMessage="No se encontraron datos."
+                                             sortBy="#{item.fechaRegistro}"
+                                             sortOrder="descending"
+                                             >
+                                    <p:column headerText="Fecha de registro" sortBy="#{item.fechaRegistro}" style="width: 140px;">
+                                        <h:outputLabel value="#{item.fechaRegistro}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputLabel>
+                                    </p:column>
+                                    <p:column headerText="Observación" sortBy="#{item.idAsistencia}">
+                                        <h:outputLabel value="#{item.observaciones==''?'Ninguna':item.observaciones}"/>
+                                    </p:column>
+                                    <p:column headerText="Acción" sortBy="#{item.idAsistencia}" style="width: 120px;">
+                                        <p:commandButton icon="ui-icon-pencil" styleClass="editar" actionListener="#{asistenciaController.setSelected(item)}"
+                                                         update=":AsistenciaEditForm" oncomplete="PF('AsistenciaEditDialog').show()"/>
+                                        
+                                        <p:commandButton icon="ui-icon-trash" styleClass="eliminar"
+                                                         actionListener="#{asistenciaController.setSelected(item)}"
+                                                         title="Eliminar registro" style="font-weight: normal;"
+                                                         update=":delete_registro3" oncomplete="PF('delete_registro').show()"/>
+                                    </p:column>
+                                    <f:facet name="footer">
+                                        <br/>
+                                        <p:outputLabel value="Total de ausencias: #{asistenciaController.listaAusencias.size()}" style="font-weight: normal;"/>
+                                    </f:facet>
+                                </p:dataTable>
+                            </p:panelGrid>
+
+                        </h:panelGroup>
+                    </h:form>
+                </p:dialog>
+                <p:dialog id="delete_registro" widgetVar="delete_registro" modal="false" resizable="false" closeOnEscape="true"
+                          appendTo="@(body)"  showEffect="clip" hideEffect="clip" header="Aviso"
+                          style="background: #f2f2f2;box-shadow: none;box-shadow: 0px 0px 20px 2px rgba(0,0,0,0.75) !important;" >
+                    <h:form id="delete_registro3">
+
+                        <h3 style="text-align: center; font-family: Arial;">¿Está seguro de eliminar?</h3><br/>
+                        <p style="text-align: center; font-family: Arial;margin-bottom: 10px;">El registro de ausencia se eliminará.</p>
+                        <center>
+                            <p:outputLabel value="Fecha: " style="color: #454545;font-size: 16px !important;"/>
+                        <p:outputLabel value="#{asistenciaController.selected.fechaRegistro}" style="color: #e26c6c;font-size: 16px !important;">
+                              <f:convertDateTime pattern="dd/MM/yyyy" />
+                        </p:outputLabel>
+                        </center>
+                
+                        <center>
+                            <p:commandButton id="r" styleClass="crear" actionListener="#{asistenciaController.destroy()}"
+                                             update=":detalle_asistencia2:datalist2,:growl,:AsistenciaListForm" value="Si, continuar"  oncomplete="PF('delete_registro').hide()">
+                                <f:ajax execute="r" rendered="datalist2"/>
+                            </p:commandButton>
+                            <p:commandButton styleClass="eliminar" value="No, cancelar" oncomplete="PF('delete_registro').hide()"/>
+                        </center>
+                    </h:form>
+                </p:dialog>
+            </p:panel>
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

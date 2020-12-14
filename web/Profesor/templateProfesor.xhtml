@@ -23,11 +23,15 @@
             <p:graphicImage alt="banner" style="width: 100%;" library="img" name="bannerGestion.png"/>
             <h:form>
                 <p:menubar class="menuBarra" >
-                    <p:menuitem value="#{bundle.Home}" outcome="/Profesor/profeInicio?faces-redirect=true" icon="ui-icon-home"/>
+                    <p:menuitem value="#{bundle.Home}" outcome="/Profesor/templateProfesor?faces-redirect=true" icon="ui-icon-home"/>
                     <p:menuitem value="Mis Datos Personales" outcome="/Profesor/datosPersonales?faces-redirect=true" icon="ui-icon-person"/>                    
                     <p:menuitem value="Notas" outcome="/Profesor/notas/List?faces-redirect=true" icon="ui-icon-note"/>                    
-
-                    <p:menuitem value="Reporte Notas por Materia" outcome="/Profesor/reporteImprimirMaterias.xhtml" icon="ui-icon-print"/>
+                    <p:menuitem value="Asistencias" outcome="/Profesor/asistencia/niveles?faces-redirect=true" icon="ui-icon-folder-collapsed"/>                    
+                     <p:submenu label="Reportes" styleClass="item" icon="ui-icon-bookmark"> 
+                         <p:menuitem value="Reporte Notas" styleClass="item_2" outcome="/Profesor/reporteImprimirMaterias.xhtml" icon="ui-icon-print"/>
+                         <p:menuitem value="Reporte Asistencias" styleClass="item_2" outcome="/Profesor/reporteImprimirAsistencias.xhtml" icon="ui-icon-print"/>
+                    </p:submenu>
+                    
                     <p:menuitem value="Información" outcome="/Profesor/infoProfesor.xhtml" icon="ui-icon-info"/> 
                     <f:facet name="options">
                         <p:outputLabel value="Docente " style="font-weight: 600;"/>
@@ -49,15 +53,23 @@
                                 <p class="ob title_panel_re">NOTAS</p><br/>
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="ficha.png" />
                                 <h:outputText class="ob des_label" value="Administra las notas de los estudiantes" />
-                                <h:commandButton class="ob btn_form" action="/Profesor/notas/List.xhtml" value="VER MAS" />
+                                <h:commandButton class="ob btn_form" action="/Profesor/notas/List?faces-redirect=true" value="VER MAS" />
                             </div>
                         </div>
                         <div class="box_campos">
                             <div class="box_caja_op">
-                                <p class="ob title_panel_re">REPORTE</p><br/>
+                                <p class="ob title_panel_re">ASISTENCIAS</p><br/>
+                                <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="register.png" />
+                                <h:outputText class="ob des_label" value="Administrar las asistencia de los estudiantes" />
+                                <h:commandButton class="ob btn_form" action="/Profesor/asistencia/niveles?faces-redirect=true" value="VER MAS" />
+                            </div>
+                        </div>
+                        <div class="box_campos">
+                            <div class="box_caja_op">
+                                <p class="ob title_panel_re">REPORTES</p><br/>
                                 <p:graphicImage class="ob icono_panel" alt="icono" library="images" name="attach.png" />
                                 <h:outputText class="ob des_label" value="Descarga el reporte de notas de los estudiantes" />
-                                <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias.xhtml" value="VER MAS" />
+                                <h:commandButton class="ob btn_form" action="/Profesor/reporteImprimirMaterias?faces-redirect=true" value="VER MAS" />
                             </div>
                         </div>
                     </h:form>

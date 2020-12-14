@@ -188,6 +188,7 @@ public class Matricula implements Serializable {
     private String categoriaMigratoria;
     @OneToMany(mappedBy = "idMatricula")
     private List<MatriculaHistorial> matriculaHistorialList;
+
     @JoinColumn(name = "id_formacion_madre", referencedColumnName = "id_formacion_academica_madre")
     @ManyToOne
     private FormacionAcademicaMadre idFormacionMadre;
@@ -835,8 +836,6 @@ public class Matricula implements Serializable {
     public void setIdsectorpracticasPreprofesionales(SectorEconomicoEmpresa idsectorpracticasPreprofesionales) {
         this.idsectorpracticasPreprofesionales = idsectorpracticasPreprofesionales;
     }
-
-   
    
     @Override
     public int hashCode() {

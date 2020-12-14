@@ -969,6 +969,14 @@ body{
     box-shadow: 0px 0px 1px 1px #454545;
     -webkit-box-shadow: 0px 0px 1px 1px #454545;
 }
+.fecha_ausencia .ui-inputfield{
+    width:100px;
+    height: 24px;
+    color: #e36060;
+    font-size: 18px !important;
+    text-align: center;
+
+}
 @media(max-width:1024px){
     .boxContainerData2{
         width: 94%;

@@ -76,6 +76,8 @@ public class PeriodoAcademico implements Serializable {
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idPeriodoAcademico")
     private List<Materia> materiaList;
+     @OneToMany(mappedBy = "idPeriodoAcademico")
+    private List<Asistencia> asistenciaList;
 
     public PeriodoAcademico() {
     }
@@ -189,6 +191,14 @@ public class PeriodoAcademico implements Serializable {
 
     public void setMateriaList(List<Materia> materiaList) {
         this.materiaList = materiaList;
+    }
+    @XmlTransient
+    public List<Asistencia> getAsistenciaList() {
+        return asistenciaList;
+    }
+
+    public void setAsistenciaList(List<Asistencia> asistenciaList) {
+        this.asistenciaList = asistenciaList;
     }
     
     

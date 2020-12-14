@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/Profesor/templateProfesor.xhtml">
+
+        <ui:define name="body">
+
+            <div>
+                <h:form id="TituloCarreraListForm">
+                    <br/>
+
+                    <p class="title_modulos" style="color: #454545;">Reporte de Asistencias</p>
+                    <div style="width: 300px;margin: auto;">
+                        <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
+                        <p:selectOneMenu id="idPeriodo" value="#{asistenciaController.selectedPeriodo}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodoAcademicoController.lista}"
+                                           var="idPeriodoAcademicoItem"
+                                           itemValue="#{idPeriodoAcademicoItem}"/>
+                            <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <br/>
+                    <h:panelGroup id="lista">
+                        <p:dataTable id="datalist" value="#{asistenciaController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
+                                     rows="10"
+                                     emptyMessage="No se encontraron resultados.">
+                            <f:facet name="header">
+                                <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{asistenciaController.selectedPeriodo.nombre}</h2>
+                            </f:facet>
+                            <p:column sortBy="#{item.nombreTitulo}">
+                                <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
+
+                                <ui:repeat value="#{asistenciaController.listaNivelesDocente(item.idTituloCarrera)}" var="car">
+                                    <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
+                                                     actionListener="#{asistenciaController.setSelectedN(car)}"  update=":form_reporte" oncomplete="PF('reporte').show()"/>
+                                </ui:repeat> 
+                                <br/><br/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGroup> 
+
+                </h:form>
+                <p:dialog id="reporte" widgetVar="reporte" modal="false" resizable="false" appendTo="@(body)" header="Reporte"
+                          closeOnEscape="true" showEffect="clip" hideEffect="clip">
+                    <h:form id="form_reporte" rendered="#{asistenciaController.selectedN != null}">
+
+                        <center>
+                             <p:outputLabel value="Carrera: " style="font-size: 16px !important;color: #727272;"/><br/>
+                        <p:outputLabel value="#{asistenciaController.selectedN.idTituloCarrera.nombreTitulo}" style="color: #1976D3;"/><br/>
+                        <p:outputLabel value="Nivel académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                        <p:outputLabel value="#{asistenciaController.selectedN.nivelAcademico}" style="color: #1976D3;"/><br/>
+                        <p:outputLabel value="Período académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                        <p:outputLabel value="#{asistenciaController.selectedPeriodo.nombre}" style="color: #1976D3;"/><br/><br/>
+                        </center>
+
+                        <div style="width: 300px;margin: auto;"> 
+                            <center>
+                                <p:outputLabel value="Seleccione la materia: " for="idMateria" style="font-size: 15px !important;text-align: center;font-weight: normal;"/>
+                                <p:selectOneMenu id="idMateria" value="#{asistenciaController.selectedMa}" effect="fade" required="true" requiredMessage="Seleccione una materia">
+                                    <f:selectItem itemLabel="-Seleccione-"/>
+                                    <f:selectItems value="#{asistenciaController.itemsMateriaDistributivo}"
+                                                   var="idMateriaItem"
+                                                   itemValue="#{idMateriaItem.idMateria}"
+                                                   itemLabel="#{idMateriaItem.idMateria.materia}"/>
+                                </p:selectOneMenu>
+                            </center>
+                        </div>
+                        <br/>
+                        <center>
+
+                            <div style="width: 100px;display: inline-block;margin: 4px 4px;">
+                                <p:outputLabel value="Fecha Inicio" for="fechaRegistro1"/><b/>
+                                <p:calendar id="fechaRegistro1" pattern="dd/MM/yyyy" value="#{asistenciaController.fecha1}"  mask="true" navigator="true" locale="es"
+                                            required="true" requiredMessage="Ingrese la fecha" autocomplete="off" style="font-size: 16px !important;" disabledWeekends="true"/>  
+                            </div>
+
+                            <div style="width: 100px;display: inline-block;margin: 4px 4px;">
+                                <p:outputLabel value="Fecha Final" for="fechaRegistro2"/><b/>
+                                <p:calendar styleClass="fecha_ausencia" id="fechaRegistro2" value="#{asistenciaController.fecha2}" pattern="dd/MM/yyyy"  mask="true" navigator="true" locale="es"
+                                            required="true" requiredMessage="Ingrese la fecha" autocomplete="off" style="font-size: 16px !important;" disabledWeekends="true"/>
+                            </div>
+                            <br/>
+                            <p:commandButton value="Descargar Reporte" ajax="false" icon="ui-icon-note" styleClass="crear" actionListener="#{asistenciaController.imprimirAsistencia()}"/>
+                        </center>
+
+                    </h:form>
+                </p:dialog>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

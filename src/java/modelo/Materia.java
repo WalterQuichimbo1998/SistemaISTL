@@ -97,6 +97,8 @@ public class Materia implements Serializable {
     private List<CoRequisitosMateria> coRequisitosMateriaList;
     @OneToMany(mappedBy = "idMateria")
     private List<PreRequisitosMateria> preRequisitosMateriaList;
+    @OneToMany(mappedBy = "idMateria")
+    private List<Asistencia> asistenciaList;
 
     public Materia() {
     }
@@ -259,7 +261,14 @@ public class Materia implements Serializable {
     public void setPreRequisitosMateriaList(List<PreRequisitosMateria> preRequisitosMateriaList) {
         this.preRequisitosMateriaList = preRequisitosMateriaList;
     }
-    
+     @XmlTransient
+    public List<Asistencia> getAsistenciaList() {
+        return asistenciaList;
+    }
+
+    public void setAsistenciaList(List<Asistencia> asistenciaList) {
+        this.asistenciaList = asistenciaList;
+    }
 
     @Override
     public int hashCode() {

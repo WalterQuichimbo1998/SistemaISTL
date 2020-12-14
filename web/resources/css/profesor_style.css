@@ -591,7 +591,7 @@ body{
     background: #57a3f4; 
     height: 30px; 
     font-size: 13px !important; 
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 3px;
     border:none;
     box-shadow: none;

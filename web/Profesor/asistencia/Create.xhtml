@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AsistenciaCreateDlg" widgetVar="AsistenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Nueva Ausencia"
+                  closeOnEscape="true" showEffect="clip" hideEffect="clip">
+            <h:form id="AsistenciaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{asistenciaController.selected != null}">
+                        <p:column>
+                            <p:outputLabel value="Materia: " style="font-size: 15px !important;font-weight: normal;color: #000;"/><br/>
+                            <div style="width: 200px;">
+                                <p:outputLabel value="#{asistenciaController.selectedMa.materia}" style="font-size: 15px !important;font-weight: normal;color: #454545;"/>
+                            </div>
+
+                            <br/>
+                            <p:outputLabel value="Estudiante: " style="font-size: 15px !important;font-weight: normal;color: #000;"/><br/>
+                            <p:outputLabel value="#{asistenciaController.selectedP.nombres} #{asistenciaController.selectedP.apellidos}" style="font-size: 15px !important;font-weight: normal;color: #1976D3;"/>
+                            <br/>
+                            <br/>
+                            <p:outputLabel value="Fecha de registro: " for="fechaRegistro" style="font-size: 15px !important;font-weight: normal;color: #000;"/><br/>
+                            <p:calendar styleClass="fecha_ausencia" id="fechaRegistro" pattern="dd/MM/yyyy" value="#{asistenciaController.selected.fechaRegistro}" mask="true" navigator="true" locale="es"
+                                        required="true" requiredMessage="Ingrese la fecha" autocomplete="off" disabledWeekends="true"/>
+                        </p:column>  
+
+                        <p:column>
+                            <p:outputLabel value="Observaciones: " for="observaciones" style="font-size: 15px !important;font-weight: normal;color: #000;"/><br/>
+                            <p:inputTextarea id="observaciones" value="#{asistenciaController.selected.observaciones}" autoResize="false" maxlength="100" style="width: 220px;height: 80px;font-size: 15px !important;"/>
+                            <br/>
+                            <center>
+                                <p:commandButton styleClass="btn_g" ajax="true" actionListener="#{asistenciaController.create}" value="#{bundle.Save}" process="@all" update="display,:AsistenciaListForm:datalist,:growl" oncomplete="handleSubmit(args,'AsistenciaCreateDialog');"/>
+                                <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('AsistenciaCreateDialog').hide();"/>
+                            </center>
+                        </p:column>
+                    </p:panelGrid>
+
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

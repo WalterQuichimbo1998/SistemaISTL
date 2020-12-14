@@ -595,26 +595,7 @@ public class Bean implements Serializable {
         return datasource.getConnection();
     }
 
-//    public static Connection getConnection() throws Exception {
-//        Connection con = null;
-//        // Establece el nombre del driver a utilizar
-//        String dbDriver = "com.mysql.jdbc.Driver";
-//        // Establece la conexion a utilizar contra la base de datos
-//        String dbConnString = "jdbc:mysql://158.106.189.175:3306/sistema_gestion";
-//        // Establece el usuario de la base de datos
-//        String dbUser = "glass_gestion01";
-//        // Establece la contrase�a de la base de datos
-//        String dbPassword = "systema_gestion01ITSL";
-//        // Establece el driver de conexi�n
-////        Class.forName(dbDriver).newInstance();
-//        // Retorna la conexi�n
-//        con = (Connection) DriverManager.getConnection(dbConnString, dbUser, dbPassword);
-//        if (con != null) {
-//            System.out.println("Conexion Satisfactoria");
-//        }
-//
-//        return con;
-//    }
+
     public String getText() {
         return text;
     }
@@ -625,6 +606,43 @@ public class Bean implements Serializable {
 
     public String getResultado() {
         return resultado;
+    }
+ public void imprimirAsistencia(Integer materia,Integer nivel,Integer periodo,String titulo,String fecha1,String fecha2) {
+        reportPdf = null;
+        try {    
+        File fichero = new File(getClass().getResource("/reportes/ReporteAsistencia.jasper").toURI());
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+
+        if (jasperReport != null) {
+            Map parametros = new HashMap();
+            //parametros que enviamos al report.
+            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+            parametros.put("ciclo", nivel);
+            parametros.put("materia", materia);
+            parametros.put("periodo", periodo);
+            parametros.put("titulo", titulo);
+            parametros.put("fecha1", fecha1);
+            parametros.put("fecha2", fecha2);
+            //Compilamos el archivo XML y lo cargamos en memoria
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+            //Exportamos el reporte a pdf y lo guardamos en disco
+
+            reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+
+            response.addHeader("Content-disposition", "attachment; filename=Reporte_Asistencia.pdf");
+
+            ServletOutputStream stream = response.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+            stream.close();
+            FacesContext.getCurrentInstance().responseComplete();
+
+            JasperExportManager.exportReportToPdfFile(jasperPrint, parametro);
+        }
+     } catch (Exception e) {
+     }
     }
 
 }

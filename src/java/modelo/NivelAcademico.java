@@ -73,6 +73,8 @@ public class NivelAcademico implements Serializable {
     @JoinColumn(name = "id_titulo_carrera", referencedColumnName = "id_titulo_carrera")
     @ManyToOne
     private TituloCarrera idTituloCarrera;
+     @OneToMany(mappedBy = "idNivelAcademico")
+    private List<Asistencia> asistenciaList;
 
     public NivelAcademico() {
     }
@@ -177,6 +179,14 @@ public class NivelAcademico implements Serializable {
 
     public void setIdTituloCarrera(TituloCarrera idTituloCarrera) {
         this.idTituloCarrera = idTituloCarrera;
+    }
+    @XmlTransient
+    public List<Asistencia> getAsistenciaList() {
+        return asistenciaList;
+    }
+
+    public void setAsistenciaList(List<Asistencia> asistenciaList) {
+        this.asistenciaList = asistenciaList;
     }
     
 
