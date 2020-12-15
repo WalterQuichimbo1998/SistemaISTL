@@ -56,8 +56,6 @@ public class Nacionalidad implements Serializable {
     private Date fechaDeRegistro;
    
     @OneToMany(mappedBy = "idNacionalidad")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idNacionalidad")
     private List<Matricula> matriculaList;
       @OneToMany(mappedBy = "idNacionalidad")
     private List<Provincia> provinciaList;
@@ -111,15 +109,6 @@ public class Nacionalidad implements Serializable {
 
     public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
         this.matriculaHistorialList = matriculaHistorialList;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

@@ -11,42 +11,42 @@
             <h:outputText value="#{bundle.ListNotasTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <p:panel>
-                <h:form id="TituloCarreraListForm">
-                    <br/>
-                    <p class="title_modulos" style="color: #454545;">Notas</p>
-                     <div style="width: 300px;margin: auto;">
-                        <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
-                        <p:selectOneMenu id="idPeriodo" value="#{notasController.selectedPeriodo}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{periodoAcademicoController.lista}"
-                                           var="idPeriodoAcademicoItem"
-                                           itemValue="#{idPeriodoAcademicoItem}"/>
-                            <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
-                        </p:selectOneMenu>
-                    </div>
-                    <br/>
-                    <h:panelGroup id="lista">
-                        <p:dataTable id="datalist" value="#{notasController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
-                                     rows="10"
-                                     emptyMessage="No se encontraron resultados.">
-                            <f:facet name="header">
-                                <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{notasController.selectedPeriodo.nombre}</h2>
-                            </f:facet>
-                            <p:column sortBy="#{item.nombreTitulo}">
-                                <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
 
-                                <ui:repeat value="#{notasController.listaNivelesDocente(item.idTituloCarrera)}" var="car">
-                                    <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
-                                                   actionListener="#{notasController.setSelectedN(car)}" action="/Profesor/notas/ListaEstudiantes?faces-redirect=true"/>
-                                </ui:repeat> 
-                                <br/><br/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:panelGroup> 
-                    
-                </h:form>
-            </p:panel>
+            <h:form id="TituloCarreraListForm">
+                <br/>
+                <p class="title_modulos" style="color: #454545;">Registro de Notas</p>
+                <div style="width: 300px;margin: auto;">
+                    <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
+                    <p:selectOneMenu id="idPeriodo" value="#{notasController.selectedPeriodo}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                        <f:selectItems value="#{periodoAcademicoController.lista}"
+                                       var="idPeriodoAcademicoItem"
+                                       itemValue="#{idPeriodoAcademicoItem}"/>
+                        <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
+                    </p:selectOneMenu>
+                </div>
+                <br/>
+                <h:panelGroup id="lista">
+                    <p:dataTable id="datalist" value="#{notasController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
+                                 rows="10"
+                                 emptyMessage="No se encontraron resultados.">
+                        <f:facet name="header">
+                            <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{notasController.selectedPeriodo.nombre}</h2>
+                        </f:facet>
+                        <p:column sortBy="#{item.nombreTitulo}">
+                            <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
+
+                            <ui:repeat value="#{notasController.listaNivelesDocente(item.idTituloCarrera)}" var="car">
+                                <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
+                                                 actionListener="#{notasController.setSelectedN(car)}" action="/Profesor/notas/ListaEstudiantes?faces-redirect=true"/>
+                            </ui:repeat> 
+                            <br/><br/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup> 
+
+            </h:form>
+            <br/>
         </ui:define>
     </ui:composition>
 

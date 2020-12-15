@@ -58,8 +58,6 @@ public class TipoIdentificacion implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoIdentificacion")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idTipoIdentificacion")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idTipoIdentificacion")
     private List<MatriculaHistorial> matriculaHistorialList;
@@ -117,15 +115,6 @@ public class TipoIdentificacion implements Serializable {
 
     public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
         this.matriculaHistorialList = matriculaHistorialList;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

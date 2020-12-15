@@ -8,14 +8,14 @@
 
     <ui:composition>
 
-        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Ingresar Nota"
+        <p:dialog id="NotasEditDlg" widgetVar="NotasEditDialog" modal="false" resizable="false" appendTo="@(body)" header="Ingresar Nota"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="NotasEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{notasController.selected != null}">
                         <p:outputLabel value="Estudiante: "/>
                         <p:outputLabel value="#{notasController.selected.idDatosPersonales.nombres} #{notasController.selected.idDatosPersonales.apellidos}"
-                                       style="font-family: Arial;font-size: 14px !important;"/>
+                                       style="font-family: Arial;font-size: 14px !important;color: #007bff;font-weight: normal;"/>
                         <p:outputLabel value="#{bundle.EditNotasLabel_parcialUno}" />
                         <input id="parcialUno"  type="number" pattern="^[0-9]" title='Only Number' min="0" max="10" step="1" jsf:value="#{notasController.selected.parcialUno}"
                                style="width: 160px;padding: 4px 4px;" required="true"  requiredMessage="Ingrese una nota"/>

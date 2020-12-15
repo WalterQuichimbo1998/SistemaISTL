@@ -54,8 +54,6 @@ public class TipoOperador implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idTipoOperador")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idTipoOperador")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idTipoOperador")
     private List<Usuario> usuarioList;
@@ -107,15 +105,6 @@ public class TipoOperador implements Serializable {
 
     public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
         this.matriculaHistorialList = matriculaHistorialList;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

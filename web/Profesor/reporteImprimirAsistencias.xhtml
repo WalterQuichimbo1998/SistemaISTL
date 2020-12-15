@@ -5,59 +5,62 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/Profesor/templateProfesor.xhtml">
 
         <ui:define name="body">
 
-            <div>
-                <h:form id="TituloCarreraListForm">
-                    <br/>
 
-                    <p class="title_modulos" style="color: #454545;">Reporte de Asistencias</p>
-                    <div style="width: 300px;margin: auto;">
-                        <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
-                        <p:selectOneMenu id="idPeriodo" value="#{asistenciaController.selectedPeriodo}">
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{periodoAcademicoController.lista}"
-                                           var="idPeriodoAcademicoItem"
-                                           itemValue="#{idPeriodoAcademicoItem}"/>
-                            <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
-                        </p:selectOneMenu>
-                    </div>
-                    <br/>
-                    <h:panelGroup id="lista">
-                        <p:dataTable id="datalist" value="#{asistenciaController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
-                                     rows="10"
-                                     emptyMessage="No se encontraron resultados.">
-                            <f:facet name="header">
-                                <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{asistenciaController.selectedPeriodo.nombre}</h2>
-                            </f:facet>
-                            <p:column sortBy="#{item.nombreTitulo}">
-                                <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
+            <h:form id="TituloCarreraListForm">
+                <br/>
 
-                                <ui:repeat value="#{asistenciaController.listaNivelesDocente(item.idTituloCarrera)}" var="car">
-                                    <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
-                                                     actionListener="#{asistenciaController.setSelectedN(car)}"  update=":form_reporte" oncomplete="PF('reporte').show()"/>
-                                </ui:repeat> 
-                                <br/><br/>
-                            </p:column>
-                        </p:dataTable>
-                    </h:panelGroup> 
+                <p class="title_modulos" style="color: #454545;">Reporte de Asistencias</p>
+                <div style="width: 300px;margin: auto;">
+                    <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
+                    <p:selectOneMenu id="idPeriodo" value="#{asistenciaController.selectedPeriodo}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                        <f:selectItems value="#{periodoAcademicoController.lista}"
+                                       var="idPeriodoAcademicoItem"
+                                       itemValue="#{idPeriodoAcademicoItem}"/>
+                        <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
+                    </p:selectOneMenu>
+                </div>
+                <br/>
+                <h:panelGroup id="lista">
+                    <p:dataTable id="datalist" value="#{asistenciaController.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
+                                 rows="10"
+                                 emptyMessage="No se encontraron resultados.">
+                        <f:facet name="header">
+                            <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{asistenciaController.selectedPeriodo.nombre}</h2>
+                        </f:facet>
+                        <p:column sortBy="#{item.nombreTitulo}">
+                            <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
 
-                </h:form>
-                <p:dialog id="reporte" widgetVar="reporte" modal="false" resizable="false" appendTo="@(body)" header="Reporte"
-                          closeOnEscape="true" showEffect="clip" hideEffect="clip">
-                    <h:form id="form_reporte" rendered="#{asistenciaController.selectedN != null}">
+                            <ui:repeat value="#{asistenciaController.listaNivelesDocente(item.idTituloCarrera)}" var="car">
+                                <p:commandButton style="color:#fff;display: inline-block;margin: 2px 4px;" styleClass="editar" icon="ui-icon-search" value="#{car.nivelAcademico}"
+                                                 actionListener="#{asistenciaController.setSelectedN(car)}"  
+                                                 update=":form_reporte" oncomplete="PF('reporte').show()"/>
+                            </ui:repeat> 
+                            <br/><br/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup> 
+
+            </h:form>
+            <p:dialog id="reporte" widgetVar="reporte" modal="false" resizable="false" appendTo="@(body)" header="Reporte"
+                      closeOnEscape="true" showEffect="clip" hideEffect="clip">
+                <h:form id="form_reporte">
+                    <c:if test="#{asistenciaController.selectedN!=null}">
 
                         <center>
-                             <p:outputLabel value="Carrera: " style="font-size: 16px !important;color: #727272;"/><br/>
-                        <p:outputLabel value="#{asistenciaController.selectedN.idTituloCarrera.nombreTitulo}" style="color: #1976D3;"/><br/>
-                        <p:outputLabel value="Nivel académico: " style="font-size: 16px !important;color: #727272;"/><br/>
-                        <p:outputLabel value="#{asistenciaController.selectedN.nivelAcademico}" style="color: #1976D3;"/><br/>
-                        <p:outputLabel value="Período académico: " style="font-size: 16px !important;color: #727272;"/><br/>
-                        <p:outputLabel value="#{asistenciaController.selectedPeriodo.nombre}" style="color: #1976D3;"/><br/><br/>
+                            <p:outputLabel value="Carrera: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{asistenciaController.selectedN.idTituloCarrera.nombreTitulo}" style="color: #1976D3;"/><br/>
+                            <p:outputLabel value="Nivel académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{asistenciaController.selectedN.nivelAcademico}" style="color: #1976D3;"/><br/>
+                            <p:outputLabel value="Período académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{asistenciaController.selectedPeriodo.nombre}" style="color: #1976D3;"/><br/><br/>
                         </center>
 
                         <div style="width: 300px;margin: auto;"> 
@@ -89,10 +92,10 @@
                             <br/>
                             <p:commandButton value="Descargar Reporte" ajax="false" icon="ui-icon-note" styleClass="crear" actionListener="#{asistenciaController.imprimirAsistencia()}"/>
                         </center>
+                    </c:if>
+                </h:form>
+            </p:dialog>
 
-                    </h:form>
-                </p:dialog>
-            </div>
         </ui:define>
 
     </ui:composition>

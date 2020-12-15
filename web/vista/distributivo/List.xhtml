@@ -32,7 +32,7 @@
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
 
 
-                        <p:column sortBy="#{item.fechaVinculacion}">
+                        <p:column sortBy="#{item.fechaVinculacion}" style="width: 130px;">
                             <f:facet name="header">
                                 <h:outputText value="Fecha vinculación"/>
                             </f:facet>
@@ -81,7 +81,7 @@
                         </p:column>
 
 
-                        <p:column sortBy="#{item.idDistributivo}">
+                        <p:column sortBy="#{item.idDistributivo}" style="width: 80px;">
                             <f:facet name="header">
                                 <h:outputText value="Materias"/>
                             </f:facet>

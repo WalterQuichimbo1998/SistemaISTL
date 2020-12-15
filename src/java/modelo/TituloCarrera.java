@@ -60,8 +60,6 @@ public class TituloCarrera implements Serializable {
     @OneToMany(mappedBy = "idTituloCarrera")
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idTituloCarrera")
-    private List<MateriaCarrera> materiaCarreraList;
-    @OneToMany(mappedBy = "idTituloCarrera")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idTituloCarrera")
     private List<Materia> materiaList;
@@ -134,15 +132,6 @@ public class TituloCarrera implements Serializable {
 
     public void setDistributivoList(List<Distributivo> distributivoList) {
         this.distributivoList = distributivoList;
-    }
-
-    @XmlTransient
-    public List<MateriaCarrera> getMateriaCarreraList() {
-        return materiaCarreraList;
-    }
-
-    public void setMateriaCarreraList(List<MateriaCarrera> materiaCarreraList) {
-        this.materiaCarreraList = materiaCarreraList;
     }
 
     @XmlTransient

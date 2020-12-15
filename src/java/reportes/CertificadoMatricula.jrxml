@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="413e238d-4de9-4f39-b950-a819fb1ab3d0">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="302"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="num_identificacion" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -24,15 +24,12 @@
      datos_personales.`edad` AS datos_personales_edad,
      datos_personales.`estado` AS datos_personales_estado,
      datos_personales.`fecha_de_registro` AS datos_personales_fecha_de_registro,
-     persona.`id_persona` AS persona_id_persona,
-     persona.`idioma_ancestral` AS persona_idioma_ancestral,
-     persona.`id_nivel_academico` AS persona_id_nivel_academico,
-     matricula.`id_matricula` AS matricula_id_matricula,
-     matricula.`id_persona` AS matricula_id_persona,
+matricula.`id_matricula` AS matricula_id_matricula,
      matricula.`fecha_matricula` AS matricula_fecha_matricula,
-     matricula.`cod_matricula` AS matricula_cod_matricula,
+     matricula.`codigo_matricula` AS matricula_codigo_matricula,
      matricula.`anio_graduacion` AS matricula_anio_graduacion,
      matricula.`modalidad` AS matricula_modalidad,
+  
      periodo_academico.`id_periodo_academico` AS periodo_academico_id_periodo_academico,
      periodo_academico.`nombre` AS periodo_academico_nombre,
      periodo_academico.`descripcion` AS periodo_academico_descripcion,
@@ -40,20 +37,20 @@
      periodo_academico.`año_periodo_academico` AS periodo_academico_año_periodo_academico,
      titulo_carrera.`id_titulo_carrera` AS titulo_carrera_id_titulo_carrera,
      titulo_carrera.`nombre_titulo` AS titulo_carrera_nombre_titulo,
-     persona.`descripcion_idioma_ancestral` AS persona_descripcion_idioma_ancestral,
+
      matricula.`nombre_empresa` AS matricula_nombre_empresa,
      matricula.`numero_formulario` AS matricula_numero_formulario,
      nivel_academico.`id_nivel_academico` AS nivel_academico_id_nivel_academico,
      nivel_academico.`nivel_academico` AS nivel_academico_nivel_academico
 FROM
-     `datos_personales` datos_personales INNER JOIN `persona` persona ON datos_personales.`id_datos_personales` = persona.`id_datos_personales`
-     INNER JOIN `matricula` matricula ON persona.`id_persona` = matricula.`id_persona`
-     INNER JOIN `nivel_academico` nivel_academico ON persona.`id_nivel_academico` = nivel_academico.`id_nivel_academico`
+     `datos_personales` 
+     INNER JOIN `matricula` matricula ON datos_personales.`id_datos_personales` = matricula.`id_datos_personales`
+     INNER JOIN `nivel_academico` nivel_academico ON matricula.`id_nivel_academico` = nivel_academico.`id_nivel_academico`
      AND nivel_academico.`id_nivel_academico` = matricula.`id_nivel_academico`
      INNER JOIN `periodo_academico` periodo_academico ON matricula.`id_periodo_academico` = periodo_academico.`id_periodo_academico`
      INNER JOIN `titulo_carrera` titulo_carrera ON matricula.`id_titulo_carrera` = titulo_carrera.`id_titulo_carrera`
 WHERE
-     datos_personales.num_identificacion = $P!{num_identificacion}]]>
+     datos_personales.num_identificacion = $P{num_identificacion}]]>
 	</queryString>
 	<field name="datos_personales_id_datos_personales" class="java.lang.Integer"/>
 	<field name="datos_personales_nombres" class="java.lang.String"/>
@@ -63,20 +60,16 @@ WHERE
 	<field name="datos_personales_fecha_nacimiento" class="java.sql.Date"/>
 	<field name="datos_personales_num_identificacion" class="java.lang.String"/>
 	<field name="datos_personales_sexo" class="java.lang.String"/>
-	<field name="datos_personales_genero" class="java.lang.String"/>
+	<field name="datos_personales_genero" class="java.lang.Integer"/>
 	<field name="datos_personales_celular" class="java.lang.String"/>
 	<field name="datos_personales_convencional" class="java.lang.String"/>
 	<field name="datos_personales_cod_postal" class="java.lang.String"/>
 	<field name="datos_personales_edad" class="java.lang.Integer"/>
 	<field name="datos_personales_estado" class="java.lang.Integer"/>
 	<field name="datos_personales_fecha_de_registro" class="java.sql.Timestamp"/>
-	<field name="persona_id_persona" class="java.lang.Integer"/>
-	<field name="persona_idioma_ancestral" class="java.lang.String"/>
-	<field name="persona_id_nivel_academico" class="java.lang.Integer"/>
 	<field name="matricula_id_matricula" class="java.lang.Integer"/>
-	<field name="matricula_id_persona" class="java.lang.Integer"/>
 	<field name="matricula_fecha_matricula" class="java.sql.Date"/>
-	<field name="matricula_cod_matricula" class="java.lang.String"/>
+	<field name="matricula_codigo_matricula" class="java.lang.Integer"/>
 	<field name="matricula_anio_graduacion" class="java.lang.String"/>
 	<field name="matricula_modalidad" class="java.lang.Integer"/>
 	<field name="periodo_academico_id_periodo_academico" class="java.lang.Integer"/>
@@ -86,7 +79,6 @@ WHERE
 	<field name="periodo_academico_año_periodo_academico" class="java.lang.String"/>
 	<field name="titulo_carrera_id_titulo_carrera" class="java.lang.Integer"/>
 	<field name="titulo_carrera_nombre_titulo" class="java.lang.String"/>
-	<field name="persona_descripcion_idioma_ancestral" class="java.lang.String"/>
 	<field name="matricula_nombre_empresa" class="java.lang.String"/>
 	<field name="matricula_numero_formulario" class="java.lang.Integer"/>
 	<field name="nivel_academico_id_nivel_academico" class="java.lang.Integer"/>

@@ -44,8 +44,6 @@ public class Residencia implements Serializable {
     @Column(name = "nombre")
     private String nombre;
     @OneToMany(mappedBy = "idResidencia")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idResidencia")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idResidencia")
     private List<MatriculaHistorial> matriculaHistorialList;
@@ -79,14 +77,6 @@ public class Residencia implements Serializable {
 
     public void setMatriculaHistorialList(List<MatriculaHistorial> matriculaHistorialList) {
         this.matriculaHistorialList = matriculaHistorialList;
-    }
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

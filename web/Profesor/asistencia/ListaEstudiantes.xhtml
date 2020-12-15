@@ -38,7 +38,7 @@
                                                    var="idMateriaItem"
                                                    itemValue="#{idMateriaItem.idMateria}"
                                                    itemLabel="#{idMateriaItem.idMateria.materia}"/>
-                                    <f:ajax execute="@this" render="@all"/>
+                                    <f:ajax execute="@this" render="@form"/>
                                 </p:selectOneMenu>
                             </div>
                         </center>
@@ -83,7 +83,7 @@
                         </p:dataTable>
                     </div>
                 </h:form>
-                <p:dialog id="detalle_asistencia" widgetVar="detalle_asistencia" modal="true" resizable="false" appendTo="@(body)" header="Detalle de Ausencias"
+                <p:dialog id="detalle_asistencia" widgetVar="detalle_asistencia" modal="false" resizable="false" appendTo="@(body)" header="Detalle de Ausencias"
                           closeOnEscape="true" showEffect="clip" hideEffect="clip">
                     <h:form id="detalle_asistencia2">
                         <h:panelGroup id="display">

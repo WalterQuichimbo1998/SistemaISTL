@@ -70,7 +70,7 @@
                                 <f:convertDateTime pattern="MM/dd/yyyy" />
                             </h:outputText>
                         </p:column>
-                        <p:column sortBy="#{item.idMatriculaHistorial}" headerText="Info">
+                        <p:column sortBy="#{item.idMatriculaHistorial}" headerText="Info" style="width: 60px;">
                             <p:commandButton value="Ver" styleClass="ver" actionListener="#{matriculaHistorialController.setSelected(item)}" action="/Estudiante/matriculaHistorial/MatriculaHistorial?faces-redirect=true"/>
 
                         </p:column>

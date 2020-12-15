@@ -30,43 +30,18 @@
      datos_personales.`edad` AS datos_personales_edad,
      datos_personales.`estado` AS datos_personales_estado,
      datos_personales.`fecha_de_registro` AS datos_personales_fecha_de_registro,
-     persona.`id_persona` AS persona_id_persona,
-     persona.`id_tipo_identificacion` AS persona_id_tipo_identificacion,
-     persona.`id_contacto_emergencia` AS persona_id_contacto_emergencia,
-     persona.`id_etnia` AS persona_id_etnia,
-     persona.`id_tipo_sangre` AS persona_id_tipo_sangre,
-     persona.`id_nacionalidad` AS persona_id_nacionalidad,
-     persona.`id_estado_civil` AS persona_id_estado_civil,
-     persona.`id_discapacidad` AS persona_id_discapacidad,
-     persona.`idioma_ancestral` AS persona_idioma_ancestral,
-     persona.`descripcion_idioma_ancestral` AS persona_descripcion_idioma_ancestral,
-     persona.`id_tipo_operador` AS persona_id_tipo_operador,
-     persona.`id_datos_personales` AS persona_id_datos_personales,
-     persona.`id_provincia_residencia` AS persona_id_provincia_residencia,
-     persona.`id_canton_nacimiento` AS persona_id_canton_nacimiento,
-     persona.`id_provincia_nacimiento` AS persona_id_provincia_nacimiento,
-     persona.`pais_nacionalidad` AS persona_pais_nacionalidad,
-     persona.`pais_residencia` AS persona_pais_residencia,
-     persona.`posee_discapacidad` AS persona_posee_discapacidad,
-     persona.`estado` AS persona_estado,
-     persona.`fecha_de_registro` AS persona_fecha_de_registro,
-     persona.`participacion_practicas` AS persona_participacion_practicas,
-     persona.`participacion_vinculacion` AS persona_participacion_vinculacion,
-     persona.`id_residencia` AS persona_id_residencia,
-     persona.`id_nivel_academico` AS persona_id_nivel_academico,
      nivel_academico.`id_nivel_academico` AS nivel_academico_id_nivel_academico,
      nivel_academico.`nivel_academico` AS nivel_academico_nivel_academico,
      nivel_academico.`estado` AS nivel_academico_estado,
      nivel_academico.`fecha_de_registro` AS nivel_academico_fecha_de_registro,
      matricula.`id_matricula` AS matricula_id_matricula,
-     matricula.`id_persona` AS matricula_id_persona,
      matricula.`id_tipo_matricula` AS matricula_id_tipo_matricula,
      matricula.`id_titulo_carrera` AS matricula_id_titulo_carrera,
      matricula.`id_periodo_academico` AS matricula_id_periodo_academico,
      matricula.`id_tipo_colegio` AS matricula_id_tipo_colegio,
      matricula.`id_tipo_bachillerato` AS matricula_id_tipo_bachillerato,
      matricula.`fecha_matricula` AS matricula_fecha_matricula,
-     matricula.`cod_matricula` AS matricula_cod_matricula,
+     matricula.`codigo_matricula` AS matricula_codigo_matricula,
      matricula.`anio_graduacion` AS matricula_anio_graduacion,
      matricula.`modalidad` AS matricula_modalidad,
      matricula.`id_jornada_academica` AS matricula_id_jornada_academica,
@@ -85,11 +60,9 @@
      matricula.`materia_repetida` AS matricula_materia_repetida,
      matricula.`materia_perdida` AS matricula_materia_perdida,
      matricula.`id_nivel_academico` AS matricula_id_nivel_academico,
-     matricula.`id_practicas_preProfesionales_vinculacion` AS matricula_id_practicas_preProfesionales_vinculacion,
      matricula.`id_tipo_carrera` AS matricula_id_tipo_carrera,
      matricula.`estado` AS matricula_estado,
      matricula.`fecha_de_registro` AS matricula_fecha_de_registro,
-     matricula.`id_tipo_institucion` AS matricula_id_tipo_institucion,
      matricula.`id_alcance_vinculacion` AS matricula_id_alcance_vinculacion,
      matricula.`id_paralelo` AS matricula_id_paralelo,
      matricula.`numero_formulario` AS matricula_numero_formulario,
@@ -106,14 +79,14 @@
      paralelo.`estado` AS paralelo_estado,
      paralelo.`fecha_de_registro` AS paralelo_fecha_de_registro
 FROM
-     `datos_personales` datos_personales INNER JOIN `persona` persona ON datos_personales.`id_datos_personales` = persona.`id_datos_personales`
-     INNER JOIN `nivel_academico` nivel_academico ON persona.`id_nivel_academico` = nivel_academico.`id_nivel_academico`
-     INNER JOIN `matricula` matricula ON persona.`id_persona` = matricula.`id_persona`
-     AND nivel_academico.`id_nivel_academico` = matricula.`id_nivel_academico`
-     INNER JOIN `periodo_academico` periodo_academico ON matricula.`id_periodo_academico` = periodo_academico.`id_periodo_academico`
-     INNER JOIN `paralelo` paralelo ON matricula.`id_paralelo` = paralelo.`id_paralelo`
+     `datos_personales` datos_personales 
+
+     INNER JOIN `matricula` matricula ON matricula.`id_datos_personales` = datos_personales.`id_datos_personales` 
+     INNER JOIN `nivel_academico` nivel_academico ON nivel_academico.`id_nivel_academico`=matricula.`id_nivel_academico`
+     INNER JOIN `periodo_academico` periodo_academico ON periodo_academico.`id_periodo_academico`=matricula.`id_periodo_academico`
+     INNER JOIN `paralelo` paralelo ON paralelo.`id_paralelo`=matricula.`id_paralelo`
 WHERE
-     persona.id_nivel_academico = $P!{nivel}
+     matricula.id_nivel_academico = $P!{nivel}
      and matricula.id_periodo_academico = $P!{periodo}
 and matricula.id_titulo_carrera=$P!{titulo_carrera}]]>
 	</queryString>
@@ -125,54 +98,29 @@ and matricula.id_titulo_carrera=$P!{titulo_carrera}]]>
 	<field name="datos_personales_fecha_nacimiento" class="java.sql.Date"/>
 	<field name="datos_personales_num_identificacion" class="java.lang.String"/>
 	<field name="datos_personales_sexo" class="java.lang.String"/>
-	<field name="datos_personales_genero" class="java.lang.String"/>
+	<field name="datos_personales_genero" class="java.lang.Integer"/>
 	<field name="datos_personales_celular" class="java.lang.String"/>
 	<field name="datos_personales_convencional" class="java.lang.String"/>
 	<field name="datos_personales_cod_postal" class="java.lang.String"/>
 	<field name="datos_personales_edad" class="java.lang.Integer"/>
 	<field name="datos_personales_estado" class="java.lang.Integer"/>
 	<field name="datos_personales_fecha_de_registro" class="java.sql.Timestamp"/>
-	<field name="persona_id_persona" class="java.lang.Integer"/>
-	<field name="persona_id_tipo_identificacion" class="java.lang.Integer"/>
-	<field name="persona_id_contacto_emergencia" class="java.lang.Integer"/>
-	<field name="persona_id_etnia" class="java.lang.Integer"/>
-	<field name="persona_id_tipo_sangre" class="java.lang.Integer"/>
-	<field name="persona_id_nacionalidad" class="java.lang.Integer"/>
-	<field name="persona_id_estado_civil" class="java.lang.Integer"/>
-	<field name="persona_id_discapacidad" class="java.lang.Integer"/>
-	<field name="persona_idioma_ancestral" class="java.lang.String"/>
-	<field name="persona_descripcion_idioma_ancestral" class="java.lang.String"/>
-	<field name="persona_id_tipo_operador" class="java.lang.Integer"/>
-	<field name="persona_id_datos_personales" class="java.lang.Integer"/>
-	<field name="persona_id_provincia_residencia" class="java.lang.Integer"/>
-	<field name="persona_id_canton_nacimiento" class="java.lang.Integer"/>
-	<field name="persona_id_provincia_nacimiento" class="java.lang.Integer"/>
-	<field name="persona_pais_nacionalidad" class="java.lang.String"/>
-	<field name="persona_pais_residencia" class="java.lang.String"/>
-	<field name="persona_posee_discapacidad" class="java.lang.String"/>
-	<field name="persona_estado" class="java.lang.Integer"/>
-	<field name="persona_fecha_de_registro" class="java.sql.Timestamp"/>
-	<field name="persona_participacion_practicas" class="java.lang.String"/>
-	<field name="persona_participacion_vinculacion" class="java.lang.String"/>
-	<field name="persona_id_residencia" class="java.lang.Integer"/>
-	<field name="persona_id_nivel_academico" class="java.lang.Integer"/>
 	<field name="nivel_academico_id_nivel_academico" class="java.lang.Integer"/>
 	<field name="nivel_academico_nivel_academico" class="java.lang.String"/>
 	<field name="nivel_academico_estado" class="java.lang.Integer"/>
 	<field name="nivel_academico_fecha_de_registro" class="java.sql.Timestamp"/>
 	<field name="matricula_id_matricula" class="java.lang.Integer"/>
-	<field name="matricula_id_persona" class="java.lang.Integer"/>
 	<field name="matricula_id_tipo_matricula" class="java.lang.Integer"/>
 	<field name="matricula_id_titulo_carrera" class="java.lang.Integer"/>
 	<field name="matricula_id_periodo_academico" class="java.lang.Integer"/>
 	<field name="matricula_id_tipo_colegio" class="java.lang.Integer"/>
 	<field name="matricula_id_tipo_bachillerato" class="java.lang.Integer"/>
 	<field name="matricula_fecha_matricula" class="java.sql.Date"/>
-	<field name="matricula_cod_matricula" class="java.lang.String"/>
+	<field name="matricula_codigo_matricula" class="java.lang.Integer"/>
 	<field name="matricula_anio_graduacion" class="java.lang.String"/>
 	<field name="matricula_modalidad" class="java.lang.Integer"/>
 	<field name="matricula_id_jornada_academica" class="java.lang.Integer"/>
-	<field name="matricula_fecha_inicio_carrera" class="java.lang.String"/>
+	<field name="matricula_fecha_inicio_carrera" class="java.sql.Date"/>
 	<field name="matricula_titulo_educacion_superior" class="java.lang.String"/>
 	<field name="matricula_especifique_titulo" class="java.lang.String"/>
 	<field name="matricula_titulo_otorgado" class="java.lang.String"/>
@@ -187,11 +135,9 @@ and matricula.id_titulo_carrera=$P!{titulo_carrera}]]>
 	<field name="matricula_materia_repetida" class="java.lang.Integer"/>
 	<field name="matricula_materia_perdida" class="java.lang.Integer"/>
 	<field name="matricula_id_nivel_academico" class="java.lang.Integer"/>
-	<field name="matricula_id_practicas_preProfesionales_vinculacion" class="java.lang.Integer"/>
 	<field name="matricula_id_tipo_carrera" class="java.lang.Integer"/>
-	<field name="matricula_estado" class="java.lang.Integer"/>
+	<field name="matricula_estado" class="java.lang.Boolean"/>
 	<field name="matricula_fecha_de_registro" class="java.sql.Timestamp"/>
-	<field name="matricula_id_tipo_institucion" class="java.lang.Integer"/>
 	<field name="matricula_id_alcance_vinculacion" class="java.lang.Integer"/>
 	<field name="matricula_id_paralelo" class="java.lang.Integer"/>
 	<field name="matricula_numero_formulario" class="java.lang.Integer"/>

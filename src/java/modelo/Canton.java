@@ -56,8 +56,6 @@ public class Canton implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
     @OneToMany(mappedBy = "idCantonNacimiento")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idCantonNacimiento")
     private List<MatriculaHistorial> matriculaHistorialList;
     @OneToMany(mappedBy = "idCantonNacimiento")
     private List<Matricula> matriculaList;
@@ -105,15 +103,6 @@ public class Canton implements Serializable {
         this.fechaDeRegistro = fechaDeRegistro;
     }
 
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
-    }
       @XmlTransient
     public List<MatriculaHistorial> getMatriculaHistorialList() {
         return matriculaHistorialList;

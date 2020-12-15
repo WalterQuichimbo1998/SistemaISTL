@@ -279,13 +279,10 @@ public class MatriculaController implements Serializable {
         mt = getFacade().totalMatriculas2(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
         if (mt == null) {
             this.selected.setNumeroFormulario(1);
-            System.out.println("1");
         } else {
             listaBuscar = getFacade().totalMatriculasBuscar(selected.getIdPeriodoAcademico().getIdPeriodoAcademico());
             if (!listaBuscar.contains(selected)) {
-                System.out.println("num: " + mt.getNumeroFormulario());
                 this.selected.setNumeroFormulario(mt.getNumeroFormulario() + 1);
-                System.out.println("1++");
             }
 
         }

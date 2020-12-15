@@ -63,7 +63,7 @@ public class NotasFacade extends AbstractFacade<Notas> {
         List<Notas> lista = null;
         try {
             Query q = em.createNativeQuery("SELECT * FROM notas\n"
-                    + "WHERE notas.id_periodo_academico='" + id1 + "' AND notas.id_nivel_academico='" + id2 + "' AND notas.id_materia='" + id3 + "' AND notas.id_titulo_carrera='" + id4 + "';", Notas.class);
+                    + "WHERE id_periodo_academico='" + id1 + "' AND id_nivel_academico='" + id2 + "' AND id_materia='" + id3 + "' AND id_titulo_carrera='" + id4 + "';", Notas.class);
             lista = q.getResultList();
         } catch (Exception e) {
         }
@@ -160,4 +160,12 @@ public class NotasFacade extends AbstractFacade<Notas> {
         }
         return lista;
     }
+     public List<Notas> obtenerNotasEstu(Integer id, Integer id2) {
+        Query q = em.createNativeQuery("SELECT notas.id_notas,notas.id_datos_personales,notas.id_nivel_academico,notas.id_periodo_academico,datos_personales.num_identificacion,nombres,datos_personales.apellidos FROM notas \n"
+                + " LEFT JOIN datos_personales ON datos_personales.id_datos_personales = notas.id_datos_personales\n"
+                + " WHERE id_nivel_academico='" + id + "' AND id_periodo_academico='" + id2 + "' GROUP BY notas.id_datos_personales ORDER BY datos_personales.apellidos ASC;", Notas.class);
+        List<Notas> lista = q.getResultList();
+        return lista;
+    }
+
 }

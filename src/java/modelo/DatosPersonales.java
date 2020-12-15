@@ -106,8 +106,6 @@ public class DatosPersonales implements Serializable {
     @OneToMany(mappedBy = "idDatosPersonales")
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idDatosPersonales")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idDatosPersonales")
     private List<Matricula> matriculaList;
     @OneToMany(mappedBy = "idDatosPersonales")
     private List<PracticaspreprofesionalesVinculacion> practicaspreprofesionalesVinculacionList;
@@ -290,15 +288,6 @@ public class DatosPersonales implements Serializable {
 
     public void setDistributivoList(List<Distributivo> distributivoList) {
         this.distributivoList = distributivoList;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

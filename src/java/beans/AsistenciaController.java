@@ -5,7 +5,6 @@ import beans.util.JsfUtil;
 import beans.util.JsfUtil.PersistAction;
 import dao.AsistenciaFacade;
 import dao.DistributivoMateriaFacade;
-import dao.MatriculaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
 import dao.TituloCarreraFacade;
@@ -21,7 +20,6 @@ import javax.ejb.EJB;
 import javax.ejb.EJBException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
@@ -116,7 +114,6 @@ public class AsistenciaController implements Serializable {
 
     public void setSelectedP2(DatosPersonales selectedP2) {
         this.selectedP2 = selectedP2;
-
         listaAusencias = null;
     }
 
@@ -153,36 +150,51 @@ public class AsistenciaController implements Serializable {
     }
 
     public void create() {
-        if (getFacade().asistenciaEstudianteV(selectedP.getIdDatosPersonales(), selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selected.getFechaRegistro()) == null) {
-            this.selected.setIdDatosPersonales(selectedP);
-            this.selected.setIdMateria(selectedMa);
-            this.selected.setIdNivelAcademico(selectedN);
-            this.selected.setIdPeriodoAcademico(selectedPeriodo);
-            persist(PersistAction.CREATE, "Ausencia registrada");
-            if (!JsfUtil.isValidationFailed()) {
-                items = null;    // Invalidate list of items to trigger re-query.
-                listaAusencias = null;
-            }
-        } else {
+        Date d1 = new Date();
+        Date d2 = selected.getFechaRegistro();
+       
+        if (d2.after(d1)) {
             listaAusencias = null;
-            JsfUtil.addErrorMessage("Este registro con está fecha ya existe.");
+            JsfUtil.addErrorMessage("La fecha no puede ser mayor al día de hoy.");
+        } else {
+            if (getFacade().asistenciaEstudianteV(selectedP.getIdDatosPersonales(), selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selected.getFechaRegistro()) == null) {
+                this.selected.setIdDatosPersonales(selectedP);
+                this.selected.setIdMateria(selectedMa);
+                this.selected.setIdNivelAcademico(selectedN);
+                this.selected.setIdPeriodoAcademico(selectedPeriodo);
+                persist(PersistAction.CREATE, "Ausencia registrada");
+                if (!JsfUtil.isValidationFailed()) {
+                    items = null;    // Invalidate list of items to trigger re-query.
+                    listaAusencias = null;
+                }
+            } else {
+                listaAusencias = null;
+                JsfUtil.addErrorMessage("Este registro con está fecha ya existe.");
 
+            }
         }
     }
 
     public void update() {
-
-        if (getFacade().asistenciaEstudianteV2(selectedP.getIdDatosPersonales(), selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selected.getFechaRegistro(), selected.getIdAsistencia()) == null) {
-            this.selected.setIdDatosPersonales(selectedP);
-            this.selected.setIdMateria(selectedMa);
-            this.selected.setIdNivelAcademico(selectedN);
-            this.selected.setIdPeriodoAcademico(selectedPeriodo);
-
-            persist(PersistAction.UPDATE, "Ausencia actualizada");
+        Date d1 = new Date();
+        Date d2 = selected.getFechaRegistro();
+       
+        if (d2.after(d1)) {
             listaAusencias = null;
+            JsfUtil.addErrorMessage("La fecha no puede ser mayor al día de hoy.");
         } else {
-            listaAusencias = null;
-            JsfUtil.addErrorMessage("Este registro con está fecha ya existe.");
+            if (getFacade().asistenciaEstudianteV2(selectedP.getIdDatosPersonales(), selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selected.getFechaRegistro(), selected.getIdAsistencia()) == null) {
+                this.selected.setIdDatosPersonales(selectedP);
+                this.selected.setIdMateria(selectedMa);
+                this.selected.setIdNivelAcademico(selectedN);
+                this.selected.setIdPeriodoAcademico(selectedPeriodo);
+
+                persist(PersistAction.UPDATE, "Ausencia actualizada");
+                listaAusencias = null;
+            } else {
+                listaAusencias = null;
+                JsfUtil.addErrorMessage("Este registro con está fecha ya existe.");
+            }
         }
     }
 
@@ -194,6 +206,7 @@ public class AsistenciaController implements Serializable {
             lista = null;
             listaAusencias = null;
         }
+
     }
 
     public List<Asistencia> getItems() {
@@ -248,7 +261,10 @@ public class AsistenciaController implements Serializable {
     public List<DistributivoMateria> getItemsMateriaDistributivo() {
         itemsMateriaDistributivo = null;
         if (itemsMateriaDistributivo == null) {
-            itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico());
+            if (selectedN != null) {
+                itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico());
+
+            }
 
         }
         return itemsMateriaDistributivo;
@@ -382,7 +398,7 @@ public class AsistenciaController implements Serializable {
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             String f1 = formato.format(fecha1);
             String f2 = formato.format(fecha2);
-            b.imprimirAsistencia(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selectedN.getIdTituloCarrera().getNombreTitulo(),f1,f2);
+            b.imprimirAsistencia(selectedMa.getIdMateria(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico(), selectedN.getIdTituloCarrera().getNombreTitulo(), f1, f2);
 
         } catch (Exception e) {
         }

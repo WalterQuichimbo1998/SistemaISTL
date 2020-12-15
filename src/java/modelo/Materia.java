@@ -79,8 +79,6 @@ public class Materia implements Serializable {
     @OneToMany(mappedBy = "idMateria")
     private List<Distributivo> distributivoList;
     @OneToMany(mappedBy = "idMateria")
-    private List<MateriaCarrera> materiaCarreraList;
-    @OneToMany(mappedBy = "idMateria")
     private List<MatriculaHistorial> matriculaHistorialList;
     @OneToMany(mappedBy = "idMateria")
     private List<Matricula> matriculaList;
@@ -196,16 +194,6 @@ public class Materia implements Serializable {
     public void setDistributivoList(List<Distributivo> distributivoList) {
         this.distributivoList = distributivoList;
     }
-
-    @XmlTransient
-    public List<MateriaCarrera> getMateriaCarreraList() {
-        return materiaCarreraList;
-    }
-
-    public void setMateriaCarreraList(List<MateriaCarrera> materiaCarreraList) {
-        this.materiaCarreraList = materiaCarreraList;
-    }
-
     @XmlTransient
     public List<Matricula> getMatriculaList() {
         return matriculaList;

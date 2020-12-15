@@ -20,7 +20,6 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
-import modelo.Matricula;
 
 @Named("usuarioController")
 @SessionScoped
@@ -33,7 +32,6 @@ public class UsuarioController implements Serializable {
     private List<Usuario> items = null;
     private List<Usuario> lista = null;
     private Usuario selected;
-    private Matricula matricula = null;
 
     public UsuarioController() {
     }
@@ -71,13 +69,6 @@ public class UsuarioController implements Serializable {
     }
 
     public void create() {
-//        if(selected.getIdTipoOperador().getIdTipoOperador()==2){
-//            if(ejbFacadeMA.virificarMatricula(selected.getIdDatosPersonales().getIdDatosPersonales())==null){
-//            MatriculaController mc=new MatriculaController();
-//            mc.crearMA(selected.getIdDatosPersonales()); 
-//        }
-//        }
-
         this.selected.setFechaDeRegistro(new Date());
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UsuarioCreated"));
 

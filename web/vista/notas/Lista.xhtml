@@ -32,7 +32,7 @@
                             <ui:repeat value="#{item.nivelAcademicoList}" var="car" rendered="#{item.idTituloCarrera == notasController.selectedN.idTituloCarrera.idTituloCarrera}">
                                 <p:commandLink style="text-decoration: none;color:#454545;display: inline-block;margin: 2px 4px; padding: 2px 2px;" class="btn-link" value="#{car.nivelAcademico}"
                                                actionListener="#{notasController.setSelectedN(car)}" action="/vista/notas/Lista?faces-redirect=true">
-                                    <f:ajax execute="@this" render="@all"/>
+                                    <f:ajax execute="@this" render="@form"/>
                                 </p:commandLink>
                             </ui:repeat>
                         </ui:repeat><br/><br/>
@@ -48,7 +48,7 @@
                                                    var="idMateriaItem"
                                                    itemValue="#{idMateriaItem}"
                                                    itemLabel="#{idMateriaItem.materia}"/>
-                                    <f:ajax execute="@this" render="@all"/>
+                                    <f:ajax execute="@this" render="@form"/>
                                 </p:selectOneMenu>
                             </div>
                         </center>

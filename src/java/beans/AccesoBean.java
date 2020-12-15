@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -24,10 +23,6 @@ import javax.servlet.http.HttpSession;
 import modelo.DatosPersonales;
 import modelo.Matricula;
 
-/**
- *
- *
- */
 @Named(value = "accesoBean")
 @SessionScoped
 public class AccesoBean implements Serializable {
@@ -48,7 +43,7 @@ public class AccesoBean implements Serializable {
         selected = new Usuario();
     }
 
-    public void doLogin(){
+    public void doLogin() {
         Usuario us = getEjbFacade().validarUsuario(selected.getUsuario(), selected.getClave());
         message = "bien";
         if (us != null) {
@@ -56,29 +51,29 @@ public class AccesoBean implements Serializable {
                 if (us.getClave().equals(selected.getClave())) {
                     try {
                         switch (us.getIdTipoOperador().getIdTipoOperador()) {
-                        case 1:
-                            asignarRecursoWeb("/vista/template.xhtml", us);
-                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                            break;
-                        case 2:
-                            asignarRecursoWeb("/Estudiante/templateEstudiante.xhtml", us);
-                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                            Matricula ma = null;
-                            try {
-                                ma = ejbFacadeMa.obtenerMatricula(us.getIdDatosPersonales().getIdDatosPersonales());
-                            } catch (Exception ex) {
-                            }
-                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("matricula", ma);
-                            break;
-                        case 3:
-                            asignarRecursoWeb("/Profesor/templateProfesor.xhtml", us);
-                            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                            break;
-                        default:
-                            break;
-                    }
-                    message = "";
-                        
+                            case 1:
+                                asignarRecursoWeb("/vista/template.xhtml", us);
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                                break;
+                            case 2:
+                                asignarRecursoWeb("/Estudiante/templateEstudiante.xhtml", us);
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                                Matricula ma = null;
+                                try {
+                                    ma = ejbFacadeMa.obtenerMatricula(us.getIdDatosPersonales().getIdDatosPersonales());
+                                } catch (Exception ex) {
+                                }
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("matricula", ma);
+                                break;
+                            case 3:
+                                asignarRecursoWeb("/Profesor/templateProfesor.xhtml", us);
+                                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                                break;
+                            default:
+                                break;
+                        }
+                        message = "";
+
                     } catch (IOException e) {
                     }
                 } else {

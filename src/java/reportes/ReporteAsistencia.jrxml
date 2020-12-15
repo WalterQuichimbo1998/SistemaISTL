@@ -227,18 +227,7 @@ WHERE asistencia.id_materia=$P{materia}
 		<band height="16" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="102" splitType="Stretch">
-			<line>
-				<reportElement x="179" y="16" width="184" height="1" uuid="cf4f30e9-8aaa-42c4-b499-1c096bebc82f"/>
-			</line>
-			<staticText>
-				<reportElement x="237" y="17" width="78" height="20" uuid="7ec2a219-7265-4fcd-b5e5-5aca029bde53"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<text><![CDATA[SECRETARIA]]></text>
-			</staticText>
-		</band>
+		<band height="102" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

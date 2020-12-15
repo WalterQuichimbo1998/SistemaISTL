@@ -8,14 +8,14 @@
 
     <ui:composition>
 
-        <p:dialog id="TablaInvestigacionEditDlg" widgetVar="TablaInvestigacionEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditTablaInvestigacionTitle}"
+        <p:dialog id="TablaInvestigacionEditDlg" widgetVar="TablaInvestigacionEditDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.EditTablaInvestigacionTitle}"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="TablaInvestigacionEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{tablaInvestigacionController.selected != null}">
                        <p:outputLabel value="Persona: " for="idDatosPersonales" />
                         <p:selectOneMenu id="idDatosPersonales" value="#{tablaInvestigacionController.selected.idDatosPersonales}" panelStyle="width:280px"
-                                         effect="fade" style="width:260px" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione">
+                                         effect="fade" style="width:320px !important;" filter="true" filterMatchMode="contains" height="160" required="true" requiredMessage="Seleccione">
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
                             <f:selectItems value="#{datosPersonalesController.itemsAvailableSelectOne}"
                                            var="idDatosPersonalesItem"

@@ -5,10 +5,12 @@
  */
 package beans;
 
+import dao.DistributivoMateriaFacade;
 import dao.MateriaFacade;
 import dao.MatriculaFacade;
 import dao.NivelAcademicoFacade;
 import dao.NotasFacade;
+import dao.TituloCarreraFacade;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -33,8 +35,8 @@ import javax.naming.InitialContext;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import modelo.DistributivoMateria;
 import modelo.Materia;
-import modelo.Matricula;
 import modelo.NivelAcademico;
 import modelo.Notas;
 import modelo.PeriodoAcademico;
@@ -70,6 +72,10 @@ public class ExportarNotasMaterias implements Serializable {
     @EJB
     private MatriculaFacade eFacadeMa;
     @EJB
+    private DistributivoMateriaFacade ejbFacadeD;
+    @EJB
+    private TituloCarreraFacade ejbFacadeTitulo;
+    @EJB
     private MateriaFacade ejbFacade;
     private List<Materia> itemsMateria = null;
     private Materia materiaSelected;
@@ -84,7 +90,15 @@ public class ExportarNotasMaterias implements Serializable {
     private PeriodoAcademico periodoSelected;
     private List<Notas> listaN = null;
     private List<Materia> listaM = null;
-    private List<Matricula> listaEstu = null;
+    private List<Notas> listaEstu = null;
+
+    /////////////////////////////////////////
+    private PeriodoAcademico selectedPeriodo = null;
+    private List<TituloCarrera> listaTituloDocente = null;
+    private List<NivelAcademico> listaNivelesDocente = null;
+    private NivelAcademico selectedN;
+    private Materia selectedMa;
+    private List<DistributivoMateria> itemsMateriaDistributivo = null;
 
     @PostConstruct
     public void init() {
@@ -131,6 +145,71 @@ public class ExportarNotasMaterias implements Serializable {
         this.materiaSelected = materiaSelected;
     }
 
+    ////////////////////////////
+    public NivelAcademico getSelectedN() {
+        return selectedN;
+    }
+
+    public void setSelectedN(NivelAcademico selectedN) {
+        this.selectedN = selectedN;
+        selectedMa = null;
+    }
+
+    public Materia getSelectedMa() {
+        return selectedMa;
+    }
+
+    public void setSelectedMa(Materia selectedMa) {
+        this.selectedMa = selectedMa;
+    }
+
+    public PeriodoAcademico getSelectedPeriodo() {
+        return selectedPeriodo;
+    }
+
+    public void setSelectedPeriodo(PeriodoAcademico selectedPeriodo) {
+        this.selectedPeriodo = selectedPeriodo;
+    }
+
+    public List<TituloCarrera> getListaTituloDocente() {
+        listaTituloDocente = null;
+        if (listaTituloDocente == null) {
+            if (selectedPeriodo != null) {
+                listaTituloDocente = ejbFacadeTitulo.listaTitulos(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedPeriodo.getIdPeriodoAcademico());
+            }
+        }
+        return listaTituloDocente;
+    }
+
+    public void setListaTituloDocente(List<TituloCarrera> listaTituloDocente) {
+        this.listaTituloDocente = listaTituloDocente;
+    }
+
+    public List<NivelAcademico> listaNivelesDocente(Integer id) {
+        listaNivelesDocente = null;
+        if (listaNivelesDocente == null) {
+            if (selectedPeriodo != null) {
+                listaNivelesDocente = ejbFacadeNivel.listaNivelesDistributivo(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), id, selectedPeriodo.getIdPeriodoAcademico());
+            }
+        }
+        return listaNivelesDocente;
+    }
+
+    public List<DistributivoMateria> getItemsMateriaDistributivo() {
+        itemsMateriaDistributivo = null;
+        if (itemsMateriaDistributivo == null) {
+            if (selectedN != null) {
+                itemsMateriaDistributivo = ejbFacadeD.listaMateriasProfersorDistri(AccesoBean.obtenerIdPersona().getIdDatosPersonales().getIdDatosPersonales(), selectedN.getIdNivelAcademico(), selectedPeriodo.getIdPeriodoAcademico());
+            }
+        }
+        return itemsMateriaDistributivo;
+    }
+
+    public void setItemsMateriaDistributivo(List<DistributivoMateria> itemsMateriaDistributivo) {
+        this.itemsMateriaDistributivo = itemsMateriaDistributivo;
+    }
+
+    ////////////////////////////
     public List<Materia> getItemsMateria() {
         if (getTituloCarreraSelected() != null) {
             if (getItemsNivelAcademico().contains(getNivelAcademicoSelected()) == true) {
@@ -153,7 +232,8 @@ public class ExportarNotasMaterias implements Serializable {
 
     private byte[] reportPdf;
     private final String logotipo = "/reportes/logo.jpg";
-  public Connection getConnection() throws Exception {
+
+    public Connection getConnection() throws Exception {
         final String DATASOURCE_CONTEXT = "java:app/sistema_gestion"; //nombre de tu pool de conexiones
         Context initialContext = new InitialContext();
         DataSource datasource = (DataSource) initialContext.lookup(DATASOURCE_CONTEXT);
@@ -163,35 +243,30 @@ public class ExportarNotasMaterias implements Serializable {
     public void imprimirMateriasdoc() throws URISyntaxException, JRException, Exception {
         List<Notas> lista = null;
         try {
-            lista = ejbFacadeNotas.verificarMaterias(periodoSelected.getIdPeriodoAcademico(), nivelAcademicoSelected.getIdNivelAcademico(), materiaSelected.getIdMateria(), tituloCarreraSelected.getIdTituloCarrera());
+            lista = ejbFacadeNotas.verificarMaterias(selectedPeriodo.getIdPeriodoAcademico(), selectedN.getIdNivelAcademico(), selectedMa.getIdMateria(), selectedN.getIdTituloCarrera().getIdTituloCarrera());
 
         } catch (Exception e) {
             System.out.println("error" + e.getMessage());
         }
-        if (!lista.isEmpty()) {
+        if (lista != null) {
             reportPdf = null;
             File fichero = new File(getClass().getResource("/reportes/MateriaDocente.jasper").toURI());
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
-
             if (jasperReport != null) {
                 Map parametros = new HashMap();
                 //parametros que enviamos al report.
                 parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
-                parametros.put("ciclo", nivelAcademicoSelected.getIdNivelAcademico());
-                parametros.put("materia", materiaSelected.getIdMateria());
-                parametros.put("periodo", periodoSelected.getIdPeriodoAcademico());
-                parametros.put("titulo", tituloCarreraSelected.getIdTituloCarrera());
-                parametros.put("titulo_carrera", tituloCarreraSelected.getNombreTitulo());
-
+                parametros.put("ciclo", selectedN.getIdNivelAcademico());
+                parametros.put("materia", selectedMa.getIdMateria());
+                parametros.put("periodo", selectedPeriodo.getIdPeriodoAcademico());
+                parametros.put("titulo", selectedN.getIdTituloCarrera().getIdTituloCarrera());
+                parametros.put("titulo_carrera", selectedN.getIdTituloCarrera().getNombreTitulo());
                 //Compilamos el archivo XML y lo cargamos en memoria
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
                 //Exportamos el reporte a pdf y lo guardamos en disco
-
                 reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
                 HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-
-                response.addHeader("Content-disposition", "attachment; filename=materias.pdf");
-
+                response.addHeader("Content-disposition", "attachment; filename=notas_materia.pdf");
                 ServletOutputStream stream = response.getOutputStream();
                 JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
                 stream.flush();
@@ -204,46 +279,79 @@ public class ExportarNotasMaterias implements Serializable {
         }
     }
 
-     public void imprimirNotasMateria(Integer id1,Integer id2,Integer id3,TituloCarrera t) throws URISyntaxException, JRException, Exception {
-   
+    public void imprimirMateriasdoc2() throws URISyntaxException, JRException, Exception {
+        List<Notas> lista = null;
+        try {
+            lista = ejbFacadeNotas.verificarMaterias(periodoSelected.getIdPeriodoAcademico(), nivelAcademicoSelected.getIdNivelAcademico(), materiaSelected.getIdMateria(), tituloCarreraSelected.getIdTituloCarrera());
+        } catch (Exception e) {
+            System.out.println("error" + e.getMessage());
+        }
+        if (!lista.isEmpty()) {
             reportPdf = null;
             File fichero = new File(getClass().getResource("/reportes/MateriaDocente.jasper").toURI());
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
-
             if (jasperReport != null) {
                 Map parametros = new HashMap();
                 //parametros que enviamos al report.
                 parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
-                parametros.put("ciclo", id1);
-                parametros.put("materia", id2);
-                parametros.put("periodo", id3);
-                parametros.put("titulo", t.getIdTituloCarrera());
-                parametros.put("titulo_carrera", t.getNombreTitulo());
-
+                parametros.put("ciclo", nivelAcademicoSelected.getIdNivelAcademico());
+                parametros.put("materia", materiaSelected.getIdMateria());
+                parametros.put("periodo", periodoSelected.getIdPeriodoAcademico());
+                parametros.put("titulo", tituloCarreraSelected.getIdTituloCarrera());
+                parametros.put("titulo_carrera", tituloCarreraSelected.getNombreTitulo());
                 //Compilamos el archivo XML y lo cargamos en memoria
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
                 //Exportamos el reporte a pdf y lo guardamos en disco
-
                 reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
                 HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
-
-                response.addHeader("Content-disposition", "attachment; filename=materias.pdf");
-
+                response.addHeader("Content-disposition", "attachment; filename=notas_materia.pdf");
                 ServletOutputStream stream = response.getOutputStream();
                 JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
                 stream.flush();
                 stream.close();
                 FacesContext.getCurrentInstance().responseComplete();
+                lista = null;
             }
-      
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "No se encontraron datos.", ""));
+        }
     }
 
-  
+    public void imprimirNotasMateria(Integer id1, Integer id2, Integer id3, TituloCarrera t) throws URISyntaxException, JRException, Exception {
+
+        reportPdf = null;
+        File fichero = new File(getClass().getResource("/reportes/MateriaDocente.jasper").toURI());
+        JasperReport jasperReport = (JasperReport) JRLoader.loadObject(fichero);
+
+        if (jasperReport != null) {
+            Map parametros = new HashMap();
+            //parametros que enviamos al report.
+            parametros.put("logo", this.getClass().getResourceAsStream(logotipo));
+            parametros.put("ciclo", id1);
+            parametros.put("materia", id2);
+            parametros.put("periodo", id3);
+            parametros.put("titulo", t.getIdTituloCarrera());
+            parametros.put("titulo_carrera", t.getNombreTitulo());
+            //Compilamos el archivo XML y lo cargamos en memoria
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parametros, getConnection());
+            //Exportamos el reporte a pdf y lo guardamos en disco
+            reportPdf = JasperExportManager.exportReportToPdf(jasperPrint);
+            HttpServletResponse response = (HttpServletResponse) FacesContext.getCurrentInstance().getExternalContext().getResponse();
+            response.addHeader("Content-disposition", "attachment; filename=materias.pdf");
+            ServletOutputStream stream = response.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jasperPrint, stream);
+            stream.flush();
+            stream.close();
+            FacesContext.getCurrentInstance().responseComplete();
+        }
+
+    }
+
     public void reporteExcel() {
         if (getNivelAcademicoSelected() != null) {
             listaM = ejbFacade.listaMaterias(getNivelAcademicoSelected().getIdNivelAcademico());
             listaEstu = null;
-            listaEstu = eFacadeMa.obtenerMatriculaEstu(getNivelAcademicoSelected().getIdNivelAcademico(),getPeriodoSelected().getIdPeriodoAcademico());
+            listaEstu = ejbFacadeNotas.obtenerNotasEstu(getNivelAcademicoSelected().getIdNivelAcademico(), getPeriodoSelected().getIdPeriodoAcademico());
             if (listaEstu.size() > 0) {
 
                 Workbook wb = new XSSFWorkbook();
@@ -389,7 +497,7 @@ public class ExportarNotasMaterias implements Serializable {
                     double p = 0;
                     for (int i = 0; i < listaM.size(); i++) {
                         listaN = null;
-                        listaN = ejbFacadeNotas.notaEstudiante(listaEstu.get(j).getIdNivelAcademico().getIdNivelAcademico(), listaM.get(i).getIdMateria(), listaEstu.get(j).getIdDatosPersonales().getIdDatosPersonales(),getPeriodoSelected().getIdPeriodoAcademico());
+                        listaN = ejbFacadeNotas.notaEstudiante(listaEstu.get(j).getIdNivelAcademico().getIdNivelAcademico(), listaM.get(i).getIdMateria(), listaEstu.get(j).getIdDatosPersonales().getIdDatosPersonales(), getPeriodoSelected().getIdPeriodoAcademico());
                         if (listaN.size() > 0) {
                             for (int j2 = 0; j2 < listaN.size(); j2++) {
                                 fila.createCell(c4).setCellValue(listaN.get(j2).getParcialUno() == null ? 0 : listaN.get(j2).getParcialUno());
@@ -403,12 +511,12 @@ public class ExportarNotasMaterias implements Serializable {
                                 c4++;
                                 fila.createCell(c4).setCellValue(listaN.get(j2).getNotaFinal() == null ? 0 : listaN.get(j2).getNotaFinal());
                                 fila.getCell(c4).setCellStyle(cs);
-                                if(listaN.get(j2).getNotaFinal()==null || Objects.equals(listaN.get(j2).getNotaFinal(), "")){
+                                if (listaN.get(j2).getNotaFinal() == null || Objects.equals(listaN.get(j2).getNotaFinal(), "")) {
                                     p = p + 0;
-                                }else{
+                                } else {
                                     p = p + listaN.get(j2).getNotaFinal();
                                 }
-                                
+
                                 c4++;
 
                             }
@@ -443,13 +551,13 @@ public class ExportarNotasMaterias implements Serializable {
                     facesContext.responseComplete();
 
                 } catch (FileNotFoundException e) {
-                  Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, e);
+                    Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, e);
 
                 } catch (IOException ex) {
                     Logger.getLogger(ExportarNotasMaterias.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Estudiantes no matriculados en este ciclo o período", ""));
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "No hay notas en este ciclo o período", ""));
             }
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_FATAL, "Selecccione un ciclo.", ""));

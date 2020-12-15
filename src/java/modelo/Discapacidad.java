@@ -63,8 +63,6 @@ public class Discapacidad implements Serializable {
     @Column(name = "fecha_de_registro")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaDeRegistro;
-    @OneToMany(mappedBy = "idDiscapacidad")
-    private List<Persona> personaList;
     @JoinColumn(name = "id_tipo_discapacidad", referencedColumnName = "id_tipo_discapacidad")
     @ManyToOne
     private TipoDiscapacidad idTipoDiscapacidad;
@@ -123,15 +121,6 @@ public class Discapacidad implements Serializable {
 
     public void setFechaDeRegistro(Date fechaDeRegistro) {
         this.fechaDeRegistro = fechaDeRegistro;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     public TipoDiscapacidad getIdTipoDiscapacidad() {

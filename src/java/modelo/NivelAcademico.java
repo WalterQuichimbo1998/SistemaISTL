@@ -63,8 +63,6 @@ public class NivelAcademico implements Serializable {
     @ManyToOne
     private PeriodoAcademico idPeriodoAcademico;
     @OneToMany(mappedBy = "idNivelAcademico")
-    private List<Persona> personaList;
-    @OneToMany(mappedBy = "idNivelAcademico")
     private List<MatriculaHistorial> matriculaHistorialList;
     @OneToMany(mappedBy = "idNivelAcademico")
     private List<Matricula> matriculaList;
@@ -122,15 +120,6 @@ public class NivelAcademico implements Serializable {
 
     public void setDistributivoList(List<Distributivo> distributivoList) {
         this.distributivoList = distributivoList;
-    }
-
-    @XmlTransient
-    public List<Persona> getPersonaList() {
-        return personaList;
-    }
-
-    public void setPersonaList(List<Persona> personaList) {
-        this.personaList = personaList;
     }
 
     @XmlTransient

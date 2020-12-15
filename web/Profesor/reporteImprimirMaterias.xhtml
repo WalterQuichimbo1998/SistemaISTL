@@ -5,63 +5,83 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/Profesor/templateProfesor.xhtml">
 
         <ui:define name="body">
 
-            <div>
-                <h:form id="MateriaEditForm">
-                    <h:panelGroup id="display" >
-                        <div class="data_campos_filto">
-                             <h2 style="color: #454545;padding: 10px 20px;margin-bottom: 20px;font-family: Arial;">REPORTE DE NOTAS POR MATERIA</h2>
-                            <p:outputLabel class="labelLateral" value="Carrera" for="idTituloCarrera"/>
-                            <p:selectOneMenu id="idTituloCarrera" value="#{exportarNotasMaterias.tituloCarreraSelected}" required="true"  requiredMessage="Seleccione una carrera">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{tituloCarreraController.itemsAvailableSelectOne}"
-                                               var="idTituloCarreraItem"
-                                               itemValue="#{idTituloCarreraItem}"/>
-                                <f:ajax execute="idTituloCarrera" render="idNivelAcademico"/>
-                                <f:ajax render="idMateria"/>
-                            </p:selectOneMenu> 
-                           
-                            
-                            <p:outputLabel class="labelLateral" value="Ciclo" for="idNivelAcademico" />
-                            <p:selectOneMenu id="idNivelAcademico" value="#{exportarNotasMaterias.nivelAcademicoSelected}" required="true"  requiredMessage="Seleccione un nivel">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{exportarNotasMaterias.itemsNivelAcademico}"
-                                               var="idNivelAcademicoItem"
-                                               itemValue="#{idNivelAcademicoItem}"/>
-                               <f:ajax execute="idNivelAcademico" render="idMateria" />
-                            </p:selectOneMenu>
-                            
-                            <p:outputLabel class="labelLateral" value="Materia" for="idMateria" />
-                            <p:selectOneMenu  id="idMateria" value="#{exportarNotasMaterias.materiaSelected}" required="true"  requiredMessage="Seleccione una materia"
-                                              effect="fade" filter="true" filterMatchMode="contains" height="160">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{exportarNotasMaterias.itemsMateria}"
-                                               var="idMateriaItem"
-                                               itemValue="#{idMateriaItem}"/>
-                                
-                            </p:selectOneMenu>
-                             <p:outputLabel class="labelLateral" value="Período Académico" for="idPeriodo" />
-                            <p:selectOneMenu id="idPeriodo" value="#{exportarNotasMaterias.periodoSelected}" required="true"  requiredMessage="Seleccione un periodo">
-                                <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                                <f:selectItems value="#{periodoAcademicoController.lista}"
-                                               var="idPeriodoAcademicoItem"
-                                               itemValue="#{idPeriodoAcademicoItem}"/>
-                                
-                            </p:selectOneMenu>
-                            <br/>
-                            <br/>
-                            <div style="text-align: center">
-                                <p:commandButton ajax="false" class="btn_impReporte" action="#{exportarNotasMaterias.imprimirMateriasdoc()}" value="DESCARGAR" >
-                                </p:commandButton></div>
+            <h:form id="TituloCarreraListForm">
+                <br/>
+
+                <p class="title_modulos" style="color: #454545;">Reporte de Notas</p>
+                <div style="width: 300px;margin: auto;">
+                    <p:outputLabel  value="Seleccione un Período Académico:" for="idPeriodo" style="font-size: 17px !important;"/>
+                    <p:selectOneMenu id="idPeriodo" value="#{exportarNotasMaterias.selectedPeriodo}">
+                        <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                        <f:selectItems value="#{periodoAcademicoController.lista}"
+                                       var="idPeriodoAcademicoItem"
+                                       itemValue="#{idPeriodoAcademicoItem}"/>
+                        <f:ajax execute="@this" render=":TituloCarreraListForm:lista"/>
+                    </p:selectOneMenu>
+                </div>
+                <br/>
+                <h:panelGroup id="lista">
+                    <p:dataTable id="datalist" value="#{exportarNotasMaterias.listaTituloDocente}" var="item" styleClass="tabla" style="width: 800px;margin: auto;"
+                                 rows="10"
+                                 emptyMessage="No se encontraron resultados.">
+                        <f:facet name="header">
+                            <h2 style="padding: 10px 2px;font-weight: normal;"><strong>Período seleccionado: </strong>#{exportarNotasMaterias.selectedPeriodo.nombre}</h2>
+                        </f:facet>
+                        <p:column sortBy="#{item.nombreTitulo}">
+                            <h2 style="font-family: Arial;font-weight: normal;padding: 10px 20px;">#{item.nombreTitulo}</h2>
+
+                            <ui:repeat value="#{exportarNotasMaterias.listaNivelesDocente(item.idTituloCarrera)}" var="car">
+                                <p:commandButton styleClass="editar" style="color:#fff;display: inline-block;margin: 2px 4px;background: #46c5d7;" icon="ui-icon-search" value="#{car.nivelAcademico}"
+                                                 actionListener="#{exportarNotasMaterias.setSelectedN(car)}"  
+                                                 update=":form_reporte" oncomplete="PF('reporte').show()"/>
+                            </ui:repeat> 
+                            <br/><br/>
+                        </p:column>
+                    </p:dataTable>
+                </h:panelGroup> 
+
+            </h:form>
+            <p:dialog id="reporte" widgetVar="reporte" modal="false" resizable="false" appendTo="@(body)" header="Reporte"
+                      closeOnEscape="true" showEffect="clip" hideEffect="clip">
+                <h:form id="form_reporte">
+                    <c:if test="#{exportarNotasMaterias.selectedN!=null}">
+                        <center>
+                            <p:outputLabel value="Carrera: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{exportarNotasMaterias.selectedN.idTituloCarrera.nombreTitulo}" style="color: #1976D3;"/><br/>
+                            <p:outputLabel value="Nivel académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{exportarNotasMaterias.selectedN.nivelAcademico}" style="color: #1976D3;"/><br/>
+                            <p:outputLabel value="Período académico: " style="font-size: 16px !important;color: #727272;"/><br/>
+                            <p:outputLabel value="#{exportarNotasMaterias.selectedPeriodo.nombre}" style="color: #1976D3;"/><br/><br/>
+                        </center>
+
+                        <div style="width: 300px;margin: auto;"> 
+                            <center>
+                                <p:outputLabel value="Seleccione la materia: " for="idMateria" style="font-size: 15px !important;text-align: center;font-weight: normal;"/>
+                                <p:selectOneMenu id="idMateria" value="#{exportarNotasMaterias.selectedMa}" effect="fade" required="true" requiredMessage="Seleccione una materia">
+                                    <f:selectItem itemLabel="-Seleccione-"/>
+                                    <f:selectItems value="#{exportarNotasMaterias.itemsMateriaDistributivo}"
+                                                   var="idMateriaItem"
+                                                   itemValue="#{idMateriaItem.idMateria}"
+                                                   itemLabel="#{idMateriaItem.idMateria.materia}"/>
+                                </p:selectOneMenu>
+                            </center>
                         </div>
-                    </h:panelGroup>
+                        <br/>
+                        <center>
+                            <p:commandButton value="Descargar Reporte" ajax="false" icon="ui-icon-note" styleClass="crear" actionListener="#{exportarNotasMaterias.imprimirMateriasdoc()}"/>
+                        </center>
+                    </c:if>
                 </h:form>
-            </div>
+            </p:dialog>
+
+            <br/>
         </ui:define>
 
     </ui:composition>

@@ -3,12 +3,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
 
-        <p:dialog id="ResidenciaCreateDlg" widgetVar="ResidenciaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateResidenciaTitle}"
+        <p:dialog id="ResidenciaCreateDlg" widgetVar="ResidenciaCreateDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.CreateResidenciaTitle}"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="ResidenciaCreateForm">
                 <h:panelGroup id="display">

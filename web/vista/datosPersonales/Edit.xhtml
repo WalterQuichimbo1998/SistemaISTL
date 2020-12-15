@@ -7,7 +7,7 @@
       xmlns:p="http://primefaces.org/ui">
 
     <ui:composition>
-        <p:dialog id="DatosPersonalesEditDlg" widgetVar="DatosPersonalesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDatosPersonalesTitle}"  closeOnEscape="true" hideEffect="clip" showEffect="clip">
+        <p:dialog id="DatosPersonalesEditDlg" widgetVar="DatosPersonalesEditDialog" modal="false" resizable="false" appendTo="@(body)" header="#{bundle.EditDatosPersonalesTitle}"  closeOnEscape="true" hideEffect="clip" showEffect="clip">
             <h:form id="DatosPersonalesEditForm">
                 <p:panel style="margin: 0;margin: auto;padding: 0;">
                     <h:panelGrid id="display" columns="4" rendered="#{datosPersonalesController.selected != null}" >

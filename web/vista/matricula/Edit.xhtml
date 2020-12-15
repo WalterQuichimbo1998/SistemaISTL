@@ -8,7 +8,7 @@
 
     <ui:composition>
 
-        <p:dialog id="MatriculaEditDialog" widgetVar="MatriculaEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Editar Registro Matrícula"
+        <p:dialog id="MatriculaEditDialog" widgetVar="MatriculaEditDialog" modal="false" resizable="false" appendTo="@(body)" header="Editar Registro Matrícula"
                   closeOnEscape="true" showEffect="clip" hideEffect="clip">
             <h:form id="MatriculaEditForm">
                 <h:panelGroup id="display">
@@ -123,7 +123,9 @@
                             </p:selectOneListbox>
                             <br/>
                              <center>
-                                <p:commandButton styleClass="btn_g" actionListener="#{matriculaController.actualizarMatricula()}" value="#{bundle.Save}" update="display,:MatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MatriculaEditDialog');"/>
+                                <p:commandButton styleClass="btn_g" actionListener="#{matriculaController.actualizarMatricula()}" value="#{bundle.Save}" 
+                                                 action="#{matriculaHistorialController.crearMH(matriculaController.selected)}"
+                                                 update="display,:MatriculaListForm:datalist,:growl" oncomplete="handleSubmit(args,'MatriculaEditDialog');"/>
                                 <p:commandButton styleClass="btn_s" value="#{bundle.Cancel}" immediate="true" oncomplete="PF('MatriculaEditDialog').hide();"/>
                             </center>
 
